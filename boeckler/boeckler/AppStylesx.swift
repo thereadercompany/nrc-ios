@@ -31,8 +31,6 @@ struct Colors {
     static let defaultBackgroundColor = UIColor.whiteColor()
     static let defaultSpacingBackgroundColor = UIColor.clearColor()
     static let defaultFontColor = UIColor(hex: 0x2A2D31)
-    static let titleOverImageColor = UIColor.whiteColor()
-    static let titleOverImageBackgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.4)
     static let insetLineColor = UIColor(hex: 0xE6EAEE)
     static let defaultLineColor = UIColor(hex: 0xE6EAEE)
     static let defaultShadowColor = UIColor.blackColor().colorWithAlphaComponent(0.35)
@@ -45,7 +43,7 @@ struct Colors {
     static let dividerForegroundColor = UIColor(hex: 0xE6EAEE).colorWithAlphaComponent(0.4)
     static let dividerBackgroundColor = UIColor.clearColor()
     static let navigationViewLightTitleColor = UIColor.blackColor()
-    static let navigationViewDarkTitleColor = UIColor.whiteColor()
+    static let navigationViewDartkTitleColor = UIColor.whiteColor()
     static let navigationViewLightSubtitleColor = UIColor.blackColor()
     static let navigationViewDarkSubtitleColor = UIColor(hex: 0xA7A8A9)
     static let navigationViewTransparentBackgroundColor = UIColor.clearColor()
@@ -114,29 +112,11 @@ struct TimelineStyles {
     static let navigationBarHeight: CGFloat = 85 //65 + 20 statusbar
     static let lineInset: CGFloat = 16
     static let lineHeight: CGFloat = 1
-    static let navigationViewStyle = NavigationViewStyle.Dark
-    static func navigationViewNeedsLine(style: NavigationViewStyle) -> Bool {
-        return false
-    }
-    static func navigationTextVisible(style: NavigationViewStyle) -> Bool {
-        switch style {
-        case .Transparent, .Dark:
-            return false
-        case .Light:
-            return true
-        }
-    }
-    static func imageForTimelineDecoration(decoration: BlockDecoration, imagePosition: BlockDecoration? = BlockDecoration.None) -> UIImage? {
-        return UIImage.imageForCardDecoration(decoration, imagePosition: imagePosition)
-    }
 }
 
 struct ArticleStyles {
     static let textInset: CGFloat = 24
     static let backgroundColor = Colors.articleBackgroundColor
-    static func navigationViewNeedsLine(style: NavigationViewStyle) -> Bool {
-        return style == .Light
-    }
 }
 
 struct ArticleHeaderCellStyles {
@@ -182,9 +162,6 @@ struct HighlightCellStyles {
     static let breakingHeadlineMarginTop: CGFloat = 24
     static let breakingRichTextMarginTop: CGFloat = 16
     static let height: CGFloat = Window.hval([Screen.hS:306,Screen.hM:342,Screen.hL:367])
-    static func roundedImageCorners() -> UIRectCorner {
-        return [UIRectCorner.TopLeft, UIRectCorner.TopRight]
-    }
 }
 
 struct AlertCellStyles {
@@ -338,7 +315,7 @@ extension NavigationViewStyle {
     var titleColor: UIColor {
         switch self {
         case .Transparent, .Dark:
-            return Colors.navigationViewDarkTitleColor
+            return Colors.navigationViewDartkTitleColor
         case .Light:
             return Colors.navigationViewLightTitleColor
         }
@@ -764,16 +741,7 @@ extension MediaContainable {
 }
 
 extension HeadlineContainable {
-    
-    var headlineBackgroundColor: UIColor? {
-        switch (context, self.dynamicType.type, style) {
-        case (.Timeline, _, .HighlightImage):
-            return Colors.titleOverImageBackgroundColor
-        default:
-            return nil
-        }
-    }
-    
+
     var headlineFontColor: UIColor {
         switch (context, self.dynamicType.type, style) {
         case (.Article, .Streamer, _):
@@ -782,8 +750,6 @@ extension HeadlineContainable {
             return Colors.overlayFontColor
         case (_, .Tweet, _):
             return Colors.tweetTextColor
-        case (.Timeline, _, .HighlightImage):
-            return Colors.titleOverImageColor
         default:
             return Colors.defaultFontColor
         }
@@ -796,12 +762,11 @@ extension HeadlineContainable {
         case (.Timeline, .ArticleRef, .HighlightXL),
              (.Timeline, .ArticleRef, .Highlight),
              (.Timeline, .ArticleRef, .Alert),
-             (.Timeline, .Alert, _),
-             (.Timeline, .ArticleRef, .HighlightImage):
-             return Fonts.mediumFont.fallbackWithSize(22)
+             (.Timeline, .Alert, _):
+            return Fonts.mediumFont.fallbackWithSize(22)
         case (.Timeline,.ArticleRef, .ColumnHighlight),
              (.Timeline, .ArticleRef, .ColumnHighlightXL):
-             return Fonts.largeFont.fallbackWithSize(26)
+            return Fonts.largeFont.fallbackWithSize(26)
         case (.Timeline,.ArticleRef,.Normal):
             return Fonts.textFont.fallbackWithSize(15)
         case (_,.EnhancedBanner, .XL):
@@ -868,7 +833,7 @@ extension HeadlineContainable {
     
     var attributedHeadline: NSAttributedString {
         guard let headline = self.headline else { return NSAttributedString() }
-        let attrs = StringAttributes(font: headlineFont, foregroundColor: headlineFontColor, backgroundColor: headlineBackgroundColor, lineSpacing: headlineLinespacing, alignment: headlineAlignment, shadow: headlineShadow)
+        let attrs = StringAttributes(font: headlineFont, foregroundColor: headlineFontColor, lineSpacing: headlineLinespacing, alignment: headlineAlignment, shadow: headlineShadow)
         return NSMutableAttributedString(string:headline, attributes:attrs.dictionary)
     }
     
@@ -1162,7 +1127,7 @@ extension RichTextContainable {
     var shouldRenderRichText: Bool {
         guard let richText = self.richText where !richText.isEmpty else { return false }
         switch style {
-        case .ColumnHighlight, .HighlightImage:
+        case .ColumnHighlight:
             return false
         default:
             return true
@@ -1223,21 +1188,5 @@ extension NSAttributedString {
 extension UIButton {
     var titleLabelFont: UIFont {
         return Fonts.alternativeMediumFont.fallbackWithSize(13)
-    }
-}
-
-extension UIButton {
-    convenience init(paywallActionButtonTitle title: String, type buttonType: UIButtonType) {
-        self.init(type: buttonType)
-        setTitle(title, forState: .Normal)
-        setTitleColor(Colors.paywallButtonTitleColor, forState: .Normal)
-        titleLabel?.font = titleLabelFont
-        var contentInsets = self.contentEdgeInsets
-        contentInsets.top = 2
-        contentInsets.left = 10
-        contentInsets.right = contentInsets.left
-        self.contentEdgeInsets = contentInsets
-        backgroundColor = Colors.paywallButtonBackgroundColor
-        self.layer.cornerRadius = 2
     }
 }

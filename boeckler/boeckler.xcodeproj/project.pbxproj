@@ -47,7 +47,6 @@
 		1731BED81BEA43BE0012D6FF /* TweetCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1731BEA31BEA43BE0012D6FF /* TweetCell.swift */; settings = {ASSET_TAGS = (); }; };
 		1731BED91BEA43BE0012D6FF /* UIActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1731BEA41BEA43BE0012D6FF /* UIActivityViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		1731BEDA1BEA43BE0012D6FF /* UIApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1731BEA51BEA43BE0012D6FF /* UIApplication.swift */; settings = {ASSET_TAGS = (); }; };
-		1731BEDB1BEA43BE0012D6FF /* UIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1731BEA61BEA43BE0012D6FF /* UIButton.swift */; settings = {ASSET_TAGS = (); }; };
 		1731BEDC1BEA43BE0012D6FF /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1731BEA71BEA43BE0012D6FF /* UIColor.swift */; settings = {ASSET_TAGS = (); }; };
 		1731BEDD1BEA43BE0012D6FF /* UIEdgeInsets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1731BEA81BEA43BE0012D6FF /* UIEdgeInsets.swift */; settings = {ASSET_TAGS = (); }; };
 		1731BEDE1BEA43BE0012D6FF /* UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1731BEA91BEA43BE0012D6FF /* UIImage.swift */; settings = {ASSET_TAGS = (); }; };
@@ -366,7 +365,6 @@
 		1731BEA31BEA43BE0012D6FF /* TweetCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TweetCell.swift; path = "../core/ios-nrc-nl/TweetCell.swift"; sourceTree = "<group>"; };
 		1731BEA41BEA43BE0012D6FF /* UIActivityViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIActivityViewController.swift; path = "../core/ios-nrc-nl/UIActivityViewController.swift"; sourceTree = "<group>"; };
 		1731BEA51BEA43BE0012D6FF /* UIApplication.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIApplication.swift; path = "../core/ios-nrc-nl/UIApplication.swift"; sourceTree = "<group>"; };
-		1731BEA61BEA43BE0012D6FF /* UIButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIButton.swift; path = "../core/ios-nrc-nl/UIButton.swift"; sourceTree = "<group>"; };
 		1731BEA71BEA43BE0012D6FF /* UIColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIColor.swift; path = "../core/ios-nrc-nl/UIColor.swift"; sourceTree = "<group>"; };
 		1731BEA81BEA43BE0012D6FF /* UIEdgeInsets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIEdgeInsets.swift; path = "../core/ios-nrc-nl/UIEdgeInsets.swift"; sourceTree = "<group>"; };
 		1731BEA91BEA43BE0012D6FF /* UIImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIImage.swift; path = "../core/ios-nrc-nl/UIImage.swift"; sourceTree = "<group>"; };
@@ -544,7 +542,6 @@
 				1731BEA31BEA43BE0012D6FF /* TweetCell.swift */,
 				1731BEA41BEA43BE0012D6FF /* UIActivityViewController.swift */,
 				1731BEA51BEA43BE0012D6FF /* UIApplication.swift */,
-				1731BEA61BEA43BE0012D6FF /* UIButton.swift */,
 				1731BEA71BEA43BE0012D6FF /* UIColor.swift */,
 				1731BEA81BEA43BE0012D6FF /* UIEdgeInsets.swift */,
 				1731BEA91BEA43BE0012D6FF /* UIImage.swift */,
@@ -876,7 +873,6 @@
 				1731BF3D1BEA59110012D6FF /* RelationshipType.swift in Sources */,
 				1731BF841BEA59270012D6FF /* CGSize.swift in Sources */,
 				1731BEC31BEA43BE0012D6FF /* StoreEventHandler.swift in Sources */,
-				1731BEDB1BEA43BE0012D6FF /* UIButton.swift in Sources */,
 				1731BF311BEA59110012D6FF /* NormalCell.swift in Sources */,
 				1731BF6E1BEA59270012D6FF /* BasicBannerCell.swift in Sources */,
 				1731BEE51BEA43BE0012D6FF /* Value.swift in Sources */,
