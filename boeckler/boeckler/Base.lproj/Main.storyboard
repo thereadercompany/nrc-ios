@@ -163,7 +163,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" id="vEU-gd-bXl">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="barTintColor" red="0.12092829189686916" green="0.12092829189686916" blue="0.12092829189686916" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="barTintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </navigationBar>
                     <connections>
                         <segue destination="ajJ-oR-pdv" kind="relationship" relationship="rootViewController" id="N2C-rQ-iec"/>
@@ -177,7 +177,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="T4X-tE-LCG"/>
-        <segue reference="fRS-ma-xC4"/>
+        <segue reference="bmM-cV-bM6"/>
+        <segue reference="hmW-1M-qH8"/>
     </inferredMetricsTieBreakers>
 </document>

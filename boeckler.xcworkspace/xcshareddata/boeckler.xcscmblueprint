@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "681BD94CF4257CD83EE98FA129F6A9B7D42B0E87",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "17EAF88BF9762F1F88EADDDCCC988552AA5B5E5E" : 0,
+    "681BD94CF4257CD83EE98FA129F6A9B7D42B0E87" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "716837CF-6EC8-4DC8-B151-0061B4E7F304",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "17EAF88BF9762F1F88EADDDCCC988552AA5B5E5E" : "boeckler-ios\/boeckler\/core\/",
+    "681BD94CF4257CD83EE98FA129F6A9B7D42B0E87" : "boeckler-ios\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "boeckler",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "boeckler.xcworkspace",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/bitbucket.org\/thereadercompany\/nsa-ios.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "17EAF88BF9762F1F88EADDDCCC988552AA5B5E5E"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/bitbucket.org\/thereadercompany\/boeckler-ios",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "681BD94CF4257CD83EE98FA129F6A9B7D42B0E87"
+    }
+  ]
+}

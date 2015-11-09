@@ -18,7 +18,7 @@ struct Colors {
     static let linkColor = UIColor(hex: 0xD30910)
     static let cardBackgroundColor =  UIColor.whiteColor()
     static let articleBackgroundColor =  UIColor.whiteColor()
-    static let timelineBackgroundColor =  UIColor(hex: 0x2A2D31)
+    static let timelineBackgroundColor =  UIColor(hex: 0xF6F5F0)
     static let timelineDividerBackgroundColor = UIColor.clearColor()
     static let insetBackgroundColor = UIColor(hex: 0xF7F7F7)
     static let tweetTextColor = UIColor(hex: 0x3E4447)
@@ -44,6 +44,8 @@ struct Colors {
     static let transparant = UIColor.clearColor()
     static let dividerForegroundColor = UIColor(hex: 0xE6EAEE).colorWithAlphaComponent(0.4)
     static let dividerBackgroundColor = UIColor.clearColor()
+    static let navigationViewDarkBackgroundColor = UIColor.blackColor()
+    static let navigationViewLightBackgroundColor = UIColor(hex: 0xFAF9F5)
     static let navigationViewLightTitleColor = UIColor.blackColor()
     static let navigationViewDarkTitleColor = UIColor.whiteColor()
     static let navigationViewLightSubtitleColor = UIColor.blackColor()
@@ -107,14 +109,16 @@ extension Font {
 }
 
 struct TimelineStyles {
-    static let defaultMargin: CGFloat = 8
+    static let topInset: CGFloat = 0
+    static let defaultMargin: CGFloat = 0
     static let internalMargin: CGFloat = 16
     static let contentInset: CGFloat = 16
     static let backgroundColor = Colors.timelineBackgroundColor
     static let navigationBarHeight: CGFloat = 85 //65 + 20 statusbar
     static let lineInset: CGFloat = 16
     static let lineHeight: CGFloat = 1
-    static let navigationViewStyle = NavigationViewStyle.Dark
+    static let initiallyHideNavigationView = true
+    static let navigationViewStyle = NavigationViewStyle.Light
     static func navigationViewNeedsLine(style: NavigationViewStyle) -> Bool {
         return false
     }
@@ -127,11 +131,21 @@ struct TimelineStyles {
         }
     }
     static func imageForTimelineDecoration(decoration: BlockDecoration, imagePosition: BlockDecoration? = BlockDecoration.None) -> UIImage? {
-        return UIImage.imageForCardDecoration(decoration, imagePosition: imagePosition)
+        return nil
+    }
+    
+    static func preferredStatusBarStyle(navStyle: NavigationViewStyle) -> UIStatusBarStyle {
+        switch navStyle {
+        case .Dark:
+            return .LightContent
+        case .Transparent, .Light:
+            return .Default
+        }
     }
 }
 
 struct ArticleStyles {
+    static let navigationBarHeight: CGFloat = 85 //65 + 20 statusbar    
     static let textInset: CGFloat = 24
     static let backgroundColor = Colors.articleBackgroundColor
     static func navigationViewNeedsLine(style: NavigationViewStyle) -> Bool {
@@ -183,7 +197,7 @@ struct HighlightCellStyles {
     static let breakingRichTextMarginTop: CGFloat = 16
     static let height: CGFloat = Window.hval([Screen.hS:306,Screen.hM:342,Screen.hL:367])
     static func roundedImageCorners() -> UIRectCorner {
-        return [UIRectCorner.TopLeft, UIRectCorner.TopRight]
+        return []
     }
 }
 
@@ -208,6 +222,39 @@ struct EnhancedBannerCellStyles {
     static let richTextMarginBottomXL: CGFloat = Window.vval([Screen.vXS:52,Screen.vS:52,Screen.vM:64,Screen.vL:80])
     static let headlineMarginBottomXL: CGFloat = Window.vval([Screen.vXS:14,Screen.vS:14,Screen.vM:26,Screen.vL:40])
     static let contentWidth: CGFloat = 272
+}
+
+extension MediaCell {
+    override func layout() {
+        super.layout()
+        imageNode.frame = self.bounds
+    }
+}
+
+extension HighlightCell {
+    override func calculateSizeThatFits(constrainedSize: CGSize) -> CGSize {
+        switch block.style {
+        case .HighlightXL:
+            return CGSize(width: constrainedSize.width, height: constrainedSize.width)
+        default:
+            return CGSize(width: constrainedSize.width, height: constrainedSize.width*(256/375))
+        }
+    }
+    
+    override func layout() {
+        super.layout()
+        labelNode.frame =  labelRect
+        labelNode.hidden = !articleRef.shouldRenderLabel
+        let contentRect = frame.insetsBy(block.contentPadding)
+        
+        // headline
+        let headlineSize = self.headlineSize(contentRect.width)
+        
+        // position headline on top of image (z-axis)
+        let inset = contentRect.origin.x
+        let headerlineOriginY = CGRectGetMaxY(self.imageNode.frame) - headlineSize.height - inset
+        self.headlineNode.frame = CGRect(origin: CGPoint(x: inset, y: headerlineOriginY), size: headlineSize)
+    }
 }
 
 extension EnhancedBannerBlock {
@@ -329,9 +376,9 @@ extension NavigationViewStyle {
         case .Transparent:
             return Colors.navigationViewTransparentBackgroundColor
         case .Dark:
-            return Colors.timelineBackgroundColor
+            return Colors.navigationViewDarkBackgroundColor
         case .Light:
-            return Colors.articleBackgroundColor
+            return Colors.navigationViewLightBackgroundColor
         }
     }
     
@@ -412,8 +459,6 @@ extension BlockType {
     
     var decorationPaddingSide: CGFloat {
         switch (self.context, self.dynamicType.type) {
-        case (.Timeline, _):
-            return 8
         case (.Article, .Tweet):
             return 24
         default:
@@ -423,8 +468,6 @@ extension BlockType {
     
     var decorationPaddingBottom: CGFloat {
         switch (self.context, self.dynamicType.type, style) {
-        case (.Timeline, _, _):
-            return self.decoration.cardDecorationPaddingBottom
         case (.Article, .Tweet, _):
             return self.decoration.tweetDecorationPaddingBottom
         case (.Article, .Image, _):
@@ -439,12 +482,7 @@ extension BlockType {
     }
     
     func drawFullDecoration(view: UIView) {
-        // only drawing of full card decoration is currently used
-        switch self.context {
-        case .Timeline:
-            return view.drawFullCardDecoration()
-        default: ()
-        }
+        // currently not used
     }
         
     var contentPadding: UIEdgeInsets {
@@ -740,12 +778,7 @@ private let defaultAspectRatio: CGFloat = 4/3
 extension MediaContainable {
     var shouldRenderImage: Bool {
         guard let media = self.media where !media.identifier.isEmpty else { return false }
-        switch style {
-        case .Highlight:
-            return false
-        default:
-            return true
-        }
+        return true
     }
     
     func mediaHeightForWidth(width: CGFloat) -> CGFloat {
@@ -776,14 +809,14 @@ extension HeadlineContainable {
     
     var headlineFontColor: UIColor {
         switch (context, self.dynamicType.type, style) {
+        case (.Timeline, _, .Highlight), (.Timeline, _, .HighlightXL):
+            return Colors.titleOverImageColor
         case (.Article, .Streamer, _):
             return Colors.accentColor
         case (_, .Youtube, _), (_, .Vimeo, _), (_, .EnhancedBanner, _), (_, .UnsupportedContent, _), (_, .Fallback, _):
             return Colors.overlayFontColor
         case (_, .Tweet, _):
             return Colors.tweetTextColor
-        case (.Timeline, _, .HighlightImage):
-            return Colors.titleOverImageColor
         default:
             return Colors.defaultFontColor
         }
@@ -791,23 +824,10 @@ extension HeadlineContainable {
     
     var headlineFont: UIFont {
         switch (context, self.dynamicType.type, style) {
-        case (.Timeline, .ArticleRef, .Breaking) :
-            return Fonts.largeFont.fallbackWithSize(30)
-        case (.Timeline, .ArticleRef, .HighlightXL),
-             (.Timeline, .ArticleRef, .Highlight),
-             (.Timeline, .ArticleRef, .Alert),
-             (.Timeline, .Alert, _),
-             (.Timeline, .ArticleRef, .HighlightImage):
-             return Fonts.mediumFont.fallbackWithSize(22)
-        case (.Timeline,.ArticleRef, .ColumnHighlight),
-             (.Timeline, .ArticleRef, .ColumnHighlightXL):
-             return Fonts.largeFont.fallbackWithSize(26)
-        case (.Timeline,.ArticleRef,.Normal):
-            return Fonts.textFont.fallbackWithSize(15)
-        case (_,.EnhancedBanner, .XL):
-            return Fonts.largeFont.fallbackWithSize(36)
-        case (_,.EnhancedBanner,_):
-            return Fonts.mediumFont.fallbackWithSize(30)
+        case (.Timeline, .ArticleRef, .Highlight):
+            return Fonts.mediumFont.fallbackWithSize(24)
+        case (.Timeline, .ArticleRef, .HighlightXL):
+            return Fonts.mediumFont.fallbackWithSize(28)
         case (.Article, .ArticleHeader,_):
             return Fonts.mediumFont.fallbackWithSize(36)
         case (.Article, .Streamer, _):
@@ -825,16 +845,10 @@ extension HeadlineContainable {
     
     var headlineLinespacing: CGFloat {
         switch (context, self.dynamicType.type, style) {
-        case (.Timeline, _, .Breaking) :
-            return 5
         case (.Timeline, _, .Highlight):
             return 4
-        case (.Timeline, _, .HighlightXL), (.Timeline, _, .Alert):
+        case (.Timeline, _, .HighlightXL):
             return 4
-        case (_, .EnhancedBanner, .XL):
-            return 8
-        case (_, .EnhancedBanner, _):
-            return 6
         case (.Timeline, _, .Normal):
             return 3
         case (.Article, .Streamer, _ ):
@@ -873,11 +887,7 @@ extension HeadlineContainable {
     }
     
     var shouldRenderShadow: Bool {
-        switch self.dynamicType.type {
-        case .Youtube, .Vimeo, .EnhancedBanner, .UnsupportedContent, .Fallback:
-            return true
-        default: return false
-        }
+        return true
     }
 }
 

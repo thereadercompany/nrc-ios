@@ -16,10 +16,10 @@ import UIKit
 struct AppConfig {
 //     API
 //     static let baseServerURL = NSURL(string: "http://localhost:5000")! // runserver
-//     static let baseServerURL = NSURL(string: "http://localhost:5001")! // demoserver
+     static let baseServerURL = NSURL(string: "http://localhost:5001")! // demoserver
 //     static let baseServerURL = NSURL(string: "http://nsa-unstable.elasticbeanstalk.com")!
 //     static let baseServerURL = NSURL(string: "http://nsa-dev.elasticbeanstalk.com")!
-    static let baseServerURL = NSURL(string: "http://app-api.nrc.nl")!
+//    static let baseServerURL = NSURL(string: "http://app-api.nrc.nl")!
     
     static let baseMediaURL = AppConfig.baseServerURL.URLByAppendingPathComponent("__media__")
     static let authURL = AppConfig.baseServerURL.URLByAppendingPathComponent("__auth__")
