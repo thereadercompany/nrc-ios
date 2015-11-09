@@ -14,20 +14,30 @@ import UIKit
     Temporary config. Should be moved to a configuration file.
 */
 struct AppConfig {
-//     API
-//     static let baseServerURL = NSURL(string: "http://localhost:5000")! // runserver
-     static let baseServerURL = NSURL(string: "http://localhost:5001")! // demoserver
-//     static let baseServerURL = NSURL(string: "http://nsa-unstable.elasticbeanstalk.com")!
-//     static let baseServerURL = NSURL(string: "http://nsa-dev.elasticbeanstalk.com")!
-//    static let baseServerURL = NSURL(string: "http://app-api.nrc.nl")!
     
+    // API
+    static let server = Server.LocalhostDemo
+    static let baseServerURL = NSURL(string: server.rawValue)!
     static let baseMediaURL = AppConfig.baseServerURL.URLByAppendingPathComponent("__media__")
     static let authURL = AppConfig.baseServerURL.URLByAppendingPathComponent("__auth__")
-
+    
     static let serverIsFileBased = baseServerURL.URLString.rangeOfString("5001") != nil
     
     static let preloadMediaFormat = MediaFormat.Medium
     
     // AsyncDisplayKit
     static let linkAttributeName = "NSALink"
+}
+
+enum BlockContext: String, Equatable {
+    case Timeline = "issue-timelines"
+    case Article = "articles"
+    case Paywall = "paywalls"
+    case Unknown = "unknown"
+}
+
+enum Server: String {
+    case Localhost = "http://localhost:5000"
+    case LocalhostDemo = "http://localhost:5001"
+    case OnlineDemo = "http://52.31.134.25"
 }
