@@ -66,22 +66,22 @@ struct Colors {
 }
 
 struct Fonts {
-    static let textFont = GuardianText.Regular
-    static let regularFont = GuardianHeadline.Regular
-    static let mediumFont = GuardianHeadline.Medium
-    static let largeFont = GuardianHeadline.Semibold
-    static let lightFont = GuardianHeadline.Light
-    static let alternativeTextFont = Etica.Regular
-    static let alternativeMediumFont = Etica.SemiBold
-    static let defaultTaglineFont = GuardianHeadline.Medium
-    static let defaultAuthorFont = Etica.SemiBold
+    static let textFont:Font = UniversNextPro.Regular
+    static let regularFont:Font = UniversNextPro.Regular
+    static let mediumFont:Font = UniversNextPro.BoldCond
+    static let largeFont:Font = UniversNextPro.BoldCond
+    static let lightFont:Font = UniversNextPro.Regular
+    static let alternativeTextFont: Font = SimpleHBS.Regular
+    static let alternativeMediumFont: Font = SimpleHBS.Regular
+    static let defaultTaglineFont: Font = UniversNextPro.BoldCond
+    static let defaultAuthorFont: Font = SimpleHBS.Regular
     static let tweetFont = HelveticaNeue.Light
     static let tweetHeadlineFont = HelveticaNeue.Medium
     
     static let fallbackUIFont = UIFont.systemFontOfSize(14)
     
     static func load() throws {
-        try NRCFonts.Loader.loadFontsIfNeeded([GuardianText.Regular,GuardianHeadline.Regular,GuardianHeadline.Medium,GuardianHeadline.Semibold,GuardianHeadline.Light,Etica.Regular,Etica.SemiBold])
+        try NRCFonts.Loader.loadFontsIfNeeded([UniversNextPro.Regular, UniversNextPro.BoldCond, SimpleHBS.Regular])
     }
 
     enum HelveticaNeue: String, Font {
@@ -91,6 +91,20 @@ struct Fonts {
         case Medium
     }
     
+    enum SimpleHBS: String, Font {
+        static let family = "SimpleHBS"
+        case Regular
+    
+        var name: String {
+            return "SimpleHBS"
+        }
+    }
+    
+    enum UniversNextPro: String, Font {
+        static let family = "UniversNextPro"
+        case Regular
+        case BoldCond
+    }
 }
 
 extension Font {
@@ -145,6 +159,7 @@ struct TimelineStyles {
 }
 
 struct ArticleStyles {
+    static let topInset: CGFloat = 0
     static let navigationBarHeight: CGFloat = 85 //65 + 20 statusbar    
     static let textInset: CGFloat = 24
     static let backgroundColor = Colors.articleBackgroundColor
@@ -199,6 +214,15 @@ struct HighlightCellStyles {
     static func roundedImageCorners() -> UIRectCorner {
         return []
     }
+    
+    static func gradientPositions(style: BlockStyle) -> [GradientPosition] {
+        switch style {
+        case .HighlightXL:
+            return [.Top(0.2, 0.7), .Left(0.8, 1), .Bottom(0.5, 0.7)]
+        default:
+            return [.Bottom(0.5, 0.7)]
+        }
+    }
 }
 
 struct AlertCellStyles {
@@ -228,6 +252,7 @@ extension MediaCell {
     override func layout() {
         super.layout()
         imageNode.frame = self.bounds
+        layoutGradients()
     }
 }
 
@@ -318,9 +343,9 @@ extension EnhancedBannerBlock {
                 let insets = UIEdgeInsets(top: 16, left: 0, bottom: 16, right: 0)
                 let backgroundColor = Colors.enhancedBannerRichTextBackground
                 let borderColor = Colors.enhancedBannerRichTextBorder
-                textNode.applyStyle(insets, backgroundColor:backgroundColor, borderColor: borderColor)
+                textNode.applyStyle(insets, backgroundColor:backgroundColor, borderColor: borderColor, cornerRadius: 2)
             default:
-                textNode.applyStyle(UIEdgeInsetsZero)
+                textNode.applyStyle(UIEdgeInsetsZero, cornerRadius: 2)
         }
     }
 }
@@ -720,6 +745,10 @@ extension DateContainable {
 
 extension LabelContainable {
     
+    var labelCornerRadius: CGFloat {
+       return 0
+    }
+    
     var labelInset: CGPoint {
         switch self.dynamicType.type {
         case .EnhancedBanner:
@@ -734,7 +763,7 @@ extension LabelContainable {
         case .EnhancedBanner:
             return UIEdgeInsets(top: 14, left: 0, bottom: 15, right: 0)
         default:
-            return UIEdgeInsets(top: 1, left: 6, bottom: 1, right: 6)
+            return UIEdgeInsets(top: 2, left: 10, bottom: 2, right: 10)
         }
     }
     

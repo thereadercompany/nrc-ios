@@ -29,15 +29,15 @@ struct AppConfig {
     static let linkAttributeName = "NSALink"
 }
 
-enum BlockContext: String, Equatable {
-    case Timeline = "issue-timelines"
-    case Article = "articles"
-    case Paywall = "paywalls"
-    case Unknown = "unknown"
-}
-
 enum Server: String {
     case Localhost = "http://localhost:5000"
     case LocalhostDemo = "http://localhost:5001"
     case OnlineDemo = "http://52.31.134.25"
+}
+
+enum BlockContext: String, Equatable {
+    case Timeline = "timelines"
+    case Article = "articles"
+    case Paywall = "paywalls"
+    case Unknown = "unknown"
 }

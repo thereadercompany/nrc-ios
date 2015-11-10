@@ -189,6 +189,9 @@
 		1731BF9B1BEA59270012D6FF /* FallbackContentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1731BDE31BEA43640012D6FF /* FallbackContentCell.swift */; settings = {ASSET_TAGS = (); }; };
 		1731BF9D1BEA5A6B0012D6FF /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 1731BF9C1BEA5A6B0012D6FF /* libsqlite3.tbd */; };
 		1731BF9F1BEA5A780012D6FF /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 1731BF9E1BEA5A780012D6FF /* libc++.tbd */; };
+		174192F71BF0F72A008B94A0 /* SimpleHBS.otf in Resources */ = {isa = PBXBuildFile; fileRef = 174192F41BF0F72A008B94A0 /* SimpleHBS.otf */; settings = {ASSET_TAGS = (); }; };
+		174192F81BF0F72A008B94A0 /* UniversNextPro-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 174192F51BF0F72A008B94A0 /* UniversNextPro-Regular.otf */; settings = {ASSET_TAGS = (); }; };
+		174192F91BF0F72A008B94A0 /* UniversNextPro-BoldCond.otf in Resources */ = {isa = PBXBuildFile; fileRef = 174192F61BF0F72A008B94A0 /* UniversNextPro-BoldCond.otf */; settings = {ASSET_TAGS = (); }; };
 		1774DABC1BEB9481007431EB /* DTFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1774DABB1BEB9481007431EB /* DTFoundation.framework */; };
 		1774DACA1BEB94B6007431EB /* Locksmith.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1774DABD1BEB94B6007431EB /* Locksmith.framework */; };
 		1774DACB1BEB94B6007431EB /* NRCFonts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1774DABE1BEB94B6007431EB /* NRCFonts.framework */; };
@@ -398,6 +401,9 @@
 		1731BF211BEA569B0012D6FF /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		1731BF9C1BEA5A6B0012D6FF /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		1731BF9E1BEA5A780012D6FF /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
+		174192F41BF0F72A008B94A0 /* SimpleHBS.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = SimpleHBS.otf; path = "Resources/Fonts/Simple HBS/SimpleHBS.otf"; sourceTree = "<group>"; };
+		174192F51BF0F72A008B94A0 /* UniversNextPro-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "UniversNextPro-Regular.otf"; path = "Resources/Fonts/LT Univers Next OTF/UniversNextPro-Regular.otf"; sourceTree = "<group>"; };
+		174192F61BF0F72A008B94A0 /* UniversNextPro-BoldCond.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "UniversNextPro-BoldCond.otf"; path = "Resources/Fonts/LT Univers Next OTF/UniversNextPro-BoldCond.otf"; sourceTree = "<group>"; };
 		1774DABA1BEB9359007431EB /* ios-nrc-nl-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "ios-nrc-nl-Bridging-Header.h"; path = "core/ios-nrc-nl/ios-nrc-nl-Bridging-Header.h"; sourceTree = SOURCE_ROOT; };
 		1774DABB1BEB9481007431EB /* DTFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DTFoundation.framework; path = core/Carthage/Build/iOS/DTFoundation.framework; sourceTree = "<group>"; };
 		1774DABD1BEB94B6007431EB /* Locksmith.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Locksmith.framework; path = core/Carthage/Build/iOS/Locksmith.framework; sourceTree = "<group>"; };
@@ -480,6 +486,7 @@
 		1731BD801BEA41050012D6FF /* boeckler */ = {
 			isa = PBXGroup;
 			children = (
+				174192F21BF0F707008B94A0 /* Resources */,
 				1731BD981BEA42AB0012D6FF /* AppConfig.swift */,
 				1731BD991BEA42AB0012D6FF /* AppStyles.swift */,
 				1731BD931BEA41460012D6FF /* AppDelegate.swift */,
@@ -715,6 +722,24 @@
 			path = ..;
 			sourceTree = "<group>";
 		};
+		174192F21BF0F707008B94A0 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				174192F31BF0F70F008B94A0 /* Fonts */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		174192F31BF0F70F008B94A0 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				174192F41BF0F72A008B94A0 /* SimpleHBS.otf */,
+				174192F51BF0F72A008B94A0 /* UniversNextPro-Regular.otf */,
+				174192F61BF0F72A008B94A0 /* UniversNextPro-BoldCond.otf */,
+			);
+			name = Fonts;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -777,7 +802,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				174192F81BF0F72A008B94A0 /* UniversNextPro-Regular.otf in Resources */,
+				174192F91BF0F72A008B94A0 /* UniversNextPro-BoldCond.otf in Resources */,
 				1731BEF71BEA55720012D6FF /* Instabug.bundle in Resources */,
+				174192F71BF0F72A008B94A0 /* SimpleHBS.otf in Resources */,
 				177FD6C31BECC9C900650BFB /* Images.xcassets in Resources */,
 				1731BD971BEA42A30012D6FF /* Main.storyboard in Resources */,
 				1731BD8C1BEA41050012D6FF /* LaunchScreen.storyboard in Resources */,
