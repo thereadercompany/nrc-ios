@@ -268,7 +268,7 @@ extension HighlightCell {
     
     override func layout() {
         super.layout()
-        labelNode.frame =  labelRect
+        labelNode.frame = labelRect
         labelNode.hidden = !articleRef.shouldRenderLabel
         let contentRect = frame.insetsBy(block.contentPadding)
         
@@ -276,9 +276,14 @@ extension HighlightCell {
         let headlineSize = self.headlineSize(contentRect.width)
         
         // position headline on top of image (z-axis)
-        let inset = contentRect.origin.x
-        let headerlineOriginY = CGRectGetMaxY(self.imageNode.frame) - headlineSize.height - inset
-        self.headlineNode.frame = CGRect(origin: CGPoint(x: inset, y: headerlineOriginY), size: headlineSize)
+        let headerlineOriginY = labelNode.frame.origin.y - headlineSize.height - 4
+        self.headlineNode.frame = CGRect(origin: CGPoint(x: contentRect.origin.x, y: headerlineOriginY), size: headlineSize)
+    }
+    
+    var labelRect: CGRect {
+        let size = labelNode.measure(CGSize(width: CGFloat.max, height: CGFloat.max))
+        let origin = CGPoint(x:articleRef.labelInset.x+articleRef.decorationPadding.left, y:frame.height-articleRef.contentPadding.bottom-size.height-articleRef.labelInset.y)
+        return CGRect(origin: origin, size: size)
     }
 }
 
@@ -432,6 +437,10 @@ extension NavigationViewStyle {
     var subtitleFont: UIFont? {
         return Fonts.alternativeTextFont.fallbackWithSize(11)
     }
+    
+    var autoHideDelay: NSTimeInterval? {
+        return 2
+    }
 }
 
 extension BlockDecoration {
@@ -521,10 +530,10 @@ extension BlockType {
              (.Timeline, .ArticleRef, .HighlightXL),
              (.Timeline, .ArticleRef, .Breaking),
              (.Timeline, .ArticleRef, .Alert):
-             contentPadding =  UIEdgeInsets(top: 0, left: TimelineStyles.contentInset, bottom: 20, right: TimelineStyles.contentInset)
+             contentPadding =  UIEdgeInsets(top: 0, left: TimelineStyles.contentInset, bottom: 0, right: TimelineStyles.contentInset)
         case (.Timeline, .ArticleRef, .ColumnHighlight),
             (.Timeline, .ArticleRef, .ColumnHighlightXL):
-            contentPadding =  UIEdgeInsets(top: 20, left: TimelineStyles.contentInset, bottom: 20, right: TimelineStyles.contentInset)
+            contentPadding =  UIEdgeInsets(top: 20, left: TimelineStyles.contentInset, bottom: 0, right: TimelineStyles.contentInset)
         case (_, .EnhancedBanner, _), (_, .BasicBanner, _):
             contentPadding = UIEdgeInsetsZero
         case (_, .Divider, _):
@@ -754,7 +763,7 @@ extension LabelContainable {
         case .EnhancedBanner:
             return CGPoint(x: 16, y: 16)
         default:
-            return CGPoint(x: 16, y: 12)
+            return CGPoint(x: 16, y: 23)
         }
     }
     
