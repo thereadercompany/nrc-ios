@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1731BD8C1BEA41050012D6FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1731BD8A1BEA41050012D6FF /* LaunchScreen.storyboard */; };
 		1731BD941BEA41460012D6FF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1731BD931BEA41460012D6FF /* AppDelegate.swift */; settings = {ASSET_TAGS = (); }; };
 		1731BD971BEA42A30012D6FF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1731BD951BEA42A30012D6FF /* Main.storyboard */; settings = {ASSET_TAGS = (); }; };
 		1731BD9A1BEA42AB0012D6FF /* AppConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1731BD981BEA42AB0012D6FF /* AppConfig.swift */; settings = {ASSET_TAGS = (); }; };
@@ -33,8 +32,6 @@
 		1731BECA1BEA43BE0012D6FF /* TextCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1731BE951BEA43BE0012D6FF /* TextCell.swift */; settings = {ASSET_TAGS = (); }; };
 		1731BECB1BEA43BE0012D6FF /* Timeline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1731BE961BEA43BE0012D6FF /* Timeline.swift */; settings = {ASSET_TAGS = (); }; };
 		1731BECC1BEA43BE0012D6FF /* TimelineLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1731BE971BEA43BE0012D6FF /* TimelineLayout.swift */; settings = {ASSET_TAGS = (); }; };
-		1731BECD1BEA43BE0012D6FF /* TimelineNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1731BE981BEA43BE0012D6FF /* TimelineNavigationView.swift */; settings = {ASSET_TAGS = (); }; };
-		1731BECE1BEA43BE0012D6FF /* TimelineNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1731BE991BEA43BE0012D6FF /* TimelineNavigationViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		1731BECF1BEA43BE0012D6FF /* TimelineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1731BE9A1BEA43BE0012D6FF /* TimelineViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		1731BED01BEA43BE0012D6FF /* TimeoutController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1731BE9B1BEA43BE0012D6FF /* TimeoutController.swift */; settings = {ASSET_TAGS = (); }; };
 		1731BED11BEA43BE0012D6FF /* Trackable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1731BE9C1BEA43BE0012D6FF /* Trackable.swift */; settings = {ASSET_TAGS = (); }; };
@@ -192,6 +189,8 @@
 		174192F71BF0F72A008B94A0 /* SimpleHBS.otf in Resources */ = {isa = PBXBuildFile; fileRef = 174192F41BF0F72A008B94A0 /* SimpleHBS.otf */; settings = {ASSET_TAGS = (); }; };
 		174192F81BF0F72A008B94A0 /* UniversNextPro-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 174192F51BF0F72A008B94A0 /* UniversNextPro-Regular.otf */; settings = {ASSET_TAGS = (); }; };
 		174192F91BF0F72A008B94A0 /* UniversNextPro-BoldCond.otf in Resources */ = {isa = PBXBuildFile; fileRef = 174192F61BF0F72A008B94A0 /* UniversNextPro-BoldCond.otf */; settings = {ASSET_TAGS = (); }; };
+		175DFB671BF2090C00A181C1 /* TimelineNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 175DFB661BF2090C00A181C1 /* TimelineNavigationView.swift */; settings = {ASSET_TAGS = (); }; };
+		175DFB691BF209E500A181C1 /* TimelineNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 175DFB681BF209E500A181C1 /* TimelineNavigationViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		1774DABC1BEB9481007431EB /* DTFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1774DABB1BEB9481007431EB /* DTFoundation.framework */; };
 		1774DACA1BEB94B6007431EB /* Locksmith.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1774DABD1BEB94B6007431EB /* Locksmith.framework */; };
 		1774DACB1BEB94B6007431EB /* NRCFonts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1774DABE1BEB94B6007431EB /* NRCFonts.framework */; };
@@ -210,11 +209,12 @@
 		1774DADB1BEB94F6007431EB /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1774DAD81BEB94F6007431EB /* Fabric.framework */; };
 		1774DADC1BEB94F6007431EB /* Instabug.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1774DAD91BEB94F6007431EB /* Instabug.framework */; };
 		177FD6C31BECC9C900650BFB /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 177FD6C21BECC9C900650BFB /* Images.xcassets */; settings = {ASSET_TAGS = (); }; };
+		17AB6D6A1BF3428400840425 /* IssueLabelNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17AB6D691BF3428400840425 /* IssueLabelNode.swift */; settings = {ASSET_TAGS = (); }; };
+		17CA4AB71BF225050011495A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 17CA4AB51BF225050011495A /* LaunchScreen.storyboard */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		1731BD7E1BEA41050012D6FF /* boeckler.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = boeckler.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		1731BD8B1BEA41050012D6FF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1731BD8D1BEA41050012D6FF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1731BD931BEA41460012D6FF /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1731BD961BEA42A30012D6FF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -354,8 +354,6 @@
 		1731BE951BEA43BE0012D6FF /* TextCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TextCell.swift; path = "../core/ios-nrc-nl/TextCell.swift"; sourceTree = "<group>"; };
 		1731BE961BEA43BE0012D6FF /* Timeline.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Timeline.swift; path = "../core/ios-nrc-nl/Timeline.swift"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		1731BE971BEA43BE0012D6FF /* TimelineLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TimelineLayout.swift; path = "../core/ios-nrc-nl/TimelineLayout.swift"; sourceTree = "<group>"; };
-		1731BE981BEA43BE0012D6FF /* TimelineNavigationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TimelineNavigationView.swift; path = "../core/ios-nrc-nl/TimelineNavigationView.swift"; sourceTree = "<group>"; };
-		1731BE991BEA43BE0012D6FF /* TimelineNavigationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TimelineNavigationViewController.swift; path = "../core/ios-nrc-nl/TimelineNavigationViewController.swift"; sourceTree = "<group>"; };
 		1731BE9A1BEA43BE0012D6FF /* TimelineViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TimelineViewController.swift; path = "../core/ios-nrc-nl/TimelineViewController.swift"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		1731BE9B1BEA43BE0012D6FF /* TimeoutController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TimeoutController.swift; path = "../core/ios-nrc-nl/TimeoutController.swift"; sourceTree = "<group>"; };
 		1731BE9C1BEA43BE0012D6FF /* Trackable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Trackable.swift; path = "../core/ios-nrc-nl/Trackable.swift"; sourceTree = "<group>"; };
@@ -404,6 +402,8 @@
 		174192F41BF0F72A008B94A0 /* SimpleHBS.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = SimpleHBS.otf; path = "Resources/Fonts/Simple HBS/SimpleHBS.otf"; sourceTree = "<group>"; };
 		174192F51BF0F72A008B94A0 /* UniversNextPro-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "UniversNextPro-Regular.otf"; path = "Resources/Fonts/LT Univers Next OTF/UniversNextPro-Regular.otf"; sourceTree = "<group>"; };
 		174192F61BF0F72A008B94A0 /* UniversNextPro-BoldCond.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "UniversNextPro-BoldCond.otf"; path = "Resources/Fonts/LT Univers Next OTF/UniversNextPro-BoldCond.otf"; sourceTree = "<group>"; };
+		175DFB661BF2090C00A181C1 /* TimelineNavigationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimelineNavigationView.swift; sourceTree = "<group>"; };
+		175DFB681BF209E500A181C1 /* TimelineNavigationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimelineNavigationViewController.swift; sourceTree = "<group>"; };
 		1774DABA1BEB9359007431EB /* ios-nrc-nl-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "ios-nrc-nl-Bridging-Header.h"; path = "core/ios-nrc-nl/ios-nrc-nl-Bridging-Header.h"; sourceTree = SOURCE_ROOT; };
 		1774DABB1BEB9481007431EB /* DTFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DTFoundation.framework; path = core/Carthage/Build/iOS/DTFoundation.framework; sourceTree = "<group>"; };
 		1774DABD1BEB94B6007431EB /* Locksmith.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Locksmith.framework; path = core/Carthage/Build/iOS/Locksmith.framework; sourceTree = "<group>"; };
@@ -423,6 +423,8 @@
 		1774DAD81BEB94F6007431EB /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Fabric.framework; path = core/Frameworks/Fabric.framework; sourceTree = "<group>"; };
 		1774DAD91BEB94F6007431EB /* Instabug.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Instabug.framework; path = core/Frameworks/Instabug.framework; sourceTree = "<group>"; };
 		177FD6C21BECC9C900650BFB /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		17AB6D691BF3428400840425 /* IssueLabelNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IssueLabelNode.swift; path = "core/ios-nrc-nl/IssueLabelNode.swift"; sourceTree = SOURCE_ROOT; };
+		17CA4AB61BF225050011495A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -486,15 +488,16 @@
 		1731BD801BEA41050012D6FF /* boeckler */ = {
 			isa = PBXGroup;
 			children = (
-				174192F21BF0F707008B94A0 /* Resources */,
 				1731BD981BEA42AB0012D6FF /* AppConfig.swift */,
 				1731BD991BEA42AB0012D6FF /* AppStyles.swift */,
 				1731BD931BEA41460012D6FF /* AppDelegate.swift */,
+				175DFB6A1BF209F200A181C1 /* navbar */,
 				1731BE811BEA43BD0012D6FF /* boeckler-Bridging-Header.h */,
 				1731BD8D1BEA41050012D6FF /* Info.plist */,
 				1731BD951BEA42A30012D6FF /* Main.storyboard */,
-				1731BD8A1BEA41050012D6FF /* LaunchScreen.storyboard */,
+				17CA4AB51BF225050011495A /* LaunchScreen.storyboard */,
 				177FD6C21BECC9C900650BFB /* Images.xcassets */,
+				174192F21BF0F707008B94A0 /* Resources */,
 			);
 			path = boeckler;
 			sourceTree = "<group>";
@@ -535,8 +538,6 @@
 				1731BE951BEA43BE0012D6FF /* TextCell.swift */,
 				1731BE961BEA43BE0012D6FF /* Timeline.swift */,
 				1731BE971BEA43BE0012D6FF /* TimelineLayout.swift */,
-				1731BE981BEA43BE0012D6FF /* TimelineNavigationView.swift */,
-				1731BE991BEA43BE0012D6FF /* TimelineNavigationViewController.swift */,
 				1731BE9A1BEA43BE0012D6FF /* TimelineViewController.swift */,
 				1731BE9B1BEA43BE0012D6FF /* TimeoutController.swift */,
 				1731BE9C1BEA43BE0012D6FF /* Trackable.swift */,
@@ -649,6 +650,7 @@
 				1731BDED1BEA43640012D6FF /* ImageController.swift */,
 				1731BDEF1BEA43640012D6FF /* Instabug.swift */,
 				1731BDF11BEA43640012D6FF /* ISO8601.swift */,
+				17AB6D691BF3428400840425 /* IssueLabelNode.swift */,
 				1731BDF31BEA43640012D6FF /* JSONAPI.swift */,
 				1731BDF41BEA43640012D6FF /* JSONAPIResponse.swift */,
 				1731BDF51BEA43640012D6FF /* LabelNode.swift */,
@@ -740,6 +742,15 @@
 			name = Fonts;
 			sourceTree = "<group>";
 		};
+		175DFB6A1BF209F200A181C1 /* navbar */ = {
+			isa = PBXGroup;
+			children = (
+				175DFB681BF209E500A181C1 /* TimelineNavigationViewController.swift */,
+				175DFB661BF2090C00A181C1 /* TimelineNavigationView.swift */,
+			);
+			name = navbar;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -806,9 +817,9 @@
 				174192F91BF0F72A008B94A0 /* UniversNextPro-BoldCond.otf in Resources */,
 				1731BEF71BEA55720012D6FF /* Instabug.bundle in Resources */,
 				174192F71BF0F72A008B94A0 /* SimpleHBS.otf in Resources */,
+				17CA4AB71BF225050011495A /* LaunchScreen.storyboard in Resources */,
 				177FD6C31BECC9C900650BFB /* Images.xcassets in Resources */,
 				1731BD971BEA42A30012D6FF /* Main.storyboard in Resources */,
-				1731BD8C1BEA41050012D6FF /* LaunchScreen.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -855,6 +866,7 @@
 				1731BF401BEA591B0012D6FF /* HighlightCell.swift in Sources */,
 				1731BEEC1BEA43BE0012D6FF /* YoutubeCell.swift in Sources */,
 				1731BF5C1BEA59270012D6FF /* AppTakeoverView.swift in Sources */,
+				175DFB671BF2090C00A181C1 /* TimelineNavigationView.swift in Sources */,
 				1731BF971BEA59270012D6FF /* ErrorViewController.swift in Sources */,
 				1731BF4B1BEA591B0012D6FF /* JSONAPI.swift in Sources */,
 				1731BF581BEA59270012D6FF /* AlertCell.swift in Sources */,
@@ -891,7 +903,6 @@
 				1731BEDA1BEA43BE0012D6FF /* UIApplication.swift in Sources */,
 				1731BF7B1BEA59270012D6FF /* CachedDataProviding.swift in Sources */,
 				1731BED51BEA43BE0012D6FF /* TrackingData.swift in Sources */,
-				1731BECD1BEA43BE0012D6FF /* TimelineNavigationView.swift in Sources */,
 				1731BF551BEA59270012D6FF /* Account.swift in Sources */,
 				1731BF9A1BEA59270012D6FF /* FallbackContentBlock.swift in Sources */,
 				1731BECF1BEA43BE0012D6FF /* TimelineViewController.swift in Sources */,
@@ -926,7 +937,6 @@
 				1731BD9B1BEA42AB0012D6FF /* AppStyles.swift in Sources */,
 				1731BF591BEA59270012D6FF /* AnimatableView.swift in Sources */,
 				1731BF7D1BEA59270012D6FF /* CacheError.swift in Sources */,
-				1731BECE1BEA43BE0012D6FF /* TimelineNavigationViewController.swift in Sources */,
 				1731BF371BEA59110012D6FF /* ObjectType.swift in Sources */,
 				1731BF601BEA59270012D6FF /* Article.swift in Sources */,
 				1731BEC61BEA43BE0012D6FF /* StringAttributes.swift in Sources */,
@@ -950,6 +960,8 @@
 				1731BF331BEA59110012D6FF /* NSBundle.swift in Sources */,
 				1731BF671BEA59270012D6FF /* ArticleRefBlock.swift in Sources */,
 				1731BED71BEA43BE0012D6FF /* TweetBlock.swift in Sources */,
+				17AB6D6A1BF3428400840425 /* IssueLabelNode.swift in Sources */,
+				175DFB691BF209E500A181C1 /* TimelineNavigationViewController.swift in Sources */,
 				1731BECA1BEA43BE0012D6FF /* TextCell.swift in Sources */,
 				1731BEE31BEA43BE0012D6FF /* UserActivity.swift in Sources */,
 				1731BF621BEA59270012D6FF /* ArticleHeaderCell.swift in Sources */,
@@ -1022,20 +1034,20 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		1731BD8A1BEA41050012D6FF /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				1731BD8B1BEA41050012D6FF /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
 		1731BD951BEA42A30012D6FF /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				1731BD961BEA42A30012D6FF /* Base */,
 			);
 			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		17CA4AB51BF225050011495A /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				17CA4AB61BF225050011495A /* Base */,
+			);
+			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

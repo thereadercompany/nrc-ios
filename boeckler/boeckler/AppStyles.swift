@@ -18,8 +18,9 @@ struct Colors {
     static let linkColor = UIColor(hex: 0xD30910)
     static let cardBackgroundColor =  UIColor.whiteColor()
     static let articleBackgroundColor =  UIColor.whiteColor()
-    static let timelineBackgroundColor =  UIColor(hex: 0xF6F5F0)
+    static let timelineBackgroundColor =  accentColor
     static let timelineDividerBackgroundColor = UIColor.clearColor()
+    static let timelineSpacingBackgroundColor = UIColor.clearColor()
     static let insetBackgroundColor = UIColor(hex: 0xF7F7F7)
     static let tweetTextColor = UIColor(hex: 0x3E4447)
     static let tweetSubHeadlineColor = UIColor(hex: 0xB1B4B5)
@@ -44,14 +45,14 @@ struct Colors {
     static let transparant = UIColor.clearColor()
     static let dividerForegroundColor = UIColor(hex: 0xE6EAEE).colorWithAlphaComponent(0.4)
     static let dividerBackgroundColor = UIColor.clearColor()
-    static let navigationViewDarkBackgroundColor = UIColor.blackColor()
+    static let navigationViewDarkBackgroundColor = accentColor
     static let navigationViewLightBackgroundColor = UIColor(hex: 0xFAF9F5)
     static let navigationViewLightTitleColor = UIColor.blackColor()
     static let navigationViewDarkTitleColor = UIColor.whiteColor()
     static let navigationViewLightSubtitleColor = UIColor.blackColor()
     static let navigationViewDarkSubtitleColor = UIColor(hex: 0xA7A8A9)
     static let navigationViewTransparentBackgroundColor = UIColor.clearColor()
-    static let navigationViewDividerColor = UIColor(white: 0.5921568627, alpha: 1.0)
+    static let navigationViewDividerColor = UIColor.blackColor().colorWithAlphaComponent(0.4)
     static let fallbackBackgroundColor = UIColor.yellowColor()
     static let overlayFontColor = UIColor.whiteColor()
     static let labelTextColor = UIColor.whiteColor()
@@ -123,6 +124,7 @@ extension Font {
 }
 
 struct TimelineStyles {
+    static let enablePullToRefresh = false
     static let topInset: CGFloat = 0
     static let defaultMargin: CGFloat = 0
     static let internalMargin: CGFloat = 16
@@ -132,9 +134,9 @@ struct TimelineStyles {
     static let lineInset: CGFloat = 16
     static let lineHeight: CGFloat = 1
     static let initiallyHideNavigationView = true
-    static let navigationViewStyle = NavigationViewStyle.Light
+    static let navigationViewStyle = NavigationViewStyle.Dark
     static func navigationViewNeedsLine(style: NavigationViewStyle) -> Bool {
-        return false
+        return true
     }
     static func navigationTextVisible(style: NavigationViewStyle) -> Bool {
         switch style {
@@ -176,6 +178,13 @@ struct ArticleHeaderCellStyles {
 struct DividerCellStyles {
     static let lineHeight: CGFloat = 0.5
     static let textMargin: CGFloat = 12
+}
+
+struct SpacingCellStyles {
+    static let topShadowSize: CGFloat = 0
+    static let topShadowAlpha: CGFloat = 0.4
+    static let bottomShadowSize: CGFloat = 0
+    static let bottomShadowAlpha: CGFloat = 0.4
 }
 
 struct NormalCellStyles {
@@ -268,9 +277,16 @@ extension HighlightCell {
     
     override func layout() {
         super.layout()
+        issueLabelNode.frame = issueLabelRect
+        issueLabelNode.hidden = !articleRef.shouldRenderIssueLabel
         labelNode.frame = labelRect
         labelNode.hidden = !articleRef.shouldRenderLabel
         let contentRect = frame.insetsBy(block.contentPadding)
+        
+        // reading time 
+        let readingTimeSize = self.readingTimeSize(contentRect.width)
+        let readingTimeOrigin = CGPoint(x: CGRectGetMaxX(labelNode.frame)+10, y: labelNode.frame.origin.y+((labelNode.frame.height-readingTimeSize.height)*3/5))
+        readingTimeNode.frame = CGRect(origin: readingTimeOrigin, size: readingTimeSize)
         
         // headline
         let headlineSize = self.headlineSize(contentRect.width)
@@ -281,8 +297,16 @@ extension HighlightCell {
     }
     
     var labelRect: CGRect {
+        let contentRect = frame.insetsBy(block.contentPadding)
         let size = labelNode.measure(CGSize(width: CGFloat.max, height: CGFloat.max))
-        let origin = CGPoint(x:articleRef.labelInset.x+articleRef.decorationPadding.left, y:frame.height-articleRef.contentPadding.bottom-size.height-articleRef.labelInset.y)
+        let origin = CGPoint(x:contentRect.origin.x+1, y:frame.height-articleRef.contentPadding.bottom-size.height-articleRef.labelInset.y)
+        return CGRect(origin: origin, size: size)
+    }
+    
+    var issueLabelRect: CGRect {
+        let contentRect = frame.insetsBy(block.contentPadding)
+        let size = issueLabelNode.measure(CGSize(width: CGFloat.max, height: CGFloat.max))
+        let origin = CGPoint(x:contentRect.origin.x+1, y:contentRect.origin.y)
         return CGRect(origin: origin, size: size)
     }
 }
@@ -392,6 +416,13 @@ struct LabelStyles {
     static let color = Colors.labelTextColor
     static let labelInset = CGPoint(x: 16, y: 12)
     static let labelTextInsets = UIEdgeInsets(top: 1, left: 6, bottom: 1, right: 6)
+}
+
+struct IssueLabelStyles {
+    static let backgroundColor = Colors.transparant
+    static let foregroundColor = Colors.titleOverImageColor
+    static let lineHeight: CGFloat = 2
+    static let font = Fonts.alternativeMediumFont.fallbackWithSize(24)
 }
 
 struct ErrorStyles {
@@ -525,12 +556,12 @@ extension BlockType {
         var contentPadding: UIEdgeInsets
         switch (self.context, self.dynamicType.type, style) {
         case (.Timeline, .ArticleRef, .Normal):
-            contentPadding =  UIEdgeInsets(top: 16, left: 12, bottom: 0, right: 16)
+            contentPadding =  UIEdgeInsets(top: 19, left: 12, bottom: 0, right: 19)
         case (.Timeline, .ArticleRef, .Highlight),
              (.Timeline, .ArticleRef, .HighlightXL),
              (.Timeline, .ArticleRef, .Breaking),
              (.Timeline, .ArticleRef, .Alert):
-             contentPadding =  UIEdgeInsets(top: 0, left: TimelineStyles.contentInset, bottom: 0, right: TimelineStyles.contentInset)
+             contentPadding =  UIEdgeInsets(top: 19, left: TimelineStyles.contentInset, bottom: 0, right: TimelineStyles.contentInset)
         case (.Timeline, .ArticleRef, .ColumnHighlight),
             (.Timeline, .ArticleRef, .ColumnHighlightXL):
             contentPadding =  UIEdgeInsets(top: 20, left: TimelineStyles.contentInset, bottom: 0, right: TimelineStyles.contentInset)
@@ -584,6 +615,8 @@ extension BlockType {
             return Colors.insetBackgroundColor
         case (.Timeline, .Divider, _):
             return Colors.timelineDividerBackgroundColor
+        case (.Timeline, .Spacing, _):
+            return Colors.timelineSpacingBackgroundColor
         case (.Timeline, _, _):
             return Colors.cardBackgroundColor
         case (.Article, _, _):
@@ -752,6 +785,37 @@ extension DateContainable {
     }
 }
 
+extension IssueLabelContainable {
+    
+    var issueLabelInset: CGPoint {
+        return CGPoint(x: 19, y: 19)
+    }
+    
+    var shouldRenderIssueLabel: Bool {
+        guard let issueLabel = issueLabel else { return false }
+        return !issueLabel.isEmpty
+    }
+    
+    var issueLabelFont: UIFont {
+        return IssueLabelStyles.font
+    }
+    
+    var issueLabelTextColor: UIColor {
+        return IssueLabelStyles.foregroundColor
+    }
+    
+    var issueLabelTextLineSpacing: CGFloat {
+        return 0
+    }
+    
+    func attributedIssueLabel() -> NSAttributedString {
+        guard let issueLabel = self.issueLabel else { return NSAttributedString(string: "") }
+        let attrs = StringAttributes(font: issueLabelFont, foregroundColor: issueLabelTextColor, lineSpacing: issueLabelTextLineSpacing, alignment: NSTextAlignment.Center)
+        let result = NSMutableAttributedString(string:issueLabel, attributes:attrs.dictionary)
+        return result;
+    }
+}
+
 extension LabelContainable {
     
     var labelCornerRadius: CGFloat {
@@ -761,9 +825,9 @@ extension LabelContainable {
     var labelInset: CGPoint {
         switch self.dynamicType.type {
         case .EnhancedBanner:
-            return CGPoint(x: 16, y: 16)
+            return CGPoint(x: 19, y: 16)
         default:
-            return CGPoint(x: 16, y: 23)
+            return CGPoint(x: 19, y: 23)
         }
     }
     
@@ -865,7 +929,7 @@ extension HeadlineContainable {
         case (.Timeline, .ArticleRef, .Highlight):
             return Fonts.mediumFont.fallbackWithSize(24)
         case (.Timeline, .ArticleRef, .HighlightXL):
-            return Fonts.mediumFont.fallbackWithSize(28)
+            return Fonts.mediumFont.fallbackWithSize(34)
         case (.Article, .ArticleHeader,_):
             return Fonts.mediumFont.fallbackWithSize(36)
         case (.Article, .Streamer, _):
@@ -998,6 +1062,47 @@ extension SubHeadlineContainable {
     }
 }
 
+extension ReadingTimeContainable {
+    var shouldRenderReadingTime: Bool {
+        guard let readingTime = self.readingTime else { return false }
+        return !readingTime.isEmpty
+    }
+    
+    var attributedReadingTime: NSAttributedString? {
+        guard let readingTime = self.readingTime else { return NSAttributedString(string:"") }
+        let attrs = StringAttributes(font: readingTimeFont, foregroundColor: readingTimeFontColor, lineSpacing: readingTimeLinespacing, alignment: readingTimeAlignment, shadow: readingTimeShadow)
+        return NSAttributedString(string:readingTime, attributes:attrs.dictionary)
+    }
+    
+    var readingTimeFontColor: UIColor {
+        return Colors.titleOverImageColor
+    }
+    
+    var readingTimeFont: UIFont {
+        return Fonts.regularFont.fallbackWithSize(10)
+    }
+    
+    var readingTimeLinespacing: CGFloat {
+        return 0
+    }
+    
+    var readingTimeAlignment: NSTextAlignment {
+        return NSTextAlignment.Left
+    }
+    
+    var readingTimeShadow: NSShadow? {
+        if !shouldRenderShadow { return nil }
+        let shadow = NSShadow()
+        shadow.shadowBlurRadius = 3
+        shadow.shadowColor = Colors.defaultShadowColor
+        shadow.shadowOffset = CGSize(width: 0, height: 2)
+        return shadow
+    }
+    
+    var shouldRenderShadow: Bool {
+        return true
+    }
+}
 
 extension PlainTextContainable {
     

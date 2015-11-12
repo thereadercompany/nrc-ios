@@ -32,7 +32,7 @@ struct AppConfig {
 enum Server: String {
     case Localhost = "http://localhost:5000"
     case LocalhostDemo = "http://localhost:5001"
-    case OnlineDemo = "http://52.31.134.25"
+    case OnlineDemo = "http://ec2-52-31-134-25.eu-west-1.compute.amazonaws.com"
 }
 
 enum BlockContext: String, Equatable {
