@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		171F6F7A1C038D7500B3A390 /* CellFactories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 171F6F791C038D7500B3A390 /* CellFactories.swift */; settings = {ASSET_TAGS = (); }; };
 		1731BD941BEA41460012D6FF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1731BD931BEA41460012D6FF /* AppDelegate.swift */; settings = {ASSET_TAGS = (); }; };
 		1731BD971BEA42A30012D6FF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1731BD951BEA42A30012D6FF /* Main.storyboard */; settings = {ASSET_TAGS = (); }; };
 		1731BD9A1BEA42AB0012D6FF /* AppConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1731BD981BEA42AB0012D6FF /* AppConfig.swift */; settings = {ASSET_TAGS = (); }; };
@@ -214,6 +215,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		171F6F791C038D7500B3A390 /* CellFactories.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CellFactories.swift; sourceTree = "<group>"; };
 		1731BD7E1BEA41050012D6FF /* boeckler.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = boeckler.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1731BD8D1BEA41050012D6FF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1731BD931BEA41460012D6FF /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -491,6 +493,7 @@
 				1731BD981BEA42AB0012D6FF /* AppConfig.swift */,
 				1731BD991BEA42AB0012D6FF /* AppStyles.swift */,
 				1731BD931BEA41460012D6FF /* AppDelegate.swift */,
+				171F6F791C038D7500B3A390 /* CellFactories.swift */,
 				175DFB6A1BF209F200A181C1 /* navbar */,
 				1731BE811BEA43BD0012D6FF /* boeckler-Bridging-Header.h */,
 				1731BD8D1BEA41050012D6FF /* Info.plist */,
@@ -955,6 +958,7 @@
 				1731BF831BEA59270012D6FF /* CGRect.swift in Sources */,
 				1731BF641BEA59270012D6FF /* ArticleNavigationView.swift in Sources */,
 				1731BF391BEA59110012D6FF /* PaywallViewController.swift in Sources */,
+				171F6F7A1C038D7500B3A390 /* CellFactories.swift in Sources */,
 				1731BF411BEA591B0012D6FF /* HighlightPopAnimatableView.swift in Sources */,
 				1731BF541BEA591B0012D6FF /* NavigationView.swift in Sources */,
 				1731BF331BEA59110012D6FF /* NSBundle.swift in Sources */,
