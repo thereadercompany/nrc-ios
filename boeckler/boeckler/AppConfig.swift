@@ -22,7 +22,7 @@ struct AppConfig {
     static let authURL = AppConfig.baseServerURL.URLByAppendingPathComponent("__auth__")
     
     static let serverIsFileBased = baseServerURL.URLString.rangeOfString("5001") != nil
-    
+    static let currentPaywallIdentfierKey = "nl.nrc.timeline.paywall.currentIdentfier"
     static let preloadMediaFormat = MediaFormat.Medium
     
     // AsyncDisplayKit

@@ -7,7 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		171F6F7A1C038D7500B3A390 /* CellFactories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 171F6F791C038D7500B3A390 /* CellFactories.swift */; settings = {ASSET_TAGS = (); }; };
+		1718D69A1C04AA370036DB5B /* Swinject.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1718D6991C04AA370036DB5B /* Swinject.framework */; };
+		1718D69E1C04BD210036DB5B /* SwinjectStoryboard+Setup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1718D69D1C04BD210036DB5B /* SwinjectStoryboard+Setup.swift */; settings = {ASSET_TAGS = (); }; };
+		1718D6AA1C05A4CC0036DB5B /* PaywallController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1718D6A71C05A4CC0036DB5B /* PaywallController.swift */; settings = {ASSET_TAGS = (); }; };
+		1718D6AB1C05A4CC0036DB5B /* PaywallDataInterceptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1718D6A81C05A4CC0036DB5B /* PaywallDataInterceptor.swift */; settings = {ASSET_TAGS = (); }; };
+		1718D6AC1C05A4CC0036DB5B /* TrackerFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1718D6A91C05A4CC0036DB5B /* TrackerFactory.swift */; settings = {ASSET_TAGS = (); }; };
+		1718D6B41C05A5230036DB5B /* BlockContextDataSourceFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1718D6B31C05A5230036DB5B /* BlockContextDataSourceFactory.swift */; settings = {ASSET_TAGS = (); }; };
+		171F6F8A1C0496A200B3A390 /* BlockDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 171F6F891C0496A200B3A390 /* BlockDecoder.swift */; settings = {ASSET_TAGS = (); }; };
+		171F6F8C1C0496D000B3A390 /* BoecklerBlockDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 171F6F8B1C0496D000B3A390 /* BoecklerBlockDecoder.swift */; settings = {ASSET_TAGS = (); }; };
 		1731BD941BEA41460012D6FF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1731BD931BEA41460012D6FF /* AppDelegate.swift */; settings = {ASSET_TAGS = (); }; };
 		1731BD971BEA42A30012D6FF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1731BD951BEA42A30012D6FF /* Main.storyboard */; settings = {ASSET_TAGS = (); }; };
 		1731BD9A1BEA42AB0012D6FF /* AppConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1731BD981BEA42AB0012D6FF /* AppConfig.swift */; settings = {ASSET_TAGS = (); }; };
@@ -215,7 +222,14 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		171F6F791C038D7500B3A390 /* CellFactories.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CellFactories.swift; sourceTree = "<group>"; };
+		1718D6991C04AA370036DB5B /* Swinject.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Swinject.framework; path = core/Carthage/Build/iOS/Swinject.framework; sourceTree = "<group>"; };
+		1718D69D1C04BD210036DB5B /* SwinjectStoryboard+Setup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SwinjectStoryboard+Setup.swift"; sourceTree = "<group>"; };
+		1718D6A71C05A4CC0036DB5B /* PaywallController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PaywallController.swift; path = "core/ios-nrc-nl/PaywallController.swift"; sourceTree = SOURCE_ROOT; };
+		1718D6A81C05A4CC0036DB5B /* PaywallDataInterceptor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PaywallDataInterceptor.swift; path = "core/ios-nrc-nl/PaywallDataInterceptor.swift"; sourceTree = SOURCE_ROOT; };
+		1718D6A91C05A4CC0036DB5B /* TrackerFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TrackerFactory.swift; path = "core/ios-nrc-nl/TrackerFactory.swift"; sourceTree = SOURCE_ROOT; };
+		1718D6B31C05A5230036DB5B /* BlockContextDataSourceFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BlockContextDataSourceFactory.swift; path = "core/ios-nrc-nl/BlockContextDataSourceFactory.swift"; sourceTree = SOURCE_ROOT; };
+		171F6F891C0496A200B3A390 /* BlockDecoder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BlockDecoder.swift; path = "core/ios-nrc-nl/BlockDecoder.swift"; sourceTree = SOURCE_ROOT; };
+		171F6F8B1C0496D000B3A390 /* BoecklerBlockDecoder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoecklerBlockDecoder.swift; sourceTree = "<group>"; };
 		1731BD7E1BEA41050012D6FF /* boeckler.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = boeckler.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1731BD8D1BEA41050012D6FF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1731BD931BEA41460012D6FF /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -434,6 +448,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1718D69A1C04AA370036DB5B /* Swinject.framework in Frameworks */,
 				1774DADA1BEB94F6007431EB /* Crashlytics.framework in Frameworks */,
 				1774DADB1BEB94F6007431EB /* Fabric.framework in Frameworks */,
 				1774DADC1BEB94F6007431EB /* Instabug.framework in Frameworks */,
@@ -493,7 +508,8 @@
 				1731BD981BEA42AB0012D6FF /* AppConfig.swift */,
 				1731BD991BEA42AB0012D6FF /* AppStyles.swift */,
 				1731BD931BEA41460012D6FF /* AppDelegate.swift */,
-				171F6F791C038D7500B3A390 /* CellFactories.swift */,
+				171F6F8B1C0496D000B3A390 /* BoecklerBlockDecoder.swift */,
+				1718D69D1C04BD210036DB5B /* SwinjectStoryboard+Setup.swift */,
 				175DFB6A1BF209F200A181C1 /* navbar */,
 				1731BE811BEA43BD0012D6FF /* boeckler-Bridging-Header.h */,
 				1731BD8D1BEA41050012D6FF /* Info.plist */,
@@ -519,6 +535,11 @@
 		1731BEED1BEA54E80012D6FF /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				1718D6B31C05A5230036DB5B /* BlockContextDataSourceFactory.swift */,
+				1718D6A71C05A4CC0036DB5B /* PaywallController.swift */,
+				1718D6A81C05A4CC0036DB5B /* PaywallDataInterceptor.swift */,
+				1718D6A91C05A4CC0036DB5B /* TrackerFactory.swift */,
+				171F6F891C0496A200B3A390 /* BlockDecoder.swift */,
 				1731BE821BEA43BE0012D6FF /* Row.swift */,
 				1731BE831BEA43BE0012D6FF /* ScrollState.swift */,
 				1731BE841BEA43BE0012D6FF /* SegueHandling.swift */,
@@ -689,6 +710,7 @@
 		1731BEFA1BEA55B20012D6FF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				1718D6991C04AA370036DB5B /* Swinject.framework */,
 				1774DAD71BEB94F6007431EB /* Crashlytics.framework */,
 				1774DAD81BEB94F6007431EB /* Fabric.framework */,
 				1774DAD91BEB94F6007431EB /* Instabug.framework */,
@@ -849,6 +871,7 @@
 				"$(PROJECT_DIR)/core/Carthage/Build/iOS/Locksmith.framework",
 				"$(PROJECT_DIR)/core/Carthage/Build/iOS/Result.framework",
 				"$(PROJECT_DIR)/core/Carthage/Build/iOS/NRCFonts.framework",
+				"$(PROJECT_DIR)/core/Carthage/Build/iOS/Swinject.framework",
 			);
 			name = "Carthage copy frameworks";
 			outputPaths = (
@@ -901,6 +924,7 @@
 				1731BF431BEA591B0012D6FF /* HighlightPushAnimatibeView.swift in Sources */,
 				1731BF521BEA591B0012D6FF /* Media.swift in Sources */,
 				1731BF351BEA59110012D6FF /* NSURL.swift in Sources */,
+				1718D6B41C05A5230036DB5B /* BlockContextDataSourceFactory.swift in Sources */,
 				1731BF4D1BEA591B0012D6FF /* LabelNode.swift in Sources */,
 				1731BEBE1BEA43BE0012D6FF /* SQLite-Bridging.m in Sources */,
 				1731BEDA1BEA43BE0012D6FF /* UIApplication.swift in Sources */,
@@ -932,6 +956,7 @@
 				1731BF471BEA591B0012D6FF /* ImageController.swift in Sources */,
 				1731BF361BEA59110012D6FF /* NSURLComponents.swift in Sources */,
 				1731BF8F1BEA59270012D6FF /* DividerCell.swift in Sources */,
+				1718D6AC1C05A4CC0036DB5B /* TrackerFactory.swift in Sources */,
 				1731BF511BEA591B0012D6FF /* MarkupTag.swift in Sources */,
 				1731BF871BEA59270012D6FF /* ColumnCell.swift in Sources */,
 				1731BF681BEA59270012D6FF /* ArticleViewController.swift in Sources */,
@@ -939,11 +964,13 @@
 				1731BF5E1BEA59270012D6FF /* Argo.swift in Sources */,
 				1731BD9B1BEA42AB0012D6FF /* AppStyles.swift in Sources */,
 				1731BF591BEA59270012D6FF /* AnimatableView.swift in Sources */,
+				171F6F8C1C0496D000B3A390 /* BoecklerBlockDecoder.swift in Sources */,
 				1731BF7D1BEA59270012D6FF /* CacheError.swift in Sources */,
 				1731BF371BEA59110012D6FF /* ObjectType.swift in Sources */,
 				1731BF601BEA59270012D6FF /* Article.swift in Sources */,
 				1731BEC61BEA43BE0012D6FF /* StringAttributes.swift in Sources */,
 				1731BF651BEA59270012D6FF /* ArticleNavigationViewController.swift in Sources */,
+				1718D69E1C04BD210036DB5B /* SwinjectStoryboard+Setup.swift in Sources */,
 				1731BF8E1BEA59270012D6FF /* DividerBlock.swift in Sources */,
 				1731BF4F1BEA591B0012D6FF /* LoginState.swift in Sources */,
 				1731BEC11BEA43BE0012D6FF /* Statement.swift in Sources */,
@@ -958,7 +985,6 @@
 				1731BF831BEA59270012D6FF /* CGRect.swift in Sources */,
 				1731BF641BEA59270012D6FF /* ArticleNavigationView.swift in Sources */,
 				1731BF391BEA59110012D6FF /* PaywallViewController.swift in Sources */,
-				171F6F7A1C038D7500B3A390 /* CellFactories.swift in Sources */,
 				1731BF411BEA591B0012D6FF /* HighlightPopAnimatableView.swift in Sources */,
 				1731BF541BEA591B0012D6FF /* NavigationView.swift in Sources */,
 				1731BF331BEA59110012D6FF /* NSBundle.swift in Sources */,
@@ -982,8 +1008,10 @@
 				1731BF731BEA59270012D6FF /* BlockContextReference.swift in Sources */,
 				1731BF921BEA59270012D6FF /* EnhancedBannerBlock.swift in Sources */,
 				1731BF7E1BEA59270012D6FF /* CacheType.swift in Sources */,
+				1718D6AB1C05A4CC0036DB5B /* PaywallDataInterceptor.swift in Sources */,
 				1731BF861BEA59270012D6FF /* Column.swift in Sources */,
 				1731BF711BEA59270012D6FF /* BlockContextDataController.swift in Sources */,
+				1718D6AA1C05A4CC0036DB5B /* PaywallController.swift in Sources */,
 				1731BEE91BEA43BE0012D6FF /* VisibilityState.swift in Sources */,
 				1731BECB1BEA43BE0012D6FF /* Timeline.swift in Sources */,
 				1731BEE01BEA43BE0012D6FF /* UnsupportedContentBlock.swift in Sources */,
@@ -991,6 +1019,7 @@
 				1731BF751BEA59270012D6FF /* BlockContextViewController.swift in Sources */,
 				1731BF631BEA59270012D6FF /* ArticleLayout.swift in Sources */,
 				1731BEDE1BEA43BE0012D6FF /* UIImage.swift in Sources */,
+				171F6F8A1C0496A200B3A390 /* BlockDecoder.swift in Sources */,
 				1731BD941BEA41460012D6FF /* AppDelegate.swift in Sources */,
 				1731BF801BEA59270012D6FF /* CellActionDelegate.swift in Sources */,
 				1731BF5B1BEA59270012D6FF /* AppTakeoverData.swift in Sources */,

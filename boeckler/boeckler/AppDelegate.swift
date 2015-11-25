@@ -9,16 +9,28 @@
 import UIKit
 import Fabric
 import Crashlytics
+import Swinject
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    var urlHandler: URLHandlerType!
 
-    lazy var authenticationController: AuthenticationController = {
-        //Explicitly unwrappnig window and rootViewController
-        return AuthenticationController(initialViewController: self.window!.rootViewController!)
-    }()
+    func setupDebuggingTools() {
+        Fabric.with([Crashlytics.self()])
+        Instabug.configureAndStart()
+    }
+    
+    func setupURLHandling(launchOptions: [NSObject: AnyObject]?) -> Bool {
+        var shouldHandleURL: Bool
+        if let url = launchOptions?[UIApplicationLaunchOptionsURLKey] as? NSURL {
+            shouldHandleURL = !urlHandler.handleOpenURL(url, afterFinishedLaunching: true, appDelegate: self)
+        } else {
+            shouldHandleURL = true
+        }
+        return shouldHandleURL
+    }
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         do {
@@ -26,25 +38,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         } catch {
             print("Error loading fonts:",error)
         }
-        // Override point for customization after application launch.
-        var shouldHandleURL: Bool
-        Fabric.with([Crashlytics.self()])
-        Instabug.configureAndStart()
-        if let url = launchOptions?[UIApplicationLaunchOptionsURLKey] as? NSURL {
-            shouldHandleURL = !URLHandler.handleOpenURL(url, afterFinishedLaunching: true, appDelegate: self)
-        } else {
-            shouldHandleURL = true
-        }
-        return shouldHandleURL
+        
+        setupDebuggingTools()
+        return setupURLHandling(launchOptions)
     }
     
     func application(app: UIApplication, openURL url: NSURL, options: [String : AnyObject]) -> Bool {
-        return URLHandler.handleOpenURL(url, afterFinishedLaunching: false, appDelegate: self)
+        return urlHandler.handleOpenURL(url, afterFinishedLaunching: false, appDelegate: self)
     }
     
     func application(application: UIApplication, continueUserActivity userActivity: NSUserActivity, restorationHandler: ([AnyObject]?) -> Void) -> Bool {
         if let action = userActivity.internalURLAction {
-            return URLHandler.handle(action)
+            return urlHandler.handle(action)
         }
         return false
     }
