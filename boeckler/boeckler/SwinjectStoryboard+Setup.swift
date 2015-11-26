@@ -3,7 +3,6 @@
 //  boeckler
 //
 //  Created by Emiel van der Veen on 24/11/15.
-//  Copyright © 2015 TRC. All rights reserved.
 //
 
 import Foundation
@@ -25,7 +24,7 @@ extension SwinjectStoryboard {
         container.register(BlockContextDataControllerType.self, name: "default-data-controller") { r in BlockContextDataController(cache: r.resolve(CacheType.self)!, networkRequestHandler: r.resolve(NetworkRequestHandlerType.self)!, interceptor: r.resolve(PaywallDataInterceptor.self)! )  }
         container.register(BlockContextDataControllerType.self, name: "paywall-data-controller") { r in BlockContextDataController(cache: r.resolve(CacheType.self)!, networkRequestHandler: r.resolve(NetworkRequestHandlerType.self)!) }
         container.register(TrackerFactoryType.self) { r in TrackerFactory.init(delegate: r.resolve(BlockContextDataControllerType.self)!)}
-        container.register(CellFactoryType.self) { r in CellFactory(trackerFactory: r.resolve(TrackerFactoryType.self)!) }
+        container.register(CellFactory.self) { r in CoreCellFactory(trackerFactory: r.resolve(TrackerFactoryType.self)!) }
         container.register(VisibilityState.self) { r in VisibilityState(trackerFactory: r.resolve(TrackerFactoryType.self)!) }
         container.register(AuthenticationController.self) { r in AuthenticationController(initialViewController: appDelegate.window!.rootViewController!, paywallController: r.resolve(PaywallStateController.self)! )}
         container.register(URLHandlerType.self) { r in URLHandler(paywallController: r.resolve(PaywallStateController.self)!, authController: r.resolve(AuthenticationController.self)!) }
@@ -37,21 +36,21 @@ extension SwinjectStoryboard {
         container.registerForStoryboard(TimelineViewController.self) { r, c in
             c.urlHandler = r.resolve(URLHandlerType.self)
             c.dataController = r.resolve(BlockContextDataController.self)
-            c.cellFactory = r.resolve(CellFactoryType.self)
+            c.cellFactory = r.resolve(CellFactory.self)
             c.dataSourceFactory = BlockContextDataSourceFactory(dataController: r.resolve(BlockContextDataControllerType.self)!)
         }
 
         container.registerForStoryboard(ArticleViewController.self) { r, c in
             c.urlHandler = r.resolve(URLHandlerType.self)
             c.dataController = r.resolve(BlockContextDataController.self, name: "default-data-controller")
-            c.cellFactory = r.resolve(CellFactoryType.self)
+            c.cellFactory = r.resolve(CellFactory.self)
             c.dataSourceFactory = BlockContextDataSourceFactory(dataController: r.resolve(BlockContextDataControllerType.self)!)
         }
         
         container.registerForStoryboard(PaywallViewController.self) { r, c in
             c.urlHandler = r.resolve(URLHandlerType.self)            
             c.dataController = r.resolve(BlockContextDataController.self, name: "paywall-data-controller")
-            c.cellFactory = r.resolve(CellFactoryType.self)
+            c.cellFactory = r.resolve(CellFactory.self)
             c.dataSourceFactory = BlockContextDataSourceFactory(dataController: r.resolve(BlockContextDataControllerType.self)!)
         }
         

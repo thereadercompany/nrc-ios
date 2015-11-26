@@ -3,7 +3,6 @@
 //  ios-nrc-nl
 //
 //  Created by Taco Vollmer on 02/09/15.
-//  Copyright © 2015 NRC Media. All rights reserved.
 //
 
 import Foundation

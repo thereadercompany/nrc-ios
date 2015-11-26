@@ -2,8 +2,7 @@
 //  AppStyles.swift
 //  ios-nrc-nl
 //
-//  Created by Niels van Hoorn on 19/08/15.
-//  Copyright © 2015 NRC Media. All rights reserved.
+//  Created by Emiel van der Veen on 19/08/15.
 //
 
 import Foundation
@@ -541,11 +540,11 @@ extension UIView {
     }
 }
 
-extension BlockType {
+extension Block {
     
     var decorationPaddingSide: CGFloat {
-        switch (self.context, self.dynamicType.type) {
-        case (.Article, .Tweet):
+        switch (self.context, self) {
+        case (.Article, is TweetBlock):
             return 24
         default:
             return 0
@@ -553,10 +552,10 @@ extension BlockType {
     }
     
     var decorationPaddingBottom: CGFloat {
-        switch (self.context, self.dynamicType.type, style) {
-        case (.Article, .Tweet, _):
+        switch (self.context, self, style) {
+        case (.Article, is TweetBlock, _):
             return self.decoration.tweetDecorationPaddingBottom
-        case (.Article, .Image, _):
+        case (.Article, is ImageBlock, _):
             return self.decoration.insetDecorationPaddingBottom
         default:
             return 0
@@ -575,34 +574,34 @@ extension BlockType {
         let decorationPadding = self.decorationPadding
 
         var contentPadding: UIEdgeInsets
-        switch (self.context, self.dynamicType.type, style) {
-        case (.Timeline, .ArticleRef, BlockStyle.Normal):
+        switch (self.context, self, style) {
+        case (.Timeline, is ArticleRefBlock, BlockStyle.Normal):
             contentPadding =  UIEdgeInsets(top: 19, left: 12, bottom: 0, right: 19)
-        case (.Timeline, .ArticleRef, BlockStyle.Highlight),
-             (.Timeline, .ArticleRef, BlockStyle.HighlightXL),
-             (.Timeline, .ArticleRef, BlockStyle.Breaking),
-             (.Timeline, .ArticleRef, BlockStyle.Alert):
+        case (.Timeline, is ArticleRefBlock, BlockStyle.Highlight),
+             (.Timeline, is ArticleRefBlock, BlockStyle.HighlightXL),
+             (.Timeline, is ArticleRefBlock, BlockStyle.Breaking),
+             (.Timeline, is ArticleRefBlock, BlockStyle.Alert):
              contentPadding =  UIEdgeInsets(top: 19, left: TimelineStyles.contentInset, bottom: 0, right: TimelineStyles.contentInset)
-        case (.Timeline, .ArticleRef, BlockStyle.ColumnHighlight),
-            (.Timeline, .ArticleRef, BlockStyle.ColumnHighlightXL):
+        case (.Timeline, is ArticleRefBlock, BlockStyle.ColumnHighlight),
+            (.Timeline, is ArticleRefBlock, BlockStyle.ColumnHighlightXL):
             contentPadding =  UIEdgeInsets(top: 20, left: TimelineStyles.contentInset, bottom: 0, right: TimelineStyles.contentInset)
-        case (_, .EnhancedBanner, _), (_, .BasicBanner, _):
+        case (_, is EnhancedBannerBlock, _), (_, is BasicBannerBlock, _):
             contentPadding = UIEdgeInsetsZero
-        case (_, .Divider, _):
+        case (_, is DividerBlock, _):
             contentPadding = UIEdgeInsets(top: 0, left: 0, bottom: 16, right: 0)
-        case (_, .Tweet, _):
+        case (_, is TweetBlock, _):
             contentPadding = UIEdgeInsets(top: 0, left: 20, bottom: 24, right: 20)
-        case (_, .Image, _):
+        case (_, is ImageBlock, _):
             contentPadding = UIEdgeInsets(top: 0, left: ArticleStyles.textInset, bottom: 68, right: ArticleStyles.textInset)
-        case (_, .UnsupportedContent, _),(_, .Fallback, _):
+        case (_, is UnsupportedContentBlock, _),(_, is FallbackBlock, _):
             contentPadding = UIEdgeInsets(top: 20, left: ArticleStyles.textInset, bottom: 20, right: ArticleStyles.textInset)
         case (.Timeline, _, _):
             contentPadding = UIEdgeInsets(top: 0, left: TimelineStyles.contentInset, bottom: 0, right: TimelineStyles.contentInset)
         case (.Article, _, BlockStyle.Intro), (.Article, _, BlockStyle.Byline):
             contentPadding = UIEdgeInsets(top: 0, left: ArticleStyles.textInset, bottom: 31, right: ArticleStyles.textInset)
-        case (.Article, .Streamer, _):
+        case (.Article, is StreamerBlock, _):
             contentPadding = UIEdgeInsets(top: 0, left: ArticleStyles.textInset, bottom: 40, right: ArticleStyles.textInset)
-        case (.Article, .ArticleHeader, _):
+        case (.Article, is ArticleHeaderBlock, _):
             contentPadding = UIEdgeInsets(top: 0, left: ArticleStyles.textInset, bottom: 25, right: ArticleStyles.textInset)
         case (.Article, _, _):
             contentPadding = UIEdgeInsets(top: 0, left: ArticleStyles.textInset, bottom: 24, right: ArticleStyles.textInset)
@@ -620,8 +619,8 @@ extension BlockType {
     
     
     var lineColor: UIColor {
-        switch (self.dynamicType.type, style ) {
-        case (.ArticleRef, _):
+        switch (self, style ) {
+        case (is ArticleRefBlock, _):
             return Colors.defaultLineColor
         case (_, BlockStyle.Inset):
             return Colors.insetLineColor
@@ -631,12 +630,12 @@ extension BlockType {
     }
     
     var backgroundColor: UIColor {
-        switch (context, self.dynamicType.type, style) {
+        switch (context, self, style) {
         case (_, _, BlockStyle.Inset), (_, _, BlockStyle.InsetH1), (_, _, BlockStyle.InsetH2):
             return Colors.insetBackgroundColor
-        case (.Timeline, .Divider, _):
+        case (.Timeline, is DividerBlock, _):
             return Colors.timelineDividerBackgroundColor
-        case (.Timeline, .Spacing, _):
+        case (.Timeline, is SpacingBlock, _):
             return Colors.timelineSpacingBackgroundColor
         case (.Timeline, _, _):
             return Colors.cardBackgroundColor
@@ -652,16 +651,16 @@ extension BlockType {
     }
     
     var font: Font {
-        switch (self.dynamicType.type, style) {
-        case (.Text, BlockStyle.Byline), (_, BlockStyle.Inset), (.Image, _):
+        switch (self, style) {
+        case (is TextBlock, BlockStyle.Byline), (_, BlockStyle.Inset), (is ImageBlock, _):
             return Fonts.alternativeTextFont
-        case (.Text, BlockStyle.Intro):
+        case (is TextBlock, BlockStyle.Intro):
             return Fonts.lightFont
-        case (_,BlockStyle.InsetH1), (_,BlockStyle.InsetH2), (.EnhancedBanner, _):
+        case (_,BlockStyle.InsetH1), (_,BlockStyle.InsetH2), (is EnhancedBannerBlock, _):
             return Fonts.alternativeMediumFont
         case (_,BlockStyle.H2):
             return Fonts.mediumFont
-        case (.Tweet, _):
+        case (is TweetBlock, _):
             return Fonts.tweetFont
         default:
             return Fonts.textFont
@@ -669,16 +668,16 @@ extension BlockType {
     }
     
     var fontColor: UIColor {
-        switch (self.dynamicType.type, style) {
-        case (.Text, BlockStyle.Byline):
+        switch (self, style) {
+        case (is TextBlock, BlockStyle.Byline):
             return Colors.defaultFontColor.colorWithAlphaComponent(0.6)
-        case (_, BlockStyle.Inset),(.Image, _):
+        case (_, BlockStyle.Inset),(is ImageBlock, _):
             return Colors.defaultFontColor.colorWithAlphaComponent(0.8)
         case (_, BlockStyle.InsetH1):
             return Colors.accentColor
-        case (.Tweet, _):
+        case (is TweetBlock, _):
             return Colors.tweetTextColor
-        case (.EnhancedBanner, _):
+        case (is EnhancedBannerBlock, _):
             return Colors.overlayFontColor
         default:
             return Colors.defaultFontColor
@@ -707,12 +706,12 @@ extension BlockType {
     }
     
     var lineSpacing: CGFloat {
-        switch (self.dynamicType.type, style) {
-        case (.Text, BlockStyle.Intro):
+        switch (self, style) {
+        case (is TextBlock, BlockStyle.Intro):
             return 6
-        case (.Text, BlockStyle.Byline):
+        case (is TextBlock, BlockStyle.Byline):
             return 4
-        case (.Text, BlockStyle.H2):
+        case (is TextBlock, BlockStyle.H2):
             return 4
         case (_, BlockStyle.Inset):
             return 3
@@ -720,11 +719,11 @@ extension BlockType {
             return 4
         case (_, BlockStyle.InsetH2):
             return 6
-        case (.Image, _):
+        case (is ImageBlock, _):
             return 3
-        case (.Tweet, _):
+        case (is TweetBlock, _):
             return 3
-        case (.EnhancedBanner, _):
+        case (is EnhancedBannerBlock, _):
             return 0
         default:
             return 11
@@ -741,10 +740,10 @@ extension BlockType {
     }
     
     var paddingTop: CGFloat {
-        switch (self.dynamicType.type, style) {
-        case (.Text, BlockStyle.H2):
+        switch (self, style) {
+        case (is TextBlock, BlockStyle.H2):
             return 8+6
-        case (.ArticleHeader, _):
+        case (is ArticleHeaderBlock, _):
             return 32
         default:
             return 0
@@ -752,7 +751,7 @@ extension BlockType {
     }
     
     var paddingBottom: CGFloat {
-        switch (self.dynamicType.type, style) {
+        switch (self, style) {
         case ( _, BlockStyle.Intro):
             return 32
         case ( _, BlockStyle.Byline):
@@ -763,9 +762,9 @@ extension BlockType {
             return 24
         case ( _, BlockStyle.InsetH2):
             return 8
-        case ( .ArticleHeader, _):
+        case ( is ArticleHeaderBlock, _):
             return 24+6
-        case (.Youtube, _), (.Vimeo, _):
+        case (is YoutubeBlock, _), (is VimeoBlock, _):
             return 40
         default:
             return 24
@@ -844,8 +843,8 @@ extension LabelContainable {
     }
     
     var labelInset: CGPoint {
-        switch self.dynamicType.type {
-        case .EnhancedBanner:
+        switch self {
+        case is EnhancedBannerBlock:
             return CGPoint(x: 19, y: 16)
         default:
             return CGPoint(x: 19, y: 23)
@@ -853,8 +852,8 @@ extension LabelContainable {
     }
     
     var labelTextInsets: UIEdgeInsets {
-        switch self.dynamicType.type {
-        case .EnhancedBanner:
+        switch self {
+        case is EnhancedBannerBlock:
             return UIEdgeInsets(top: 14, left: 0, bottom: 15, right: 0)
         default:
             return UIEdgeInsets(top: 2, left: 10, bottom: 2, right: 10)
@@ -867,8 +866,8 @@ extension LabelContainable {
     }
     
     var labelFont: UIFont {
-        switch self.dynamicType.type {
-        case .EnhancedBanner:
+        switch self {
+        case is EnhancedBannerBlock:
             return Fonts.alternativeMediumFont.fallbackWithSize(16)
         default:
             return Fonts.alternativeMediumFont.fallbackWithSize(11)
@@ -876,8 +875,8 @@ extension LabelContainable {
     }
     
     var labelTextColor: UIColor {
-        switch self.dynamicType.type {
-        case .Divider:
+        switch self {
+        case is DividerBlock:
             return Colors.dividerForegroundColor
         default:
             return Colors.labelTextColor
@@ -910,8 +909,8 @@ extension MediaContainable {
     }
     
     var mediaBackgroundColor: UIColor {
-        switch self.dynamicType.type {
-        case .Image:
+        switch self {
+        case is ImageBlock:
             return Colors.imageBackgroundColor
         default:
             return backgroundColor
@@ -922,7 +921,7 @@ extension MediaContainable {
 extension HeadlineContainable {
     
     var headlineBackgroundColor: UIColor? {
-        switch (context, self.dynamicType.type, style) {
+        switch (context, self, style) {
         case (.Timeline, _, BlockStyle.HighlightImage):
             return Colors.titleOverImageBackgroundColor
         default:
@@ -931,14 +930,14 @@ extension HeadlineContainable {
     }
     
     var headlineFontColor: UIColor {
-        switch (context, self.dynamicType.type, style) {
+        switch (context, self, style) {
         case (.Timeline, _, BlockStyle.Highlight), (.Timeline, _, BlockStyle.HighlightXL):
             return Colors.titleOverImageColor
-        case (.Article, .Streamer, _):
+        case (.Article, is StreamerBlock, _):
             return Colors.accentColor
-        case (_, .Youtube, _), (_, .Vimeo, _), (_, .EnhancedBanner, _), (_, .UnsupportedContent, _), (_, .Fallback, _):
+        case (_, is YoutubeBlock, _), (_, is VimeoBlock, _), (_, is EnhancedBannerBlock, _), (_, is UnsupportedContentBlock, _), (_, is FallbackBlock, _):
             return Colors.overlayFontColor
-        case (_, .Tweet, _):
+        case (_, is TweetBlock, _):
             return Colors.tweetTextColor
         default:
             return Colors.defaultFontColor
@@ -946,20 +945,20 @@ extension HeadlineContainable {
     }
     
     var headlineFont: UIFont {
-        switch (context, self.dynamicType.type, style) {
-        case (.Timeline, .ArticleRef, BlockStyle.Highlight):
+        switch (context, self, style) {
+        case (.Timeline, is ArticleRefBlock, BlockStyle.Highlight):
             return Fonts.mediumFont.fallbackWithSize(24)
-        case (.Timeline, .ArticleRef, BlockStyle.HighlightXL):
+        case (.Timeline, is ArticleRefBlock, BlockStyle.HighlightXL):
             return Fonts.mediumFont.fallbackWithSize(34)
-        case (.Article, .ArticleHeader,_):
+        case (.Article, is ArticleHeaderBlock,_):
             return Fonts.mediumFont.fallbackWithSize(36)
-        case (.Article, .Streamer, _):
+        case (.Article, is StreamerBlock, _):
             return Fonts.regularFont.fallbackWithSize(24)
-        case (_, .Youtube, _), (_, .Vimeo, _):
+        case (_, is YoutubeBlock, _), (_, is VimeoBlock, _):
             return Fonts.mediumFont.fallbackWithSize(18)
-        case (.Article, .UnsupportedContent, _),(.Article, .Fallback, _):
+        case (.Article, is UnsupportedContentBlock, _),(.Article, is FallbackBlock, _):
             return Fonts.mediumFont.fallbackWithSize(18)
-        case (.Article, .Tweet, _):
+        case (.Article, is TweetBlock, _):
             return Fonts.tweetHeadlineFont.fallbackWithSize(15)
         default:
             return Fonts.mediumFont.fallbackWithSize(22)
@@ -967,16 +966,16 @@ extension HeadlineContainable {
     }
     
     var headlineLinespacing: CGFloat {
-        switch (context, self.dynamicType.type, style) {
+        switch (context, self, style) {
         case (.Timeline, _, BlockStyle.Highlight):
             return 4
         case (.Timeline, _, BlockStyle.HighlightXL):
             return 4
         case (.Timeline, _, BlockStyle.Normal):
             return 3
-        case (.Article, .Streamer, _ ):
+        case (.Article, is StreamerBlock, _ ):
             return 7
-        case (_, .Youtube, _), (_, .Vimeo, _):
+        case (_, is YoutubeBlock, _), (_, is VimeoBlock, _):
             return 3
         case (.Article, _,  _):
             return 7
@@ -986,8 +985,8 @@ extension HeadlineContainable {
     }
     
     var headlineAlignment: NSTextAlignment {
-        switch self.dynamicType.type {
-        case .EnhancedBanner, .UnsupportedContent, .Fallback :
+        switch self {
+        case is EnhancedBannerBlock, is UnsupportedContentBlock, is FallbackBlock :
             return NSTextAlignment.Center
         default:
             return NSTextAlignment.Left
@@ -1022,12 +1021,12 @@ extension SubHeadlineContainable {
     }
 
     var subHeadlineFontColor: UIColor {
-        switch self.dynamicType.type {
-        case .Tweet:
+        switch self {
+        case is TweetBlock:
             return Colors.tweetSubHeadlineColor
-        case .EnhancedBanner:
+        case is EnhancedBannerBlock:
             return Colors.enhancedBannerFontColor
-        case .UnsupportedContent, .Fallback:
+        case is UnsupportedContentBlock, is FallbackBlock:
             return Colors.overlayFontColor
         default:
             return Colors.defaultFontColor
@@ -1035,12 +1034,12 @@ extension SubHeadlineContainable {
     }
     
     var subHeadlineFont: UIFont {
-        switch self.dynamicType.type {
-        case .Tweet:
+        switch self {
+        case is TweetBlock:
             return Fonts.tweetFont.fallbackWithSize(15)
-        case .EnhancedBanner:
+        case is EnhancedBannerBlock:
             return Fonts.lightFont.fallbackWithSize(20)
-        case .UnsupportedContent, .Fallback:
+        case is UnsupportedContentBlock, is FallbackBlock:
             return Fonts.alternativeTextFont.fallbackWithSize(13)
         default:
             return Fonts.alternativeMediumFont.fallbackWithSize(14)
@@ -1048,10 +1047,10 @@ extension SubHeadlineContainable {
     }
     
     var subHeadlineLinespacing: CGFloat {
-        switch (self.dynamicType.type) {
-        case (.Tweet):
+        switch (self) {
+        case (is TweetBlock):
             return 2
-        case (.EnhancedBanner):
+        case (is EnhancedBannerBlock):
             return 6
         default:
             return 0
@@ -1059,8 +1058,8 @@ extension SubHeadlineContainable {
     }
     
     var subHeadlineUpperLower: String? {
-        switch (context, self.dynamicType.type) {
-        case (.Article, .Streamer ):
+        switch (context, self) {
+        case (.Article, is StreamerBlock ):
             return subHeadline?.uppercaseString
         default:
             return subHeadline
@@ -1068,8 +1067,8 @@ extension SubHeadlineContainable {
     }
     
     var subHeadlineAlignment: NSTextAlignment {
-        switch self.dynamicType.type {
-        case .EnhancedBanner, .UnsupportedContent, .Fallback :
+        switch self {
+        case is EnhancedBannerBlock, is UnsupportedContentBlock, is FallbackBlock :
             return NSTextAlignment.Center
         default:
             return NSTextAlignment.Left
@@ -1128,8 +1127,8 @@ extension ReadingTimeContainable {
 extension PlainTextContainable {
     
     var plainTextFont: UIFont {
-        switch (self.dynamicType.type, style) {
-        case (.Fallback, _):
+        switch (self, style) {
+        case (is FallbackBlock, _):
             return Fonts.lightFont.fallbackWithSize(15)
         case (_ , BlockStyle.InsetH1):
             return Fonts.alternativeMediumFont.fallbackWithSize(14)
@@ -1137,12 +1136,12 @@ extension PlainTextContainable {
             return  Fonts.alternativeMediumFont.fallbackWithSize(16)
         case (_, BlockStyle.H2):
             return Fonts.mediumFont.fallbackWithSize(20)
-        case (.ArticleRef, BlockStyle.Breaking):
+        case (is ArticleRefBlock, BlockStyle.Breaking):
             return Fonts.lightFont.fallbackWithSize(16)
-        case (.ArticleRef, BlockStyle.ColumnHighlight),
-             (.ArticleRef, BlockStyle.ColumnHighlightXL):
+        case (is ArticleRefBlock, BlockStyle.ColumnHighlight),
+             (is ArticleRefBlock, BlockStyle.ColumnHighlightXL):
             return Fonts.textFont.fallbackWithSize(14)
-        case (.Fallback, _):
+        case (is FallbackBlock, _):
             return Fonts.lightFont.fallbackWithSize(15)
         default:
             return Fonts.textFont.fallbackWithSize(14)
@@ -1151,15 +1150,15 @@ extension PlainTextContainable {
     }
     
     var plainTextLinespacing: CGFloat {
-        switch (self.dynamicType.type, style) {
-        case (.Fallback, _): return 4
+        switch (self, style) {
+        case (is FallbackBlock, _): return 4
         default: return 6
         }
     }
     
     var plainTextBackgroundColor: UIColor {
-        switch self.dynamicType.type {
-        case .Fallback:
+        switch self {
+        case is FallbackBlock:
             return Colors.fallbackBackgroundColor
         default:
             return Colors.defaultBackgroundColor
@@ -1195,8 +1194,8 @@ extension PlainTextContainable {
 
 extension RichTextContainable {
     var richTextAlignment: NSTextAlignment {
-        switch self.dynamicType.type {
-        case .EnhancedBanner :
+        switch self {
+        case is EnhancedBannerBlock :
             return .Center
         default:
             return .Left
@@ -1204,8 +1203,8 @@ extension RichTextContainable {
     }
     
     var linkColor: UIColor {
-        switch self.dynamicType.type {
-        case .EnhancedBanner :
+        switch self {
+        case is EnhancedBannerBlock :
             return Colors.callToAction
         default:
             return Colors.linkColor
@@ -1232,19 +1231,19 @@ extension RichTextContainable {
     }
     
     var richTextFont: Font {
-        switch (self.dynamicType.type, style) {
-        case (.ArticleRef, BlockStyle.Breaking):
+        switch (self, style) {
+        case (is ArticleRefBlock, BlockStyle.Breaking):
             return Fonts.lightFont
-        case (.ArticleRef, BlockStyle.ColumnHighlight),
-            (.ArticleRef, BlockStyle.ColumnHighlightXL):
+        case (is ArticleRefBlock, BlockStyle.ColumnHighlight),
+            (is ArticleRefBlock, BlockStyle.ColumnHighlightXL):
             return Fonts.textFont
-        case (.Text, BlockStyle.Intro):
+        case (is TextBlock, BlockStyle.Intro):
             return Fonts.lightFont
-        case (.EnhancedBanner, _):
+        case (is EnhancedBannerBlock, _):
             return Fonts.alternativeMediumFont
-        case (.Text, BlockStyle.Byline), (_, BlockStyle.Inset), (.Image, _):
+        case (is TextBlock, BlockStyle.Byline), (_, BlockStyle.Inset), (is ImageBlock, _):
             return Fonts.alternativeTextFont
-        case (.Tweet, _):
+        case (is TweetBlock, _):
             return Fonts.tweetFont
         default:
             return Fonts.textFont
@@ -1252,16 +1251,16 @@ extension RichTextContainable {
     }
     
     var richTextFontColor: UIColor {
-        switch (self.dynamicType.type, style) {
-        case (.Text, BlockStyle.Byline):
+        switch (self, style) {
+        case (is TextBlock, BlockStyle.Byline):
             return Colors.defaultFontColor.colorWithAlphaComponent(0.6)
-        case (_, BlockStyle.Inset),(.Image, _):
+        case (_, BlockStyle.Inset),(is ImageBlock, _):
             return Colors.defaultFontColor.colorWithAlphaComponent(0.8)
         case (_, BlockStyle.InsetH1):
             return Colors.accentColor
-        case (.Tweet, _):
+        case (is TweetBlock, _):
             return Colors.tweetTextColor
-        case (.EnhancedBanner, _):
+        case (is EnhancedBannerBlock, _):
             return Colors.enhancedBannerFontColor
         default:
             return Colors.defaultFontColor
@@ -1292,19 +1291,19 @@ extension RichTextContainable {
     }
     
     var richTextLineSpacing: CGFloat {
-        switch (self.dynamicType.type, style) {
-        case (.ArticleRef, BlockStyle.Highlight),
-             (.ArticleRef, BlockStyle.HighlightXL),
-            (.ArticleRef, BlockStyle.Alert),
-            (.ArticleRef, BlockStyle.Breaking),
-            (.ArticleRef, BlockStyle.ColumnHighlight),
-            (.ArticleRef, BlockStyle.ColumnHighlightXL):
+        switch (self, style) {
+        case (is ArticleRefBlock, BlockStyle.Highlight),
+             (is ArticleRefBlock, BlockStyle.HighlightXL),
+            (is ArticleRefBlock, BlockStyle.Alert),
+            (is ArticleRefBlock, BlockStyle.Breaking),
+            (is ArticleRefBlock, BlockStyle.ColumnHighlight),
+            (is ArticleRefBlock, BlockStyle.ColumnHighlightXL):
             return 7
-        case (.Text, BlockStyle.Intro):
+        case (is TextBlock, BlockStyle.Intro):
             return 6
-        case (.Text, BlockStyle.Byline):
+        case (is TextBlock, BlockStyle.Byline):
             return 4
-        case (.Text, BlockStyle.H2):
+        case (is TextBlock, BlockStyle.H2):
             return 4
         case (_, BlockStyle.Inset):
             return 3
@@ -1312,11 +1311,11 @@ extension RichTextContainable {
             return 4
         case (_, BlockStyle.InsetH2):
             return 6
-        case (.Image, _):
+        case (is ImageBlock, _):
             return 3
-        case (.Tweet, _):
+        case (is TweetBlock, _):
             return 3
-        case (.EnhancedBanner, _):
+        case (is EnhancedBannerBlock, _):
             return 0
         default:
             return 11
