@@ -3,7 +3,6 @@
 //  ios-nrc-nl
 //
 //  Created by Niels van Hoorn on 03/02/15.
-//  Copyright (c) 2015 NRC Media. All rights reserved.
 //
 
 import UIKit
@@ -15,7 +14,7 @@ import Swinject
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    var urlHandler: URLHandlerType!
+    var urlHandler: URLHandler!
 
     func setupDebuggingTools() {
         Fabric.with([Crashlytics.self()])
