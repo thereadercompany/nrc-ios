@@ -13,8 +13,7 @@
 		1718D6AB1C05A4CC0036DB5B /* PaywallDataInterceptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1718D6A81C05A4CC0036DB5B /* PaywallDataInterceptor.swift */; settings = {ASSET_TAGS = (); }; };
 		1718D6AC1C05A4CC0036DB5B /* TrackerFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1718D6A91C05A4CC0036DB5B /* TrackerFactory.swift */; settings = {ASSET_TAGS = (); }; };
 		1718D6B41C05A5230036DB5B /* BlockContextDataSourceFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1718D6B31C05A5230036DB5B /* BlockContextDataSourceFactory.swift */; settings = {ASSET_TAGS = (); }; };
-		1718D6B91C0734E30036DB5B /* CellFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1718D6B71C0734E30036DB5B /* CellFactory.swift */; settings = {ASSET_TAGS = (); }; };
-		1718D6BA1C0734E30036DB5B /* CoreCellFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1718D6B81C0734E30036DB5B /* CoreCellFactory.swift */; settings = {ASSET_TAGS = (); }; };
+		1718D6BA1C0734E30036DB5B /* CellFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1718D6B81C0734E30036DB5B /* CellFactory.swift */; settings = {ASSET_TAGS = (); }; };
 		1718D6BC1C0738020036DB5B /* Block.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1718D6BB1C0738020036DB5B /* Block.swift */; settings = {ASSET_TAGS = (); }; };
 		171F6F8A1C0496A200B3A390 /* BlockDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 171F6F891C0496A200B3A390 /* BlockDecoder.swift */; settings = {ASSET_TAGS = (); }; };
 		171F6F8C1C0496D000B3A390 /* BoecklerBlockDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 171F6F8B1C0496D000B3A390 /* BoecklerBlockDecoder.swift */; settings = {ASSET_TAGS = (); }; };
@@ -29,8 +28,8 @@
 		1731BEBC1BEA43BE0012D6FF /* SpacingBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1731BE861BEA43BE0012D6FF /* SpacingBlock.swift */; settings = {ASSET_TAGS = (); }; };
 		1731BEBD1BEA43BE0012D6FF /* SpacingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1731BE871BEA43BE0012D6FF /* SpacingCell.swift */; settings = {ASSET_TAGS = (); }; };
 		1731BEBE1BEA43BE0012D6FF /* SQLite-Bridging.m in Sources */ = {isa = PBXBuildFile; fileRef = 1731BE891BEA43BE0012D6FF /* SQLite-Bridging.m */; settings = {ASSET_TAGS = (); }; };
-		1731BEBF1BEA43BE0012D6FF /* SQLiteCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1731BE8A1BEA43BE0012D6FF /* SQLiteCache.swift */; settings = {ASSET_TAGS = (); }; };
-		1731BEC01BEA43BE0012D6FF /* SQLiteStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1731BE8B1BEA43BE0012D6FF /* SQLiteStore.swift */; settings = {ASSET_TAGS = (); }; };
+		1731BEBF1BEA43BE0012D6FF /* Cache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1731BE8A1BEA43BE0012D6FF /* Cache.swift */; settings = {ASSET_TAGS = (); }; };
+		1731BEC01BEA43BE0012D6FF /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1731BE8B1BEA43BE0012D6FF /* Store.swift */; settings = {ASSET_TAGS = (); }; };
 		1731BEC11BEA43BE0012D6FF /* Statement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1731BE8C1BEA43BE0012D6FF /* Statement.swift */; settings = {ASSET_TAGS = (); }; };
 		1731BEC21BEA43BE0012D6FF /* StatusBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1731BE8D1BEA43BE0012D6FF /* StatusBar.swift */; settings = {ASSET_TAGS = (); }; };
 		1731BEC31BEA43BE0012D6FF /* StoreEventHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1731BE8E1BEA43BE0012D6FF /* StoreEventHandler.swift */; settings = {ASSET_TAGS = (); }; };
@@ -162,7 +161,6 @@
 		1731BF7B1BEA59270012D6FF /* CachedDataProviding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1731BDC31BEA43630012D6FF /* CachedDataProviding.swift */; settings = {ASSET_TAGS = (); }; };
 		1731BF7C1BEA59270012D6FF /* CachedDataRecording.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1731BDC41BEA43630012D6FF /* CachedDataRecording.swift */; settings = {ASSET_TAGS = (); }; };
 		1731BF7D1BEA59270012D6FF /* CacheError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1731BDC51BEA43630012D6FF /* CacheError.swift */; settings = {ASSET_TAGS = (); }; };
-		1731BF7E1BEA59270012D6FF /* CacheType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1731BDC61BEA43630012D6FF /* CacheType.swift */; settings = {ASSET_TAGS = (); }; };
 		1731BF7F1BEA59270012D6FF /* Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1731BDC71BEA43630012D6FF /* Cell.swift */; settings = {ASSET_TAGS = (); }; };
 		1731BF801BEA59270012D6FF /* CellActionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1731BDC81BEA43630012D6FF /* CellActionDelegate.swift */; settings = {ASSET_TAGS = (); }; };
 		1731BF821BEA59270012D6FF /* CellType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1731BDCA1BEA43630012D6FF /* CellType.swift */; settings = {ASSET_TAGS = (); }; };
@@ -227,8 +225,7 @@
 		1718D6A81C05A4CC0036DB5B /* PaywallDataInterceptor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PaywallDataInterceptor.swift; path = "core/ios-nrc-nl/PaywallDataInterceptor.swift"; sourceTree = SOURCE_ROOT; };
 		1718D6A91C05A4CC0036DB5B /* TrackerFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TrackerFactory.swift; path = "core/ios-nrc-nl/TrackerFactory.swift"; sourceTree = SOURCE_ROOT; };
 		1718D6B31C05A5230036DB5B /* BlockContextDataSourceFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BlockContextDataSourceFactory.swift; path = "core/ios-nrc-nl/BlockContextDataSourceFactory.swift"; sourceTree = SOURCE_ROOT; };
-		1718D6B71C0734E30036DB5B /* CellFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CellFactory.swift; path = "core/ios-nrc-nl/CellFactory.swift"; sourceTree = SOURCE_ROOT; };
-		1718D6B81C0734E30036DB5B /* CoreCellFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CoreCellFactory.swift; path = "core/ios-nrc-nl/CoreCellFactory.swift"; sourceTree = SOURCE_ROOT; };
+		1718D6B81C0734E30036DB5B /* CellFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CellFactory.swift; path = "core/ios-nrc-nl/CellFactory.swift"; sourceTree = SOURCE_ROOT; };
 		1718D6BB1C0738020036DB5B /* Block.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Block.swift; path = "core/ios-nrc-nl/Block.swift"; sourceTree = SOURCE_ROOT; };
 		171F6F891C0496A200B3A390 /* BlockDecoder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BlockDecoder.swift; path = "core/ios-nrc-nl/BlockDecoder.swift"; sourceTree = SOURCE_ROOT; };
 		171F6F8B1C0496D000B3A390 /* BoecklerBlockDecoder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoecklerBlockDecoder.swift; sourceTree = "<group>"; };
@@ -276,7 +273,6 @@
 		1731BDC31BEA43630012D6FF /* CachedDataProviding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CachedDataProviding.swift; path = "../core/ios-nrc-nl/CachedDataProviding.swift"; sourceTree = "<group>"; };
 		1731BDC41BEA43630012D6FF /* CachedDataRecording.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CachedDataRecording.swift; path = "../core/ios-nrc-nl/CachedDataRecording.swift"; sourceTree = "<group>"; };
 		1731BDC51BEA43630012D6FF /* CacheError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CacheError.swift; path = "../core/ios-nrc-nl/CacheError.swift"; sourceTree = "<group>"; };
-		1731BDC61BEA43630012D6FF /* CacheType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CacheType.swift; path = "../core/ios-nrc-nl/CacheType.swift"; sourceTree = "<group>"; };
 		1731BDC71BEA43630012D6FF /* Cell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Cell.swift; path = "../core/ios-nrc-nl/Cell.swift"; sourceTree = "<group>"; };
 		1731BDC81BEA43630012D6FF /* CellActionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CellActionDelegate.swift; path = "../core/ios-nrc-nl/CellActionDelegate.swift"; sourceTree = "<group>"; };
 		1731BDCA1BEA43630012D6FF /* CellType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CellType.swift; path = "../core/ios-nrc-nl/CellType.swift"; sourceTree = "<group>"; };
@@ -354,8 +350,8 @@
 		1731BE871BEA43BE0012D6FF /* SpacingCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SpacingCell.swift; path = "../core/ios-nrc-nl/SpacingCell.swift"; sourceTree = "<group>"; };
 		1731BE881BEA43BE0012D6FF /* SQLite-Bridging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "SQLite-Bridging.h"; path = "../core/ios-nrc-nl/SQLite-Bridging.h"; sourceTree = "<group>"; };
 		1731BE891BEA43BE0012D6FF /* SQLite-Bridging.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "SQLite-Bridging.m"; path = "../core/ios-nrc-nl/SQLite-Bridging.m"; sourceTree = "<group>"; };
-		1731BE8A1BEA43BE0012D6FF /* SQLiteCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SQLiteCache.swift; path = "../core/ios-nrc-nl/SQLiteCache.swift"; sourceTree = "<group>"; };
-		1731BE8B1BEA43BE0012D6FF /* SQLiteStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SQLiteStore.swift; path = "../core/ios-nrc-nl/SQLiteStore.swift"; sourceTree = "<group>"; };
+		1731BE8A1BEA43BE0012D6FF /* Cache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Cache.swift; path = "../core/ios-nrc-nl/Cache.swift"; sourceTree = "<group>"; };
+		1731BE8B1BEA43BE0012D6FF /* Store.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Store.swift; path = "../core/ios-nrc-nl/Store.swift"; sourceTree = "<group>"; };
 		1731BE8C1BEA43BE0012D6FF /* Statement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Statement.swift; path = "../core/ios-nrc-nl/Statement.swift"; sourceTree = "<group>"; };
 		1731BE8D1BEA43BE0012D6FF /* StatusBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StatusBar.swift; path = "../core/ios-nrc-nl/StatusBar.swift"; sourceTree = "<group>"; };
 		1731BE8E1BEA43BE0012D6FF /* StoreEventHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StoreEventHandler.swift; path = "../core/ios-nrc-nl/StoreEventHandler.swift"; sourceTree = "<group>"; };
@@ -533,64 +529,6 @@
 		1731BEED1BEA54E80012D6FF /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				1718D6B71C0734E30036DB5B /* CellFactory.swift */,
-				1718D6B81C0734E30036DB5B /* CoreCellFactory.swift */,
-				1718D6B31C05A5230036DB5B /* BlockContextDataSourceFactory.swift */,
-				1718D6A71C05A4CC0036DB5B /* PaywallController.swift */,
-				1718D6A81C05A4CC0036DB5B /* PaywallDataInterceptor.swift */,
-				1718D6A91C05A4CC0036DB5B /* TrackerFactory.swift */,
-				171F6F891C0496A200B3A390 /* BlockDecoder.swift */,
-				1731BE821BEA43BE0012D6FF /* Row.swift */,
-				1731BE831BEA43BE0012D6FF /* ScrollState.swift */,
-				1731BE841BEA43BE0012D6FF /* SegueHandling.swift */,
-				1731BE851BEA43BE0012D6FF /* ServerErrorBlock.swift */,
-				1731BE861BEA43BE0012D6FF /* SpacingBlock.swift */,
-				1731BE871BEA43BE0012D6FF /* SpacingCell.swift */,
-				1731BE881BEA43BE0012D6FF /* SQLite-Bridging.h */,
-				1731BE891BEA43BE0012D6FF /* SQLite-Bridging.m */,
-				1731BE8A1BEA43BE0012D6FF /* SQLiteCache.swift */,
-				1731BE8B1BEA43BE0012D6FF /* SQLiteStore.swift */,
-				1731BE8C1BEA43BE0012D6FF /* Statement.swift */,
-				1731BE8D1BEA43BE0012D6FF /* StatusBar.swift */,
-				1731BE8E1BEA43BE0012D6FF /* StoreEventHandler.swift */,
-				1731BE8F1BEA43BE0012D6FF /* StreamerBlock.swift */,
-				1731BE901BEA43BE0012D6FF /* StreamerCell.swift */,
-				1731BE911BEA43BE0012D6FF /* StringAttributes.swift */,
-				1731BE921BEA43BE0012D6FF /* Table.swift */,
-				1731BE931BEA43BE0012D6FF /* Tables.swift */,
-				1731BE941BEA43BE0012D6FF /* TextBlock.swift */,
-				1731BE951BEA43BE0012D6FF /* TextCell.swift */,
-				1731BE961BEA43BE0012D6FF /* Timeline.swift */,
-				1731BE971BEA43BE0012D6FF /* TimelineLayout.swift */,
-				1731BE9A1BEA43BE0012D6FF /* TimelineViewController.swift */,
-				1731BE9B1BEA43BE0012D6FF /* TimeoutController.swift */,
-				1731BE9C1BEA43BE0012D6FF /* Trackable.swift */,
-				1731BE9D1BEA43BE0012D6FF /* TrackedEvent.swift */,
-				1731BE9E1BEA43BE0012D6FF /* Tracker.swift */,
-				1731BE9F1BEA43BE0012D6FF /* TrackingController.swift */,
-				1731BEA01BEA43BE0012D6FF /* TrackingData.swift */,
-				1731BEA11BEA43BE0012D6FF /* TrackingDelegate.swift */,
-				1731BEA21BEA43BE0012D6FF /* TweetBlock.swift */,
-				1731BEA31BEA43BE0012D6FF /* TweetCell.swift */,
-				1731BEA41BEA43BE0012D6FF /* UIActivityViewController.swift */,
-				1731BEA51BEA43BE0012D6FF /* UIApplication.swift */,
-				1731BEA71BEA43BE0012D6FF /* UIColor.swift */,
-				1731BEA81BEA43BE0012D6FF /* UIEdgeInsets.swift */,
-				1731BEA91BEA43BE0012D6FF /* UIImage.swift */,
-				1731BEAA1BEA43BE0012D6FF /* UIView.swift */,
-				1731BEAB1BEA43BE0012D6FF /* UnsupportedContentBlock.swift */,
-				1731BEAC1BEA43BE0012D6FF /* URLHandler.swift */,
-				1731BEAD1BEA43BE0012D6FF /* User.swift */,
-				1731BEAE1BEA43BE0012D6FF /* UserActivity.swift */,
-				1731BEAF1BEA43BE0012D6FF /* UserFacingError.swift */,
-				1731BEB01BEA43BE0012D6FF /* Value.swift */,
-				1731BEB11BEA43BE0012D6FF /* VideoCell.swift */,
-				1731BEB21BEA43BE0012D6FF /* VimeoBlock.swift */,
-				1731BEB31BEA43BE0012D6FF /* VimeoCell.swift */,
-				1731BEB41BEA43BE0012D6FF /* VisibilityState.swift */,
-				1731BEB51BEA43BE0012D6FF /* Window.swift */,
-				1731BEB61BEA43BE0012D6FF /* YoutubeBlock.swift */,
-				1731BEB71BEA43BE0012D6FF /* YoutubeCell.swift */,
 				1731BD9D1BEA43630012D6FF /* Account.swift */,
 				1731BD9E1BEA43630012D6FF /* Alamofire.swift */,
 				1731BD9F1BEA43630012D6FF /* AlertBlock.swift */,
@@ -616,22 +554,26 @@
 				1731BDB41BEA43630012D6FF /* AuthorBlock.swift */,
 				1731BDB51BEA43630012D6FF /* BasicBannerBlock.swift */,
 				1731BDB61BEA43630012D6FF /* BasicBannerCell.swift */,
+				1718D6BB1C0738020036DB5B /* Block.swift */,
+				1731BDC21BEA43630012D6FF /* BlockChanges.swift */,
 				1731BDB81BEA43630012D6FF /* BlockContext.swift */,
 				1731BDB91BEA43630012D6FF /* BlockContextDataController.swift */,
 				1731BDBA1BEA43630012D6FF /* BlockContextDataSource.swift */,
+				1718D6B31C05A5230036DB5B /* BlockContextDataSourceFactory.swift */,
 				1731BDBB1BEA43630012D6FF /* BlockContextReference.swift */,
 				1731BDBC1BEA43630012D6FF /* BlockContextType.swift */,
 				1731BDBD1BEA43630012D6FF /* BlockContextViewController.swift */,
+				171F6F891C0496A200B3A390 /* BlockDecoder.swift */,
 				1731BDBE1BEA43630012D6FF /* BlockDecoration.swift */,
 				1731BDBF1BEA43630012D6FF /* BlocksRelationship.swift */,
 				1731BDC01BEA43630012D6FF /* BlockStyle.swift */,
-				1731BDC21BEA43630012D6FF /* BlockChanges.swift */,
+				1731BE8A1BEA43BE0012D6FF /* Cache.swift */,
 				1731BDC31BEA43630012D6FF /* CachedDataProviding.swift */,
 				1731BDC41BEA43630012D6FF /* CachedDataRecording.swift */,
 				1731BDC51BEA43630012D6FF /* CacheError.swift */,
-				1731BDC61BEA43630012D6FF /* CacheType.swift */,
 				1731BDC71BEA43630012D6FF /* Cell.swift */,
 				1731BDC81BEA43630012D6FF /* CellActionDelegate.swift */,
+				1718D6B81C0734E30036DB5B /* CellFactory.swift */,
 				1731BDCA1BEA43630012D6FF /* CellType.swift */,
 				1731BDCB1BEA43640012D6FF /* CGRect.swift */,
 				1731BDCC1BEA43640012D6FF /* CGSize.swift */,
@@ -692,6 +634,8 @@
 				1731BE051BEA43640012D6FF /* NSURLComponents.swift */,
 				1731BE061BEA43640012D6FF /* ObjectType.swift */,
 				1731BE071BEA43640012D6FF /* Paywall.swift */,
+				1718D6A71C05A4CC0036DB5B /* PaywallController.swift */,
+				1718D6A81C05A4CC0036DB5B /* PaywallDataInterceptor.swift */,
 				1731BE081BEA43640012D6FF /* PaywallViewController.swift */,
 				1731BE091BEA43640012D6FF /* PlainTextBlock.swift */,
 				1731BE0A1BEA43640012D6FF /* PlainTextCell.swift */,
@@ -699,7 +643,57 @@
 				1731BE0C1BEA43640012D6FF /* RelationshipType.swift */,
 				1731BE0D1BEA43640012D6FF /* Renderable.swift */,
 				1731BE0E1BEA43640012D6FF /* Request.swift */,
-				1718D6BB1C0738020036DB5B /* Block.swift */,
+				1731BE821BEA43BE0012D6FF /* Row.swift */,
+				1731BE831BEA43BE0012D6FF /* ScrollState.swift */,
+				1731BE841BEA43BE0012D6FF /* SegueHandling.swift */,
+				1731BE851BEA43BE0012D6FF /* ServerErrorBlock.swift */,
+				1731BE861BEA43BE0012D6FF /* SpacingBlock.swift */,
+				1731BE871BEA43BE0012D6FF /* SpacingCell.swift */,
+				1731BE881BEA43BE0012D6FF /* SQLite-Bridging.h */,
+				1731BE891BEA43BE0012D6FF /* SQLite-Bridging.m */,
+				1731BE8C1BEA43BE0012D6FF /* Statement.swift */,
+				1731BE8D1BEA43BE0012D6FF /* StatusBar.swift */,
+				1731BE8B1BEA43BE0012D6FF /* Store.swift */,
+				1731BE8E1BEA43BE0012D6FF /* StoreEventHandler.swift */,
+				1731BE8F1BEA43BE0012D6FF /* StreamerBlock.swift */,
+				1731BE901BEA43BE0012D6FF /* StreamerCell.swift */,
+				1731BE911BEA43BE0012D6FF /* StringAttributes.swift */,
+				1731BE921BEA43BE0012D6FF /* Table.swift */,
+				1731BE931BEA43BE0012D6FF /* Tables.swift */,
+				1731BE941BEA43BE0012D6FF /* TextBlock.swift */,
+				1731BE951BEA43BE0012D6FF /* TextCell.swift */,
+				1731BE961BEA43BE0012D6FF /* Timeline.swift */,
+				1731BE971BEA43BE0012D6FF /* TimelineLayout.swift */,
+				1731BE9A1BEA43BE0012D6FF /* TimelineViewController.swift */,
+				1731BE9B1BEA43BE0012D6FF /* TimeoutController.swift */,
+				1731BE9C1BEA43BE0012D6FF /* Trackable.swift */,
+				1731BE9D1BEA43BE0012D6FF /* TrackedEvent.swift */,
+				1731BE9E1BEA43BE0012D6FF /* Tracker.swift */,
+				1718D6A91C05A4CC0036DB5B /* TrackerFactory.swift */,
+				1731BE9F1BEA43BE0012D6FF /* TrackingController.swift */,
+				1731BEA01BEA43BE0012D6FF /* TrackingData.swift */,
+				1731BEA11BEA43BE0012D6FF /* TrackingDelegate.swift */,
+				1731BEA21BEA43BE0012D6FF /* TweetBlock.swift */,
+				1731BEA31BEA43BE0012D6FF /* TweetCell.swift */,
+				1731BEA41BEA43BE0012D6FF /* UIActivityViewController.swift */,
+				1731BEA51BEA43BE0012D6FF /* UIApplication.swift */,
+				1731BEA71BEA43BE0012D6FF /* UIColor.swift */,
+				1731BEA81BEA43BE0012D6FF /* UIEdgeInsets.swift */,
+				1731BEA91BEA43BE0012D6FF /* UIImage.swift */,
+				1731BEAA1BEA43BE0012D6FF /* UIView.swift */,
+				1731BEAB1BEA43BE0012D6FF /* UnsupportedContentBlock.swift */,
+				1731BEAC1BEA43BE0012D6FF /* URLHandler.swift */,
+				1731BEAD1BEA43BE0012D6FF /* User.swift */,
+				1731BEAE1BEA43BE0012D6FF /* UserActivity.swift */,
+				1731BEAF1BEA43BE0012D6FF /* UserFacingError.swift */,
+				1731BEB01BEA43BE0012D6FF /* Value.swift */,
+				1731BEB11BEA43BE0012D6FF /* VideoCell.swift */,
+				1731BEB21BEA43BE0012D6FF /* VimeoBlock.swift */,
+				1731BEB31BEA43BE0012D6FF /* VimeoCell.swift */,
+				1731BEB41BEA43BE0012D6FF /* VisibilityState.swift */,
+				1731BEB51BEA43BE0012D6FF /* Window.swift */,
+				1731BEB61BEA43BE0012D6FF /* YoutubeBlock.swift */,
+				1731BEB71BEA43BE0012D6FF /* YoutubeCell.swift */,
 			);
 			name = Sources;
 			sourceTree = "<group>";
@@ -917,7 +911,7 @@
 				1731BF901BEA59270012D6FF /* DTCSSStylesheet.swift in Sources */,
 				1731BED31BEA43BE0012D6FF /* Tracker.swift in Sources */,
 				1731BF431BEA591B0012D6FF /* HighlightPushAnimatibeView.swift in Sources */,
-				1718D6BA1C0734E30036DB5B /* CoreCellFactory.swift in Sources */,
+				1718D6BA1C0734E30036DB5B /* CellFactory.swift in Sources */,
 				1718D6BC1C0738020036DB5B /* Block.swift in Sources */,
 				1731BF521BEA591B0012D6FF /* Media.swift in Sources */,
 				1731BF351BEA59110012D6FF /* NSURL.swift in Sources */,
@@ -1003,7 +997,6 @@
 				1731BEDD1BEA43BE0012D6FF /* UIEdgeInsets.swift in Sources */,
 				1731BF731BEA59270012D6FF /* BlockContextReference.swift in Sources */,
 				1731BF921BEA59270012D6FF /* EnhancedBannerBlock.swift in Sources */,
-				1731BF7E1BEA59270012D6FF /* CacheType.swift in Sources */,
 				1718D6AB1C05A4CC0036DB5B /* PaywallDataInterceptor.swift in Sources */,
 				1731BF861BEA59270012D6FF /* Column.swift in Sources */,
 				1731BF711BEA59270012D6FF /* BlockContextDataController.swift in Sources */,
@@ -1034,11 +1027,11 @@
 				1731BF461BEA591B0012D6FF /* ImageCell.swift in Sources */,
 				1731BF911BEA59270012D6FF /* Encodable.swift in Sources */,
 				1731BEBC1BEA43BE0012D6FF /* SpacingBlock.swift in Sources */,
-				1731BEC01BEA43BE0012D6FF /* SQLiteStore.swift in Sources */,
+				1731BEC01BEA43BE0012D6FF /* Store.swift in Sources */,
 				1731BEDF1BEA43BE0012D6FF /* UIView.swift in Sources */,
 				1731BF8B1BEA59270012D6FF /* DefaultDirectories.swift in Sources */,
 				1731BF6D1BEA59270012D6FF /* BasicBannerBlock.swift in Sources */,
-				1731BEBF1BEA43BE0012D6FF /* SQLiteCache.swift in Sources */,
+				1731BEBF1BEA43BE0012D6FF /* Cache.swift in Sources */,
 				1731BF5A1BEA59270012D6FF /* APIRequest.swift in Sources */,
 				1731BEEA1BEA43BE0012D6FF /* Window.swift in Sources */,
 				1731BEC41BEA43BE0012D6FF /* StreamerBlock.swift in Sources */,
@@ -1056,7 +1049,6 @@
 				1731BF381BEA59110012D6FF /* Paywall.swift in Sources */,
 				1731BD9A1BEA42AB0012D6FF /* AppConfig.swift in Sources */,
 				1731BF701BEA59270012D6FF /* BlockContext.swift in Sources */,
-				1718D6B91C0734E30036DB5B /* CellFactory.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

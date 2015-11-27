@@ -14,7 +14,6 @@ import Swinject
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    var urlHandler: URLHandler!
 
     func setupDebuggingTools() {
         Fabric.with([Crashlytics.self()])
@@ -24,6 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func setupURLHandling(launchOptions: [NSObject: AnyObject]?) -> Bool {
         var shouldHandleURL: Bool
         if let url = launchOptions?[UIApplicationLaunchOptionsURLKey] as? NSURL {
+            let urlHandler = SwinjectStoryboard.defaultContainer.resolve(URLHandler.self)!
             shouldHandleURL = !urlHandler.handleOpenURL(url, afterFinishedLaunching: true, appDelegate: self)
         } else {
             shouldHandleURL = true
@@ -43,11 +43,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(app: UIApplication, openURL url: NSURL, options: [String : AnyObject]) -> Bool {
+        let urlHandler = SwinjectStoryboard.defaultContainer.resolve(URLHandler.self)!
         return urlHandler.handleOpenURL(url, afterFinishedLaunching: false, appDelegate: self)
     }
     
     func application(application: UIApplication, continueUserActivity userActivity: NSUserActivity, restorationHandler: ([AnyObject]?) -> Void) -> Bool {
         if let action = userActivity.internalURLAction {
+            let urlHandler = SwinjectStoryboard.defaultContainer.resolve(URLHandler.self)!            
             return urlHandler.handle(action)
         }
         return false

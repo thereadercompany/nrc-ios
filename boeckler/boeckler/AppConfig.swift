@@ -3,7 +3,6 @@
 //  ios-nrc-nl
 //
 //  Created by Emiel van der Veen on 26/05/15.
-//  Copyright (c) 2015 NRC Media. All rights reserved.
 //
 
 import Foundation
@@ -41,3 +40,13 @@ enum BlockContext: String, Equatable {
     case Paywall = "paywalls"
     case Unknown = "unknown"
 }
+
+enum AuthenticationNotification: String {
+    case Started = "io.trc.boeckler.authentication.started"
+    case LoginCancelled = "io.trc.boeckler.authentication.cancelled"
+    case LoginFailed = "io.trc.boeckler.authentication.failed"
+    case LoginSucceeded = "io.trc.boeckler.authentication.succeeded"
+    case Finished = "io.trc.boeckler.authentication.finished"
+    case Revoked = "io.trc.boeckler.authentication.revoked"
+}
+
