@@ -7,23 +7,20 @@
 
 import Foundation
 
-class TimelineNavigationView: NavigationView {
+class BoecklerTimelineNavigationView: TimelineNavigationView {
     // images
     let logo: UIImage
-    
-    // views
-    let logoView: UIImageView
     
     required init(style: NavigationViewStyle) {
         // images
         logo = UIImage(named: "logo-navbar")!
         
         // views
-        logoView = UIImageView(image: logo)
+        let logoView = UIImageView(image: logo)
         logoView.contentMode = .ScaleAspectFit
         
         // labels
-        super.init(style: style)
+        super.init(style: style, logoView: logoView, accountButton: nil, loginButton: nil)
         
         needsLine = TimelineStyles.navigationViewNeedsLine(style)
     }

@@ -194,8 +194,10 @@
 		174192F71BF0F72A008B94A0 /* SimpleHBS.otf in Resources */ = {isa = PBXBuildFile; fileRef = 174192F41BF0F72A008B94A0 /* SimpleHBS.otf */; settings = {ASSET_TAGS = (); }; };
 		174192F81BF0F72A008B94A0 /* UniversNextPro-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 174192F51BF0F72A008B94A0 /* UniversNextPro-Regular.otf */; settings = {ASSET_TAGS = (); }; };
 		174192F91BF0F72A008B94A0 /* UniversNextPro-BoldCond.otf in Resources */ = {isa = PBXBuildFile; fileRef = 174192F61BF0F72A008B94A0 /* UniversNextPro-BoldCond.otf */; settings = {ASSET_TAGS = (); }; };
-		175DFB671BF2090C00A181C1 /* TimelineNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 175DFB661BF2090C00A181C1 /* TimelineNavigationView.swift */; settings = {ASSET_TAGS = (); }; };
-		175DFB691BF209E500A181C1 /* TimelineNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 175DFB681BF209E500A181C1 /* TimelineNavigationViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		174658E31C0A2349003FEAA8 /* TimelineNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 174658E11C0A2349003FEAA8 /* TimelineNavigationView.swift */; settings = {ASSET_TAGS = (); }; };
+		174658E41C0A2349003FEAA8 /* TimelineNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 174658E21C0A2349003FEAA8 /* TimelineNavigationViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		175DFB671BF2090C00A181C1 /* BoecklerTimelineNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 175DFB661BF2090C00A181C1 /* BoecklerTimelineNavigationView.swift */; settings = {ASSET_TAGS = (); }; };
+		175DFB691BF209E500A181C1 /* BoecklerTimelineNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 175DFB681BF209E500A181C1 /* BoecklerTimelineNavigationViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		1774DABC1BEB9481007431EB /* DTFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1774DABB1BEB9481007431EB /* DTFoundation.framework */; };
 		1774DACA1BEB94B6007431EB /* Locksmith.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1774DABD1BEB94B6007431EB /* Locksmith.framework */; };
 		1774DACB1BEB94B6007431EB /* NRCFonts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1774DABE1BEB94B6007431EB /* NRCFonts.framework */; };
@@ -413,8 +415,10 @@
 		174192F51BF0F72A008B94A0 /* UniversNextPro-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "UniversNextPro-Regular.otf"; path = "Resources/Fonts/LT Univers Next OTF/UniversNextPro-Regular.otf"; sourceTree = "<group>"; };
 		174192F61BF0F72A008B94A0 /* UniversNextPro-BoldCond.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "UniversNextPro-BoldCond.otf"; path = "Resources/Fonts/LT Univers Next OTF/UniversNextPro-BoldCond.otf"; sourceTree = "<group>"; };
 		174658C21C08989E003FEAA8 /* trc-core-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "trc-core-Bridging-Header.h"; path = "core/trc-core/trc-core-Bridging-Header.h"; sourceTree = SOURCE_ROOT; };
-		175DFB661BF2090C00A181C1 /* TimelineNavigationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimelineNavigationView.swift; sourceTree = "<group>"; };
-		175DFB681BF209E500A181C1 /* TimelineNavigationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimelineNavigationViewController.swift; sourceTree = "<group>"; };
+		174658E11C0A2349003FEAA8 /* TimelineNavigationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TimelineNavigationView.swift; path = "core/trc-core/TimelineNavigationView.swift"; sourceTree = SOURCE_ROOT; };
+		174658E21C0A2349003FEAA8 /* TimelineNavigationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TimelineNavigationViewController.swift; path = "core/trc-core/TimelineNavigationViewController.swift"; sourceTree = SOURCE_ROOT; };
+		175DFB661BF2090C00A181C1 /* BoecklerTimelineNavigationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoecklerTimelineNavigationView.swift; sourceTree = "<group>"; };
+		175DFB681BF209E500A181C1 /* BoecklerTimelineNavigationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoecklerTimelineNavigationViewController.swift; sourceTree = "<group>"; };
 		1774DABB1BEB9481007431EB /* DTFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DTFoundation.framework; path = core/Carthage/Build/iOS/DTFoundation.framework; sourceTree = "<group>"; };
 		1774DABD1BEB94B6007431EB /* Locksmith.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Locksmith.framework; path = core/Carthage/Build/iOS/Locksmith.framework; sourceTree = "<group>"; };
 		1774DABE1BEB94B6007431EB /* NRCFonts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NRCFonts.framework; path = core/Carthage/Build/iOS/NRCFonts.framework; sourceTree = "<group>"; };
@@ -529,6 +533,8 @@
 		1731BEED1BEA54E80012D6FF /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				174658E11C0A2349003FEAA8 /* TimelineNavigationView.swift */,
+				174658E21C0A2349003FEAA8 /* TimelineNavigationViewController.swift */,
 				1731BD9D1BEA43630012D6FF /* Account.swift */,
 				1731BD9E1BEA43630012D6FF /* Alamofire.swift */,
 				1731BD9F1BEA43630012D6FF /* AlertBlock.swift */,
@@ -761,8 +767,8 @@
 		175DFB6A1BF209F200A181C1 /* navbar */ = {
 			isa = PBXGroup;
 			children = (
-				175DFB681BF209E500A181C1 /* TimelineNavigationViewController.swift */,
-				175DFB661BF2090C00A181C1 /* TimelineNavigationView.swift */,
+				175DFB681BF209E500A181C1 /* BoecklerTimelineNavigationViewController.swift */,
+				175DFB661BF2090C00A181C1 /* BoecklerTimelineNavigationView.swift */,
 			);
 			name = navbar;
 			sourceTree = "<group>";
@@ -883,7 +889,8 @@
 				1731BF401BEA591B0012D6FF /* HighlightCell.swift in Sources */,
 				1731BEEC1BEA43BE0012D6FF /* YoutubeCell.swift in Sources */,
 				1731BF5C1BEA59270012D6FF /* AppTakeoverView.swift in Sources */,
-				175DFB671BF2090C00A181C1 /* TimelineNavigationView.swift in Sources */,
+				174658E31C0A2349003FEAA8 /* TimelineNavigationView.swift in Sources */,
+				175DFB671BF2090C00A181C1 /* BoecklerTimelineNavigationView.swift in Sources */,
 				1731BF971BEA59270012D6FF /* ErrorViewController.swift in Sources */,
 				1731BF4B1BEA591B0012D6FF /* JSONAPI.swift in Sources */,
 				1731BF581BEA59270012D6FF /* AlertCell.swift in Sources */,
@@ -955,6 +962,7 @@
 				1731BF5E1BEA59270012D6FF /* Argo.swift in Sources */,
 				1731BD9B1BEA42AB0012D6FF /* AppStyles.swift in Sources */,
 				1731BF591BEA59270012D6FF /* AnimatableView.swift in Sources */,
+				174658E41C0A2349003FEAA8 /* TimelineNavigationViewController.swift in Sources */,
 				171F6F8C1C0496D000B3A390 /* BoecklerBlockDecoder.swift in Sources */,
 				1731BF7D1BEA59270012D6FF /* CacheError.swift in Sources */,
 				1731BF371BEA59110012D6FF /* ObjectType.swift in Sources */,
@@ -982,7 +990,7 @@
 				1731BF671BEA59270012D6FF /* ArticleRefBlock.swift in Sources */,
 				1731BED71BEA43BE0012D6FF /* TweetBlock.swift in Sources */,
 				17AB6D6A1BF3428400840425 /* IssueLabelNode.swift in Sources */,
-				175DFB691BF209E500A181C1 /* TimelineNavigationViewController.swift in Sources */,
+				175DFB691BF209E500A181C1 /* BoecklerTimelineNavigationViewController.swift in Sources */,
 				1731BECA1BEA43BE0012D6FF /* TextCell.swift in Sources */,
 				1731BEE31BEA43BE0012D6FF /* UserActivity.swift in Sources */,
 				1731BF621BEA59270012D6FF /* ArticleHeaderCell.swift in Sources */,

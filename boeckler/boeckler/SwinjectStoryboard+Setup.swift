@@ -31,6 +31,7 @@ extension SwinjectStoryboard {
         }
         
         container.registerForStoryboard(TimelineViewController.self) { r, c in
+            c.navigationViewController = BoecklerTimelineNavigationViewController()
             c.urlHandler = r.resolve(URLHandler.self)
             c.dataController = r.resolve(BlockContextDataController.self, name: "default-data-controller")
             c.cellFactory = r.resolve(CellFactory.self)
@@ -39,6 +40,7 @@ extension SwinjectStoryboard {
         }
 
         container.registerForStoryboard(ArticleViewController.self) { r, c in
+            c.navigationViewController = CoreArticleNavigationViewController()
             c.urlHandler = r.resolve(URLHandler.self)
             c.dataController = r.resolve(BlockContextDataController.self, name: "default-data-controller")
             c.cellFactory = r.resolve(CellFactory.self)
