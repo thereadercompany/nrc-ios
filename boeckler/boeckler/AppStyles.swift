@@ -12,14 +12,8 @@ import NRCFonts
 
 extension BlockStyle {
     static let Normal = BlockStyle(rawValue: "normal")
-    static let Column = BlockStyle(rawValue: "column")
-    static let ColumnHighlight = BlockStyle(rawValue: "column-highlight")
-    static let ColumnHighlightXL = BlockStyle(rawValue: "column-highlight-xl")
-    static let Breaking = BlockStyle(rawValue: "breaking")
     static let Highlight = BlockStyle(rawValue: "highlight")
     static let HighlightXL = BlockStyle(rawValue: "highlight-xl")
-    static let HighlightImage = BlockStyle(rawValue: "depricated")
-    static let Alert = BlockStyle(rawValue: "alert")
     static let H1 = BlockStyle(rawValue: "h1")
     static let H2 = BlockStyle(rawValue: "h2")
     static let XL = BlockStyle(rawValue: "xl")
@@ -30,17 +24,23 @@ extension BlockStyle {
     static let InsetH1 = BlockStyle(rawValue: "inset-h1")
     static let InsetH2 = BlockStyle(rawValue: "inset-h2")
     static let Unknown = BlockStyle(rawValue: "unknown")
+    static let ThemeIceBlue = BlockStyle(rawValue: "theme-ice-blue")
+    static let ThemeSand = BlockStyle(rawValue: "theme-sand")
 }
-
 
 struct Colors {
     static let accentColor = UIColor(hex: 0xD30910)
+    static let iceBlue = UIColor(hex: 0xD3ECEE)
+    static let sand = UIColor(hex: 0xEFEDE2)
+    static let defaultBorderColor = UIColor.blackColor().colorWithAlphaComponent(0.05)
+    static let decorationBorderColor = UIColor.blackColor().colorWithAlphaComponent(0.05)
+    static let footerLineColor = UIColor.blackColor().colorWithAlphaComponent(0.2)
     static let linkColor = UIColor(hex: 0xD30910)
     static let cardBackgroundColor =  UIColor.whiteColor()
     static let articleBackgroundColor =  UIColor.whiteColor()
-    static let timelineBackgroundColor =  accentColor
+    static let timelineBackgroundColor =  UIColor.blackColor()
     static let timelineDividerBackgroundColor = UIColor.clearColor()
-    static let timelineSpacingBackgroundColor = UIColor.clearColor()
+    static let timelineSpacingBackgroundColor = Colors.accentColor
     static let insetBackgroundColor = UIColor(hex: 0xF7F7F7)
     static let tweetTextColor = UIColor(hex: 0x3E4447)
     static let tweetSubHeadlineColor = UIColor(hex: 0xB1B4B5)
@@ -66,7 +66,7 @@ struct Colors {
     static let dividerForegroundColor = UIColor(hex: 0xE6EAEE).colorWithAlphaComponent(0.4)
     static let dividerBackgroundColor = UIColor.clearColor()
     static let navigationViewDarkBackgroundColor = accentColor
-    static let navigationViewLightBackgroundColor = UIColor(hex: 0xFAF9F5)
+    static let navigationViewLightBackgroundColor = UIColor.whiteColor()
     static let navigationViewLightTitleColor = UIColor.blackColor()
     static let navigationViewDarkTitleColor = UIColor.whiteColor()
     static let navigationViewLightSubtitleColor = UIColor.blackColor()
@@ -77,7 +77,6 @@ struct Colors {
     static let overlayFontColor = UIColor.whiteColor()
     static let labelTextColor = UIColor.whiteColor()
     static let taglineFontColor = UIColor(hex: 0xD30910)
-    static let enhancedBannerFontColor = UIColor.whiteColor()
     static let errorBackgroundColor = UIColor(hex: 0xE6EAEE)
     static let errorMessageTextColor = UIColor(hex: 0x2A2D31)
     static let errorActionButtonTextColor = UIColor(hex: 0xD30910)
@@ -87,13 +86,16 @@ struct Colors {
 }
 
 struct Fonts {
-    static let textFont:Font = UniversNextPro.Regular
+    static let textFont:Font = SabonNextCom.Regular
     static let regularFont:Font = UniversNextPro.Regular
+    static let boldFont:Font = UniversNextPro.Bold
     static let mediumFont:Font = UniversNextPro.BoldCond
     static let largeFont:Font = UniversNextPro.BoldCond
     static let lightFont:Font = UniversNextPro.Regular
     static let alternativeTextFont: Font = SimpleHBS.Regular
     static let alternativeMediumFont: Font = SimpleHBS.Regular
+    static let introFont = UniversNextPro.Cond
+    static let streamerFont = UniversNextPro.Cond
     static let defaultTaglineFont: Font = UniversNextPro.BoldCond
     static let defaultAuthorFont: Font = SimpleHBS.Regular
     static let tweetFont = HelveticaNeue.Light
@@ -102,7 +104,6 @@ struct Fonts {
     static let fallbackUIFont = UIFont.systemFontOfSize(14)
     
     static func load() throws {
-        try NRCFonts.Loader.loadFontsIfNeeded([UniversNextPro.Regular, UniversNextPro.BoldCond, SimpleHBS.Regular])
     }
 
     enum HelveticaNeue: String, Font {
@@ -124,7 +125,17 @@ struct Fonts {
     enum UniversNextPro: String, Font {
         static let family = "UniversNextPro"
         case Regular
+        case Cond
+        case Bold        
         case BoldCond
+    }
+    
+    enum SabonNextCom: String, Font {
+        static let family = "SabonNextCom"
+        case Regular
+        case Italic
+        case Bold
+        case BoldItalic
     }
 }
 
@@ -191,8 +202,8 @@ struct ArticleStyles {
 }
 
 struct ArticleHeaderCellStyles {
-    static let imageHeight: CGFloat = Window.vval([Screen.vXS: Screen.vXS*(5/12),Screen.vS:Screen.vS*(5/12),Screen.vM:Screen.vM*(6/12), Screen.vL:Screen.vL*7/12])
-    static let headlineMarginTop: CGFloat = 40
+    static let imageHeight: CGFloat = Window.vval([Screen.vXS: Screen.vXS*(5/12),Screen.vS:Screen.vS*(5/12),Screen.vM:Screen.vM*(9/12), Screen.vL:Screen.vL*7/12])
+    static let headlineMarginTop: CGFloat = 32
 }
 
 struct DividerCellStyles {
@@ -277,136 +288,15 @@ struct EnhancedBannerCellStyles {
     static let contentWidth: CGFloat = 272
 }
 
-extension MediaCell {
-    override func layout() {
-        super.layout()
-        imageNode.frame = self.bounds
-        layoutGradients()
-    }
-}
-
-extension HighlightCell {
-    override func calculateSizeThatFits(constrainedSize: CGSize) -> CGSize {
-        switch block.style {
-        case BlockStyle.HighlightXL:
-            return CGSize(width: constrainedSize.width, height: constrainedSize.width)
-        default:
-            return CGSize(width: constrainedSize.width, height: constrainedSize.width*(256/375))
-        }
-    }
-    
-    override func layout() {
-        super.layout()
-        issueLabelNode.frame = issueLabelRect
-        issueLabelNode.hidden = !articleRef.shouldRenderIssueLabel
-        labelNode.frame = labelRect
-        labelNode.hidden = !articleRef.shouldRenderLabel
-        let contentRect = frame.insetsBy(block.contentPadding)
-        
-        // reading time 
-        let readingTimeSize = self.readingTimeSize(contentRect.width)
-        let readingTimeOrigin = CGPoint(x: CGRectGetMaxX(labelNode.frame)+10, y: labelNode.frame.origin.y+((labelNode.frame.height-readingTimeSize.height)*3/5))
-        readingTimeNode.frame = CGRect(origin: readingTimeOrigin, size: readingTimeSize)
-        
-        // headline
-        let headlineSize = self.headlineSize(contentRect.width)
-        
-        // position headline on top of image (z-axis)
-        let headerlineOriginY = labelNode.frame.origin.y - headlineSize.height - 4
-        self.headlineNode.frame = CGRect(origin: CGPoint(x: contentRect.origin.x, y: headerlineOriginY), size: headlineSize)
-    }
-    
-    var labelRect: CGRect {
-        let contentRect = frame.insetsBy(block.contentPadding)
-        let size = labelNode.measure(CGSize(width: CGFloat.max, height: CGFloat.max))
-        let origin = CGPoint(x:contentRect.origin.x+1, y:frame.height-articleRef.contentPadding.bottom-size.height-articleRef.labelInset.y)
-        return CGRect(origin: origin, size: size)
-    }
-    
-    var issueLabelRect: CGRect {
-        let contentRect = frame.insetsBy(block.contentPadding)
-        let size = issueLabelNode.measure(CGSize(width: CGFloat.max, height: CGFloat.max))
-        let origin = CGPoint(x:contentRect.origin.x+1, y:contentRect.origin.y)
-        return CGRect(origin: origin, size: size)
-    }
-}
-
-extension EnhancedBannerBlock {
-    var gradientStartLocation: CGFloat {
-        switch style {
-        case BlockStyle.XL:
-            return 0.6
-        default:
-            return 0.35
-        }
-    }
-    
-    var gradientStartAlpha: CGFloat {
-        switch style {
-        case BlockStyle.XL:
-            return 0.5
-        default:
-            return 0.8
-        }
-    }
-    
-    var headlineMarginBottom: CGFloat {
-        switch style {
-        case BlockStyle.XL where shouldRenderRichText:
-            return EnhancedBannerCellStyles.headlineMarginBottomXL
-        default:
-            return 0
-        }
-    }
-    
-    var richTextMarginBottom: CGFloat {
-        switch style {
-        case BlockStyle.XL:
-            return EnhancedBannerCellStyles.richTextMarginBottomXL
-        default:
-            return EnhancedBannerCellStyles.richTextMarginBottom
-        }
-    }
-
-    var buttonMarginTop: CGFloat {
-        switch style {
-        case BlockStyle.XL:
-            return EnhancedBannerCellStyles.buttonMarginTopXL
-        default:
-            return EnhancedBannerCellStyles.buttonMarginTop
-        }
-    }
-    
-    var buttonMarginBottom: CGFloat {
-        switch style {
-        case BlockStyle.XL:
-            return EnhancedBannerCellStyles.buttonMarginBottomXL
-        default:
-            return EnhancedBannerCellStyles.buttonMarginBottom
-        }
-    }
-    
-    func applyRichTextStyle(textNode: LabelNode) {
-        switch style {
-            case BlockStyle.XL:
-                let insets = UIEdgeInsets(top: 16, left: 0, bottom: 16, right: 0)
-                let backgroundColor = Colors.enhancedBannerRichTextBackground
-                let borderColor = Colors.enhancedBannerRichTextBorder
-                textNode.applyStyle(insets, backgroundColor:backgroundColor, borderColor: borderColor, cornerRadius: 2)
-            default:
-                textNode.applyStyle(UIEdgeInsetsZero, cornerRadius: 2)
-        }
-    }
-}
-
 struct StreamerCellStyles {
-    static let headlineMarginTop: CGFloat = 28
-    static let headlineMarginBottom: CGFloat = 12
-    static let subHeadlineMarginTop: CGFloat = 14
-    static let subHeadlineMarginBottom: CGFloat = 25
-    static let topMargin: CGFloat = 8
-    static let bottomMargin: CGFloat = 38
-    static let lineHeight: CGFloat = 4
+    static let iconMarginTop: CGFloat = 25
+    static let iconSize: CGFloat = 35
+    static let iconMarginLeft: CGFloat = 19
+    static let headlineMarginTop: CGFloat = 8
+    static let headlineMarginBottom: CGFloat = 40
+    static let subHeadlineMarginTop: CGFloat = 24
+    static let subHeadlineMarginBottom: CGFloat = 36
+    static let lineHeight: CGFloat = 1
 }
 
 struct TweetCellStyles {
@@ -421,7 +311,7 @@ struct TweetCellStyles {
 }
     
 struct ImageCellStyles {
-    static let textPaddingTop: CGFloat = 20
+    static let textPaddingTop: CGFloat = 16
 }
 
 struct VideoCellStyles {
@@ -557,6 +447,8 @@ extension Block {
             return self.decoration.tweetDecorationPaddingBottom
         case (.Article, is ImageBlock, _):
             return self.decoration.insetDecorationPaddingBottom
+        case (.Article, is StreamerBlock, _):
+            return 32
         default:
             return 0
         }
@@ -565,6 +457,20 @@ extension Block {
     var decorationPadding: UIEdgeInsets {
         return UIEdgeInsets(top: 0, left: decorationPaddingSide, bottom: decorationPaddingBottom, right: decorationPaddingSide)
     }
+    
+    var decorationColor: UIColor? {
+        switch style {
+        case BlockStyle.ThemeIceBlue where decoration != .None:
+            return Colors.iceBlue
+        case BlockStyle.ThemeSand where decoration != .None:
+            return Colors.sand
+        case BlockStyle.Inset,BlockStyle.InsetH1,BlockStyle.InsetH2 where decoration != .None:
+            return Colors.insetBackgroundColor
+        default: return nil
+        }
+    }
+    
+    
     
     func drawFullDecoration(view: UIView) {
         // currently not used
@@ -578,31 +484,30 @@ extension Block {
         case (.Timeline, is ArticleRefBlock, BlockStyle.Normal):
             contentPadding =  UIEdgeInsets(top: 19, left: 12, bottom: 0, right: 19)
         case (.Timeline, is ArticleRefBlock, BlockStyle.Highlight),
-             (.Timeline, is ArticleRefBlock, BlockStyle.HighlightXL),
-             (.Timeline, is ArticleRefBlock, BlockStyle.Breaking),
-             (.Timeline, is ArticleRefBlock, BlockStyle.Alert):
+             (.Timeline, is ArticleRefBlock, BlockStyle.HighlightXL):
              contentPadding =  UIEdgeInsets(top: 19, left: TimelineStyles.contentInset, bottom: 0, right: TimelineStyles.contentInset)
-        case (.Timeline, is ArticleRefBlock, BlockStyle.ColumnHighlight),
-            (.Timeline, is ArticleRefBlock, BlockStyle.ColumnHighlightXL):
-            contentPadding =  UIEdgeInsets(top: 20, left: TimelineStyles.contentInset, bottom: 0, right: TimelineStyles.contentInset)
-        case (_, is EnhancedBannerBlock, _), (_, is BasicBannerBlock, _):
-            contentPadding = UIEdgeInsetsZero
         case (_, is DividerBlock, _):
             contentPadding = UIEdgeInsets(top: 0, left: 0, bottom: 16, right: 0)
         case (_, is TweetBlock, _):
             contentPadding = UIEdgeInsets(top: 0, left: 20, bottom: 24, right: 20)
         case (_, is ImageBlock, _):
-            contentPadding = UIEdgeInsets(top: 0, left: ArticleStyles.textInset, bottom: 68, right: ArticleStyles.textInset)
+            contentPadding = UIEdgeInsets(top: 0, left: ArticleStyles.textInset, bottom: 4, right: ArticleStyles.textInset)
         case (_, is UnsupportedContentBlock, _),(_, is FallbackBlock, _):
             contentPadding = UIEdgeInsets(top: 20, left: ArticleStyles.textInset, bottom: 20, right: ArticleStyles.textInset)
         case (.Timeline, _, _):
             contentPadding = UIEdgeInsets(top: 0, left: TimelineStyles.contentInset, bottom: 0, right: TimelineStyles.contentInset)
-        case (.Article, _, BlockStyle.Intro), (.Article, _, BlockStyle.Byline):
+        case (.Article, _, BlockStyle.Intro):
             contentPadding = UIEdgeInsets(top: 0, left: ArticleStyles.textInset, bottom: 31, right: ArticleStyles.textInset)
         case (.Article, is StreamerBlock, _):
-            contentPadding = UIEdgeInsets(top: 0, left: ArticleStyles.textInset, bottom: 40, right: ArticleStyles.textInset)
+            contentPadding = UIEdgeInsets(top: 0, left: ArticleStyles.textInset, bottom: 0, right: ArticleStyles.textInset)
         case (.Article, is ArticleHeaderBlock, _):
-            contentPadding = UIEdgeInsets(top: 0, left: ArticleStyles.textInset, bottom: 25, right: ArticleStyles.textInset)
+            contentPadding = UIEdgeInsets(top: 0, left: ArticleStyles.textInset, bottom: 28, right: ArticleStyles.textInset)
+        case (.Article, is PlainTextBlock, BlockStyle.InsetH1):
+            contentPadding = UIEdgeInsets(top: 0, left: ArticleStyles.textInset, bottom: 13, right: ArticleStyles.textInset)
+        case (.Article, is PlainTextBlock, BlockStyle.H2):
+            contentPadding = UIEdgeInsets(top: 0, left: ArticleStyles.textInset, bottom: 12, right: ArticleStyles.textInset)
+        case (.Article, is TextBlock, BlockStyle.Byline):
+            contentPadding = UIEdgeInsets(top: 0, left: ArticleStyles.textInset, bottom: 40, right: ArticleStyles.textInset)
         case (.Article, _, _):
             contentPadding = UIEdgeInsets(top: 0, left: ArticleStyles.textInset, bottom: 24, right: ArticleStyles.textInset)
         default:
@@ -620,10 +525,10 @@ extension Block {
     
     var lineColor: UIColor {
         switch (self, style ) {
+        case (is StreamerBlock, _):
+            return Colors.transparant
         case (is ArticleRefBlock, _):
             return Colors.defaultLineColor
-        case (_, BlockStyle.Inset):
-            return Colors.insetLineColor
         default:
             return Colors.defaultLineColor;
         }
@@ -631,8 +536,6 @@ extension Block {
     
     var backgroundColor: UIColor {
         switch (context, self, style) {
-        case (_, _, BlockStyle.Inset), (_, _, BlockStyle.InsetH1), (_, _, BlockStyle.InsetH2):
-            return Colors.insetBackgroundColor
         case (.Timeline, is DividerBlock, _):
             return Colors.timelineDividerBackgroundColor
         case (.Timeline, is SpacingBlock, _):
@@ -655,8 +558,8 @@ extension Block {
         case (is TextBlock, BlockStyle.Byline), (_, BlockStyle.Inset), (is ImageBlock, _):
             return Fonts.alternativeTextFont
         case (is TextBlock, BlockStyle.Intro):
-            return Fonts.lightFont
-        case (_,BlockStyle.InsetH1), (_,BlockStyle.InsetH2), (is EnhancedBannerBlock, _):
+            return Fonts.introFont
+        case (_,BlockStyle.InsetH1), (_,BlockStyle.InsetH2):
             return Fonts.alternativeMediumFont
         case (_,BlockStyle.H2):
             return Fonts.mediumFont
@@ -677,8 +580,6 @@ extension Block {
             return Colors.accentColor
         case (is TweetBlock, _):
             return Colors.tweetTextColor
-        case (is EnhancedBannerBlock, _):
-            return Colors.overlayFontColor
         default:
             return Colors.defaultFontColor
         }
@@ -698,8 +599,6 @@ extension Block {
             return 14
         case BlockStyle.H2:
             return 20
-        case BlockStyle.Column:
-            return 26
         default:
             return 16
         }
@@ -723,20 +622,13 @@ extension Block {
             return 3
         case (is TweetBlock, _):
             return 3
-        case (is EnhancedBannerBlock, _):
-            return 0
         default:
             return 11
         }
     }
     
     var imageRatio: CGFloat {
-        switch style {
-        case BlockStyle.Breaking:
-            return 3/2
-        default:
-            return 16/9
-        }
+        return 16/9
     }
     
     var paddingTop: CGFloat {
@@ -753,7 +645,7 @@ extension Block {
     var paddingBottom: CGFloat {
         switch (self, style) {
         case ( _, BlockStyle.Intro):
-            return 32
+            return 28
         case ( _, BlockStyle.Byline):
             return 32
         case ( _, BlockStyle.H2):
@@ -776,19 +668,14 @@ extension MarkupTag {
     var font: UIFont {
     switch self {
         case .Tagline:
-            return Fonts.mediumFont.fallbackWithSize(22)
+            return Fonts.textFont.fallbackWithSize(22)
         default:
             return Fonts.textFont.fallbackWithSize(16)
         }
     }
     
     var fontColor: UIColor {
-        switch self {
-        case .Tagline:
-            return Colors.taglineFontColor
-        default:
-            return Colors.defaultFontColor
-        }
+        return Colors.defaultFontColor
     }
 }
 
@@ -843,21 +730,11 @@ extension LabelContainable {
     }
     
     var labelInset: CGPoint {
-        switch self {
-        case is EnhancedBannerBlock:
-            return CGPoint(x: 19, y: 16)
-        default:
-            return CGPoint(x: 19, y: 23)
-        }
+        return CGPoint(x: 19, y: 23)
     }
     
     var labelTextInsets: UIEdgeInsets {
-        switch self {
-        case is EnhancedBannerBlock:
-            return UIEdgeInsets(top: 14, left: 0, bottom: 15, right: 0)
-        default:
-            return UIEdgeInsets(top: 2, left: 10, bottom: 2, right: 10)
-        }
+        return UIEdgeInsets(top: 2, left: 10, bottom: 2, right: 10)
     }
     
     var shouldRenderLabel: Bool {
@@ -866,12 +743,7 @@ extension LabelContainable {
     }
     
     var labelFont: UIFont {
-        switch self {
-        case is EnhancedBannerBlock:
-            return Fonts.alternativeMediumFont.fallbackWithSize(16)
-        default:
-            return Fonts.alternativeMediumFont.fallbackWithSize(11)
-        }
+        return Fonts.alternativeMediumFont.fallbackWithSize(11)
     }
     
     var labelTextColor: UIColor {
@@ -919,11 +791,11 @@ extension MediaContainable {
 }
 
 extension HeadlineContainable {
-    
+        
     var headlineBackgroundColor: UIColor? {
         switch (context, self, style) {
-        case (.Timeline, _, BlockStyle.HighlightImage):
-            return Colors.titleOverImageBackgroundColor
+//        case (.Timeline, _, _):
+//            return Colors.titleOverImageBackgroundColor
         default:
             return nil
         }
@@ -933,9 +805,11 @@ extension HeadlineContainable {
         switch (context, self, style) {
         case (.Timeline, _, BlockStyle.Highlight), (.Timeline, _, BlockStyle.HighlightXL):
             return Colors.titleOverImageColor
+        case (.Article, is ArticleHeaderBlock, _):
+            return Colors.accentColor
         case (.Article, is StreamerBlock, _):
             return Colors.accentColor
-        case (_, is YoutubeBlock, _), (_, is VimeoBlock, _), (_, is EnhancedBannerBlock, _), (_, is UnsupportedContentBlock, _), (_, is FallbackBlock, _):
+        case (_, is YoutubeBlock, _), (_, is VimeoBlock, _), (_, is UnsupportedContentBlock, _), (_, is FallbackBlock, _):
             return Colors.overlayFontColor
         case (_, is TweetBlock, _):
             return Colors.tweetTextColor
@@ -951,9 +825,9 @@ extension HeadlineContainable {
         case (.Timeline, is ArticleRefBlock, BlockStyle.HighlightXL):
             return Fonts.mediumFont.fallbackWithSize(34)
         case (.Article, is ArticleHeaderBlock,_):
-            return Fonts.mediumFont.fallbackWithSize(36)
+            return Fonts.alternativeMediumFont.fallbackWithSize(34)
         case (.Article, is StreamerBlock, _):
-            return Fonts.regularFont.fallbackWithSize(24)
+            return Fonts.streamerFont.fallbackWithSize(32)
         case (_, is YoutubeBlock, _), (_, is VimeoBlock, _):
             return Fonts.mediumFont.fallbackWithSize(18)
         case (.Article, is UnsupportedContentBlock, _),(.Article, is FallbackBlock, _):
@@ -974,7 +848,7 @@ extension HeadlineContainable {
         case (.Timeline, _, BlockStyle.Normal):
             return 3
         case (.Article, is StreamerBlock, _ ):
-            return 7
+            return 6
         case (_, is YoutubeBlock, _), (_, is VimeoBlock, _):
             return 3
         case (.Article, _,  _):
@@ -986,7 +860,7 @@ extension HeadlineContainable {
     
     var headlineAlignment: NSTextAlignment {
         switch self {
-        case is EnhancedBannerBlock, is UnsupportedContentBlock, is FallbackBlock :
+        case is UnsupportedContentBlock, is FallbackBlock :
             return NSTextAlignment.Center
         default:
             return NSTextAlignment.Left
@@ -1003,13 +877,30 @@ extension HeadlineContainable {
     }
     
     var attributedHeadline: NSAttributedString {
-        guard let headline = self.headline else { return NSAttributedString() }
+        guard var headline = self.headline else { return NSAttributedString() }
+        
+        if needsAllCaps {
+            headline = headline.uppercaseString
+        }
+        
         let attrs = StringAttributes(font: headlineFont, foregroundColor: headlineFontColor, backgroundColor: headlineBackgroundColor, lineSpacing: headlineLinespacing, alignment: headlineAlignment, shadow: headlineShadow)
         return NSMutableAttributedString(string:headline, attributes:attrs.dictionary)
     }
     
     var shouldRenderShadow: Bool {
-        return true
+        switch self {
+        case is ArticleHeaderBlock, is StreamerBlock:
+            return false
+        default: return true
+        }
+    }
+    
+    var needsAllCaps: Bool {
+        switch self {
+        case is ArticleHeaderBlock:
+            return true
+        default: return false
+        }
     }
 }
 
@@ -1024,10 +915,10 @@ extension SubHeadlineContainable {
         switch self {
         case is TweetBlock:
             return Colors.tweetSubHeadlineColor
-        case is EnhancedBannerBlock:
-            return Colors.enhancedBannerFontColor
         case is UnsupportedContentBlock, is FallbackBlock:
             return Colors.overlayFontColor
+        case is StreamerBlock:
+            return Colors.accentColor
         default:
             return Colors.defaultFontColor
         }
@@ -1037,10 +928,10 @@ extension SubHeadlineContainable {
         switch self {
         case is TweetBlock:
             return Fonts.tweetFont.fallbackWithSize(15)
-        case is EnhancedBannerBlock:
-            return Fonts.lightFont.fallbackWithSize(20)
         case is UnsupportedContentBlock, is FallbackBlock:
             return Fonts.alternativeTextFont.fallbackWithSize(13)
+        case is StreamerBlock:
+            return Fonts.SabonNextCom.BoldItalic.fallbackWithSize(14)
         default:
             return Fonts.alternativeMediumFont.fallbackWithSize(14)
         }
@@ -1050,25 +941,18 @@ extension SubHeadlineContainable {
         switch (self) {
         case (is TweetBlock):
             return 2
-        case (is EnhancedBannerBlock):
-            return 6
         default:
             return 0
         }
     }
     
     var subHeadlineUpperLower: String? {
-        switch (context, self) {
-        case (.Article, is StreamerBlock ):
-            return subHeadline?.uppercaseString
-        default:
-            return subHeadline
-        }
+        return subHeadline
     }
     
     var subHeadlineAlignment: NSTextAlignment {
         switch self {
-        case is EnhancedBannerBlock, is UnsupportedContentBlock, is FallbackBlock :
+        case is UnsupportedContentBlock, is FallbackBlock :
             return NSTextAlignment.Center
         default:
             return NSTextAlignment.Left
@@ -1131,28 +1015,22 @@ extension PlainTextContainable {
         case (is FallbackBlock, _):
             return Fonts.lightFont.fallbackWithSize(15)
         case (_ , BlockStyle.InsetH1):
-            return Fonts.alternativeMediumFont.fallbackWithSize(14)
+            return Fonts.mediumFont.fallbackWithSize(18)
         case (_, BlockStyle.InsetH2):
-            return  Fonts.alternativeMediumFont.fallbackWithSize(16)
+            return  Fonts.mediumFont.fallbackWithSize(16)
         case (_, BlockStyle.H2):
             return Fonts.mediumFont.fallbackWithSize(20)
-        case (is ArticleRefBlock, BlockStyle.Breaking):
-            return Fonts.lightFont.fallbackWithSize(16)
-        case (is ArticleRefBlock, BlockStyle.ColumnHighlight),
-             (is ArticleRefBlock, BlockStyle.ColumnHighlightXL):
-            return Fonts.textFont.fallbackWithSize(14)
         case (is FallbackBlock, _):
             return Fonts.lightFont.fallbackWithSize(15)
         default:
             return Fonts.textFont.fallbackWithSize(14)
         }
-        
     }
     
     var plainTextLinespacing: CGFloat {
         switch (self, style) {
         case (is FallbackBlock, _): return 4
-        default: return 6
+        default: return 4
         }
     }
     
@@ -1182,33 +1060,17 @@ extension PlainTextContainable {
     }
     
     var shouldRenderPlainText: Bool {
-        guard let _ = self.plainText else { return false }
-        switch style {
-        case BlockStyle.Alert:
-            return true
-        default:
-            return false
-        }
+        return false
     }
 }
 
 extension RichTextContainable {
     var richTextAlignment: NSTextAlignment {
-        switch self {
-        case is EnhancedBannerBlock :
-            return .Center
-        default:
-            return .Left
-        }
+        return .Left
     }
     
     var linkColor: UIColor {
-        switch self {
-        case is EnhancedBannerBlock :
-            return Colors.callToAction
-        default:
-            return Colors.linkColor
-        }
+        return Colors.linkColor
     }
     
     static func attributedString(fromRichText richText: String?, attributes: StringAttributes) -> NSAttributedString? {
@@ -1232,17 +1094,14 @@ extension RichTextContainable {
     
     var richTextFont: Font {
         switch (self, style) {
-        case (is ArticleRefBlock, BlockStyle.Breaking):
-            return Fonts.lightFont
-        case (is ArticleRefBlock, BlockStyle.ColumnHighlight),
-            (is ArticleRefBlock, BlockStyle.ColumnHighlightXL):
-            return Fonts.textFont
         case (is TextBlock, BlockStyle.Intro):
-            return Fonts.lightFont
-        case (is EnhancedBannerBlock, _):
-            return Fonts.alternativeMediumFont
-        case (is TextBlock, BlockStyle.Byline), (_, BlockStyle.Inset), (is ImageBlock, _):
+            return Fonts.introFont
+        case (is TextBlock, BlockStyle.Byline):
             return Fonts.alternativeTextFont
+        case  (_, BlockStyle.Inset):
+            return Fonts.textFont
+        case (is ImageBlock, _):
+            return Fonts.mediumFont
         case (is TweetBlock, _):
             return Fonts.tweetFont
         default:
@@ -1254,28 +1113,24 @@ extension RichTextContainable {
         switch (self, style) {
         case (is TextBlock, BlockStyle.Byline):
             return Colors.defaultFontColor.colorWithAlphaComponent(0.6)
-        case (_, BlockStyle.Inset),(is ImageBlock, _):
-            return Colors.defaultFontColor.colorWithAlphaComponent(0.8)
         case (_, BlockStyle.InsetH1):
             return Colors.accentColor
         case (is TweetBlock, _):
             return Colors.tweetTextColor
-        case (is EnhancedBannerBlock, _):
-            return Colors.enhancedBannerFontColor
         default:
             return Colors.defaultFontColor
         }
     }
     
     var richTextFontSize: CGFloat {
-        switch style {
-        case BlockStyle.Breaking:
+        
+        if case is ImageBlock = self {
             return 16
+        }
+        
+        switch style {
         case BlockStyle.Highlight,
-             BlockStyle.HighlightXL,
-            BlockStyle.Alert,
-             BlockStyle.ColumnHighlight,
-             BlockStyle.ColumnHighlightXL:
+             BlockStyle.HighlightXL:
             return 14
         case BlockStyle.Intro:
             return 22
@@ -1283,21 +1138,15 @@ extension RichTextContainable {
             return 14
         case BlockStyle.H2:
             return 20
-        case BlockStyle.Column:
-            return 26
         default:
-            return 16
+            return 17
         }
     }
     
     var richTextLineSpacing: CGFloat {
         switch (self, style) {
         case (is ArticleRefBlock, BlockStyle.Highlight),
-             (is ArticleRefBlock, BlockStyle.HighlightXL),
-            (is ArticleRefBlock, BlockStyle.Alert),
-            (is ArticleRefBlock, BlockStyle.Breaking),
-            (is ArticleRefBlock, BlockStyle.ColumnHighlight),
-            (is ArticleRefBlock, BlockStyle.ColumnHighlightXL):
+             (is ArticleRefBlock, BlockStyle.HighlightXL):
             return 7
         case (is TextBlock, BlockStyle.Intro):
             return 6
@@ -1306,7 +1155,7 @@ extension RichTextContainable {
         case (is TextBlock, BlockStyle.H2):
             return 4
         case (_, BlockStyle.Inset):
-            return 3
+            return 8
         case (_, BlockStyle.InsetH1):
             return 4
         case (_, BlockStyle.InsetH2):
@@ -1315,10 +1164,8 @@ extension RichTextContainable {
             return 3
         case (is TweetBlock, _):
             return 3
-        case (is EnhancedBannerBlock, _):
-            return 0
         default:
-            return 11
+            return 7
         }
     }
     
@@ -1334,12 +1181,7 @@ extension RichTextContainable {
     
     var shouldRenderRichText: Bool {
         guard let richText = self.richText where !richText.isEmpty else { return false }
-        switch style {
-        case BlockStyle.ColumnHighlight, BlockStyle.HighlightImage:
-            return false
-        default:
-            return true
-        }
+        return true
     }
 }
 
@@ -1350,39 +1192,6 @@ extension ASImageNode {
         maskLayer.frame = self.bounds
         maskLayer.path = maskPath.CGPath
         self.layer.mask = maskLayer
-    }
-}
-
-extension EnhancedBannerButtonData {
-    
-    var captionFont: UIFont {
-        return Fonts.alternativeMediumFont.fallbackWithSize(16)
-    }
-    
-    var captionColor: UIColor {
-        return Colors.enhancedBannerFontColor
-    }
-    
-    var buttonSize: CGSize {
-        return CGSize(width: EnhancedBannerCellStyles.contentWidth, height: 48)
-    }
-    
-    var attributedCaption: NSAttributedString {
-        guard let label = self.caption else { return NSAttributedString(string: "") }
-        let attrs = StringAttributes(font: captionFont, foregroundColor: captionColor, alignment: NSTextAlignment.Center)
-        return NSMutableAttributedString(string:label, attributes:attrs.dictionary)
-    }
-    
-    func applyStyle(buttonNode: EnhancedBannerButtonNode) {
-        buttonNode.layer.cornerRadius = 2
-        switch self.style {
-        case .Primary:
-            buttonNode.layer.backgroundColor = color?.CGColor ?? Colors.callToAction.CGColor
-        case .Normal:
-            buttonNode.layer.backgroundColor = color?.CGColor ?? Colors.normalButton.CGColor
-            buttonNode.layer.borderColor = Colors.normalButtonBorder.CGColor
-            buttonNode.layer.borderWidth = 1
-        }
     }
 }
 

@@ -85,8 +85,14 @@
 	</array>
 	<key>UIAppFonts</key>
 	<array>
+		<string>SabonNextCom-Regular.ttf</string>
+		<string>SabonNextCom-Italic.ttf</string>
+		<string>SabonNextCom-BoldItalic.ttf</string>
+		<string>SabonNextCom-Bold.ttf</string>
 		<string>SimpleHBS.otf</string>
 		<string>UniversNextPro-Regular.otf</string>
+		<string>UniversNextPro-Cond.otf</string>
+		<string>UniversNextPro-Bold.otf</string>
 		<string>UniversNextPro-BoldCond.otf</string>
 	</array>
 	<key>UILaunchStoryboardName</key>

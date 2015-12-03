@@ -22,7 +22,7 @@ extension SwinjectStoryboard {
         container.register(BlockContextDataController.self, name: "default-data-controller") { r in CoreBlockContextDataController(cache: r.resolve(Cache.self)!, networkRequestHandler: r.resolve(NetworkRequestHandler.self)!, interceptor: r.resolve(PaywallDataInterceptor.self)! )  }
         container.register(BlockContextDataController.self, name: "paywall-data-controller") { r in CoreBlockContextDataController(cache: r.resolve(Cache.self)!, networkRequestHandler: r.resolve(NetworkRequestHandler.self)!) }
         container.register(TrackerFactory.self) { r in CoreTrackerFactory.init(delegate: r.resolve(BlockContextDataController.self, name: "default-data-controller")!)}
-        container.register(CellFactory.self) { r in CoreCellFactory(trackerFactory: r.resolve(TrackerFactory.self)!) }
+        container.register(CellFactory.self) { r in BoecklerCellFactory(trackerFactory: r.resolve(TrackerFactory.self)!) }
         container.register(AuthenticationController.self) { r in CoreAuthenticationController(paywallController: r.resolve(PaywallStateController.self)! )}
         container.register(URLHandler.self) { r in CoreURLHandler(paywallController: r.resolve(PaywallStateController.self)!, authController: r.resolve(AuthenticationController.self)!) }
         
