@@ -34,7 +34,7 @@ struct Colors {
     static let sand = UIColor(hex: 0xEFEDE2)
     static let defaultBorderColor = UIColor.blackColor().colorWithAlphaComponent(0.05)
     static let decorationBorderColor = UIColor.blackColor().colorWithAlphaComponent(0.05)
-    static let footerLineColor = UIColor.blackColor().colorWithAlphaComponent(0.2)
+    static let footerLineColor = accentColor
     static let linkColor = UIColor(hex: 0xD30910)
     static let cardBackgroundColor =  UIColor.whiteColor()
     static let articleBackgroundColor =  UIColor.whiteColor()
@@ -154,6 +154,10 @@ extension Font {
     }
 }
 
+struct ContextStyles {
+    static let progressThreshold: CGFloat = 0.8
+}
+
 struct TimelineStyles {
     static let enablePullToRefresh = false
     static let topInset: CGFloat = 0
@@ -204,6 +208,10 @@ struct ArticleStyles {
 struct ArticleHeaderCellStyles {
     static let imageHeight: CGFloat = Window.vval([Screen.vXS: Screen.vXS*(5/12),Screen.vS:Screen.vS*(5/12),Screen.vM:Screen.vM*(9/12), Screen.vL:Screen.vL*7/12])
     static let headlineMarginTop: CGFloat = 32
+}
+
+struct FooterCellStyles {
+    static let lineHeight: CGFloat = 4
 }
 
 struct DividerCellStyles {

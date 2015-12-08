@@ -216,6 +216,7 @@
 		179B30971C0DE2E6001005E2 /* CellFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 179B30961C0DE2E6001005E2 /* CellFactory.swift */; settings = {ASSET_TAGS = (); }; };
 		17AB6D6A1BF3428400840425 /* IssueLabelNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17AB6D691BF3428400840425 /* IssueLabelNode.swift */; settings = {ASSET_TAGS = (); }; };
 		17CA4AB71BF225050011495A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 17CA4AB51BF225050011495A /* LaunchScreen.storyboard */; settings = {ASSET_TAGS = (); }; };
+		17CA90AF1C15EEDF008875BF /* Cartfile in Resources */ = {isa = PBXBuildFile; fileRef = 17CA90AE1C15EEDF008875BF /* Cartfile */; settings = {ASSET_TAGS = (); }; };
 		17F0C9C71C0EEA440088B74C /* BorderNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17F0C9C61C0EEA440088B74C /* BorderNode.swift */; settings = {ASSET_TAGS = (); }; };
 		17F0C9CE1C1090500088B74C /* FooterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17F0C9CC1C1090500088B74C /* FooterCell.swift */; settings = {ASSET_TAGS = (); }; };
 		17F0C9CF1C1090500088B74C /* FooterBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17F0C9CD1C1090500088B74C /* FooterBlock.swift */; settings = {ASSET_TAGS = (); }; };
@@ -438,6 +439,7 @@
 		179B30961C0DE2E6001005E2 /* CellFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CellFactory.swift; path = "core/trc-core/CellFactory.swift"; sourceTree = SOURCE_ROOT; };
 		17AB6D691BF3428400840425 /* IssueLabelNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IssueLabelNode.swift; path = "core/trc-core/IssueLabelNode.swift"; sourceTree = SOURCE_ROOT; };
 		17CA4AB61BF225050011495A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		17CA90AE1C15EEDF008875BF /* Cartfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Cartfile; path = core/Cartfile; sourceTree = SOURCE_ROOT; };
 		17F0C9C61C0EEA440088B74C /* BorderNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BorderNode.swift; path = "core/trc-core/BorderNode.swift"; sourceTree = SOURCE_ROOT; };
 		17F0C9CC1C1090500088B74C /* FooterCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FooterCell.swift; path = "core/trc-core/FooterCell.swift"; sourceTree = SOURCE_ROOT; };
 		17F0C9CD1C1090500088B74C /* FooterBlock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FooterBlock.swift; path = "core/trc-core/FooterBlock.swift"; sourceTree = SOURCE_ROOT; };
@@ -526,6 +528,7 @@
 		1731BD9C1BEA42C30012D6FF /* core */ = {
 			isa = PBXGroup;
 			children = (
+				17CA90AE1C15EEDF008875BF /* Cartfile */,
 				174658C21C08989E003FEAA8 /* trc-core-Bridging-Header.h */,
 				1731BEFA1BEA55B20012D6FF /* Frameworks */,
 				1731BEED1BEA54E80012D6FF /* Sources */,
@@ -838,6 +841,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				17CA90AF1C15EEDF008875BF /* Cartfile in Resources */,
 				179B30901C0DDC67001005E2 /* SabonNextCom-Bold.ttf in Resources */,
 				179B30891C0DD656001005E2 /* UniversNextPro-Bold.otf in Resources */,
 				174192F81BF0F72A008B94A0 /* UniversNextPro-Regular.otf in Resources */,
