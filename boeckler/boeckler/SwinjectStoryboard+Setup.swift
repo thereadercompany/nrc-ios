@@ -13,7 +13,7 @@ extension SwinjectStoryboard {
         
         let container = defaultContainer
         
-        container.register(NetworkRequestHandler.self) { _  in CoreNetworkRequestHandler()}
+
         container.register(BlockDecoder.self) { _ in BoecklerBlockDecoder() }
         container.register(Store.self) { r in SQLiteStore(decoder: r.resolve(BlockDecoder.self)!) }
         container.register(Cache.self) { r in CoreCache(store: r.resolve(Store.self)!) }
