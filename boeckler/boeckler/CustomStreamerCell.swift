@@ -10,7 +10,7 @@ import Foundation
 import BrightFutures
 import AsyncDisplayKit
 
-class BoecklerStreamerCell : Cell {
+class CustomStreamerCell : Cell {
     
     let iconNode: ASImageNode
     let headlineNode: ASTextNode
@@ -18,11 +18,16 @@ class BoecklerStreamerCell : Cell {
     
     let streamerBlock: StreamerBlock
     
+    let headlineStyler: HeadlineStyler
+    let subHeadlineStyler: SubHeadlineStyler
+    
     init(streamerBlock: StreamerBlock) {
         self.streamerBlock = streamerBlock
         iconNode = ASImageNode()
         headlineNode = ASTextNode()
         subHeadlineNode = ASTextNode()
+        headlineStyler = HeadlineStyler(value: streamerBlock.headline, block: streamerBlock)
+        subHeadlineStyler = SubHeadlineStyler(value: streamerBlock.subHeadline, block: streamerBlock)
         super.init(block: streamerBlock)
         addSubnode(iconNode)
         addSubnode(headlineNode)
@@ -35,28 +40,28 @@ class BoecklerStreamerCell : Cell {
         }
         
         backgroundColor = streamerBlock.backgroundColor
-        headlineNode.attributedString = streamerBlock.attributedHeadline
-        subHeadlineNode.attributedString = streamerBlock.attributedSubHeadline
+        headlineNode.attributedString = headlineStyler.attributedHeadline
+        subHeadlineNode.attributedString = subHeadlineStyler.attributedSubHeadline
     }
     
     var subHeadlineMarginTop: CGFloat {
-        guard streamerBlock.shouldRenderSubHeadline else { return 0 }
+        guard subHeadlineStyler.shouldRenderSubHeadline else { return 0 }
         return StreamerCellStyles.subHeadlineMarginTop
     }
 
     var marginBottom: CGFloat {
-        if streamerBlock.shouldRenderSubHeadline {
+        if subHeadlineStyler.shouldRenderSubHeadline {
             return StreamerCellStyles.subHeadlineMarginBottom
         }
         return StreamerCellStyles.headlineMarginBottom
     }
     
     func headlineSize(constraintWidth: CGFloat) -> CGSize {
-        return streamerBlock.attributedHeadline.boundingSizeForWidth(constraintWidth)
+        return headlineStyler.attributedHeadline.boundingSizeForWidth(constraintWidth)
     }
     
     func subHeadlineSize(constraintWidth: CGFloat) -> CGSize {
-        guard let subHeadline = streamerBlock.attributedSubHeadline else { return CGSizeZero }
+        guard let subHeadline = subHeadlineStyler.attributedSubHeadline else { return CGSizeZero }
         return subHeadline.boundingSizeForWidth(constraintWidth)
     }
     

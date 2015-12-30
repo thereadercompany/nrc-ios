@@ -8,7 +8,6 @@
 import Foundation
 import AsyncDisplayKit
 import DTCoreText
-import NRCFonts
 
 extension BlockStyle {
     static let Normal = BlockStyle(rawValue: "normal")
@@ -29,6 +28,7 @@ extension BlockStyle {
 }
 
 struct Colors {
+    static let placeholderColor = UIColor.lightGrayColor()
     static let accentColor = UIColor(hex: 0xD30910)
     static let iceBlue = UIColor(hex: 0xD3ECEE)
     static let sand = UIColor(hex: 0xEFEDE2)
@@ -64,7 +64,7 @@ struct Colors {
     static let enhancedBannerRichTextBackground = normalButton
     static let transparant = UIColor.clearColor()
     static let dividerForegroundColor = UIColor(hex: 0xE6EAEE).colorWithAlphaComponent(0.4)
-    static let dividerBackgroundColor = UIColor.clearColor()
+    static let dividerBackgroundColor = accentColor
     static let navigationViewDarkBackgroundColor = accentColor
     static let navigationViewLightBackgroundColor = UIColor.whiteColor()
     static let navigationViewLightTitleColor = UIColor.blackColor()
@@ -94,6 +94,7 @@ struct Fonts {
     static let lightFont:Font = UniversNextPro.Regular
     static let alternativeTextFont: Font = SimpleHBS.Regular
     static let alternativeMediumFont: Font = SimpleHBS.Regular
+    static let errorFont:Font = UniversNextPro.Bold
     static let introFont = UniversNextPro.Cond
     static let streamerFont = UniversNextPro.Cond
     static let defaultTaglineFont: Font = UniversNextPro.BoldCond
@@ -155,7 +156,8 @@ extension Font {
 }
 
 struct ContextStyles {
-    static let progressThreshold: CGFloat = 0.8
+    static let endOfContentThreshold: CGFloat = 1.0
+    static let hrefUnderlineStyle: NSUnderlineStyle = NSUnderlineStyle.StyleSingle
 }
 
 struct TimelineStyles {
@@ -169,7 +171,7 @@ struct TimelineStyles {
     static let lineInset: CGFloat = 16
     static let lineHeight: CGFloat = 1
     static let initiallyHideNavigationView = true
-    static let navigationViewStyle = NavigationViewStyle.Dark
+    static let navigationViewStyle = NavigationViewStyle.Dark(Colors.accentColor)
     static func navigationViewNeedsLine(style: NavigationViewStyle) -> Bool {
         return true
     }
@@ -199,9 +201,13 @@ struct ArticleStyles {
     static let topInset: CGFloat = 0
     static let navigationBarHeight: CGFloat = 85 //65 + 20 statusbar    
     static let textInset: CGFloat = 24
-    static let backgroundColor = Colors.articleBackgroundColor
+    static let backgroundColor = Colors.accentColor
     static func navigationViewNeedsLine(style: NavigationViewStyle) -> Bool {
-        return style == .Light
+        switch style {
+        case .Light:
+            return true
+        default: return false
+        }
     }
 }
 
@@ -316,6 +322,12 @@ struct TweetCellStyles {
     static let richTextTopMargin: CGFloat = 8
     static let bottomPadding: CGFloat = 26
     static let defaultAspectRatio: Float = 4/3
+    static let tweetDateFormatter: NSDateFormatter = {
+        let formatter = NSDateFormatter()
+        formatter.dateFormat = "d/MM/yy"
+        return formatter
+    }()
+    
 }
     
 struct ImageCellStyles {
@@ -344,9 +356,14 @@ struct IssueLabelStyles {
 }
 
 struct ErrorStyles {
-    static let font = Etica.SemiBold
-    static let messageFont = font.optionalWithSize(14)
-    static let buttonFont = font.optionalWithSize(14)
+    static let messageFont = Fonts.errorFont.optionalWithSize(14)
+    static let buttonFont = Fonts.errorFont.optionalWithSize(14)
+}
+
+struct LoadingStyles {
+    static let intensity: CGFloat = 0.15
+    static let color: UIColor = UIColor.blackColor()
+    static let refreshControlTintColor = UIColor.whiteColor()
 }
 
 extension NavigationViewStyle {
@@ -687,27 +704,29 @@ extension MarkupTag {
     }
 }
 
-private let tweetDateFormatter: NSDateFormatter = {
-    let formatter = NSDateFormatter()
-    formatter.dateFormat = "d/MM/yy"
-    return formatter
-    }()
-
-extension DateContainable {
-    var tweetStyleDate: String {
-        guard let date = self.date else { return "" }
-        return tweetDateFormatter.stringFromDate(date)
+class Styler {
+    var value: String?
+    let style: String
+    let block: Block
+    
+    static let NormalStyle = "normal"
+    
+    init(value:String?, style: String = NormalStyle, block: Block) {
+        self.value = value
+        self.style = style
+        self.block = block
     }
 }
 
-extension IssueLabelContainable {
+
+class IssueLabelStyler: Styler {
     
     var issueLabelInset: CGPoint {
         return CGPoint(x: 19, y: 19)
     }
     
     var shouldRenderIssueLabel: Bool {
-        guard let issueLabel = issueLabel else { return false }
+        guard let issueLabel = value else { return false }
         return !issueLabel.isEmpty
     }
     
@@ -723,18 +742,26 @@ extension IssueLabelContainable {
         return 0
     }
     
-    func attributedIssueLabel() -> NSAttributedString {
-        guard let issueLabel = self.issueLabel else { return NSAttributedString(string: "") }
+    var attributedIssueLabel : NSAttributedString {
+        guard let issueLabel = value else { return NSAttributedString(string: "") }
         let attrs = StringAttributes(font: issueLabelFont, foregroundColor: issueLabelTextColor, lineSpacing: issueLabelTextLineSpacing, alignment: NSTextAlignment.Center)
         let result = NSMutableAttributedString(string:issueLabel, attributes:attrs.dictionary)
         return result;
-    }
-}
+    }}
 
-extension LabelContainable {
+
+class LabelStyler: Styler {
+    
+    static let linespacing: CGFloat = 3
+    static let color = Colors.labelTextColor
+    static let labelInset = CGPoint(x: 16, y: 12)
+    static let labelTextInsets = UIEdgeInsets(top: 1, left: 6, bottom: 1, right: 6)
+    
+    static let CategoryStyle = "category"
+    static let DateStyle = "date"
     
     var labelCornerRadius: CGFloat {
-       return 0
+        return 0
     }
     
     var labelInset: CGPoint {
@@ -746,7 +773,7 @@ extension LabelContainable {
     }
     
     var shouldRenderLabel: Bool {
-        guard let label = label else { return false }
+        guard let label = value else { return false }
         return !label.isEmpty
     }
     
@@ -755,7 +782,7 @@ extension LabelContainable {
     }
     
     var labelTextColor: UIColor {
-        switch self {
+        switch block {
         case is DividerBlock:
             return Colors.dividerForegroundColor
         default:
@@ -766,18 +793,25 @@ extension LabelContainable {
     var labelTextLineSpacing: CGFloat {
         return 0
     }
-
-    func attributedLabel() -> NSAttributedString {
-        guard let label = self.label else { return NSAttributedString(string: "") }
+    
+    var attributedLabel : NSAttributedString {
+        guard let label = value else { return NSAttributedString(string: "") }
         let attrs = StringAttributes(font: labelFont, foregroundColor: labelTextColor, lineSpacing: labelTextLineSpacing, alignment: NSTextAlignment.Center)
         let result = NSMutableAttributedString(string:label, attributes:attrs.dictionary)
         return result;
     }
+    
+    var labelBackgroundColor: UIColor? {
+        return Colors.accentColor
+    }
 }
+
+
+
 
 private let defaultAspectRatio: CGFloat = 4/3
 
-extension MediaContainable {
+extension MediaBlock {
     var shouldRenderImage: Bool {
         guard let media = self.media where !media.identifier.isEmpty else { return false }
         return true
@@ -798,10 +832,10 @@ extension MediaContainable {
     }
 }
 
-extension HeadlineContainable {
+class HeadlineStyler : Styler {
         
     var headlineBackgroundColor: UIColor? {
-        switch (context, self, style) {
+        switch (block.context, block, block.style) {
 //        case (.Timeline, _, _):
 //            return Colors.titleOverImageBackgroundColor
         default:
@@ -810,7 +844,7 @@ extension HeadlineContainable {
     }
     
     var headlineFontColor: UIColor {
-        switch (context, self, style) {
+        switch (block.context, block, block.style) {
         case (.Timeline, _, BlockStyle.Highlight), (.Timeline, _, BlockStyle.HighlightXL):
             return Colors.titleOverImageColor
         case (.Article, is ArticleHeaderBlock, _):
@@ -827,7 +861,7 @@ extension HeadlineContainable {
     }
     
     var headlineFont: UIFont {
-        switch (context, self, style) {
+        switch (block.context, block, block.style) {
         case (.Timeline, is ArticleRefBlock, BlockStyle.Highlight):
             return Fonts.mediumFont.fallbackWithSize(24)
         case (.Timeline, is ArticleRefBlock, BlockStyle.HighlightXL):
@@ -848,7 +882,7 @@ extension HeadlineContainable {
     }
     
     var headlineLinespacing: CGFloat {
-        switch (context, self, style) {
+        switch (block.context, block, block.style) {
         case (.Timeline, _, BlockStyle.Highlight):
             return 4
         case (.Timeline, _, BlockStyle.HighlightXL):
@@ -867,7 +901,7 @@ extension HeadlineContainable {
     }
     
     var headlineAlignment: NSTextAlignment {
-        switch self {
+        switch block {
         case is UnsupportedContentBlock, is FallbackBlock :
             return NSTextAlignment.Center
         default:
@@ -885,7 +919,7 @@ extension HeadlineContainable {
     }
     
     var attributedHeadline: NSAttributedString {
-        guard var headline = self.headline else { return NSAttributedString() }
+        guard var headline = value else { return NSAttributedString() }
         
         if needsAllCaps {
             headline = headline.uppercaseString
@@ -896,7 +930,7 @@ extension HeadlineContainable {
     }
     
     var shouldRenderShadow: Bool {
-        switch self {
+        switch block {
         case is ArticleHeaderBlock, is StreamerBlock:
             return false
         default: return true
@@ -904,7 +938,7 @@ extension HeadlineContainable {
     }
     
     var needsAllCaps: Bool {
-        switch self {
+        switch block {
         case is ArticleHeaderBlock:
             return true
         default: return false
@@ -912,15 +946,15 @@ extension HeadlineContainable {
     }
 }
 
-extension SubHeadlineContainable {
+class SubHeadlineStyler : Styler {
     
     var shouldRenderSubHeadline: Bool {
-        guard let subHeadline = self.subHeadline else { return false }
+        guard let subHeadline = value else { return false }
         return !subHeadline.isEmpty
     }
 
     var subHeadlineFontColor: UIColor {
-        switch self {
+        switch block {
         case is TweetBlock:
             return Colors.tweetSubHeadlineColor
         case is UnsupportedContentBlock, is FallbackBlock:
@@ -933,7 +967,7 @@ extension SubHeadlineContainable {
     }
     
     var subHeadlineFont: UIFont {
-        switch self {
+        switch block {
         case is TweetBlock:
             return Fonts.tweetFont.fallbackWithSize(15)
         case is UnsupportedContentBlock, is FallbackBlock:
@@ -946,8 +980,8 @@ extension SubHeadlineContainable {
     }
     
     var subHeadlineLinespacing: CGFloat {
-        switch (self) {
-        case (is TweetBlock):
+        switch block {
+        case is TweetBlock:
             return 2
         default:
             return 0
@@ -955,11 +989,11 @@ extension SubHeadlineContainable {
     }
     
     var subHeadlineUpperLower: String? {
-        return subHeadline
+        return value
     }
     
     var subHeadlineAlignment: NSTextAlignment {
-        switch self {
+        switch block {
         case is UnsupportedContentBlock, is FallbackBlock :
             return NSTextAlignment.Center
         default:
@@ -974,14 +1008,14 @@ extension SubHeadlineContainable {
     }
 }
 
-extension ReadingTimeContainable {
+class ReadingTimeStyler : Styler {
     var shouldRenderReadingTime: Bool {
-        guard let readingTime = self.readingTime else { return false }
+        guard let readingTime = value else { return false }
         return !readingTime.isEmpty
     }
     
     var attributedReadingTime: NSAttributedString? {
-        guard let readingTime = self.readingTime else { return NSAttributedString(string:"") }
+        guard let readingTime = value else { return NSAttributedString(string:"") }
         let attrs = StringAttributes(font: readingTimeFont, foregroundColor: readingTimeFontColor, lineSpacing: readingTimeLinespacing, alignment: readingTimeAlignment, shadow: readingTimeShadow)
         return NSAttributedString(string:readingTime, attributes:attrs.dictionary)
     }
@@ -1016,10 +1050,10 @@ extension ReadingTimeContainable {
     }
 }
 
-extension PlainTextContainable {
+class PlainTextStyler : Styler {
     
     var plainTextFont: UIFont {
-        switch (self, style) {
+        switch (block, block.style) {
         case (is FallbackBlock, _):
             return Fonts.lightFont.fallbackWithSize(15)
         case (_ , BlockStyle.InsetH1):
@@ -1036,14 +1070,14 @@ extension PlainTextContainable {
     }
     
     var plainTextLinespacing: CGFloat {
-        switch (self, style) {
+        switch (block, block.style) {
         case (is FallbackBlock, _): return 4
         default: return 4
         }
     }
     
     var plainTextBackgroundColor: UIColor {
-        switch self {
+        switch block {
         case is FallbackBlock:
             return Colors.fallbackBackgroundColor
         default:
@@ -1052,7 +1086,7 @@ extension PlainTextContainable {
     }
 
     var plainTextColor: UIColor {
-        switch style {
+        switch block.style {
         case BlockStyle.InsetH1:
             return Colors.accentColor
         default:
@@ -1061,7 +1095,7 @@ extension PlainTextContainable {
     }
     
     var attributedPlainText: NSAttributedString? {
-        guard let plainText = self.plainText else { return NSAttributedString(string: "") }
+        guard let plainText = value else { return NSAttributedString(string: "") }
         let attrs = StringAttributes(font: plainTextFont, foregroundColor: plainTextColor, lineSpacing: plainTextLinespacing)
         let result = NSMutableAttributedString(string:plainText, attributes:attrs.dictionary)
         return result;
@@ -1072,7 +1106,7 @@ extension PlainTextContainable {
     }
 }
 
-extension RichTextContainable {
+class RichTextStyler : Styler {
     var richTextAlignment: NSTextAlignment {
         return .Left
     }
@@ -1097,11 +1131,11 @@ extension RichTextContainable {
     
     var attributedRichText: NSAttributedString? {
         let attributes = StringAttributes(font: richTextFont.fallbackWithSize(richTextFontSize), foregroundColor: richTextFontColor, backgroundColor: nil, lineSpacing: richTextLineSpacing, alignment: richTextAlignment, shadow: nil, linkColor: linkColor)
-        return self.dynamicType.attributedString(fromRichText: self.richText, attributes: attributes)
+        return self.dynamicType.attributedString(fromRichText: value, attributes: attributes)
     }
     
     var richTextFont: Font {
-        switch (self, style) {
+        switch (block.self, block.style) {
         case (is TextBlock, BlockStyle.Intro):
             return Fonts.introFont
         case (is TextBlock, BlockStyle.Byline):
@@ -1118,7 +1152,7 @@ extension RichTextContainable {
     }
     
     var richTextFontColor: UIColor {
-        switch (self, style) {
+        switch (block, block.style) {
         case (is TextBlock, BlockStyle.Byline):
             return Colors.defaultFontColor.colorWithAlphaComponent(0.6)
         case (_, BlockStyle.InsetH1):
@@ -1132,11 +1166,11 @@ extension RichTextContainable {
     
     var richTextFontSize: CGFloat {
         
-        if case is ImageBlock = self {
+        if case is ImageBlock = block {
             return 16
         }
         
-        switch style {
+        switch block.style {
         case BlockStyle.Highlight,
              BlockStyle.HighlightXL:
             return 14
@@ -1152,7 +1186,7 @@ extension RichTextContainable {
     }
     
     var richTextLineSpacing: CGFloat {
-        switch (self, style) {
+        switch (block, block.style) {
         case (is ArticleRefBlock, BlockStyle.Highlight),
              (is ArticleRefBlock, BlockStyle.HighlightXL):
             return 7
@@ -1188,7 +1222,7 @@ extension RichTextContainable {
     }
     
     var shouldRenderRichText: Bool {
-        guard let richText = self.richText where !richText.isEmpty else { return false }
+        guard let richText = value where !richText.isEmpty else { return false }
         return true
     }
 }
@@ -1231,3 +1265,10 @@ extension UIButton {
         self.layer.cornerRadius = 2
     }
 }
+
+extension Article {
+    var backgroundColor: UIColor  {
+        return UIColor.whiteColor()
+    }
+}
+

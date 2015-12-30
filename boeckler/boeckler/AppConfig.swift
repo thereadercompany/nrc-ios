@@ -24,6 +24,8 @@ struct AppConfig {
     static let currentPaywallIdentfierKey = "nl.nrc.timeline.paywall.currentIdentfier"
     static let preloadMediaFormat = MediaFormat.Medium
     
+    static let cacheSize: UInt = 1000000    
+    
     // AsyncDisplayKit
     static let linkAttributeName = "NSALink"
 }

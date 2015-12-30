@@ -7,7 +7,7 @@
 
 import Foundation
 
-class BoecklerTimelineNavigationView: TimelineNavigationView {
+class CustomTimelineNavigationView: TimelineNavigationView {
     // images
     let logo: UIImage
     

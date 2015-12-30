@@ -8,7 +8,7 @@
 import Foundation
 import Argo
 
-class BoecklerBlockDecoder : BlockDecoder {
+class CustomBlockDecoder : BlockDecoder {
     
     func decode<T: DecodableWithoutContext>(json: JSON, withContext context: BlockContext) -> Decoded<T> {
         return T.decodeWithoutContext(json) <*> pure(context)

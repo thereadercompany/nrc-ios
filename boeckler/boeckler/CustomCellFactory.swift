@@ -1,5 +1,5 @@
 //
-//  CellFactory.swift
+//  CustomCellFactory.swift
 //  ios-nrc-nl
 //
 //  Created by Emiel van der Veen on 08/05/15.
@@ -11,7 +11,7 @@ import AsyncDisplayKit
 /**
     Implements a Renderer based on the AsyncDisplayKit by Facebook
 */
-class BoecklerCellFactory: CellFactory {
+class CustomCellFactory: CellFactory {
 
     let trackerFactory: TrackerFactory
     init(trackerFactory: TrackerFactory) {
@@ -103,7 +103,7 @@ class BoecklerCellFactory: CellFactory {
     }
     
     func createCell(block: StreamerBlock) -> Cell? {
-        return BoecklerStreamerCell(streamerBlock: block)
+        return CustomStreamerCell(streamerBlock: block)
     }
     
     func createCell(block: TextBlock) -> Cell? {

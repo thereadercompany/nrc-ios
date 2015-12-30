@@ -7,22 +7,22 @@
 
 import Foundation
 
-class BoecklerTimelineNavigationViewController: TimelineNavigationViewController {
+class CustomTimelineNavigationViewController: TimelineNavigationViewController {
 
-    var timelineNavigationView: BoecklerTimelineNavigationView {
-        return self.navigationView as! BoecklerTimelineNavigationView
+    var timelineNavigationView: CustomTimelineNavigationView {
+        return self.navigationView as! CustomTimelineNavigationView
     }
     
     override func transition(toStyle style: NavigationViewStyle, animated: Bool) {
-        let navigationView = BoecklerTimelineNavigationView(style: style)
+        let navigationView = CustomTimelineNavigationView(style: style)
         self.transition(toView: navigationView, animated: animated)
     }
     
     //MARK - initialization
 
     init() {
-        let navigationView = BoecklerTimelineNavigationView(style: TimelineStyles.navigationViewStyle)
-        super.init(navigationView: navigationView)
+        let navigationView = CustomTimelineNavigationView(style: TimelineStyles.navigationViewStyle)
+        super.init(navigationView: navigationView, autoHideEnabled: true)
     }
 
     required init?(coder aDecoder: NSCoder) {
