@@ -97,6 +97,7 @@ struct Fonts {
     static let errorFont:Font = UniversNextPro.Bold
     static let introFont = UniversNextPro.Cond
     static let streamerFont = UniversNextPro.Cond
+    static let imageCaptionFont = UniversNextPro.Cond
     static let defaultTaglineFont: Font = UniversNextPro.BoldCond
     static let defaultAuthorFont: Font = SimpleHBS.Regular
     static let tweetFont = HelveticaNeue.Light
@@ -201,6 +202,7 @@ struct ArticleStyles {
     static let topInset: CGFloat = 0
     static let navigationBarHeight: CGFloat = 85 //65 + 20 statusbar    
     static let textInset: CGFloat = 24
+    static let pushToHideThreshold: CGFloat = 140
     static let backgroundColor = Colors.accentColor
     static func navigationViewNeedsLine(style: NavigationViewStyle) -> Bool {
         switch style {
@@ -212,7 +214,7 @@ struct ArticleStyles {
 }
 
 struct ArticleHeaderCellStyles {
-    static let imageHeight: CGFloat = Window.vval([Screen.vXS: Screen.vXS*(5/12),Screen.vS:Screen.vS*(5/12),Screen.vM:Screen.vM*(9/12), Screen.vL:Screen.vL*7/12])
+    static let imageHeight: CGFloat = Window.vval([Screen.vXS: Screen.vXS*(9/12),Screen.vS:Screen.vS*(9/12),Screen.vM:Screen.vM*(9/12), Screen.vL:Screen.vL*9/12])
     static let headlineMarginTop: CGFloat = 32
 }
 
@@ -331,7 +333,8 @@ struct TweetCellStyles {
 }
     
 struct ImageCellStyles {
-    static let textPaddingTop: CGFloat = 16
+    static let textPaddingTop: CGFloat = 17
+    static let textPaddingBottom: CGFloat = 19
 }
 
 struct VideoCellStyles {
@@ -436,6 +439,13 @@ extension BlockDecoration {
         default: return 0
         }
     }
+
+    var imageDecorationPaddingBottom: CGFloat {
+        switch self {
+        case .Bottom, .Full: return 24
+        default: return 0
+        }
+    }
     
     var tweetDecorationPaddingBottom: CGFloat {
         switch self {
@@ -471,7 +481,7 @@ extension Block {
         case (.Article, is TweetBlock, _):
             return self.decoration.tweetDecorationPaddingBottom
         case (.Article, is ImageBlock, _):
-            return self.decoration.insetDecorationPaddingBottom
+            return self.decoration.imageDecorationPaddingBottom
         case (.Article, is StreamerBlock, _):
             return 32
         default:
@@ -484,6 +494,11 @@ extension Block {
     }
     
     var decorationColor: UIColor? {
+
+        if self is ImageBlock {
+            return Colors.insetBackgroundColor
+        }
+        
         switch style {
         case BlockStyle.ThemeIceBlue where decoration != .None:
             return Colors.iceBlue
@@ -494,8 +509,6 @@ extension Block {
         default: return nil
         }
     }
-    
-    
     
     func drawFullDecoration(view: UIView) {
         // currently not used
@@ -533,6 +546,8 @@ extension Block {
             contentPadding = UIEdgeInsets(top: 0, left: ArticleStyles.textInset, bottom: 12, right: ArticleStyles.textInset)
         case (.Article, is TextBlock, BlockStyle.Byline):
             contentPadding = UIEdgeInsets(top: 0, left: ArticleStyles.textInset, bottom: 40, right: ArticleStyles.textInset)
+        case (.Article, is FooterBlock, _):
+            contentPadding = UIEdgeInsets(top: 0, left: 0, bottom: FooterCellStyles.lineHeight, right: 0)
         case (.Article, _, _):
             contentPadding = UIEdgeInsets(top: 0, left: ArticleStyles.textInset, bottom: 24, right: ArticleStyles.textInset)
         default:
@@ -1143,7 +1158,7 @@ class RichTextStyler : Styler {
         case  (_, BlockStyle.Inset):
             return Fonts.textFont
         case (is ImageBlock, _):
-            return Fonts.mediumFont
+            return Fonts.imageCaptionFont
         case (is TweetBlock, _):
             return Fonts.tweetFont
         default:

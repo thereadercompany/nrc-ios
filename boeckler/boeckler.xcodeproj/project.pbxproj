@@ -14,6 +14,7 @@
 		1718D6AC1C05A4CC0036DB5B /* TrackerFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1718D6A91C05A4CC0036DB5B /* TrackerFactory.swift */; };
 		1718D6B41C05A5230036DB5B /* BlockContextDataSourceFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1718D6B31C05A5230036DB5B /* BlockContextDataSourceFactory.swift */; };
 		1718D6BC1C0738020036DB5B /* Block.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1718D6BB1C0738020036DB5B /* Block.swift */; };
+		171C7C901C4685BD002088E2 /* ParentContextSnapshotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 171C7C8F1C4685BD002088E2 /* ParentContextSnapshotView.swift */; };
 		171F6F8A1C0496A200B3A390 /* BlockDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 171F6F891C0496A200B3A390 /* BlockDecoder.swift */; };
 		171F6F8C1C0496D000B3A390 /* CustomBlockDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 171F6F8B1C0496D000B3A390 /* CustomBlockDecoder.swift */; };
 		1731BD941BEA41460012D6FF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1731BD931BEA41460012D6FF /* AppDelegate.swift */; };
@@ -242,6 +243,7 @@
 		1718D6A91C05A4CC0036DB5B /* TrackerFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TrackerFactory.swift; path = "core/trc-core/TrackerFactory.swift"; sourceTree = SOURCE_ROOT; };
 		1718D6B31C05A5230036DB5B /* BlockContextDataSourceFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BlockContextDataSourceFactory.swift; path = "core/trc-core/BlockContextDataSourceFactory.swift"; sourceTree = SOURCE_ROOT; };
 		1718D6BB1C0738020036DB5B /* Block.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Block.swift; path = "core/trc-core/Block.swift"; sourceTree = SOURCE_ROOT; };
+		171C7C8F1C4685BD002088E2 /* ParentContextSnapshotView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ParentContextSnapshotView.swift; path = "core/trc-core/ParentContextSnapshotView.swift"; sourceTree = SOURCE_ROOT; };
 		171F6F891C0496A200B3A390 /* BlockDecoder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BlockDecoder.swift; path = "core/trc-core/BlockDecoder.swift"; sourceTree = SOURCE_ROOT; };
 		171F6F8B1C0496D000B3A390 /* CustomBlockDecoder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomBlockDecoder.swift; sourceTree = "<group>"; };
 		1731BD7E1BEA41050012D6FF /* boeckler.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = boeckler.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -741,6 +743,7 @@
 				1731BEB51BEA43BE0012D6FF /* Window.swift */,
 				1731BEB61BEA43BE0012D6FF /* YoutubeBlock.swift */,
 				1731BEB71BEA43BE0012D6FF /* YoutubeCell.swift */,
+				171C7C8F1C4685BD002088E2 /* ParentContextSnapshotView.swift */,
 			);
 			name = Sources;
 			sourceTree = "<group>";
@@ -821,6 +824,7 @@
 				1731BD7B1BEA41050012D6FF /* Frameworks */,
 				1731BD7C1BEA41050012D6FF /* Resources */,
 				1731BFA11BEA5B210012D6FF /* Carthage copy frameworks */,
+				17E64CC71C33DE9100E0BEB2 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -920,6 +924,19 @@
 			shellPath = /bin/sh;
 			shellScript = "/usr/local/bin/carthage copy-frameworks";
 		};
+		17E64CC71C33DE9100E0BEB2 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "./Fabric.framework/run b289d725acc41407337f65f1275bcbd07d9bec67 e9c62040bf10199a6b8c4875050b5b19983b3d39897659fe16fefe7c57e65fb2";
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -985,6 +1002,7 @@
 				179B30971C0DE2E6001005E2 /* CellFactory.swift in Sources */,
 				175FF2001C0DE89A00F3458F /* Column.swift in Sources */,
 				1731BF761BEA59270012D6FF /* BlockDecoration.swift in Sources */,
+				171C7C901C4685BD002088E2 /* ParentContextSnapshotView.swift in Sources */,
 				1731BF6A1BEA59270012D6FF /* ASDisplayNode.swift in Sources */,
 				1731BF3B1BEA59110012D6FF /* PlainTextCell.swift in Sources */,
 				1731BEE81BEA43BE0012D6FF /* VimeoCell.swift in Sources */,
@@ -1219,6 +1237,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Emiel Van der Veen (EFS68KKZ4F)";
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/core",
@@ -1231,8 +1251,10 @@
 				INFOPLIST_FILE = boeckler/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = nl.nrc.timeline;
+				OTHER_SWIFT_FLAGS = "-DDEBUG";
+				PRODUCT_BUNDLE_IDENTIFIER = io.trc.hbs.mitbestimmung;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "24c0d1bd-1fe9-4e9a-a798-89b054818310";
 				SWIFT_OBJC_BRIDGING_HEADER = "boeckler/boeckler-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -1243,6 +1265,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: The Reader Company B.V. (WM2T968KAX)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/core",
@@ -1255,8 +1278,10 @@
 				INFOPLIST_FILE = boeckler/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = nl.nrc.timeline;
+				OTHER_SWIFT_FLAGS = "";
+				PRODUCT_BUNDLE_IDENTIFIER = io.trc.hbs.mitbestimmung;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "ac237e02-d2f8-49eb-8708-161cb6c63476";
 				SWIFT_OBJC_BRIDGING_HEADER = "boeckler/boeckler-Bridging-Header.h";
 			};
 			name = Release;
