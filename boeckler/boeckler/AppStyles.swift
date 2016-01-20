@@ -39,7 +39,7 @@ struct Colors {
     static let cardBackgroundColor =  UIColor.whiteColor()
     static let articleBackgroundColor =  UIColor.whiteColor()
     static let timelineBackgroundColor =  UIColor.blackColor()
-    static let timelineDividerBackgroundColor = UIColor.clearColor()
+    static let timelineDividerBackgroundColor = Colors.accentColor
     static let timelineSpacingBackgroundColor = Colors.accentColor
     static let insetBackgroundColor = UIColor(hex: 0xF7F7F7)
     static let tweetTextColor = UIColor(hex: 0x3E4447)
@@ -156,9 +156,17 @@ extension Font {
     }
 }
 
+struct GlobalStyles {
+    static let defaultAspectRatio: CGFloat = 4/3
+}
+
 struct ContextStyles {
     static let endOfContentThreshold: CGFloat = 1.0
     static let hrefUnderlineStyle: NSUnderlineStyle = NSUnderlineStyle.StyleSingle
+    static let pushAnimationDuration: NSTimeInterval = 0.45
+    static let pushAnimationFadeInDuration: NSTimeInterval = 0.2
+    static let popAnimationDuration: NSTimeInterval = 0.34
+    static let popAnimationDurationXL: NSTimeInterval = 0.4
 }
 
 struct TimelineStyles {
@@ -223,8 +231,8 @@ struct FooterCellStyles {
 }
 
 struct DividerCellStyles {
-    static let lineHeight: CGFloat = 0.5
-    static let textMargin: CGFloat = 12
+    static let height: CGFloat = 8
+    static let color: UIColor = Colors.accentColor
 }
 
 struct SpacingCellStyles {
@@ -256,10 +264,6 @@ struct ColumnCellStyles {
 }
 
 struct HighlightCellStyles {
-    static let pushAnimationDuration: NSTimeInterval = 0.45
-    static let pushAnimationFadeInDuration: NSTimeInterval = 0.2
-    static let popAnimationDuration: NSTimeInterval = 0.34
-    static let popAnimationDurationXL: NSTimeInterval = 0.4
     static let maximumLineCount: UInt = 3
     static let headlineMarginTop: CGFloat = 18
     static let richTextMarginTop: CGFloat = 6
@@ -323,7 +327,6 @@ struct TweetCellStyles {
     static let topPadding: CGFloat = 20
     static let richTextTopMargin: CGFloat = 8
     static let bottomPadding: CGFloat = 26
-    static let defaultAspectRatio: Float = 4/3
     static let tweetDateFormatter: NSDateFormatter = {
         let formatter = NSDateFormatter()
         formatter.dateFormat = "d/MM/yy"
@@ -494,9 +497,12 @@ extension Block {
     }
     
     var decorationColor: UIColor? {
-
-        if self is ImageBlock {
+        switch self {
+        case is ImageBlock:
             return Colors.insetBackgroundColor
+        case is DividerBlock:
+            return Colors.accentColor
+        default: ()
         }
         
         switch style {
@@ -822,19 +828,14 @@ class LabelStyler: Styler {
 }
 
 
-
-
-private let defaultAspectRatio: CGFloat = 4/3
-
 extension MediaBlock {
     var shouldRenderImage: Bool {
-        guard let media = self.media where !media.identifier.isEmpty else { return false }
+        guard !media.identifier.isEmpty else { return false }
         return true
     }
     
     func mediaHeightForWidth(width: CGFloat) -> CGFloat {
-        guard let aspectRatio = self.media?.aspectRatio else { return round(width / defaultAspectRatio) }
-        return round(width / CGFloat(aspectRatio))
+        return media.heightForWidth(width)
     }
     
     var mediaBackgroundColor: UIColor {

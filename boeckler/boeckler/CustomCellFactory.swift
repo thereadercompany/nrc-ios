@@ -63,7 +63,7 @@ class CustomCellFactory: CellFactory {
     }
     
     func createCell(block: DividerBlock) -> Cell? {
-        return DividerCell(dividerBlock: block)
+        return CustomDividerCell(block: block)
     }
     
     func createCell(block: FallbackBlock) -> Cell? {
