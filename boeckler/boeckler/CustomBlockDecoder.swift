@@ -55,9 +55,6 @@ class CustomBlockDecoder : BlockDecoder {
         case CoreBlockType.Spacing:
             let decodedBlock: Decoded<SpacingBlock> = decode(json, withContext: context)
             return decodedBlock.map{$0}
-        case CoreBlockType.Footer:
-            let decodedBlock: Decoded<FooterBlock> = decode(json, withContext: context)
-            return decodedBlock.map{$0}
         case CoreBlockType.Divider:
             let decodedBlock: Decoded<DividerBlock> = decode(json, withContext: context)
             return decodedBlock.map{$0}

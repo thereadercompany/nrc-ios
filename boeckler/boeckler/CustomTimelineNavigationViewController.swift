@@ -22,7 +22,7 @@ class CustomTimelineNavigationViewController: TimelineNavigationViewController {
 
     init() {
         let navigationView = CustomTimelineNavigationView(style: TimelineStyles.navigationViewStyle)
-        super.init(navigationView: navigationView, autoHideEnabled: true)
+        super.init(navigationView: navigationView, autoHideEnabled: TimelineStyles.navBarAutoHideEnabled)
     }
 
     required init?(coder aDecoder: NSCoder) {

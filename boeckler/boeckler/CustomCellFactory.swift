@@ -38,7 +38,6 @@ class CustomCellFactory: CellFactory {
         case let block as ImageBlock: return createCell(block)
         case let block as ServerErrorBlock: return createCell(block)
         case let block as SpacingBlock: return createCell(block)
-        case let block as FooterBlock: return createCell(block)
         case let block as StreamerBlock: return createCell(block)
         case let block as TextBlock: return createCell(block)
         case let block as PlainTextBlock: return createCell(block)
@@ -76,7 +75,7 @@ class CustomCellFactory: CellFactory {
     
     func createCell(block: PlainTextBlock) -> Cell? {
         switch block.style {
-        case BlockStyle.H2, BlockStyle.InsetH1, BlockStyle.InsetH2:
+        case BlockStyle.H1, BlockStyle.H2, BlockStyle.InsetH1, BlockStyle.InsetH2:
             return PlainTextCell(plainTextBlock: block)
         default:
             return nil
@@ -89,6 +88,8 @@ class CustomCellFactory: CellFactory {
 
     func createCell(block: SpacingBlock) -> Cell? {
         switch (block.context,block.style) {
+        case (.Article, BlockStyle.ArticleFooter):
+            return FooterCell(spacingBlock: block)
         case (.Article, BlockStyle.Normal), (.Article, BlockStyle.Inset):
             return SpacingCell(spacingBlock: block)
         case (.Timeline, _):
@@ -96,10 +97,6 @@ class CustomCellFactory: CellFactory {
         default:
             return nil
         }
-    }
-    
-    func createCell(block: FooterBlock) -> Cell? {
-        return FooterCell(footerBlock: block)
     }
     
     func createCell(block: StreamerBlock) -> Cell? {

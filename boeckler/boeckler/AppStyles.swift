@@ -25,6 +25,7 @@ extension BlockStyle {
     static let Unknown = BlockStyle(rawValue: "unknown")
     static let ThemeIceBlue = BlockStyle(rawValue: "theme-ice-blue")
     static let ThemeSand = BlockStyle(rawValue: "theme-sand")
+    static let ArticleFooter = BlockStyle(rawValue: "article-footer")
 }
 
 struct Colors {
@@ -170,8 +171,9 @@ struct ContextStyles {
 }
 
 struct TimelineStyles {
-    static let enablePullToRefresh = false
-    static let topInset: CGFloat = 0
+    static let navBarAutoHideEnabled = false
+    static let enablePullToRefresh = true
+    static let topInset: CGFloat = 85
     static let defaultMargin: CGFloat = 0
     static let internalMargin: CGFloat = 16
     static let contentInset: CGFloat = 16
@@ -208,6 +210,7 @@ struct TimelineStyles {
 
 struct ArticleStyles {
     static let topInset: CGFloat = 0
+    static let navBarAutoHideEnabled = true
     static let navigationBarHeight: CGFloat = 85 //65 + 20 statusbar    
     static let textInset: CGFloat = 24
     static let pushToHideThreshold: CGFloat = 140
@@ -548,11 +551,13 @@ extension Block {
             contentPadding = UIEdgeInsets(top: 0, left: ArticleStyles.textInset, bottom: 28, right: ArticleStyles.textInset)
         case (.Article, is PlainTextBlock, BlockStyle.InsetH1):
             contentPadding = UIEdgeInsets(top: 0, left: ArticleStyles.textInset, bottom: 13, right: ArticleStyles.textInset)
+        case (.Article, is PlainTextBlock, BlockStyle.H1):
+            contentPadding = UIEdgeInsets(top: 8, left: ArticleStyles.textInset, bottom: 0, right: ArticleStyles.textInset)
         case (.Article, is PlainTextBlock, BlockStyle.H2):
             contentPadding = UIEdgeInsets(top: 0, left: ArticleStyles.textInset, bottom: 12, right: ArticleStyles.textInset)
         case (.Article, is TextBlock, BlockStyle.Byline):
             contentPadding = UIEdgeInsets(top: 0, left: ArticleStyles.textInset, bottom: 40, right: ArticleStyles.textInset)
-        case (.Article, is FooterBlock, _):
+        case (.Article, is SpacingBlock, BlockStyle.ArticleFooter):
             contentPadding = UIEdgeInsets(top: 0, left: 0, bottom: FooterCellStyles.lineHeight, right: 0)
         case (.Article, _, _):
             contentPadding = UIEdgeInsets(top: 0, left: ArticleStyles.textInset, bottom: 24, right: ArticleStyles.textInset)
@@ -607,6 +612,8 @@ extension Block {
             return Fonts.introFont
         case (_,BlockStyle.InsetH1), (_,BlockStyle.InsetH2):
             return Fonts.alternativeMediumFont
+        case (_,BlockStyle.H1):
+            return Fonts.alternativeMediumFont
         case (_,BlockStyle.H2):
             return Fonts.mediumFont
         case (is TweetBlock, _):
@@ -643,6 +650,8 @@ extension Block {
             return 22
         case BlockStyle.Byline:
             return 14
+        case BlockStyle.H1:
+            return 24
         case BlockStyle.H2:
             return 20
         default:
@@ -1033,7 +1042,7 @@ class ReadingTimeStyler : Styler {
     var attributedReadingTime: NSAttributedString? {
         guard let readingTime = value else { return NSAttributedString(string:"") }
         let attrs = StringAttributes(font: readingTimeFont, foregroundColor: readingTimeFontColor, lineSpacing: readingTimeLinespacing, alignment: readingTimeAlignment, shadow: readingTimeShadow)
-        return NSAttributedString(string:readingTime, attributes:attrs.dictionary)
+        return NSAttributedString(string:readingTime.uppercaseString, attributes:attrs.dictionary)
     }
     
     var readingTimeFontColor: UIColor {
@@ -1076,6 +1085,8 @@ class PlainTextStyler : Styler {
             return Fonts.mediumFont.fallbackWithSize(18)
         case (_, BlockStyle.InsetH2):
             return  Fonts.mediumFont.fallbackWithSize(16)
+        case (_, BlockStyle.H1):
+            return Fonts.alternativeMediumFont.fallbackWithSize(24)
         case (_, BlockStyle.H2):
             return Fonts.mediumFont.fallbackWithSize(20)
         case (is FallbackBlock, _):
@@ -1103,7 +1114,7 @@ class PlainTextStyler : Styler {
 
     var plainTextColor: UIColor {
         switch block.style {
-        case BlockStyle.InsetH1:
+        case BlockStyle.InsetH1, BlockStyle.H1:
             return Colors.accentColor
         default:
             return Colors.defaultFontColor

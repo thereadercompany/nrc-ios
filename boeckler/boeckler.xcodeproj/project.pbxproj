@@ -241,7 +241,6 @@
 		17E64CC61C33D34A00E0BEB2 /* CustomArticleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E64CC51C33D34A00E0BEB2 /* CustomArticleViewController.swift */; };
 		17F0C9C71C0EEA440088B74C /* BorderNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17F0C9C61C0EEA440088B74C /* BorderNode.swift */; };
 		17F0C9CE1C1090500088B74C /* FooterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17F0C9CC1C1090500088B74C /* FooterCell.swift */; };
-		17F0C9CF1C1090500088B74C /* FooterBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17F0C9CD1C1090500088B74C /* FooterBlock.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -488,7 +487,6 @@
 		17E64CC51C33D34A00E0BEB2 /* CustomArticleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomArticleViewController.swift; sourceTree = "<group>"; };
 		17F0C9C61C0EEA440088B74C /* BorderNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BorderNode.swift; path = "core/trc-core/BorderNode.swift"; sourceTree = SOURCE_ROOT; };
 		17F0C9CC1C1090500088B74C /* FooterCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FooterCell.swift; path = "core/trc-core/FooterCell.swift"; sourceTree = SOURCE_ROOT; };
-		17F0C9CD1C1090500088B74C /* FooterBlock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FooterBlock.swift; path = "core/trc-core/FooterBlock.swift"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -662,7 +660,6 @@
 				1731BDE31BEA43640012D6FF /* FallbackContentCell.swift */,
 				179744641C32C96C004730C2 /* Font.swift */,
 				179744651C32C96C004730C2 /* FontLoader.swift */,
-				17F0C9CD1C1090500088B74C /* FooterBlock.swift */,
 				17F0C9CC1C1090500088B74C /* FooterCell.swift */,
 				1731BDE41BEA43640012D6FF /* fts3_tokenizer.h */,
 				1731BDE51BEA43640012D6FF /* GradientNode.swift */,
@@ -1046,7 +1043,6 @@
 				1731BF361BEA59110012D6FF /* NSURLComponents.swift in Sources */,
 				1718D6AC1C05A4CC0036DB5B /* TrackerFactory.swift in Sources */,
 				1731BF511BEA591B0012D6FF /* MarkupTag.swift in Sources */,
-				17F0C9CF1C1090500088B74C /* FooterBlock.swift in Sources */,
 				1731BF681BEA59270012D6FF /* ArticleViewController.swift in Sources */,
 				1731BED61BEA43BE0012D6FF /* TrackingDelegate.swift in Sources */,
 				1731BF5E1BEA59270012D6FF /* Argo.swift in Sources */,

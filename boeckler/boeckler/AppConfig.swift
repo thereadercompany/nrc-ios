@@ -15,7 +15,7 @@ import UIKit
 struct AppConfig {
     
     // API
-    static let server = Server.LocalhostDemo
+    static let server = Server.OnlineDemo
     static let baseServerURL = NSURL(string: server.rawValue)!
     static let baseMediaURL = AppConfig.baseServerURL.URLByAppendingPathComponent("__media__")
     static let authURL = AppConfig.baseServerURL.URLByAppendingPathComponent("__auth__")
