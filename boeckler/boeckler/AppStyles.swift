@@ -177,11 +177,12 @@ struct TimelineStyles {
     static let defaultMargin: CGFloat = 0
     static let internalMargin: CGFloat = 16
     static let contentInset: CGFloat = 16
+    static let backgroundColorBoot = Colors.accentColor
     static let backgroundColor = Colors.timelineBackgroundColor
     static let navigationBarHeight: CGFloat = 85 //65 + 20 statusbar
     static let lineInset: CGFloat = 16
     static let lineHeight: CGFloat = 1
-    static let initiallyHideNavigationView = true
+    static let initiallyHideNavigationView = false
     static let navigationViewStyle = NavigationViewStyle.Dark(Colors.accentColor)
     static func navigationViewNeedsLine(style: NavigationViewStyle) -> Bool {
         return true
@@ -213,7 +214,7 @@ struct ArticleStyles {
     static let navBarAutoHideEnabled = true
     static let navigationBarHeight: CGFloat = 85 //65 + 20 statusbar    
     static let textInset: CGFloat = 24
-    static let pushToHideThreshold: CGFloat = 140
+    static let pushToHideThreshold: CGFloat = 120
     static let backgroundColor = Colors.accentColor
     static func navigationViewNeedsLine(style: NavigationViewStyle) -> Bool {
         switch style {
@@ -448,7 +449,7 @@ extension BlockDecoration {
 
     var imageDecorationPaddingBottom: CGFloat {
         switch self {
-        case .Bottom, .Full: return 24
+        case .Bottom, .Full: return 0
         default: return 0
         }
     }
