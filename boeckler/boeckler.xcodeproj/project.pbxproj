@@ -1313,10 +1313,73 @@
 				OTHER_SWIFT_FLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = io.trc.hbs.mitbestimmung;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "ac237e02-d2f8-49eb-8708-161cb6c63476";
+				PROVISIONING_PROFILE = "65959ea4-aff2-4b16-9425-cbd9c3dbdd21";
 				SWIFT_OBJC_BRIDGING_HEADER = "boeckler/boeckler-Bridging-Header.h";
 			};
 			name = Release;
+		};
+		174BAB111C5115B800523560 /* Adhoc */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Adhoc;
+		};
+		174BAB121C5115B800523560 /* Adhoc */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: The Reader Company B.V. (WM2T968KAX)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/core",
+					"$(PROJECT_DIR)/core/Carthage/Build/iOS",
+					"$(PROJECT_DIR)/core/Frameworks",
+					"$(PROJECT_DIR)/core/trc-core",
+					"$(PROJECT_DIR)/core/Carthage/Build/iOS",
+					"$(PROJECT_DIR)/core/Frameworks",
+				);
+				INFOPLIST_FILE = boeckler/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_SWIFT_FLAGS = "";
+				PRODUCT_BUNDLE_IDENTIFIER = io.trc.hbs.mitbestimmung;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "ac237e02-d2f8-49eb-8708-161cb6c63476";
+				SWIFT_OBJC_BRIDGING_HEADER = "boeckler/boeckler-Bridging-Header.h";
+			};
+			name = Adhoc;
 		};
 /* End XCBuildConfiguration section */
 
@@ -1326,6 +1389,7 @@
 			buildConfigurations = (
 				1731BD8E1BEA41050012D6FF /* Debug */,
 				1731BD8F1BEA41050012D6FF /* Release */,
+				174BAB111C5115B800523560 /* Adhoc */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -1335,6 +1399,7 @@
 			buildConfigurations = (
 				1731BD911BEA41050012D6FF /* Debug */,
 				1731BD921BEA41050012D6FF /* Release */,
+				174BAB121C5115B800523560 /* Adhoc */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
