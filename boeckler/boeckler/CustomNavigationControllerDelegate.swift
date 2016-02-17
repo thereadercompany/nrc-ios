@@ -23,7 +23,7 @@ class CustomNavigationControllerDelegate : NSObject, NavigationControllerDelegat
             }
         case (UINavigationControllerOperation.Pop, let articleVC as ArticleViewController, let blockContextVC as BlockContextViewController):
             if let cell = blockContextVC.cellForReference(articleVC.articleReference) as? MediaCell {
-                return MediaCellPopAnimator(cell: cell)
+                return MediaCellPopAnimator(cell: cell, instructions: articleVC.pullToCloseInstructions)
             }
         case (UINavigationControllerOperation.Push, _, let imageVC as ImageViewController):
             if let cell = imageVC.mediaCell {
@@ -31,7 +31,7 @@ class CustomNavigationControllerDelegate : NSObject, NavigationControllerDelegat
             }
         case (UINavigationControllerOperation.Pop, let imageVC as ImageViewController, _):
             if let cell = imageVC.mediaCell {
-                return ImagePopAnimator(mediaCell: cell)
+                return ImagePopAnimator(mediaCell: cell, instructions: imageVC.pullToCloseInstructions)
             }
         default: ()
         }

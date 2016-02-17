@@ -187,6 +187,7 @@
 		174192F91BF0F72A008B94A0 /* UniversNextPro-BoldCond.otf in Resources */ = {isa = PBXBuildFile; fileRef = 174192F61BF0F72A008B94A0 /* UniversNextPro-BoldCond.otf */; };
 		174658E31C0A2349003FEAA8 /* TimelineNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 174658E11C0A2349003FEAA8 /* TimelineNavigationView.swift */; };
 		174658E41C0A2349003FEAA8 /* TimelineNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 174658E21C0A2349003FEAA8 /* TimelineNavigationViewController.swift */; };
+		175AAC9A1C6A201700E40194 /* UIDeviceOrientation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 175AAC991C6A201700E40194 /* UIDeviceOrientation.swift */; };
 		175DFB671BF2090C00A181C1 /* CustomTimelineNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 175DFB661BF2090C00A181C1 /* CustomTimelineNavigationView.swift */; };
 		175DFB691BF209E500A181C1 /* CustomTimelineNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 175DFB681BF209E500A181C1 /* CustomTimelineNavigationViewController.swift */; };
 		175FF2001C0DE89A00F3458F /* Column.swift in Sources */ = {isa = PBXBuildFile; fileRef = 175FF1FF1C0DE89A00F3458F /* Column.swift */; };
@@ -239,6 +240,7 @@
 		17E64CC31C32EF8400E0BEB2 /* BlockCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E64CC11C32EF8400E0BEB2 /* BlockCategory.swift */; };
 		17E64CC41C32EF8400E0BEB2 /* VideoBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E64CC21C32EF8400E0BEB2 /* VideoBlock.swift */; };
 		17E64CC61C33D34A00E0BEB2 /* CustomArticleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E64CC51C33D34A00E0BEB2 /* CustomArticleViewController.swift */; };
+		17E6A4F71C73BBEE00EB9B52 /* UIScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E6A4F61C73BBEE00EB9B52 /* UIScrollView.swift */; };
 		17F0C9C71C0EEA440088B74C /* BorderNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17F0C9C61C0EEA440088B74C /* BorderNode.swift */; };
 		17F0C9CE1C1090500088B74C /* FooterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17F0C9CC1C1090500088B74C /* FooterCell.swift */; };
 /* End PBXBuildFile section */
@@ -431,6 +433,7 @@
 		174658C21C08989E003FEAA8 /* trc-core-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "trc-core-Bridging-Header.h"; path = "core/trc-core/trc-core-Bridging-Header.h"; sourceTree = SOURCE_ROOT; };
 		174658E11C0A2349003FEAA8 /* TimelineNavigationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TimelineNavigationView.swift; path = "core/trc-core/TimelineNavigationView.swift"; sourceTree = SOURCE_ROOT; };
 		174658E21C0A2349003FEAA8 /* TimelineNavigationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TimelineNavigationViewController.swift; path = "core/trc-core/TimelineNavigationViewController.swift"; sourceTree = SOURCE_ROOT; };
+		175AAC991C6A201700E40194 /* UIDeviceOrientation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIDeviceOrientation.swift; path = "core/trc-core/UIDeviceOrientation.swift"; sourceTree = SOURCE_ROOT; };
 		175DFB661BF2090C00A181C1 /* CustomTimelineNavigationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTimelineNavigationView.swift; sourceTree = "<group>"; };
 		175DFB681BF209E500A181C1 /* CustomTimelineNavigationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTimelineNavigationViewController.swift; sourceTree = "<group>"; };
 		175FF1FF1C0DE89A00F3458F /* Column.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Column.swift; path = "core/trc-core/Column.swift"; sourceTree = SOURCE_ROOT; };
@@ -485,6 +488,7 @@
 		17E64CC11C32EF8400E0BEB2 /* BlockCategory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BlockCategory.swift; path = "core/trc-core/BlockCategory.swift"; sourceTree = SOURCE_ROOT; };
 		17E64CC21C32EF8400E0BEB2 /* VideoBlock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VideoBlock.swift; path = "core/trc-core/VideoBlock.swift"; sourceTree = SOURCE_ROOT; };
 		17E64CC51C33D34A00E0BEB2 /* CustomArticleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomArticleViewController.swift; sourceTree = "<group>"; };
+		17E6A4F61C73BBEE00EB9B52 /* UIScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIScrollView.swift; path = "core/trc-core/UIScrollView.swift"; sourceTree = SOURCE_ROOT; };
 		17F0C9C61C0EEA440088B74C /* BorderNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BorderNode.swift; path = "core/trc-core/BorderNode.swift"; sourceTree = SOURCE_ROOT; };
 		17F0C9CC1C1090500088B74C /* FooterCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FooterCell.swift; path = "core/trc-core/FooterCell.swift"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
@@ -768,6 +772,8 @@
 				17211F471C47FE7700236EA6 /* ImagePopAnimatableView.swift */,
 				17211F4B1C4928B300236EA6 /* NavigationControllerDelegate.swift */,
 				172DF3491C4FD229001E4568 /* PullToCloseView.swift */,
+				175AAC991C6A201700E40194 /* UIDeviceOrientation.swift */,
+				17E6A4F61C73BBEE00EB9B52 /* UIScrollView.swift */,
 			);
 			name = Sources;
 			sourceTree = "<group>";
@@ -1007,6 +1013,7 @@
 				1718D6BC1C0738020036DB5B /* Block.swift in Sources */,
 				1731BF521BEA591B0012D6FF /* Media.swift in Sources */,
 				1731BF351BEA59110012D6FF /* NSURL.swift in Sources */,
+				175AAC9A1C6A201700E40194 /* UIDeviceOrientation.swift in Sources */,
 				17211F4A1C4925A300236EA6 /* CustomNavigationControllerDelegate.swift in Sources */,
 				1718D6B41C05A5230036DB5B /* BlockContextDataSourceFactory.swift in Sources */,
 				1731BF4D1BEA591B0012D6FF /* LabelNode.swift in Sources */,
@@ -1035,6 +1042,7 @@
 				1731BEE81BEA43BE0012D6FF /* VimeoCell.swift in Sources */,
 				1731BF2E1BEA59110012D6FF /* NavigationViewController.swift in Sources */,
 				1731BF881BEA59270012D6FF /* Containables.swift in Sources */,
+				17E6A4F71C73BBEE00EB9B52 /* UIScrollView.swift in Sources */,
 				1731BEEB1BEA43BE0012D6FF /* YoutubeBlock.swift in Sources */,
 				1731BED41BEA43BE0012D6FF /* TrackingController.swift in Sources */,
 				1731BF8A1BEA59270012D6FF /* DataControllerError.swift in Sources */,
