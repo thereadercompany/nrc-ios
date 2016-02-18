@@ -18,12 +18,12 @@ class CustomNavigationControllerDelegate : NSObject, NavigationControllerDelegat
         
         switch (operation, fromVC, toVC) {
         case (UINavigationControllerOperation.Push, let blockContextVC as BlockContextViewController, let articleVC as ArticleViewController):
-            if let cell = blockContextVC.cellForReference(articleVC.articleReference) as? MediaCell {
-                return MediaCellPushAnimator(cell: cell, cellFactory: cellFactory)
+            if let cell = blockContextVC.cellForReference(articleVC.articleReference) as? ArticleRefCell {
+                return ArticleRefPushAnimator(cell: cell, cellFactory: cellFactory)
             }
         case (UINavigationControllerOperation.Pop, let articleVC as ArticleViewController, let blockContextVC as BlockContextViewController):
-            if let cell = blockContextVC.cellForReference(articleVC.articleReference) as? MediaCell {
-                return MediaCellPopAnimator(cell: cell, instructions: articleVC.pullToCloseInstructions)
+            if let cell = blockContextVC.cellForReference(articleVC.articleReference) as? ArticleRefCell {
+                return ArticleRefPopAnimator(cell: cell, instructions: articleVC.pullToCloseInstructions)
             }
         case (UINavigationControllerOperation.Push, _, let imageVC as ImageViewController):
             if let cell = imageVC.mediaCell {

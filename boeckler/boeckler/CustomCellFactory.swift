@@ -14,8 +14,11 @@ import AsyncDisplayKit
 class CustomCellFactory: CellFactory {
 
     let trackerFactory: TrackerFactory
-    init(trackerFactory: TrackerFactory) {
+    let dataController: BlockContextDataController
+    
+    init(trackerFactory: TrackerFactory, dataController: BlockContextDataController) {
         self.trackerFactory = trackerFactory
+        self.dataController = dataController
     }
     
     func cell(forBlock block: Block) -> Cell {
@@ -51,7 +54,7 @@ class CustomCellFactory: CellFactory {
     func createCell(block: ArticleRefBlock) -> Cell? {
         switch block.style {
         case  BlockStyle.Highlight, BlockStyle.HighlightXL:
-            return HighlightCell(articleRef: block)
+            return HighlightCell(articleRef: block, dataController: dataController, cellFactory: self)
         default:
             return nil
         }

@@ -22,7 +22,9 @@ extension SwinjectStoryboard {
         container.register(BlockContextDataController.self, name: "default-data-controller") { r in CoreBlockContextDataController(cache: r.resolve(Cache.self)!, networkRequestHandler: r.resolve(NetworkRequestHandler.self)!, interceptor: r.resolve(PaywallDataInterceptor.self)! )  }.inObjectScope(.Container)
         container.register(BlockContextDataController.self, name: "paywall-data-controller") { r in CoreBlockContextDataController(cache: r.resolve(Cache.self)!, networkRequestHandler: r.resolve(NetworkRequestHandler.self)!) }.inObjectScope(.Container)
         container.register(TrackerFactory.self) { r in CoreTrackerFactory.init(delegate: r.resolve(BlockContextDataController.self, name: "default-data-controller")!)}.inObjectScope(.Container)
-        container.register(CellFactory.self) { r in CustomCellFactory(trackerFactory: r.resolve(TrackerFactory.self)!) }.inObjectScope(.Container)
+        
+        container.register(CellFactory.self) { r in CustomCellFactory(trackerFactory: r.resolve(TrackerFactory.self)!, dataController: r.resolve(BlockContextDataController.self, name: "default-data-controller")!) }.inObjectScope(.Container)
+        
         container.register(NavigationControllerDelegate.self) { r  in CustomNavigationControllerDelegate(cellFactory: r.resolve(CellFactory.self)!)}.inObjectScope(.Container)
         container.register(AuthenticationController.self) { r in CoreAuthenticationController(paywallController: r.resolve(PaywallStateController.self)! )}.inObjectScope(.Container)
         container.register(URLHandler.self) { r in CoreURLHandler(paywallController: r.resolve(PaywallStateController.self)!, authController: r.resolve(AuthenticationController.self)!) }.inObjectScope(.Container)
