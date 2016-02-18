@@ -14,6 +14,9 @@ import UIKit
 */
 struct AppConfig {
     
+    // Instabug
+    static let instabugKey = "96eff9b30e3192f192f24f927ba6de2f"
+    
     // API
     static let server = Server.OnlineDemo
     static let baseServerURL = NSURL(string: server.rawValue)!
