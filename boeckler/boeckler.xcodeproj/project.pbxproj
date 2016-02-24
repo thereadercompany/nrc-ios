@@ -238,6 +238,7 @@
 		17CA4AB71BF225050011495A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 17CA4AB51BF225050011495A /* LaunchScreen.storyboard */; };
 		17CA90AF1C15EEDF008875BF /* Cartfile in Resources */ = {isa = PBXBuildFile; fileRef = 17CA90AE1C15EEDF008875BF /* Cartfile */; };
 		17D53C941C75FC3E007B5E79 /* ArticleRefCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17D53C931C75FC3E007B5E79 /* ArticleRefCell.swift */; };
+		17D53C991C7DAF4D007B5E79 /* vimeo.html in Resources */ = {isa = PBXBuildFile; fileRef = 17D53C981C7DAF4D007B5E79 /* vimeo.html */; };
 		17E64CC31C32EF8400E0BEB2 /* BlockCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E64CC11C32EF8400E0BEB2 /* BlockCategory.swift */; };
 		17E64CC41C32EF8400E0BEB2 /* VideoBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E64CC21C32EF8400E0BEB2 /* VideoBlock.swift */; };
 		17E64CC61C33D34A00E0BEB2 /* CustomArticleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E64CC51C33D34A00E0BEB2 /* CustomArticleViewController.swift */; };
@@ -487,6 +488,7 @@
 		17CA4AB61BF225050011495A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		17CA90AE1C15EEDF008875BF /* Cartfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Cartfile; path = core/Cartfile; sourceTree = SOURCE_ROOT; };
 		17D53C931C75FC3E007B5E79 /* ArticleRefCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleRefCell.swift; sourceTree = "<group>"; };
+		17D53C981C7DAF4D007B5E79 /* vimeo.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = vimeo.html; path = core/vimeo.html; sourceTree = SOURCE_ROOT; };
 		17E64CC11C32EF8400E0BEB2 /* BlockCategory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BlockCategory.swift; path = "core/trc-core/BlockCategory.swift"; sourceTree = SOURCE_ROOT; };
 		17E64CC21C32EF8400E0BEB2 /* VideoBlock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VideoBlock.swift; path = "core/trc-core/VideoBlock.swift"; sourceTree = SOURCE_ROOT; };
 		17E64CC51C33D34A00E0BEB2 /* CustomArticleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomArticleViewController.swift; sourceTree = "<group>"; };
@@ -581,6 +583,7 @@
 		1731BD9C1BEA42C30012D6FF /* core */ = {
 			isa = PBXGroup;
 			children = (
+				17D53C981C7DAF4D007B5E79 /* vimeo.html */,
 				17CA90AE1C15EEDF008875BF /* Cartfile */,
 				174658C21C08989E003FEAA8 /* trc-core-Bridging-Header.h */,
 				1731BEFA1BEA55B20012D6FF /* Frameworks */,
@@ -922,6 +925,7 @@
 				17CA4AB71BF225050011495A /* LaunchScreen.storyboard in Resources */,
 				177FD6C31BECC9C900650BFB /* Images.xcassets in Resources */,
 				1731BD971BEA42A30012D6FF /* Main.storyboard in Resources */,
+				17D53C991C7DAF4D007B5E79 /* vimeo.html in Resources */,
 				179B30921C0DDC67001005E2 /* SabonNextCom-Italic.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1327,7 +1331,7 @@
 				OTHER_SWIFT_FLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = io.trc.hbs.mitbestimmung;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "65959ea4-aff2-4b16-9425-cbd9c3dbdd21";
+				PROVISIONING_PROFILE = "0e25846f-a589-4d26-8aaa-bd11db9cbcc0";
 				SWIFT_OBJC_BRIDGING_HEADER = "boeckler/boeckler-Bridging-Header.h";
 			};
 			name = Release;
