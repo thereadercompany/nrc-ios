@@ -553,7 +553,7 @@ extension Block {
         case (.Article, is PlainTextBlock, BlockStyle.InsetH1):
             contentPadding = UIEdgeInsets(top: 0, left: ArticleStyles.textInset, bottom: 13, right: ArticleStyles.textInset)
         case (.Article, is PlainTextBlock, BlockStyle.H1):
-            contentPadding = UIEdgeInsets(top: 8, left: ArticleStyles.textInset, bottom: 0, right: ArticleStyles.textInset)
+            contentPadding = UIEdgeInsets(top: 8, left: ArticleStyles.textInset, bottom: 16, right: ArticleStyles.textInset)
         case (.Article, is PlainTextBlock, BlockStyle.H2):
             contentPadding = UIEdgeInsets(top: 0, left: ArticleStyles.textInset, bottom: 12, right: ArticleStyles.textInset)
         case (.Article, is TextBlock, BlockStyle.Byline):
@@ -1087,7 +1087,7 @@ class PlainTextStyler : Styler {
         case (_, BlockStyle.InsetH2):
             return  Fonts.mediumFont.fallbackWithSize(16)
         case (_, BlockStyle.H1):
-            return Fonts.alternativeMediumFont.fallbackWithSize(24)
+            return Fonts.alternativeMediumFont.fallbackWithSize(20)
         case (_, BlockStyle.H2):
             return Fonts.mediumFont.fallbackWithSize(20)
         case (is FallbackBlock, _):
@@ -1098,8 +1098,9 @@ class PlainTextStyler : Styler {
     }
     
     var plainTextLinespacing: CGFloat {
-        switch (block, block.style) {
-        case (is FallbackBlock, _): return 4
+        switch (block.context, block, block.style) {
+        case (_, is FallbackBlock, _): return 4
+        case (BlockContext.Article, _, BlockStyle.H1): return 4
         default: return 4
         }
     }
@@ -1123,10 +1124,23 @@ class PlainTextStyler : Styler {
     }
     
     var attributedPlainText: NSAttributedString? {
-        guard let plainText = value else { return NSAttributedString(string: "") }
+        guard var plainText = value else { return NSAttributedString(string: "") }
+        
+        if needsAllCaps {
+            plainText = plainText.uppercaseString
+        }
+
         let attrs = StringAttributes(font: plainTextFont, foregroundColor: plainTextColor, lineSpacing: plainTextLinespacing)
         let result = NSMutableAttributedString(string:plainText, attributes:attrs.dictionary)
         return result;
+    }
+    
+    var needsAllCaps: Bool {
+        switch (block.context, block.style)  {
+        case (BlockContext.Article, BlockStyle.H1):
+            return true
+        default: return false
+        }
     }
     
     var shouldRenderPlainText: Bool {
