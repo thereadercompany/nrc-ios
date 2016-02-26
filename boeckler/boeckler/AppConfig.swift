@@ -26,6 +26,7 @@ struct AppConfig {
     static let serverIsFileBased = baseServerURL.URLString.rangeOfString("5001") != nil
     static let currentPaywallIdentfierKey = "nl.nrc.timeline.paywall.currentIdentfier"
     static let preloadMediaFormat = MediaFormat.Medium
+    static let maxMediaFormat = MediaFormat.Large
     
     static let cacheSize: UInt = 1000000    
     

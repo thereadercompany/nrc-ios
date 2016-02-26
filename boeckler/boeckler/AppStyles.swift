@@ -39,7 +39,7 @@ struct Colors {
     static let linkColor = UIColor(hex: 0xD30910)
     static let cardBackgroundColor =  UIColor.whiteColor()
     static let articleBackgroundColor =  UIColor.whiteColor()
-    static let timelineBackgroundColor =  UIColor.blackColor()
+    static let timelineBackgroundColor =  UIColor(hex: 0x2A2D31)
     static let timelineDividerBackgroundColor = Colors.accentColor
     static let timelineSpacingBackgroundColor = Colors.accentColor
     static let insetBackgroundColor = UIColor(hex: 0xF7F7F7)
@@ -177,7 +177,7 @@ struct TimelineStyles {
     static let defaultMargin: CGFloat = 0
     static let internalMargin: CGFloat = 16
     static let contentInset: CGFloat = 16
-    static let backgroundColorBoot = Colors.accentColor
+    static let backgroundColorBoot = Colors.timelineBackgroundColor
     static let backgroundColor = Colors.timelineBackgroundColor
     static let navigationBarHeight: CGFloat = 85 //65 + 20 statusbar
     static let lineInset: CGFloat = 16
@@ -776,7 +776,7 @@ class IssueLabelStyler: Styler {
     var attributedIssueLabel : NSAttributedString {
         guard let issueLabel = value else { return NSAttributedString(string: "") }
         let attrs = StringAttributes(font: issueLabelFont, foregroundColor: issueLabelTextColor, lineSpacing: issueLabelTextLineSpacing, alignment: NSTextAlignment.Center)
-        let result = NSMutableAttributedString(string:issueLabel, attributes:attrs.dictionary)
+        let result = NSMutableAttributedString(string:issueLabel.uppercaseString, attributes:attrs.dictionary)
         return result;
     }}
 
