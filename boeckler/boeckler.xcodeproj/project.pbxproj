@@ -1306,6 +1306,7 @@
 				PROVISIONING_PROFILE = "24c0d1bd-1fe9-4e9a-a798-89b054818310";
 				SWIFT_OBJC_BRIDGING_HEADER = "boeckler/boeckler-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -1333,6 +1334,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "0e25846f-a589-4d26-8aaa-bd11db9cbcc0";
 				SWIFT_OBJC_BRIDGING_HEADER = "boeckler/boeckler-Bridging-Header.h";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
@@ -1397,6 +1399,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "ac91ef04-22b9-4e86-a1a3-7597b4f0e9cd";
 				SWIFT_OBJC_BRIDGING_HEADER = "boeckler/boeckler-Bridging-Header.h";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Adhoc;
 		};
