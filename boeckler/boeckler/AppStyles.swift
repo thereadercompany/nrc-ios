@@ -98,7 +98,7 @@ struct Fonts {
     static let errorFont:Font = UniversNextPro.Bold
     static let introFont = UniversNextPro.Cond
     static let streamerFont = UniversNextPro.Cond
-    static let imageCaptionFont = UniversNextPro.Cond
+    static let mediaCaptionFont = UniversNextPro.Cond
     static let defaultTaglineFont: Font = UniversNextPro.BoldCond
     static let defaultAuthorFont: Font = SimpleHBS.Regular
     static let tweetFont = HelveticaNeue.Light
@@ -176,7 +176,7 @@ struct TimelineStyles {
     static let topInset: CGFloat = 85
     static let defaultMargin: CGFloat = 0
     static let internalMargin: CGFloat = 16
-    static let contentInset: CGFloat = 16
+    static let contentInset: CGFloat = Screen.isTablet ?30:16
     static let backgroundColorBoot = Colors.timelineBackgroundColor
     static let backgroundColor = Colors.timelineBackgroundColor
     static let navigationBarHeight: CGFloat = 85 //65 + 20 statusbar
@@ -213,7 +213,8 @@ struct ArticleStyles {
     static let topInset: CGFloat = 0
     static let navBarAutoHideEnabled = true
     static let navigationBarHeight: CGFloat = 85 //65 + 20 statusbar    
-    static let textInset: CGFloat = 24
+    static let textInset: CGFloat = Screen.value(24,80)
+    static let specialInset: CGFloat = Screen.value(0,40)
     static let pushToHideThreshold: CGFloat = 120
     static let backgroundColor = Colors.accentColor
     static func navigationViewNeedsLine(style: NavigationViewStyle) -> Bool {
@@ -227,7 +228,7 @@ struct ArticleStyles {
 
 struct ArticleHeaderCellStyles {
     static let imageHeight: CGFloat = Window.vval([Screen.vXS: Screen.vXS*(9/12),Screen.vS:Screen.vS*(9/12),Screen.vM:Screen.vM*(9/12), Screen.vL:Screen.vL*9/12])
-    static let headlineMarginTop: CGFloat = 32
+    static let headlineMarginTop: CGFloat = Screen.value(32,52)
 }
 
 struct FooterCellStyles {
@@ -287,6 +288,15 @@ struct HighlightCellStyles {
             return [.Bottom(0.5, 0.7)]
         }
     }
+    
+    static func heightForWidth(width: CGFloat, style: BlockStyle) -> CGFloat {
+        switch style {
+        case BlockStyle.HighlightXL:
+            return Screen.value(width,512)
+        default:
+            return Screen.value(width*0.7,256)
+        }
+    }
 }
 
 struct AlertCellStyles {
@@ -339,9 +349,9 @@ struct TweetCellStyles {
     
 }
     
-struct ImageCellStyles {
-    static let textPaddingTop: CGFloat = 17
-    static let textPaddingBottom: CGFloat = 19
+struct MediaCellStyles {
+    static let textPaddingTop: CGFloat = Screen.value(17,14)
+    static let textPaddingBottom: CGFloat = Screen.value(23,40)
 }
 
 struct VideoCellStyles {
@@ -361,8 +371,7 @@ struct LabelStyles {
 struct IssueLabelStyles {
     static let backgroundColor = Colors.transparant
     static let foregroundColor = Colors.titleOverImageColor
-    static let lineHeight: CGFloat = 2
-    static let font = Fonts.alternativeMediumFont.fallbackWithSize(24)
+    static let font = Fonts.alternativeMediumFont.fallbackWithSize(Screen.value(24,28))
 }
 
 struct ErrorStyles {
@@ -446,13 +455,6 @@ extension BlockDecoration {
         default: return 0
         }
     }
-
-    var imageDecorationPaddingBottom: CGFloat {
-        switch self {
-        case .Bottom, .Full: return 0
-        default: return 0
-        }
-    }
     
     var tweetDecorationPaddingBottom: CGFloat {
         switch self {
@@ -475,9 +477,13 @@ extension UIView {
 extension Block {
     
     var decorationPaddingSide: CGFloat {
-        switch (self.context, self) {
-        case (.Article, is TweetBlock):
+        switch (self.context, self, self.style) {
+        case (.Article, is TweetBlock, _):
             return 24
+        case (.Article, is ImageBlock, BlockStyle.Inset):
+            return 0
+        case (.Article, is ImageBlock, _), (.Article, is StreamerBlock, _):
+            return ArticleStyles.specialInset
         default:
             return 0
         }
@@ -487,17 +493,24 @@ extension Block {
         switch (self.context, self, style) {
         case (.Article, is TweetBlock, _):
             return self.decoration.tweetDecorationPaddingBottom
-        case (.Article, is ImageBlock, _):
-            return self.decoration.imageDecorationPaddingBottom
         case (.Article, is StreamerBlock, _):
             return 32
         default:
             return 0
         }
     }
-    
+
     var decorationPadding: UIEdgeInsets {
         return UIEdgeInsets(top: 0, left: decorationPaddingSide, bottom: decorationPaddingBottom, right: decorationPaddingSide)
+    }
+    
+    var mediaPaddingSide: CGFloat {
+        switch(self.context) {
+            case BlockContext.Article:
+                return ArticleStyles.specialInset
+            default:
+                return 0
+        }
     }
     
     var decorationColor: UIColor? {
@@ -538,8 +551,10 @@ extension Block {
             contentPadding = UIEdgeInsets(top: 0, left: 0, bottom: 16, right: 0)
         case (_, is TweetBlock, _):
             contentPadding = UIEdgeInsets(top: 0, left: 20, bottom: 24, right: 20)
+        case (_, is ImageBlock, BlockStyle.Inset):
+            contentPadding = UIEdgeInsets(top: 0, left: ArticleStyles.textInset, bottom: 0, right: ArticleStyles.textInset)            
         case (_, is ImageBlock, _):
-            contentPadding = UIEdgeInsets(top: 0, left: ArticleStyles.textInset, bottom: 4, right: ArticleStyles.textInset)
+            contentPadding = UIEdgeInsets(top: 0, left: ArticleStyles.textInset-ArticleStyles.specialInset, bottom: 0, right: ArticleStyles.textInset-ArticleStyles.specialInset)
         case (_, is UnsupportedContentBlock, _),(_, is FallbackBlock, _):
             contentPadding = UIEdgeInsets(top: 20, left: ArticleStyles.textInset, bottom: 20, right: ArticleStyles.textInset)
         case (.Timeline, _, _):
@@ -549,19 +564,19 @@ extension Block {
         case (.Article, is StreamerBlock, _):
             contentPadding = UIEdgeInsets(top: 0, left: ArticleStyles.textInset, bottom: 0, right: ArticleStyles.textInset)
         case (.Article, is ArticleHeaderBlock, _):
-            contentPadding = UIEdgeInsets(top: 0, left: ArticleStyles.textInset, bottom: 28, right: ArticleStyles.textInset)
+            contentPadding = UIEdgeInsets(top: 0, left: ArticleStyles.textInset, bottom: Screen.value(28,36), right: ArticleStyles.textInset)
         case (.Article, is PlainTextBlock, BlockStyle.InsetH1):
             contentPadding = UIEdgeInsets(top: 0, left: ArticleStyles.textInset, bottom: 13, right: ArticleStyles.textInset)
         case (.Article, is PlainTextBlock, BlockStyle.H1):
-            contentPadding = UIEdgeInsets(top: 8, left: ArticleStyles.textInset, bottom: 16, right: ArticleStyles.textInset)
+            contentPadding = UIEdgeInsets(top: 8, left: ArticleStyles.textInset, bottom: Screen.value(16,20), right: ArticleStyles.textInset)
         case (.Article, is PlainTextBlock, BlockStyle.H2):
-            contentPadding = UIEdgeInsets(top: 0, left: ArticleStyles.textInset, bottom: 12, right: ArticleStyles.textInset)
+            contentPadding = UIEdgeInsets(top: 8, left: ArticleStyles.textInset, bottom: Screen.value(12,12), right: ArticleStyles.textInset)
         case (.Article, is TextBlock, BlockStyle.Byline):
-            contentPadding = UIEdgeInsets(top: 0, left: ArticleStyles.textInset, bottom: 40, right: ArticleStyles.textInset)
+            contentPadding = UIEdgeInsets(top: 0, left: ArticleStyles.textInset, bottom: Screen.value(40,48), right: ArticleStyles.textInset)
         case (.Article, is SpacingBlock, BlockStyle.ArticleFooter):
             contentPadding = UIEdgeInsets(top: 0, left: 0, bottom: FooterCellStyles.lineHeight, right: 0)
         case (.Article, _, _):
-            contentPadding = UIEdgeInsets(top: 0, left: ArticleStyles.textInset, bottom: 24, right: ArticleStyles.textInset)
+            contentPadding = UIEdgeInsets(top: 0, left: ArticleStyles.textInset, bottom: Screen.value(24, 30), right: ArticleStyles.textInset)
         default:
             contentPadding = UIEdgeInsetsZero
         }
@@ -598,88 +613,6 @@ extension Block {
             return Colors.articleBackgroundColor
         default:
             return Colors.defaultBackgroundColor
-        }
-    }
-    
-    var uiFont: UIFont {
-        return font.fallbackWithSize(fontSize)
-    }
-    
-    var font: Font {
-        switch (self, style) {
-        case (is TextBlock, BlockStyle.Byline), (_, BlockStyle.Inset), (is ImageBlock, _):
-            return Fonts.alternativeTextFont
-        case (is TextBlock, BlockStyle.Intro):
-            return Fonts.introFont
-        case (_,BlockStyle.InsetH1), (_,BlockStyle.InsetH2):
-            return Fonts.alternativeMediumFont
-        case (_,BlockStyle.H1):
-            return Fonts.alternativeMediumFont
-        case (_,BlockStyle.H2):
-            return Fonts.mediumFont
-        case (is TweetBlock, _):
-            return Fonts.tweetFont
-        default:
-            return Fonts.textFont
-        }
-    }
-    
-    var fontColor: UIColor {
-        switch (self, style) {
-        case (is TextBlock, BlockStyle.Byline):
-            return Colors.defaultFontColor.colorWithAlphaComponent(0.6)
-        case (_, BlockStyle.Inset),(is ImageBlock, _):
-            return Colors.defaultFontColor.colorWithAlphaComponent(0.8)
-        case (_, BlockStyle.InsetH1):
-            return Colors.accentColor
-        case (is TweetBlock, _):
-            return Colors.tweetTextColor
-        default:
-            return Colors.defaultFontColor
-        }
-    }
-    
-    var fontSize: CGFloat {
-        switch style {
-        case BlockStyle.Inset:
-            return 16
-        case BlockStyle.InsetH1:
-            return 14
-        case BlockStyle.InsetH2:
-            return 16
-        case BlockStyle.Intro:
-            return 22
-        case BlockStyle.Byline:
-            return 14
-        case BlockStyle.H1:
-            return 24
-        case BlockStyle.H2:
-            return 20
-        default:
-            return 16
-        }
-    }
-    
-    var lineSpacing: CGFloat {
-        switch (self, style) {
-        case (is TextBlock, BlockStyle.Intro):
-            return 6
-        case (is TextBlock, BlockStyle.Byline):
-            return 4
-        case (is TextBlock, BlockStyle.H2):
-            return 4
-        case (_, BlockStyle.Inset):
-            return 3
-        case (_, BlockStyle.InsetH1):
-            return 4
-        case (_, BlockStyle.InsetH2):
-            return 6
-        case (is ImageBlock, _):
-            return 3
-        case (is TweetBlock, _):
-            return 3
-        default:
-            return 11
         }
     }
     
@@ -785,7 +718,6 @@ class LabelStyler: Styler {
     
     static let linespacing: CGFloat = 3
     static let color = Colors.labelTextColor
-    static let labelInset = CGPoint(x: 16, y: 12)
     static let labelTextInsets = UIEdgeInsets(top: 1, left: 6, bottom: 1, right: 6)
     
     static let CategoryStyle = "category"
@@ -795,12 +727,21 @@ class LabelStyler: Styler {
         return 0
     }
     
-    var labelInset: CGPoint {
-        return CGPoint(x: 19, y: 23)
+    var labelInsetBottom: CGFloat {
+        switch block.style {
+        case BlockStyle.Highlight:
+            return Screen.value(23,28)
+        case BlockStyle.HighlightXL:
+            return Screen.value(23,49)
+        default:
+            return 0
+        }
     }
     
     var labelTextInsets: UIEdgeInsets {
-        return UIEdgeInsets(top: 2, left: 10, bottom: 2, right: 10)
+        let topBottom : CGFloat = Screen.value(2,4)
+        let leftRight : CGFloat = Screen.value(10,12)
+        return UIEdgeInsets(top: topBottom, left: leftRight, bottom: topBottom, right: leftRight)
     }
     
     var shouldRenderLabel: Bool {
@@ -809,7 +750,7 @@ class LabelStyler: Styler {
     }
     
     var labelFont: UIFont {
-        return Fonts.alternativeMediumFont.fallbackWithSize(11)
+        return Fonts.alternativeMediumFont.fallbackWithSize(Screen.value(11,13))
     }
     
     var labelTextColor: UIColor {
@@ -861,12 +802,7 @@ extension MediaBlock {
 class HeadlineStyler : Styler {
         
     var headlineBackgroundColor: UIColor? {
-        switch (block.context, block, block.style) {
-//        case (.Timeline, _, _):
-//            return Colors.titleOverImageBackgroundColor
-        default:
-            return nil
-        }
+        return nil
     }
     
     var headlineFontColor: UIColor {
@@ -891,13 +827,13 @@ class HeadlineStyler : Styler {
         case (.Timeline, is ArticleRefBlock, BlockStyle.Highlight):
             return Fonts.mediumFont.fallbackWithSize(24)
         case (.Timeline, is ArticleRefBlock, BlockStyle.HighlightXL):
-            return Fonts.mediumFont.fallbackWithSize(34)
+            return Fonts.mediumFont.fallbackWithSize(Screen.value(33,44))
         case (.Article, is ArticleHeaderBlock,_):
-            return Fonts.alternativeMediumFont.fallbackWithSize(34)
+            return Fonts.alternativeMediumFont.fallbackWithSize(Screen.value(34,38))
         case (.Article, is StreamerBlock, _):
             return Fonts.streamerFont.fallbackWithSize(32)
-        case (_, is YoutubeBlock, _), (_, is VimeoBlock, _):
-            return Fonts.mediumFont.fallbackWithSize(18)
+        case (_, is MediaBlock, _):
+            return Fonts.lightFont.fallbackWithSize(Screen.value(16,18))
         case (.Article, is UnsupportedContentBlock, _),(.Article, is FallbackBlock, _):
             return Fonts.mediumFont.fallbackWithSize(18)
         case (.Article, is TweetBlock, _):
@@ -917,8 +853,8 @@ class HeadlineStyler : Styler {
             return 3
         case (.Article, is StreamerBlock, _ ):
             return 6
-        case (_, is YoutubeBlock, _), (_, is VimeoBlock, _):
-            return 3
+        case (_, is MediaBlock, _):
+            return Screen.value(3,60)
         case (.Article, _,  _):
             return 7
         default:
@@ -968,6 +904,17 @@ class HeadlineStyler : Styler {
         case is ArticleHeaderBlock:
             return true
         default: return false
+        }
+    }
+    
+    var insetBottom: CGFloat {
+        switch block.style {
+        case BlockStyle.Highlight:
+            return Screen.value(4,8)
+        case BlockStyle.HighlightXL:
+            return Screen.value(4,12)
+        default:
+            return 0
         }
     }
 }
@@ -1051,7 +998,7 @@ class ReadingTimeStyler : Styler {
     }
     
     var readingTimeFont: UIFont {
-        return Fonts.regularFont.fallbackWithSize(10)
+        return Fonts.regularFont.fallbackWithSize(Screen.value(10,13))
     }
     
     var readingTimeLinespacing: CGFloat {
@@ -1074,6 +1021,10 @@ class ReadingTimeStyler : Styler {
     var shouldRenderShadow: Bool {
         return true
     }
+    
+    var insetLeft: CGFloat {
+        return Screen.value(10,12)
+    }
 }
 
 class PlainTextStyler : Styler {
@@ -1087,9 +1038,9 @@ class PlainTextStyler : Styler {
         case (_, BlockStyle.InsetH2):
             return  Fonts.mediumFont.fallbackWithSize(16)
         case (_, BlockStyle.H1):
-            return Fonts.alternativeMediumFont.fallbackWithSize(20)
+            return Fonts.alternativeMediumFont.fallbackWithSize(Screen.value(20, 24))
         case (_, BlockStyle.H2):
-            return Fonts.mediumFont.fallbackWithSize(20)
+            return Fonts.mediumFont.fallbackWithSize(Screen.value(20, 24))
         case (is FallbackBlock, _):
             return Fonts.lightFont.fallbackWithSize(15)
         default:
@@ -1098,11 +1049,7 @@ class PlainTextStyler : Styler {
     }
     
     var plainTextLinespacing: CGFloat {
-        switch (block.context, block, block.style) {
-        case (_, is FallbackBlock, _): return 4
-        case (BlockContext.Article, _, BlockStyle.H1): return 4
-        default: return 4
-        }
+        return Screen.value(4,6)
     }
     
     var plainTextBackgroundColor: UIColor {
@@ -1182,12 +1129,12 @@ class RichTextStyler : Styler {
             return Fonts.introFont
         case (is TextBlock, BlockStyle.Byline):
             return Fonts.alternativeTextFont
-        case  (_, BlockStyle.Inset):
-            return Fonts.textFont
-        case (is ImageBlock, _):
-            return Fonts.imageCaptionFont
+        case (is MediaBlock, _):
+            return Fonts.mediaCaptionFont
         case (is TweetBlock, _):
             return Fonts.tweetFont
+        case  (_, BlockStyle.Inset):
+            return Fonts.textFont
         default:
             return Fonts.textFont
         }
@@ -1208,8 +1155,8 @@ class RichTextStyler : Styler {
     
     var richTextFontSize: CGFloat {
         
-        if case is ImageBlock = block {
-            return 16
+        if case is MediaBlock = block {
+            return Screen.value(16,20)
         }
         
         switch block.style {
@@ -1217,13 +1164,11 @@ class RichTextStyler : Styler {
              BlockStyle.HighlightXL:
             return 14
         case BlockStyle.Intro:
-            return 22
+            return Screen.value(22,26)
         case BlockStyle.Byline:
-            return 14
-        case BlockStyle.H2:
-            return 20
+            return Screen.value(14,18)
         default:
-            return 17
+            return Screen.value(17,22)
         }
     }
     
@@ -1233,23 +1178,17 @@ class RichTextStyler : Styler {
              (is ArticleRefBlock, BlockStyle.HighlightXL):
             return 7
         case (is TextBlock, BlockStyle.Intro):
-            return 6
+            return Screen.value(6,9)
         case (is TextBlock, BlockStyle.Byline):
-            return 4
-        case (is TextBlock, BlockStyle.H2):
             return 4
         case (_, BlockStyle.Inset):
             return 8
-        case (_, BlockStyle.InsetH1):
-            return 4
-        case (_, BlockStyle.InsetH2):
-            return 6
-        case (is ImageBlock, _):
-            return 3
+        case (is MediaBlock, _):
+            return Screen.value(3,6)
         case (is TweetBlock, _):
             return 3
         default:
-            return 7
+            return Screen.value(7,10)
         }
     }
     

@@ -24,7 +24,6 @@ class ArticleRefCell : MediaCell {
         super.scrollViewHalted(halted)
         if halted && preview == nil {
             preview = renderPreview()
-            print("################ YEAH! ################")
         }
     }
     
