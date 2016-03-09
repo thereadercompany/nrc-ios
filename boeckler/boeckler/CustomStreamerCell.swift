@@ -26,14 +26,14 @@ class CustomStreamerCell : Cell {
         iconNode = ASImageNode()
         headlineNode = ASTextNode()
         subHeadlineNode = ASTextNode()
-        headlineStyler = HeadlineStyler(value: streamerBlock.headline, block: streamerBlock)
-        subHeadlineStyler = SubHeadlineStyler(value: streamerBlock.subHeadline, block: streamerBlock)
+        headlineStyler = HeadlineStyler(value: streamerBlock.text, block: streamerBlock)
+        subHeadlineStyler = SubHeadlineStyler(value: streamerBlock.author, block: streamerBlock)
         super.init(block: streamerBlock)
         addSubnode(iconNode)
         addSubnode(headlineNode)
         addSubnode(subHeadlineNode)
         
-        if let _ = streamerBlock.subHeadline {
+        if let _ = streamerBlock.author {
             iconNode.image = UIImage(named: "icon-quote")
         } else {
             iconNode.image = UIImage(named: "icon-streamer")

@@ -1,0 +1,452 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="CIDR_MODULE" version="4">
+  <component name="NewModuleRootManager">
+    <content url="file:///Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.11.sdk/usr/lib/libc++.tbd">
+      <sourceFolder url="file:///Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.11.sdk/usr/lib/libc++.tbd" isTestSource="false" />
+    </content>
+    <content url="file:///Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.11.sdk/usr/lib/libsqlite3.tbd">
+      <sourceFolder url="file:///Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.11.sdk/usr/lib/libsqlite3.tbd" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/.idea" />
+    <content url="file://$MODULE_DIR$/boeckler">
+      <sourceFolder url="file://$MODULE_DIR$/boeckler/core/Cartfile" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/boeckler/core/Frameworks/Instabug.bundle" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/boeckler/core/Frameworks/Instabug+Log.m" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/boeckler/core/Frameworks/Instabug+Log.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/boeckler/core/vimeo.html" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/boeckler/core/trc-core/StringAttributes.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/boeckler/core/trc-core/AppTakeoverViewController.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/boeckler/core/trc-core/ImageCell.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/boeckler/core/trc-core/NSBundle.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/boeckler/core/trc-core/TrackerFactory.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/boeckler/core/trc-core/TextCell.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/boeckler/core/trc-core/ZoomableImageView.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/boeckler/core/trc-core/GradientNode.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/boeckler/core/trc-core/TimelineViewController.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/boeckler/core/trc-core/LoginState.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/boeckler/core/trc-core/RelationshipType.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/boeckler/core/trc-core/NavigationViewController.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/boeckler/core/trc-core/Expression.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/boeckler/core/trc-core/Cache.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/boeckler/core/trc-core/UserActivity.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/boeckler/core/trc-core/TweetCell.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/boeckler/core/trc-core/NetworkRequestHandler.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/boeckler/core/trc-core/TrackingDelegate.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/boeckler/core/trc-core/ImagePushAnimatibleView.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/boeckler/core/trc-core/Account.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/boeckler/core/trc-core/BlockContextReference.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/boeckler/core/trc-core/Statement.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/boeckler/core/trc-core/PullToCloseView.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/boeckler/core/trc-core/Block.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/boeckler/core/trc-core/Row.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/boeckler/core/trc-core/Timeline.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/boeckler/core/trc-core/UIActivityViewController.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/boeckler/core/trc-core/NSURLComponents.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/boeckler/core/trc-core/VideoBlock.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/boeckler/core/trc-core/UIApplication.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/boeckler/core/trc-core/TimelineLayout.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/boeckler/core/trc-core/BlockContext.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/boeckler/core/trc-core/Argo.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/boeckler/core/trc-core/PaywallViewController.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/boeckler/core/trc-core/TrackingData.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/boeckler/core/trc-core/ArticleNavigationView.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/boeckler/core/trc-core/UIDeviceOrientation.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/boeckler/core/trc-core/AppTakeoverView.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/boeckler/core/trc-core/TimelineNavigationView.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/boeckler/core/trc-core/ImageViewController.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/boeckler/core/trc-core/FallbackContentBlock.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/boeckler/core/trc-core/MediaCell.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/boeckler/core/trc-core/StatusBar.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/boeckler/core/trc-core/FooterCell.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/boeckler/core/trc-core/PlainTextBlock.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/boeckler/core/trc-core/TimelineNavigationViewController.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/boeckler/core/trc-core/MarkupTag.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/boeckler/core/trc-core/UIImage.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/boeckler/core/trc-core/ImagePushAnimator.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/boeckler/core/trc-core/VideoCell.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/boeckler/core/trc-core/FallbackContentCell.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/boeckler/core/trc-core/BlockContextDataSourceFactory.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/boeckler/core/trc-core/ParentContextSnapshotView.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/boeckler/core/trc-core/BlockDecoder.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/boeckler/core/trc-core/HighlightCell.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/boeckler/core/trc-core/DTCSSStylesheet.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/boeckler/core/trc-core/StreamerBlock.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/boeckler/core/trc-core/DataControllerError.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/boeckler/core/trc-core/User.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/boeckler/core/trc-core/Dictionary.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/boeckler/core/trc-core/Store.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/boeckler/core/trc-core/YoutubeBlock.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/boeckler/core/trc-core/BlockChanges.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/boeckler/core/trc-core/AuthenticationController.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/boeckler/core/trc-core/ImagePopAnimatableView.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/boeckler/core/trc-core/AnimatableView.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/boeckler/core/trc-core/CachedDataProviding.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/boeckler/core/trc-core/BlockContextViewController.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/boeckler/core/trc-core/ArticleNavigationViewController.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/boeckler/core/trc-core/UIView.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/boeckler/core/trc-core/ArticleHeaderCell.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/boeckler/core/trc-core/NavigationControllerDelegate.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/boeckler/core/trc-core/Trackable.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/boeckler/core/trc-core/MainViewController.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/boeckler/core/trc-core/CellType.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/boeckler/core/trc-core/DefaultDirectories.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/boeckler/core/trc-core/SegueHandling.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/boeckler/core/trc-core/AlertBlock.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/boeckler/core/trc-core/PaywallController.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/boeckler/core/trc-core/Cell.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/boeckler/core/trc-core/VimeoBlock.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/boeckler/core/trc-core/ErrorTypeConvertible.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/boeckler/core/trc-core/ArticleHeaderBlock.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/boeckler/core/trc-core/SharedMedia.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/boeckler/core/trc-core/LoadingIndicatorViewController.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/boeckler/core/trc-core/Containables.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/boeckler/core/trc-core/ArticleRefPushAnimator.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/boeckler/core/trc-core/PaywallDataInterceptor.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/boeckler/core/trc-core/BlockStyle.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/boeckler/core/trc-core/TrackedEvent.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/boeckler/core/trc-core/FallbackBlock.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/boeckler/core/trc-core/DecorationNode.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/boeckler/core/trc-core/Tracker.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/boeckler/core/trc-core/IssueLabelNode.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/boeckler/core/trc-core/Clip.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/boeckler/core/trc-core/ArticleRefPopAnimator.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/boeckler/core/trc-core/VimeoCell.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/boeckler/core/trc-core/Paywall.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/boeckler/core/trc-core/SpacingCell.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/boeckler/core/trc-core/trc-core-Bridging-Header.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/boeckler/core/trc-core/JSONAPIResponse.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/boeckler/core/trc-core/ISO8601.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/boeckler/core/trc-core/Tables.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/boeckler/core/trc-core/Renderable.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/boeckler/core/trc-core/FontLoader/NSURL+EncryptedFileURLProtocol.m" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/boeckler/core/trc-core/FontLoader/Font.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/boeckler/core/trc-core/FontLoader/EncryptedFileURLProtocol.m" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/boeckler/core/trc-core/FontLoader/NSURL+EncryptedFileURLProtocol.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/boeckler/core/trc-core/FontLoader/FontLoader.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/boeckler/core/trc-core/FontLoader/EncryptedFileURLProtocol.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/boeckler/core/trc-core/FontLoader/FontError.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/boeckler/core/trc-core/Value.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/boeckler/core/trc-core/NSURL.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/boeckler/core/trc-core/SpacingBlock.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/boeckler/core/trc-core/BlockContextDataSource.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/boeckler/core/trc-core/Column.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/boeckler/core/trc-core/Window.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/boeckler/core/trc-core/Query.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/boeckler/core/trc-core/ASDisplayNode.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/boeckler/core/trc-core/fts3_tokenizer.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/boeckler/core/trc-core/ServerErrorBlock.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/boeckler/core/trc-core/DividerBlock.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/boeckler/core/trc-core/Table.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/boeckler/core/trc-core/TweetBlock.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/boeckler/core/trc-core/ArticleViewController.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/boeckler/core/trc-core/PlainTextCell.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/boeckler/core/trc-core/ArticleReflPushAnimatibeView.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/boeckler/core/trc-core/TimeoutController.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/boeckler/core/trc-core/ArticleRefPopAnimatableView.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/boeckler/core/trc-core/ArticleRefBlock.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/boeckler/core/trc-core/VisibilityState.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/boeckler/core/trc-core/UIEdgeInsets.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/boeckler/core/trc-core/Encodable.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/boeckler/core/trc-core/ImagePopAnimator.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/boeckler/core/trc-core/ArticleLayout.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/boeckler/core/trc-core/NetworkError.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/boeckler/core/trc-core/PlayableMediaCell.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/boeckler/core/trc-core/ObjectType.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/boeckler/core/trc-core/APIRequest.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/boeckler/core/trc-core/StoreEventHandler.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/boeckler/core/trc-core/CellFactory.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/boeckler/core/trc-core/CellDelegate.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/boeckler/core/trc-core/JSONAPI.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/boeckler/core/trc-core/BlockContextType.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/boeckler/core/trc-core/CGRect.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/boeckler/core/trc-core/Media.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/boeckler/core/trc-core/CGSize.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/boeckler/core/trc-core/CachedDataRecording.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/boeckler/core/trc-core/UIScrollView.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/boeckler/core/trc-core/Database.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/boeckler/core/trc-core/BlockDecoration.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/boeckler/core/trc-core/NSDate.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/boeckler/core/trc-core/BlocksRelationship.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/boeckler/core/trc-core/AuthorBlock.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/boeckler/core/trc-core/DispatchingMethods.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/boeckler/core/trc-core/CacheError.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/boeckler/core/trc-core/NSAttributedString.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/boeckler/core/trc-core/YoutubeCell.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/boeckler/core/trc-core/LabelNode.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/boeckler/core/trc-core/DebugTrace.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/boeckler/core/trc-core/ScrollState.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/boeckler/core/trc-core/ErrorView.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/boeckler/core/trc-core/ArticlePreview.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/boeckler/core/trc-core/ImageController.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/boeckler/core/trc-core/NavigationView.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/boeckler/core/trc-core/Instabug.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/boeckler/core/trc-core/TrackingController.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/boeckler/core/trc-core/Request.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/boeckler/core/trc-core/URLHandler.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/boeckler/core/trc-core/TextBlock.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/boeckler/core/trc-core/BlockContextDataController.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/boeckler/core/trc-core/SQLite-Bridging.m" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/boeckler/core/trc-core/Article.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/boeckler/core/trc-core/Array.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/boeckler/core/trc-core/UserFacingError.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/boeckler/core/trc-core/BorderNode.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/boeckler/core/trc-core/StreamerCell.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/boeckler/core/trc-core/UIColor.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/boeckler/core/trc-core/ImageBlock.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/boeckler/core/trc-core/AppTakeoverData.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/boeckler/core/trc-core/BlockCategory.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/boeckler/core/trc-core/ErrorViewController.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/boeckler/core/trc-core/SQLite-Bridging.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/boeckler/core/trc-core/UnsupportedContentBlock.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/boeckler/boeckler/CustomCellFactory.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/boeckler/boeckler/SwinjectStoryboard+Setup.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/boeckler/boeckler/Info.plist" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/boeckler/boeckler/ArticleRefCell.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/boeckler/boeckler/AppStyles.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/boeckler/boeckler/CustomNavigationControllerDelegate.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/boeckler/boeckler/AppConfig.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/boeckler/boeckler/Images.xcassets" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/boeckler/boeckler/Resources/Fonts/LT Univers Next OTF/UniversNextPro-Regular.otf" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/boeckler/boeckler/Resources/Fonts/LT Univers Next OTF/UniversNextPro-BoldCond.otf" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/boeckler/boeckler/Resources/Fonts/LT Univers Next OTF/UniversNextPro-Bold.otf" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/boeckler/boeckler/Resources/Fonts/LT Univers Next OTF/UniversNextPro-Cond.otf" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/boeckler/boeckler/Resources/Fonts/LT Sabon Next OTF/SabonNextCom-Bold.ttf" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/boeckler/boeckler/Resources/Fonts/LT Sabon Next OTF/SabonNextCom-Regular.ttf" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/boeckler/boeckler/Resources/Fonts/LT Sabon Next OTF/SabonNextCom-BoldItalic.ttf" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/boeckler/boeckler/Resources/Fonts/LT Sabon Next OTF/SabonNextCom-Italic.ttf" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/boeckler/boeckler/Resources/Fonts/Simple HBS/SimpleHBS.otf" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/boeckler/boeckler/CustomTimelineNavigationView.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/boeckler/boeckler/AppDelegate.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/boeckler/boeckler/CustomArticleViewController.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/boeckler/boeckler/boeckler-Bridging-Header.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/boeckler/boeckler/Base.lproj/LaunchScreen.storyboard" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/boeckler/boeckler/Base.lproj/Main.storyboard" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/boeckler/boeckler/CustomDividerCell.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/boeckler/boeckler/CustomStreamerCell.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/boeckler/boeckler/CustomTimelineNavigationViewController.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/boeckler/boeckler/CustomBlockDecoder.swift" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/boeckler.xcworkspace" />
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module-library">
+      <library name="Header Search Paths">
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/boeckler/core/Frameworks/Crashlytics.framework/Headers" />
+          <root url="file://$MODULE_DIR$/boeckler/core/Frameworks/Fabric.framework/Headers" />
+          <root url="file://$MODULE_DIR$/boeckler/core/Frameworks/Instabug.framework/Headers" />
+          <root url="file://$MODULE_DIR$/boeckler/core/Carthage/Build/iOS/DTFoundation.framework/Headers" />
+          <root url="file://$MODULE_DIR$/boeckler/core/Carthage/Build/iOS/Argo.framework/Headers" />
+          <root url="file://$MODULE_DIR$/boeckler/core/Carthage/Build/iOS/Kingfisher.framework/Headers" />
+          <root url="file://$MODULE_DIR$/boeckler/core/Carthage/Build/iOS/AsyncDisplayKit.framework/Headers" />
+          <root url="file://$MODULE_DIR$/boeckler/core/Carthage/Build/iOS/Locksmith.framework/Headers" />
+          <root url="file://$MODULE_DIR$/boeckler/core/Carthage/Build/iOS/SwiftBox.framework/Headers" />
+          <root url="file://$MODULE_DIR$/boeckler/core/Carthage/Build/iOS/BrightFutures.framework/Headers" />
+          <root url="file://$MODULE_DIR$/boeckler/core/Carthage/Build/iOS/NRCFonts.framework/Headers" />
+          <root url="file://$MODULE_DIR$/boeckler/core/Carthage/Build/iOS/Result.framework/Headers" />
+          <root url="file://$MODULE_DIR$/boeckler/core/Carthage/Build/iOS/Alamofire.framework/Headers" />
+          <root url="file://$MODULE_DIR$/boeckler/core/Carthage/Build/iOS/Swinject.framework/Headers" />
+          <root url="file://$MODULE_DIR$/boeckler/core/Carthage/Build/iOS/Runes.framework/Headers" />
+          <root url="file://$MODULE_DIR$/boeckler/core/Carthage/Build/iOS/Curry.framework/Headers" />
+          <root url="file://$MODULE_DIR$/boeckler/core/Carthage/Build/iOS/DTCoreText.framework/Headers" />
+          <root url="file://$MODULE_DIR$/boeckler/core/Carthage/Build/iOS/YouTubeiOSPlayerHelper.framework/Headers" />
+          <root url="file:///Applications/Xcode.app/Contents/PlugIns/Xcode3Core.ideplugin/Contents/SharedSupport/Developer/Library/Frameworks/InterfaceBuilderKit.framework/Headers" />
+          <root url="file:///Applications/Xcode.app/Contents/PlugIns/Xcode3Core.ideplugin/Contents/SharedSupport/Developer/Library/Frameworks/DTPerformanceSession.framework/Headers" />
+          <root url="file:///Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/Library/Frameworks/XCTest.framework/Headers" />
+          <root url="file:///Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/HealthKit.framework/Headers" />
+          <root url="file:///Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/PassKit.framework/Headers" />
+          <root url="file:///Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/CoreAudioKit.framework/Headers" />
+          <root url="file:///Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/MultipeerConnectivity.framework/Headers" />
+          <root url="file:///Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/AssetsLibrary.framework/Headers" />
+          <root url="file:///Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/WatchConnectivity.framework/Headers" />
+          <root url="file:///Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/CoreVideo.framework/Headers" />
+          <root url="file:///Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/StoreKit.framework/Headers" />
+          <root url="file:///Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/SceneKit.framework/Headers" />
+          <root url="file:///Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/OpenGLES.framework/Headers" />
+          <root url="file:///Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/CFNetwork.framework/Headers" />
+          <root url="file:///Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/Accelerate.framework/Headers" />
+          <root url="file:///Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/Accelerate.framework/Frameworks/vImage.framework/Headers" />
+          <root url="file:///Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/Accelerate.framework/Frameworks/vecLib.framework/Headers" />
+          <root url="file:///Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/AddressBookUI.framework/Headers" />
+          <root url="file:///Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/EventKit.framework/Headers" />
+          <root url="file:///Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/WatchKit.framework/Headers" />
+          <root url="file:///Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/GSS.framework/Headers" />
+          <root url="file:///Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/AudioUnit.framework/Headers" />
+          <root url="file:///Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/CoreSpotlight.framework/Headers" />
+          <root url="file:///Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/LocalAuthentication.framework/Headers" />
+          <root url="file:///Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/EventKitUI.framework/Headers" />
+          <root url="file:///Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/Metal.framework/Headers" />
+          <root url="file:///Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/VideoToolbox.framework/Headers" />
+          <root url="file:///Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/MediaToolbox.framework/Headers" />
+          <root url="file:///Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/Contacts.framework/Headers" />
+          <root url="file:///Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/QuickLook.framework/Headers" />
+          <root url="file:///Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/SafariServices.framework/Headers" />
+          <root url="file:///Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/GameplayKit.framework/Headers" />
+          <root url="file:///Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/CoreGraphics.framework/Headers" />
+          <root url="file:///Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/WebKit.framework/Headers" />
+          <root url="file:///Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/CloudKit.framework/Headers" />
+          <root url="file:///Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/CoreImage.framework/Headers" />
+          <root url="file:///Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/Photos.framework/Headers" />
+          <root url="file:///Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/MetalPerformanceShaders.framework/Headers" />
+          <root url="file:///Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/MediaPlayer.framework/Headers" />
+          <root url="file:///Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/AVFoundation.framework/Headers" />
+          <root url="file:///Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/JavaScriptCore.framework/Headers" />
+          <root url="file:///Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/PushKit.framework/Headers" />
+          <root url="file:///Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/CoreTelephony.framework/Headers" />
+          <root url="file:///Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/CoreText.framework/Headers" />
+          <root url="file:///Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/ReplayKit.framework/Headers" />
+          <root url="file:///Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/SpriteKit.framework/Headers" />
+          <root url="file:///Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/Twitter.framework/Headers" />
+          <root url="file:///Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/NetworkExtension.framework/Headers" />
+          <root url="file:///Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/CoreAudio.framework/Headers" />
+          <root url="file:///Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/CoreData.framework/Headers" />
+          <root url="file:///Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers" />
+          <root url="file:///Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/Foundation.framework/Headers" />
+          <root url="file:///Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/MapKit.framework/Headers" />
+          <root url="file:///Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/CoreFoundation.framework/Headers" />
+          <root url="file:///Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/ContactsUI.framework/Headers" />
+          <root url="file:///Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/CoreMedia.framework/Headers" />
+          <root url="file:///Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/MediaAccessibility.framework/Headers" />
+          <root url="file:///Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/ExternalAccessory.framework/Headers" />
+          <root url="file:///Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/Security.framework/Headers" />
+          <root url="file:///Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/ModelIO.framework/Headers" />
+          <root url="file:///Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/GLKit.framework/Headers" />
+          <root url="file:///Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/AudioToolbox.framework/Headers" />
+          <root url="file:///Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/MetalKit.framework/Headers" />
+          <root url="file:///Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/HomeKit.framework/Headers" />
+          <root url="file:///Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/GameController.framework/Headers" />
+          <root url="file:///Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/AVKit.framework/Headers" />
+          <root url="file:///Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/CoreBluetooth.framework/Headers" />
+          <root url="file:///Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/AdSupport.framework/Headers" />
+          <root url="file:///Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/CoreMIDI.framework/Headers" />
+          <root url="file:///Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/Social.framework/Headers" />
+          <root url="file:///Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/SystemConfiguration.framework/Headers" />
+          <root url="file:///Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/Accounts.framework/Headers" />
+          <root url="file:///Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/OpenAL.framework/Headers" />
+          <root url="file:///Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/NotificationCenter.framework/Headers" />
+          <root url="file:///Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/ImageIO.framework/Headers" />
+          <root url="file:///Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/PhotosUI.framework/Headers" />
+          <root url="file:///Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/MobileCoreServices.framework/Headers" />
+          <root url="file:///Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/AddressBook.framework/Headers" />
+          <root url="file:///Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/NewsstandKit.framework/Headers" />
+          <root url="file:///Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/MessageUI.framework/Headers" />
+          <root url="file:///Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/GameKit.framework/Headers" />
+          <root url="file:///Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/CoreLocation.framework/Headers" />
+          <root url="file:///Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/QuartzCore.framework/Headers" />
+          <root url="file:///Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/iAd.framework/Headers" />
+          <root url="file:///Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/CoreMotion.framework/Headers" />
+          <root url="file:///Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/usr/include" />
+          <root url="file:///Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/7.0.2/include" />
+          <root url="file:///Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1" />
+        </CLASSES>
+        <SOURCES>
+          <root url="file://$MODULE_DIR$/boeckler/core/Frameworks/Crashlytics.framework/Headers" />
+          <root url="file://$MODULE_DIR$/boeckler/core/Frameworks/Fabric.framework/Headers" />
+          <root url="file://$MODULE_DIR$/boeckler/core/Frameworks/Instabug.framework/Headers" />
+          <root url="file://$MODULE_DIR$/boeckler/core/Carthage/Build/iOS/DTFoundation.framework/Headers" />
+          <root url="file://$MODULE_DIR$/boeckler/core/Carthage/Build/iOS/Argo.framework/Headers" />
+          <root url="file://$MODULE_DIR$/boeckler/core/Carthage/Build/iOS/Kingfisher.framework/Headers" />
+          <root url="file://$MODULE_DIR$/boeckler/core/Carthage/Build/iOS/AsyncDisplayKit.framework/Headers" />
+          <root url="file://$MODULE_DIR$/boeckler/core/Carthage/Build/iOS/Locksmith.framework/Headers" />
+          <root url="file://$MODULE_DIR$/boeckler/core/Carthage/Build/iOS/SwiftBox.framework/Headers" />
+          <root url="file://$MODULE_DIR$/boeckler/core/Carthage/Build/iOS/BrightFutures.framework/Headers" />
+          <root url="file://$MODULE_DIR$/boeckler/core/Carthage/Build/iOS/NRCFonts.framework/Headers" />
+          <root url="file://$MODULE_DIR$/boeckler/core/Carthage/Build/iOS/Result.framework/Headers" />
+          <root url="file://$MODULE_DIR$/boeckler/core/Carthage/Build/iOS/Alamofire.framework/Headers" />
+          <root url="file://$MODULE_DIR$/boeckler/core/Carthage/Build/iOS/Swinject.framework/Headers" />
+          <root url="file://$MODULE_DIR$/boeckler/core/Carthage/Build/iOS/Runes.framework/Headers" />
+          <root url="file://$MODULE_DIR$/boeckler/core/Carthage/Build/iOS/Curry.framework/Headers" />
+          <root url="file://$MODULE_DIR$/boeckler/core/Carthage/Build/iOS/DTCoreText.framework/Headers" />
+          <root url="file://$MODULE_DIR$/boeckler/core/Carthage/Build/iOS/YouTubeiOSPlayerHelper.framework/Headers" />
+          <root url="file:///Applications/Xcode.app/Contents/PlugIns/Xcode3Core.ideplugin/Contents/SharedSupport/Developer/Library/Frameworks/InterfaceBuilderKit.framework/Headers" />
+          <root url="file:///Applications/Xcode.app/Contents/PlugIns/Xcode3Core.ideplugin/Contents/SharedSupport/Developer/Library/Frameworks/DTPerformanceSession.framework/Headers" />
+          <root url="file:///Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/Library/Frameworks/XCTest.framework/Headers" />
+          <root url="file:///Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/HealthKit.framework/Headers" />
+          <root url="file:///Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/PassKit.framework/Headers" />
+          <root url="file:///Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/CoreAudioKit.framework/Headers" />
+          <root url="file:///Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/MultipeerConnectivity.framework/Headers" />
+          <root url="file:///Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/AssetsLibrary.framework/Headers" />
+          <root url="file:///Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/WatchConnectivity.framework/Headers" />
+          <root url="file:///Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/CoreVideo.framework/Headers" />
+          <root url="file:///Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/StoreKit.framework/Headers" />
+          <root url="file:///Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/SceneKit.framework/Headers" />
+          <root url="file:///Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/OpenGLES.framework/Headers" />
+          <root url="file:///Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/CFNetwork.framework/Headers" />
+          <root url="file:///Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/Accelerate.framework/Headers" />
+          <root url="file:///Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/Accelerate.framework/Frameworks/vImage.framework/Headers" />
+          <root url="file:///Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/Accelerate.framework/Frameworks/vecLib.framework/Headers" />
+          <root url="file:///Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/AddressBookUI.framework/Headers" />
+          <root url="file:///Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/EventKit.framework/Headers" />
+          <root url="file:///Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/WatchKit.framework/Headers" />
+          <root url="file:///Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/GSS.framework/Headers" />
+          <root url="file:///Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/AudioUnit.framework/Headers" />
+          <root url="file:///Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/CoreSpotlight.framework/Headers" />
+          <root url="file:///Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/LocalAuthentication.framework/Headers" />
+          <root url="file:///Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/EventKitUI.framework/Headers" />
+          <root url="file:///Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/Metal.framework/Headers" />
+          <root url="file:///Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/VideoToolbox.framework/Headers" />
+          <root url="file:///Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/MediaToolbox.framework/Headers" />
+          <root url="file:///Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/Contacts.framework/Headers" />
+          <root url="file:///Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/QuickLook.framework/Headers" />
+          <root url="file:///Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/SafariServices.framework/Headers" />
+          <root url="file:///Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/GameplayKit.framework/Headers" />
+          <root url="file:///Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/CoreGraphics.framework/Headers" />
+          <root url="file:///Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/WebKit.framework/Headers" />
+          <root url="file:///Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/CloudKit.framework/Headers" />
+          <root url="file:///Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/CoreImage.framework/Headers" />
+          <root url="file:///Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/Photos.framework/Headers" />
+          <root url="file:///Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/MetalPerformanceShaders.framework/Headers" />
+          <root url="file:///Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/MediaPlayer.framework/Headers" />
+          <root url="file:///Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/AVFoundation.framework/Headers" />
+          <root url="file:///Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/JavaScriptCore.framework/Headers" />
+          <root url="file:///Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/PushKit.framework/Headers" />
+          <root url="file:///Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/CoreTelephony.framework/Headers" />
+          <root url="file:///Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/CoreText.framework/Headers" />
+          <root url="file:///Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/ReplayKit.framework/Headers" />
+          <root url="file:///Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/SpriteKit.framework/Headers" />
+          <root url="file:///Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/Twitter.framework/Headers" />
+          <root url="file:///Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/NetworkExtension.framework/Headers" />
+          <root url="file:///Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/CoreAudio.framework/Headers" />
+          <root url="file:///Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/CoreData.framework/Headers" />
+          <root url="file:///Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework/Headers" />
+          <root url="file:///Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/Foundation.framework/Headers" />
+          <root url="file:///Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/MapKit.framework/Headers" />
+          <root url="file:///Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/CoreFoundation.framework/Headers" />
+          <root url="file:///Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/ContactsUI.framework/Headers" />
+          <root url="file:///Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/CoreMedia.framework/Headers" />
+          <root url="file:///Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/MediaAccessibility.framework/Headers" />
+          <root url="file:///Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/ExternalAccessory.framework/Headers" />
+          <root url="file:///Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/Security.framework/Headers" />
+          <root url="file:///Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/ModelIO.framework/Headers" />
+          <root url="file:///Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/GLKit.framework/Headers" />
+          <root url="file:///Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/AudioToolbox.framework/Headers" />
+          <root url="file:///Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/MetalKit.framework/Headers" />
+          <root url="file:///Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/HomeKit.framework/Headers" />
+          <root url="file:///Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/GameController.framework/Headers" />
+          <root url="file:///Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/AVKit.framework/Headers" />
+          <root url="file:///Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/CoreBluetooth.framework/Headers" />
+          <root url="file:///Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/AdSupport.framework/Headers" />
+          <root url="file:///Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/CoreMIDI.framework/Headers" />
+          <root url="file:///Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/Social.framework/Headers" />
+          <root url="file:///Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/SystemConfiguration.framework/Headers" />
+          <root url="file:///Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/Accounts.framework/Headers" />
+          <root url="file:///Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/OpenAL.framework/Headers" />
+          <root url="file:///Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/NotificationCenter.framework/Headers" />
+          <root url="file:///Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/ImageIO.framework/Headers" />
+          <root url="file:///Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/PhotosUI.framework/Headers" />
+          <root url="file:///Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/MobileCoreServices.framework/Headers" />
+          <root url="file:///Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/AddressBook.framework/Headers" />
+          <root url="file:///Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/NewsstandKit.framework/Headers" />
+          <root url="file:///Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/MessageUI.framework/Headers" />
+          <root url="file:///Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/GameKit.framework/Headers" />
+          <root url="file:///Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/CoreLocation.framework/Headers" />
+          <root url="file:///Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/QuartzCore.framework/Headers" />
+          <root url="file:///Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/iAd.framework/Headers" />
+          <root url="file:///Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/CoreMotion.framework/Headers" />
+          <root url="file:///Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/usr/include" />
+          <root url="file:///Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/7.0.2/include" />
+          <root url="file:///Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+  </component>
+</module>

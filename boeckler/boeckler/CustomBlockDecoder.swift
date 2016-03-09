@@ -10,14 +10,10 @@ import Argo
 
 class CustomBlockDecoder : BlockDecoder {
     
-    func decode<T: DecodableWithoutContext>(json: JSON, withContext context: BlockContext) -> Decoded<T> {
-        return T.decodeWithoutContext(json) <*> pure(context)
-    }
-    
     func isKnownBlock(type: String) -> Bool {
         return BlockType.all.contains(type)
     }
-    
+        
     func decode(json: JSON, blockType: String, forContext context: BlockContext) -> Decoded<Block> {
         
         if context == .Timeline && blockType == BlockType.Fallback {
@@ -26,47 +22,33 @@ class CustomBlockDecoder : BlockDecoder {
         
         switch blockType {
         case CoreBlockType.ArticleRef:
-            let decodedBlock: Decoded<ArticleRefBlock> = decode(json, withContext: context)
-            return decodedBlock.map{$0}
+            return ArticleRefBlock.decodeWithoutContext(json, context: context)
         case CoreBlockType.ArticleHeader:
-            let decodedBlock: Decoded<ArticleHeaderBlock> = decode(json, withContext: context)
-            return decodedBlock.map{$0}
+            return ArticleHeaderBlock.decodeWithoutContext(json, context: context)
         case CoreBlockType.Image:
-            let decodedBlock: Decoded<ImageBlock> = decode(json, withContext: context)
-            return decodedBlock.map{$0}
+            return ImageBlock.decodeWithoutContext(json, context: context)
         case CoreBlockType.Text:
-            let decodedBlock: Decoded<TextBlock> = decode(json, withContext: context)
-            return decodedBlock.map{$0}
+            return TextBlock.decodeWithoutContext(json, context: context)
         case CoreBlockType.PlainText:
-            let decodedBlock: Decoded<PlainTextBlock> = decode(json, withContext: context)
-            return decodedBlock.map{$0}
+            return PlainTextBlock.decodeWithoutContext(json, context: context)
         case CoreBlockType.Streamer:
-            let decodedBlock: Decoded<StreamerBlock> = decode(json, withContext: context)
-            return decodedBlock.map{$0}
+            return StreamerBlock.decodeWithoutContext(json, context: context)
         case CoreBlockType.Youtube:
-            let decodedBlock: Decoded<YoutubeBlock> = decode(json, withContext: context)
-            return decodedBlock.map{$0}
+            return YoutubeBlock.decodeWithoutContext(json, context: context)
         case CoreBlockType.Vimeo:
-            let decodedBlock: Decoded<VimeoBlock> = decode(json, withContext: context)
-            return decodedBlock.map{$0}
+            return VimeoBlock.decodeWithoutContext(json, context: context)
         case CoreBlockType.Tweet:
-            let decodedBlock: Decoded<TweetBlock> = decode(json, withContext: context)
-            return decodedBlock.map{$0}
+            return TweetBlock.decodeWithoutContext(json, context: context)
         case CoreBlockType.Spacing:
-            let decodedBlock: Decoded<SpacingBlock> = decode(json, withContext: context)
-            return decodedBlock.map{$0}
+            return SpacingBlock.decodeWithoutContext(json, context: context)
         case CoreBlockType.Divider:
-            let decodedBlock: Decoded<DividerBlock> = decode(json, withContext: context)
-            return decodedBlock.map{$0}
+            return DividerBlock.decodeWithoutContext(json, context: context)
         case CoreBlockType.UnsupportedContent:
-            let decodedBlock: Decoded<UnsupportedContentBlock> = decode(json, withContext: context)
-            return decodedBlock.map{$0}
+            return UnsupportedContentBlock.decodeWithoutContext(json, context: context)
         case CoreBlockType.ServerError:
-            let decodedBlock: Decoded<ServerErrorBlock> = decode(json, withContext: context)
-            return decodedBlock.map{$0}
+            return ServerErrorBlock.decodeWithoutContext(json, context: context)
         default: // FallbackBlock
-            let decodedBlock: Decoded<FallbackBlock> = decode(json, withContext: context)
-            return decodedBlock.map{$0}
+            return FallbackBlock.decodeWithoutContext(json, context: context)
         }
     }
 }

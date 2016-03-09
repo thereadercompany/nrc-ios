@@ -112,7 +112,6 @@
 		1731BF3E1BEA59110012D6FF /* Renderable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1731BE0D1BEA43640012D6FF /* Renderable.swift */; };
 		1731BF3F1BEA591B0012D6FF /* GradientNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1731BDE51BEA43640012D6FF /* GradientNode.swift */; };
 		1731BF401BEA591B0012D6FF /* HighlightCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1731BDE61BEA43640012D6FF /* HighlightCell.swift */; };
-		1731BF451BEA591B0012D6FF /* ImageBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1731BDEB1BEA43640012D6FF /* ImageBlock.swift */; };
 		1731BF461BEA591B0012D6FF /* ImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1731BDEC1BEA43640012D6FF /* ImageCell.swift */; };
 		1731BF471BEA591B0012D6FF /* ImageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1731BDED1BEA43640012D6FF /* ImageController.swift */; };
 		1731BF481BEA591B0012D6FF /* Instabug.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1731BDEF1BEA43640012D6FF /* Instabug.swift */; };
@@ -178,7 +177,6 @@
 		1731BF971BEA59270012D6FF /* ErrorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1731BDDF1BEA43640012D6FF /* ErrorViewController.swift */; };
 		1731BF981BEA59270012D6FF /* Expression.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1731BDE01BEA43640012D6FF /* Expression.swift */; };
 		1731BF991BEA59270012D6FF /* FallbackBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1731BDE11BEA43640012D6FF /* FallbackBlock.swift */; };
-		1731BF9A1BEA59270012D6FF /* FallbackContentBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1731BDE21BEA43640012D6FF /* FallbackContentBlock.swift */; };
 		1731BF9B1BEA59270012D6FF /* FallbackContentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1731BDE31BEA43640012D6FF /* FallbackContentCell.swift */; };
 		1731BF9D1BEA5A6B0012D6FF /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 1731BF9C1BEA5A6B0012D6FF /* libsqlite3.tbd */; };
 		1731BF9F1BEA5A780012D6FF /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 1731BF9E1BEA5A780012D6FF /* libc++.tbd */; };
@@ -210,6 +208,9 @@
 		1774DADB1BEB94F6007431EB /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1774DAD81BEB94F6007431EB /* Fabric.framework */; };
 		1774DADC1BEB94F6007431EB /* Instabug.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1774DAD91BEB94F6007431EB /* Instabug.framework */; };
 		177FD6C31BECC9C900650BFB /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 177FD6C21BECC9C900650BFB /* Images.xcassets */; };
+		17927F031C8F4ECE00761D5D /* ImageBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17927F021C8F4ECE00761D5D /* ImageBlock.swift */; };
+		17927F061C8F6D3300761D5D /* FallbackContentBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17927F051C8F6D3300761D5D /* FallbackContentBlock.swift */; };
+		17927F081C8F7DEC00761D5D /* PlayableMediaCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17927F071C8F7DEC00761D5D /* PlayableMediaCell.swift */; };
 		179744681C32C96C004730C2 /* EncryptedFileURLProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 179744621C32C96C004730C2 /* EncryptedFileURLProtocol.m */; };
 		179744691C32C96C004730C2 /* FontError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 179744631C32C96C004730C2 /* FontError.swift */; };
 		1797446A1C32C96C004730C2 /* Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = 179744641C32C96C004730C2 /* Font.swift */; };
@@ -223,7 +224,6 @@
 		179744811C32C9E3004730C2 /* StreamerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 179744741C32C9E3004730C2 /* StreamerCell.swift */; };
 		179744831C32C9E3004730C2 /* AlertBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 179744761C32C9E3004730C2 /* AlertBlock.swift */; };
 		179744851C32C9E3004730C2 /* AuthorBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 179744781C32C9E3004730C2 /* AuthorBlock.swift */; };
-		179744881C32CAA4004730C2 /* BaseVideoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 179744871C32CAA4004730C2 /* BaseVideoCell.swift */; };
 		1797448B1C32CAE5004730C2 /* CellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 179744891C32CAE5004730C2 /* CellDelegate.swift */; };
 		1797448C1C32CAE5004730C2 /* DebugTrace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1797448A1C32CAE5004730C2 /* DebugTrace.swift */; };
 		179B30891C0DD656001005E2 /* UniversNextPro-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 179B30881C0DD656001005E2 /* UniversNextPro-Bold.otf */; };
@@ -325,12 +325,10 @@
 		1731BDDF1BEA43640012D6FF /* ErrorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ErrorViewController.swift; path = "core/trc-core/ErrorViewController.swift"; sourceTree = SOURCE_ROOT; };
 		1731BDE01BEA43640012D6FF /* Expression.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Expression.swift; path = "core/trc-core/Expression.swift"; sourceTree = SOURCE_ROOT; };
 		1731BDE11BEA43640012D6FF /* FallbackBlock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FallbackBlock.swift; path = "core/trc-core/FallbackBlock.swift"; sourceTree = SOURCE_ROOT; };
-		1731BDE21BEA43640012D6FF /* FallbackContentBlock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FallbackContentBlock.swift; path = "core/trc-core/FallbackContentBlock.swift"; sourceTree = SOURCE_ROOT; };
 		1731BDE31BEA43640012D6FF /* FallbackContentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FallbackContentCell.swift; path = "core/trc-core/FallbackContentCell.swift"; sourceTree = SOURCE_ROOT; };
 		1731BDE41BEA43640012D6FF /* fts3_tokenizer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = fts3_tokenizer.h; path = "core/trc-core/fts3_tokenizer.h"; sourceTree = SOURCE_ROOT; };
 		1731BDE51BEA43640012D6FF /* GradientNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = GradientNode.swift; path = "core/trc-core/GradientNode.swift"; sourceTree = SOURCE_ROOT; };
 		1731BDE61BEA43640012D6FF /* HighlightCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = HighlightCell.swift; path = "core/trc-core/HighlightCell.swift"; sourceTree = SOURCE_ROOT; };
-		1731BDEB1BEA43640012D6FF /* ImageBlock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ImageBlock.swift; path = "core/trc-core/ImageBlock.swift"; sourceTree = SOURCE_ROOT; };
 		1731BDEC1BEA43640012D6FF /* ImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ImageCell.swift; path = "core/trc-core/ImageCell.swift"; sourceTree = SOURCE_ROOT; };
 		1731BDED1BEA43640012D6FF /* ImageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ImageController.swift; path = "core/trc-core/ImageController.swift"; sourceTree = SOURCE_ROOT; };
 		1731BDEF1BEA43640012D6FF /* Instabug.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Instabug.swift; path = "core/trc-core/Instabug.swift"; sourceTree = SOURCE_ROOT; };
@@ -458,6 +456,9 @@
 		1774DAD81BEB94F6007431EB /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Fabric.framework; path = core/Frameworks/Fabric.framework; sourceTree = "<group>"; };
 		1774DAD91BEB94F6007431EB /* Instabug.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Instabug.framework; path = core/Frameworks/Instabug.framework; sourceTree = "<group>"; };
 		177FD6C21BECC9C900650BFB /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		17927F021C8F4ECE00761D5D /* ImageBlock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ImageBlock.swift; path = "core/trc-core/ImageBlock.swift"; sourceTree = SOURCE_ROOT; };
+		17927F051C8F6D3300761D5D /* FallbackContentBlock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FallbackContentBlock.swift; path = "core/trc-core/FallbackContentBlock.swift"; sourceTree = SOURCE_ROOT; };
+		17927F071C8F7DEC00761D5D /* PlayableMediaCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PlayableMediaCell.swift; path = "core/trc-core/PlayableMediaCell.swift"; sourceTree = SOURCE_ROOT; };
 		179744611C32C96C004730C2 /* EncryptedFileURLProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EncryptedFileURLProtocol.h; path = "core/trc-core/FontLoader/EncryptedFileURLProtocol.h"; sourceTree = SOURCE_ROOT; };
 		179744621C32C96C004730C2 /* EncryptedFileURLProtocol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EncryptedFileURLProtocol.m; path = "core/trc-core/FontLoader/EncryptedFileURLProtocol.m"; sourceTree = SOURCE_ROOT; };
 		179744631C32C96C004730C2 /* FontError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FontError.swift; path = "core/trc-core/FontLoader/FontError.swift"; sourceTree = SOURCE_ROOT; };
@@ -473,7 +474,6 @@
 		179744741C32C9E3004730C2 /* StreamerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StreamerCell.swift; path = "core/trc-core/StreamerCell.swift"; sourceTree = SOURCE_ROOT; };
 		179744761C32C9E3004730C2 /* AlertBlock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AlertBlock.swift; path = "core/trc-core/AlertBlock.swift"; sourceTree = SOURCE_ROOT; };
 		179744781C32C9E3004730C2 /* AuthorBlock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AuthorBlock.swift; path = "core/trc-core/AuthorBlock.swift"; sourceTree = SOURCE_ROOT; };
-		179744871C32CAA4004730C2 /* BaseVideoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BaseVideoCell.swift; path = "core/trc-core/BaseVideoCell.swift"; sourceTree = SOURCE_ROOT; };
 		179744891C32CAE5004730C2 /* CellDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CellDelegate.swift; path = "core/trc-core/CellDelegate.swift"; sourceTree = SOURCE_ROOT; };
 		1797448A1C32CAE5004730C2 /* DebugTrace.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DebugTrace.swift; path = "core/trc-core/DebugTrace.swift"; sourceTree = SOURCE_ROOT; };
 		179B30881C0DD656001005E2 /* UniversNextPro-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "UniversNextPro-Bold.otf"; path = "Resources/Fonts/LT Univers Next OTF/UniversNextPro-Bold.otf"; sourceTree = "<group>"; };
@@ -596,11 +596,12 @@
 		1731BEED1BEA54E80012D6FF /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				17927F071C8F7DEC00761D5D /* PlayableMediaCell.swift */,
+				17927F051C8F6D3300761D5D /* FallbackContentBlock.swift */,
 				17E64CC11C32EF8400E0BEB2 /* BlockCategory.swift */,
 				17E64CC21C32EF8400E0BEB2 /* VideoBlock.swift */,
 				179744891C32CAE5004730C2 /* CellDelegate.swift */,
 				1797448A1C32CAE5004730C2 /* DebugTrace.swift */,
-				179744871C32CAA4004730C2 /* BaseVideoCell.swift */,
 				1731BD9D1BEA43630012D6FF /* Account.swift */,
 				179744761C32C9E3004730C2 /* AlertBlock.swift */,
 				1731BDA11BEA43630012D6FF /* AnimatableView.swift */,
@@ -665,7 +666,6 @@
 				1731BDDF1BEA43640012D6FF /* ErrorViewController.swift */,
 				1731BDE01BEA43640012D6FF /* Expression.swift */,
 				1731BDE11BEA43640012D6FF /* FallbackBlock.swift */,
-				1731BDE21BEA43640012D6FF /* FallbackContentBlock.swift */,
 				1731BDE31BEA43640012D6FF /* FallbackContentCell.swift */,
 				179744641C32C96C004730C2 /* Font.swift */,
 				179744651C32C96C004730C2 /* FontLoader.swift */,
@@ -673,7 +673,6 @@
 				1731BDE41BEA43640012D6FF /* fts3_tokenizer.h */,
 				1731BDE51BEA43640012D6FF /* GradientNode.swift */,
 				1731BDE61BEA43640012D6FF /* HighlightCell.swift */,
-				1731BDEB1BEA43640012D6FF /* ImageBlock.swift */,
 				1731BDEC1BEA43640012D6FF /* ImageCell.swift */,
 				1731BDED1BEA43640012D6FF /* ImageController.swift */,
 				1731BDEF1BEA43640012D6FF /* Instabug.swift */,
@@ -780,6 +779,7 @@
 				175AAC991C6A201700E40194 /* UIDeviceOrientation.swift */,
 				17E6A4F61C73BBEE00EB9B52 /* UIScrollView.swift */,
 				17D53C931C75FC3E007B5E79 /* ArticleRefCell.swift */,
+				17927F021C8F4ECE00761D5D /* ImageBlock.swift */,
 			);
 			name = Sources;
 			sourceTree = "<group>";
@@ -1018,6 +1018,7 @@
 				1731BF901BEA59270012D6FF /* DTCSSStylesheet.swift in Sources */,
 				1731BED31BEA43BE0012D6FF /* Tracker.swift in Sources */,
 				1718D6BC1C0738020036DB5B /* Block.swift in Sources */,
+				17927F061C8F6D3300761D5D /* FallbackContentBlock.swift in Sources */,
 				1731BF521BEA591B0012D6FF /* Media.swift in Sources */,
 				1731BF351BEA59110012D6FF /* NSURL.swift in Sources */,
 				175AAC9A1C6A201700E40194 /* UIDeviceOrientation.swift in Sources */,
@@ -1029,9 +1030,9 @@
 				1731BF7B1BEA59270012D6FF /* CachedDataProviding.swift in Sources */,
 				1731BED51BEA43BE0012D6FF /* TrackingData.swift in Sources */,
 				1731BF551BEA59270012D6FF /* Account.swift in Sources */,
-				1731BF9A1BEA59270012D6FF /* FallbackContentBlock.swift in Sources */,
 				1731BECF1BEA43BE0012D6FF /* TimelineViewController.swift in Sources */,
 				1731BF7F1BEA59270012D6FF /* Cell.swift in Sources */,
+				17927F031C8F4ECE00761D5D /* ImageBlock.swift in Sources */,
 				17E64CC61C33D34A00E0BEB2 /* CustomArticleViewController.swift in Sources */,
 				1731BECC1BEA43BE0012D6FF /* TimelineLayout.swift in Sources */,
 				1731BF9B1BEA59270012D6FF /* FallbackContentCell.swift in Sources */,
@@ -1042,6 +1043,7 @@
 				1731BF721BEA59270012D6FF /* BlockContextDataSource.swift in Sources */,
 				179B30971C0DE2E6001005E2 /* CellFactory.swift in Sources */,
 				175FF2001C0DE89A00F3458F /* Column.swift in Sources */,
+				17927F081C8F7DEC00761D5D /* PlayableMediaCell.swift in Sources */,
 				1731BF761BEA59270012D6FF /* BlockDecoration.swift in Sources */,
 				171C7C901C4685BD002088E2 /* ParentContextSnapshotView.swift in Sources */,
 				1731BF6A1BEA59270012D6FF /* ASDisplayNode.swift in Sources */,
@@ -1107,7 +1109,6 @@
 				1797447E1C32C9E3004730C2 /* SharedMedia.swift in Sources */,
 				1731BF621BEA59270012D6FF /* ArticleHeaderCell.swift in Sources */,
 				1731BF771BEA59270012D6FF /* BlocksRelationship.swift in Sources */,
-				1731BF451BEA591B0012D6FF /* ImageBlock.swift in Sources */,
 				1731BF8D1BEA59270012D6FF /* DispatchingMethods.swift in Sources */,
 				1731BF981BEA59270012D6FF /* Expression.swift in Sources */,
 				1731BF2D1BEA58EF0012D6FF /* Request.swift in Sources */,
@@ -1150,7 +1151,6 @@
 				1731BEDF1BEA43BE0012D6FF /* UIView.swift in Sources */,
 				1731BF8B1BEA59270012D6FF /* DefaultDirectories.swift in Sources */,
 				1797447A1C32C9E3004730C2 /* ArticleRefPopAnimatableView.swift in Sources */,
-				179744881C32CAA4004730C2 /* BaseVideoCell.swift in Sources */,
 				1731BEBF1BEA43BE0012D6FF /* Cache.swift in Sources */,
 				1731BF5A1BEA59270012D6FF /* APIRequest.swift in Sources */,
 				1731BEEA1BEA43BE0012D6FF /* Window.swift in Sources */,

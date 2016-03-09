@@ -358,7 +358,8 @@ struct VideoCellStyles {
     static let headlinePaddingBottom: CGFloat = 12
     static let headlinePaddingLeftRight: CGFloat = 24
     static let gradientAspectRatio: CGFloat = 3.9
-    static let playImageOffcentrePercentage: CGFloat = 5
+    static let playImageLeftMargin: CGFloat = Screen.value(12,19)
+    static let playImageBottomMargin : CGFloat = Screen.value(12,19)
 }
 
 struct LabelStyles {
