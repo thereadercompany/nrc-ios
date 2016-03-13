@@ -23,8 +23,6 @@ extension BlockStyle {
     static let InsetH1 = BlockStyle(rawValue: "inset-h1")
     static let InsetH2 = BlockStyle(rawValue: "inset-h2")
     static let Unknown = BlockStyle(rawValue: "unknown")
-    static let ThemeIceBlue = BlockStyle(rawValue: "theme-ice-blue")
-    static let ThemeSand = BlockStyle(rawValue: "theme-sand")
     static let ArticleFooter = BlockStyle(rawValue: "article-footer")
 }
 
@@ -325,8 +323,8 @@ struct EnhancedBannerCellStyles {
 struct StreamerCellStyles {
     static let iconMarginTop: CGFloat = 25
     static let iconSize: CGFloat = 35
-    static let iconMarginLeft: CGFloat = 19
-    static let headlineMarginTop: CGFloat = 8
+    static let iconMarginLeft: CGFloat = Screen.value(19, 24)
+    static let headlineMarginTop: CGFloat = Screen.value(8, 12)
     static let headlineMarginBottom: CGFloat = 40
     static let subHeadlineMarginTop: CGFloat = 24
     static let subHeadlineMarginBottom: CGFloat = 36
@@ -349,16 +347,11 @@ struct TweetCellStyles {
     
 }
     
-struct MediaCellStyles {
-    static let textPaddingTop: CGFloat = Screen.value(17,14)
-    static let textPaddingBottom: CGFloat = Screen.value(23,40)
-}
-
 struct VideoCellStyles {
-    static let headlinePaddingBottom: CGFloat = 12
-    static let headlinePaddingLeftRight: CGFloat = 24
+    static let captionPaddingBottom: CGFloat = 12
+    static let captionPaddingLeftRight: CGFloat = 24
     static let gradientAspectRatio: CGFloat = 3.9
-    static let playImageLeftMargin: CGFloat = Screen.value(12,19)
+    static let playImageLeftMargin: CGFloat =  ArticleStyles.specialInset+Screen.value(12,19)
     static let playImageBottomMargin : CGFloat = Screen.value(12,19)
 }
 
@@ -520,14 +513,12 @@ extension Block {
             return Colors.insetBackgroundColor
         case is DividerBlock:
             return Colors.accentColor
+        case is StreamerBlock:
+            return Colors.sand
         default: ()
         }
         
         switch style {
-        case BlockStyle.ThemeIceBlue where decoration != .None:
-            return Colors.iceBlue
-        case BlockStyle.ThemeSand where decoration != .None:
-            return Colors.sand
         case BlockStyle.Inset,BlockStyle.InsetH1,BlockStyle.InsetH2 where decoration != .None:
             return Colors.insetBackgroundColor
         default: return nil
@@ -563,7 +554,7 @@ extension Block {
         case (.Article, _, BlockStyle.Intro):
             contentPadding = UIEdgeInsets(top: 0, left: ArticleStyles.textInset, bottom: 31, right: ArticleStyles.textInset)
         case (.Article, is StreamerBlock, _):
-            contentPadding = UIEdgeInsets(top: 0, left: ArticleStyles.textInset, bottom: 0, right: ArticleStyles.textInset)
+            contentPadding = UIEdgeInsets(top: 0, left: ArticleStyles.textInset-ArticleStyles.specialInset, bottom: 0, right: ArticleStyles.textInset)
         case (.Article, is ArticleHeaderBlock, _):
             contentPadding = UIEdgeInsets(top: 0, left: ArticleStyles.textInset, bottom: Screen.value(28,36), right: ArticleStyles.textInset)
         case (.Article, is PlainTextBlock, BlockStyle.InsetH1):
@@ -651,6 +642,23 @@ extension Block {
         default:
             return 24
         }
+    }
+}
+
+extension ImageBlock {
+    var textPaddingTop: CGFloat {
+        return Screen.value(17,14)
+    }
+    
+    var textPaddingBottom: CGFloat {
+        switch decoration {
+            case BlockDecoration.None, BlockDecoration.Full:
+                return Screen.value(18,24)
+            default:
+                return Screen.value(23,40)
+        }
+        
+
     }
 }
 

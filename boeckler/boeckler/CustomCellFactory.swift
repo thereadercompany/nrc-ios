@@ -38,6 +38,8 @@ class CustomCellFactory: CellFactory {
         case let block as ArticleHeaderBlock: return createCell(block)
         case let block as DividerBlock: return createCell(block)
         case let block as FallbackBlock: return createCell(block)
+        case let block as VimeoBlock: return createCell(block)
+        case let block as YoutubeBlock: return createCell(block)
         case let block as ImageBlock: return createCell(block)
         case let block as ServerErrorBlock: return createCell(block)
         case let block as SpacingBlock: return createCell(block)
@@ -45,8 +47,6 @@ class CustomCellFactory: CellFactory {
         case let block as TextBlock: return createCell(block)
         case let block as PlainTextBlock: return createCell(block)
         case let block as UnsupportedContentBlock: return createCell(block)
-        case let block as VimeoBlock: return createCell(block)
-        case let block as YoutubeBlock: return createCell(block)
         default: return nil
         }
     }
@@ -73,7 +73,7 @@ class CustomCellFactory: CellFactory {
     }
     
     func createCell(block: ImageBlock) -> Cell? {
-        return ImageCell(imageBlock: block)
+        return ImageCell(block: block)
     }
     
     func createCell(block: PlainTextBlock) -> Cell? {

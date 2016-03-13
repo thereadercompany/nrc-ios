@@ -89,7 +89,7 @@ class CustomStreamerCell : Cell {
         
         let contentRect = self.frame.insetsBy(block.contentPadding)
         
-        iconNode.frame = CGRect(x: StreamerCellStyles.iconMarginLeft, y: StreamerCellStyles.iconMarginTop, width: StreamerCellStyles.iconSize, height: StreamerCellStyles.iconSize)
+        iconNode.frame = CGRect(x: block.decorationPadding.left+StreamerCellStyles.iconMarginLeft, y: StreamerCellStyles.iconMarginTop, width: StreamerCellStyles.iconSize, height: StreamerCellStyles.iconSize)
         let headlineSize = self.headlineSize(contentRect.width)
         headlineNode.frame = CGRect(origin: CGPoint(x: contentRect.origin.x, y: CGRectGetMaxY(iconNode.frame)+StreamerCellStyles.headlineMarginTop), size: headlineSize)
         let subHeadlineSize = self.subHeadlineSize(contentRect.width)
