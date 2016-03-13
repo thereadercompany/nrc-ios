@@ -13,42 +13,55 @@ class CustomBlockDecoder : BlockDecoder {
     func isKnownBlock(type: String) -> Bool {
         return BlockType.all.contains(type)
     }
-        
+    
     func decode(json: JSON, blockType: String, forContext context: BlockContext) -> Decoded<Block> {
         
         if context == .Timeline && blockType == BlockType.Fallback {
-            return .Failure(.TypeMismatch(expected: "Non-fallback", actual:"Fallback"))
+            return Decoded.Failure(.TypeMismatch(expected: "Non-fallback", actual:"Fallback"))
         }
         
+        let jsonDecoder = JSONDecoder(json: json)
+        if let block = self.decode(jsonDecoder, blockType: blockType, forContext: context) {
+            return Decoded.Success(block)
+        }
+        
+        if let error = jsonDecoder.error {
+            return Decoded.Failure(error)
+        }
+        
+        return Decoded.Failure(.MissingKey("Unable to decode block with type \(blockType) in context \(context)"))
+    }
+    
+    func decode(decoder: JSONDecoder, blockType: String, forContext context: BlockContext) -> Block? {
         switch blockType {
         case CoreBlockType.ArticleRef:
-            return ArticleRefBlock.decodeWithoutContext(json, context: context)
+            return ArticleRefBlock(decoder: decoder, context: context)
         case CoreBlockType.ArticleHeader:
-            return ArticleHeaderBlock.decodeWithoutContext(json, context: context)
+            return ArticleHeaderBlock(decoder: decoder, context: context)
         case CoreBlockType.Image:
-            return ImageBlock.decodeWithoutContext(json, context: context)
+            return ImageBlock(decoder: decoder, context: context)
         case CoreBlockType.Text:
-            return TextBlock.decodeWithoutContext(json, context: context)
+            return TextBlock(decoder: decoder, context: context)
         case CoreBlockType.PlainText:
-            return PlainTextBlock.decodeWithoutContext(json, context: context)
+            return PlainTextBlock(decoder: decoder, context: context)
         case CoreBlockType.Streamer:
-            return StreamerBlock.decodeWithoutContext(json, context: context)
+            return StreamerBlock(decoder: decoder, context: context)
         case CoreBlockType.Youtube:
-            return YoutubeBlock.decodeWithoutContext(json, context: context)
+            return YoutubeBlock(decoder: decoder, context: context)
         case CoreBlockType.Vimeo:
-            return VimeoBlock.decodeWithoutContext(json, context: context)
+            return VimeoBlock(decoder: decoder, context: context)
         case CoreBlockType.Tweet:
-            return TweetBlock.decodeWithoutContext(json, context: context)
+            return TweetBlock(decoder: decoder, context: context)
         case CoreBlockType.Spacing:
-            return SpacingBlock.decodeWithoutContext(json, context: context)
+            return SpacingBlock(decoder: decoder, context: context)
         case CoreBlockType.Divider:
-            return DividerBlock.decodeWithoutContext(json, context: context)
+            return DividerBlock(decoder: decoder, context: context)
         case CoreBlockType.UnsupportedContent:
-            return UnsupportedContentBlock.decodeWithoutContext(json, context: context)
+            return UnsupportedContentBlock(decoder: decoder, context: context)
         case CoreBlockType.ServerError:
-            return ServerErrorBlock.decodeWithoutContext(json, context: context)
+            return ServerErrorBlock(decoder: decoder, context: context)
         default: // FallbackBlock
-            return FallbackBlock.decodeWithoutContext(json, context: context)
+            return FallbackBlock(decoder: decoder, context: context)
         }
     }
 }
