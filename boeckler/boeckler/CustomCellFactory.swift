@@ -53,7 +53,7 @@ class CustomCellFactory: CellFactory {
     
     func createCell(block: ArticleRefBlock) -> Cell? {
         switch block.style {
-        case  BlockStyle.Highlight, BlockStyle.HighlightXL:
+        case  BlockStyle.Normal, BlockStyle.Highlight, BlockStyle.HighlightXL:
             return HighlightCell(articleRef: block, dataController: dataController, cellFactory: self)
         default:
             return nil

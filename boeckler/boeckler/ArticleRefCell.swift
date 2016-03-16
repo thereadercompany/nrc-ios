@@ -49,7 +49,7 @@ class ArticleRefCell : MediaCell {
     var articlePreviewSnapshotFrame: CGRect {
         let screenSize = UIScreen.mainScreen().bounds.size
         let imageHeight = ArticleHeaderCellStyles.imageHeight
-        return CGRect(x: 0, y: imageHeight, width: screenSize.width, height: screenSize.height-imageHeight)
+        return CGRect(x: 0, y: imageHeight, width: screenSize.width, height: screenSize.height)
     }
 
     func takeArticlePreviewSnapshot(completion: (snapshot: UIImage?) -> Void) {

@@ -266,7 +266,7 @@ struct ColumnCellStyles {
     static let lineHeight: CGFloat = 1
 }
 
-struct HighlightCellStyles {
+struct ArticleRefCellStyles {
     static let maximumLineCount: UInt = 3
     static let headlineMarginTop: CGFloat = 18
     static let richTextMarginTop: CGFloat = 6
@@ -284,15 +284,6 @@ struct HighlightCellStyles {
             return [.Top(0.2, 0.7), .Left(0.8, 1), .Bottom(0.5, 0.7)]
         default:
             return [.Bottom(0.5, 0.7)]
-        }
-    }
-    
-    static func heightForWidth(width: CGFloat, style: BlockStyle) -> CGFloat {
-        switch style {
-        case BlockStyle.HighlightXL:
-            return Screen.value(width,512)
-        default:
-            return Screen.value(width*0.7,256)
         }
     }
 }
@@ -534,10 +525,7 @@ extension Block {
 
         var contentPadding: UIEdgeInsets
         switch (self.context, self, style) {
-        case (.Timeline, is ArticleRefBlock, BlockStyle.Normal):
-            contentPadding =  UIEdgeInsets(top: 19, left: 12, bottom: 0, right: 19)
-        case (.Timeline, is ArticleRefBlock, BlockStyle.Highlight),
-             (.Timeline, is ArticleRefBlock, BlockStyle.HighlightXL):
+        case (.Timeline, is ArticleRefBlock, _):
              contentPadding =  UIEdgeInsets(top: 19, left: TimelineStyles.contentInset, bottom: 0, right: TimelineStyles.contentInset)
         case (_, is DividerBlock, _):
             contentPadding = UIEdgeInsets(top: 0, left: 0, bottom: 16, right: 0)
@@ -662,6 +650,23 @@ extension ImageBlock {
     }
 }
 
+extension ArticleRefBlock {
+    func sizeThatFits(constrainedWidth: CGFloat) -> CGSize {
+        switch style {
+        case BlockStyle.HighlightXL:
+            let height = Screen.value(constrainedWidth, 512)
+            return CGSize(width: constrainedWidth, height: height)
+        case BlockStyle.Highlight:
+            let height = Screen.value(constrainedWidth*0.7,constrainedWidth*0.43)
+            return CGSize(width: constrainedWidth, height: height)
+        default:
+            let width = Screen.value(constrainedWidth,constrainedWidth/2)
+            let height = Screen.value(width*0.7,width*0.75)
+            return CGSize(width: width, height: height)
+        }
+    }
+}
+
 extension MarkupTag {
     var font: UIFont {
     switch self {
@@ -737,10 +742,10 @@ class LabelStyler: Styler {
     }
     
     var labelInsetBottom: CGFloat {
-        switch block.style {
-        case BlockStyle.Highlight:
+        switch (block, block.style) {
+        case (is ArticleRefBlock, BlockStyle.Normal),(is ArticleRefBlock, BlockStyle.Highlight):
             return Screen.value(23,28)
-        case BlockStyle.HighlightXL:
+        case (is ArticleRefBlock, BlockStyle.HighlightXL):
             return Screen.value(23,49)
         default:
             return 0
@@ -816,7 +821,7 @@ class HeadlineStyler : Styler {
     
     var headlineFontColor: UIColor {
         switch (block.context, block, block.style) {
-        case (.Timeline, _, BlockStyle.Highlight), (.Timeline, _, BlockStyle.HighlightXL):
+        case (.Timeline, is ArticleRefBlock, _):
             return Colors.titleOverImageColor
         case (.Article, is ArticleHeaderBlock, _):
             return Colors.accentColor
@@ -833,7 +838,7 @@ class HeadlineStyler : Styler {
     
     var headlineFont: UIFont {
         switch (block.context, block, block.style) {
-        case (.Timeline, is ArticleRefBlock, BlockStyle.Highlight):
+        case (.Timeline, is ArticleRefBlock, BlockStyle.Highlight),(.Timeline, is ArticleRefBlock, BlockStyle.Normal):
             return Fonts.mediumFont.fallbackWithSize(24)
         case (.Timeline, is ArticleRefBlock, BlockStyle.HighlightXL):
             return Fonts.mediumFont.fallbackWithSize(Screen.value(33,44))
@@ -854,12 +859,10 @@ class HeadlineStyler : Styler {
     
     var headlineLinespacing: CGFloat {
         switch (block.context, block, block.style) {
-        case (.Timeline, _, BlockStyle.Highlight):
+        case (.Timeline, is ArticleRefBlock, BlockStyle.Highlight),(.Timeline, is ArticleRefBlock, BlockStyle.Normal):
             return 4
-        case (.Timeline, _, BlockStyle.HighlightXL):
+        case (.Timeline, is ArticleRefBlock, BlockStyle.HighlightXL):
             return 4
-        case (.Timeline, _, BlockStyle.Normal):
-            return 3
         case (.Article, is StreamerBlock, _ ):
             return 6
         case (_, is MediaBlock, _):
@@ -917,10 +920,10 @@ class HeadlineStyler : Styler {
     }
     
     var insetBottom: CGFloat {
-        switch block.style {
-        case BlockStyle.Highlight:
+        switch (block, block.style) {
+        case (is ArticleRefBlock, BlockStyle.Highlight), (is ArticleRefBlock, BlockStyle.Normal):
             return Screen.value(4,8)
-        case BlockStyle.HighlightXL:
+        case (is ArticleRefBlock, BlockStyle.HighlightXL):
             return Screen.value(4,12)
         default:
             return 0
@@ -1168,10 +1171,11 @@ class RichTextStyler : Styler {
             return Screen.value(16,20)
         }
         
-        switch block.style {
-        case BlockStyle.Highlight,
-             BlockStyle.HighlightXL:
+        if case is ArticleRefBlock = block {
             return 14
+        }
+        
+        switch block.style {
         case BlockStyle.Intro:
             return Screen.value(22,26)
         case BlockStyle.Byline:
@@ -1183,8 +1187,7 @@ class RichTextStyler : Styler {
     
     var richTextLineSpacing: CGFloat {
         switch (block, block.style) {
-        case (is ArticleRefBlock, BlockStyle.Highlight),
-             (is ArticleRefBlock, BlockStyle.HighlightXL):
+        case (is ArticleRefBlock, _):
             return 7
         case (is TextBlock, BlockStyle.Intro):
             return Screen.value(6,9)
