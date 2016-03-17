@@ -168,6 +168,10 @@ struct ContextStyles {
     static let popAnimationDurationXL: NSTimeInterval = 0.4
 }
 
+struct StatusManagerStyles {
+    static let statusBarStyle = UIStatusBarStyle.LightContent
+}
+
 struct TimelineStyles {
     static let navBarAutoHideEnabled = false
     static let enablePullToRefresh = true

@@ -8,7 +8,6 @@
 import Foundation
 import UIKit
 
-
 /**
     Temporary config. Should be moved to a configuration file.
 */
@@ -18,21 +17,81 @@ struct AppConfig {
     static let instabugKey = "96eff9b30e3192f192f24f927ba6de2f"
     
     // API
-    static let server = Server.OnlineDemo
-    static let baseServerURL = NSURL(string: server.rawValue)!
-    static let baseMediaURL = AppConfig.baseServerURL.URLByAppendingPathComponent("__media__")
-    static let authURL = AppConfig.baseServerURL.URLByAppendingPathComponent("__auth__")
+    private static let server = Server.OnlineDemo
+    static var baseServerURL: NSURL {
+        set(newValue) {
+           NSUserDefaults.standardUserDefaults().setObject(newValue.absoluteString, forKey: AppConfigKey.BaseServerURL.rawValue)
+            self.notifyBaseServerURLOverrideIfNeeded("Connected with ")
+        }
+        get {
+            let urlString = NSUserDefaults.standardUserDefaults().objectForKey(AppConfigKey.BaseServerURL.rawValue) as! String
+            return NSURL(string: urlString)!
+        }
+    }
+    
+    static var baseMediaURL: NSURL {
+        get {
+            return baseServerURL.URLByAppendingPathComponent("__media__")
+        }
+    }
+    
+    static var authURL: NSURL {
+        get {
+            return baseServerURL.URLByAppendingPathComponent("__auth__")
+        }
+    }
     
     static let serverIsFileBased = baseServerURL.URLString.rangeOfString("5001") != nil
     static let currentPaywallIdentfierKey = "nl.nrc.timeline.paywall.currentIdentfier"
     static let preloadMediaFormat = MediaFormat.Medium
     static let maxMediaFormat = MediaFormat.Large
     
-    static let cacheSize: UInt = 1000000    
+    static let cacheSize: UInt = 1000000
+    static let customScheme = "hbsmb"
+    
     
     // AsyncDisplayKit
     static let linkAttributeName = "NSALink"
+    
+    static func registerDefaults() {
+        var defaults:[String : AnyObject] = [:]
+        defaults[AppConfigKey.BaseServerURL.rawValue] = server.rawValue;
+        defaults[AppConfigKey.BaseMediaURL.rawValue] = server.rawValue+"\\__media__";
+        defaults[AppConfigKey.AuthURL.rawValue] = server.rawValue+"\\__auth__";
+        NSUserDefaults.standardUserDefaults().registerDefaults(defaults)
+    }
+    
+    static func resetValue(key: AppConfigKey) {
+        if case .BaseServerURL = key {
+            self.sendNotification(.BaseServerURLReset)
+        }
+        NSUserDefaults.standardUserDefaults().removeObjectForKey(key.rawValue)
+    }
+    
+    static func notifyBaseServerURLOverrideIfNeeded(prefix:String) {
+        if self.baseServerURL.absoluteString != server.rawValue {
+            StatusManager.sharedInstance.pushStatusMessage(prefix+self.baseServerURL.absoluteString, type: "", displayTime: 10, replayBlock: nil)
+            self.sendNotification(.BaseServerURLOverride)
+        }
+    }
+    
+    private static func sendNotification(notificationType: AppConfigNotification) {
+        let notificationCenter = NSNotificationCenter.defaultCenter()
+        notificationCenter.postNotificationName(notificationType.rawValue, object: nil)
+    }
 }
+
+enum AppConfigKey: String {
+    case BaseServerURL = "BaseServerURL"
+    case BaseMediaURL = "BaseMediaURL"
+    case AuthURL = "AuthURL"
+}
+
+enum AppConfigNotification: String {
+    case BaseServerURLReset = "io.trc.boeckler.baseserverurl.reset"
+    case BaseServerURLOverride = "io.trc.boeckler.baseserverurl.override"
+}
+
 
 enum Server: String {
     case Localhost = "http://localhost:5000"
@@ -55,4 +114,3 @@ enum AuthenticationNotification: String {
     case Finished = "io.trc.boeckler.authentication.finished"
     case Revoked = "io.trc.boeckler.authentication.revoked"
 }
-

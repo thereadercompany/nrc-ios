@@ -10,6 +10,7 @@ import Swinject
 
 extension SwinjectStoryboard {
     class func setup() {
+        AppConfig.registerDefaults()
         
         let container = defaultContainer
         
