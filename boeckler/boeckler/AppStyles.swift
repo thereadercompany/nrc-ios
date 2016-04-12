@@ -40,7 +40,8 @@ struct Colors {
     static let timelineBackgroundColor =  UIColor(hex: 0x2A2D31)
     static let timelineDividerBackgroundColor = Colors.accentColor
     static let timelineSpacingBackgroundColor = Colors.accentColor
-    static let insetBackgroundColor = UIColor(hex: 0xF7F7F7)
+    static let imageBackgroundColor = UIColor(hex: 0x526E94)
+    static let insetBackgroundColor = Colors.sand
     static let tweetTextColor = UIColor(hex: 0x3E4447)
     static let tweetSubHeadlineColor = UIColor(hex: 0xB1B4B5)
     static let twitterBlue = UIColor(hex: 0x55ACEE)
@@ -81,7 +82,6 @@ struct Colors {
     static let errorActionButtonTextColor = UIColor(hex: 0xD30910)
     static let refreshControlTintColor = UIColor(hex: 0xE6EAEE).colorWithAlphaComponent(0.6)
     static let loadingIndicatorColor = UIColor.whiteColor()
-    static let imageBackgroundColor = UIColor(hex: 0xF6F6F6)
 }
 
 struct Fonts {
@@ -322,7 +322,7 @@ struct StreamerCellStyles {
     static let headlineMarginTop: CGFloat = Screen.value(8, 12)
     static let headlineMarginBottom: CGFloat = 40
     static let subHeadlineMarginTop: CGFloat = 24
-    static let subHeadlineMarginBottom: CGFloat = 36
+    static let subHeadlineMarginBottom: CGFloat = 42
     static let lineHeight: CGFloat = 1
 }
 
@@ -505,7 +505,7 @@ extension Block {
     var decorationColor: UIColor? {
         switch self {
         case is ImageBlock:
-            return Colors.insetBackgroundColor
+            return Colors.imageBackgroundColor
         case is DividerBlock:
             return Colors.accentColor
         case is StreamerBlock:
@@ -624,7 +624,7 @@ extension Block {
         case ( _, BlockStyle.H2):
             return 8+6
         case ( _, BlockStyle.InsetH1):
-            return 24
+            return Screen.value(12,24)
         case ( _, BlockStyle.InsetH2):
             return 8
         case ( is ArticleHeaderBlock, _):
@@ -785,7 +785,7 @@ class LabelStyler: Styler {
     }
     
     var attributedLabel : NSAttributedString {
-        guard let label = value else { return NSAttributedString(string: "") }
+        guard let label = value?.uppercaseString else { return NSAttributedString(string: "") }
         let attrs = StringAttributes(font: labelFont, foregroundColor: labelTextColor, lineSpacing: labelTextLineSpacing, alignment: NSTextAlignment.Center)
         let result = NSMutableAttributedString(string:label, attributes:attrs.dictionary)
         return result;
@@ -1050,7 +1050,7 @@ class PlainTextStyler : Styler {
         case (is FallbackBlock, _):
             return Fonts.lightFont.fallbackWithSize(15)
         case (_ , BlockStyle.InsetH1):
-            return Fonts.mediumFont.fallbackWithSize(18)
+            return Fonts.mediumFont.fallbackWithSize(Screen.value(20,24))
         case (_, BlockStyle.InsetH2):
             return  Fonts.mediumFont.fallbackWithSize(16)
         case (_, BlockStyle.H1):

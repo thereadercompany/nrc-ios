@@ -46,7 +46,6 @@ struct AppConfig {
     static let preloadMediaFormat = MediaFormat.Medium
     static let maxMediaFormat = MediaFormat.Large
     
-    static let cacheSize: UInt = 1000000
     static let memorySize: UInt = 1000000
     static let cacheSize: UInt = 500000000
     static let cachePeriod: NSTimeInterval = 3.0*4.0*7.0*24.0*60.0*60.0 // 3 months
@@ -65,22 +64,30 @@ struct AppConfig {
     }
     
     static func resetValue(key: AppConfigKey) {
+        NSUserDefaults.standardUserDefaults().removeObjectForKey(key.rawValue)
         if case .BaseServerURL = key {
             self.sendNotification(.BaseServerURLReset)
         }
-        NSUserDefaults.standardUserDefaults().removeObjectForKey(key.rawValue)
     }
     
     static func notifyBaseServerURLOverrideIfNeeded(prefix:String) {
         if self.baseServerURL.absoluteString != server.rawValue {
-            StatusManager.sharedInstance.pushStatusMessage(prefix+self.baseServerURL.absoluteString, type: "", displayTime: 10, replayBlock: nil)
             self.sendNotification(.BaseServerURLOverride)
+            self.pushBaseServerURLStatusIfNeeded(prefix)
+        }
+    }
+    
+    static func pushBaseServerURLStatusIfNeeded(prefix:String) {
+        if self.baseServerURL.absoluteString != server.rawValue {
+            StatusManager.sharedInstance.pushStatusMessage(prefix+self.baseServerURL.absoluteString, type: "", displayTime: 3, replayBlock: nil)
         }
     }
     
     private static func sendNotification(notificationType: AppConfigNotification) {
-        let notificationCenter = NSNotificationCenter.defaultCenter()
-        notificationCenter.postNotificationName(notificationType.rawValue, object: nil)
+        dispatch_async(dispatch_get_main_queue()) {
+            let notificationCenter = NSNotificationCenter.defaultCenter()
+            notificationCenter.postNotificationName(notificationType.rawValue, object: nil)
+        }
     }
 }
 
