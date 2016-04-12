@@ -47,6 +47,9 @@ struct AppConfig {
     static let maxMediaFormat = MediaFormat.Large
     
     static let cacheSize: UInt = 1000000
+    static let memorySize: UInt = 1000000
+    static let cacheSize: UInt = 500000000
+    static let cachePeriod: NSTimeInterval = 3.0*4.0*7.0*24.0*60.0*60.0 // 3 months
     static let customScheme = "hbsmb"
     
     
