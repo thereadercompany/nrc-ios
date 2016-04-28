@@ -40,7 +40,7 @@ struct Colors {
     static let timelineBackgroundColor =  UIColor(hex: 0x2A2D31)
     static let timelineDividerBackgroundColor = Colors.accentColor
     static let timelineSpacingBackgroundColor = Colors.accentColor
-    static let imageBackgroundColor = UIColor(hex: 0x526E94)
+    static let imageBackgroundColor = UIColor(hex: 0xF9FAFB)
     static let insetBackgroundColor = Colors.sand
     static let tweetTextColor = UIColor(hex: 0x3E4447)
     static let tweetSubHeadlineColor = UIColor(hex: 0xB1B4B5)
@@ -658,14 +658,14 @@ extension ArticleRefBlock {
     func sizeThatFits(constrainedWidth: CGFloat) -> CGSize {
         switch style {
         case BlockStyle.HighlightXL:
-            let height = Screen.value(constrainedWidth, 512)
+            let height = Screen.value(constrainedWidth, 640)
             return CGSize(width: constrainedWidth, height: height)
         case BlockStyle.Highlight:
-            let height = Screen.value(constrainedWidth*0.7,constrainedWidth*0.43)
+            let height = round(Screen.value(constrainedWidth*0.7,constrainedWidth*0.43))
             return CGSize(width: constrainedWidth, height: height)
         default:
             let width = Screen.value(constrainedWidth,constrainedWidth/2)
-            let height = Screen.value(width*0.7,width*0.75)
+            let height = round(Screen.value(width*0.7,width*0.75))
             return CGSize(width: width, height: height)
         }
     }
