@@ -203,11 +203,11 @@
 		1774DAD21BEB94B6007431EB /* AsyncDisplayKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1774DAC51BEB94B6007431EB /* AsyncDisplayKit.framework */; };
 		1774DAD31BEB94B6007431EB /* BrightFutures.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1774DAC61BEB94B6007431EB /* BrightFutures.framework */; };
 		1774DAD41BEB94B6007431EB /* Curry.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1774DAC71BEB94B6007431EB /* Curry.framework */; };
-		1774DAD51BEB94B6007431EB /* DTCoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1774DAC81BEB94B6007431EB /* DTCoreText.framework */; };
 		1774DAD61BEB94B6007431EB /* Kingfisher.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1774DAC91BEB94B6007431EB /* Kingfisher.framework */; };
 		1774DADA1BEB94F6007431EB /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1774DAD71BEB94F6007431EB /* Crashlytics.framework */; };
 		1774DADB1BEB94F6007431EB /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1774DAD81BEB94F6007431EB /* Fabric.framework */; };
 		1774DADC1BEB94F6007431EB /* Instabug.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1774DAD91BEB94F6007431EB /* Instabug.framework */; };
+		177B29871CCFA9090010C74D /* DTCoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1774DAC81BEB94B6007431EB /* DTCoreText.framework */; };
 		177FD6C31BECC9C900650BFB /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 177FD6C21BECC9C900650BFB /* Images.xcassets */; };
 		17927F031C8F4ECE00761D5D /* ImageBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17927F021C8F4ECE00761D5D /* ImageBlock.swift */; };
 		17927F061C8F6D3300761D5D /* FallbackContentBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17927F051C8F6D3300761D5D /* FallbackContentBlock.swift */; };
@@ -224,7 +224,6 @@
 		1797447E1C32C9E3004730C2 /* SharedMedia.swift in Sources */ = {isa = PBXBuildFile; fileRef = 179744711C32C9E3004730C2 /* SharedMedia.swift */; };
 		179744811C32C9E3004730C2 /* StreamerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 179744741C32C9E3004730C2 /* StreamerCell.swift */; };
 		179744831C32C9E3004730C2 /* AlertBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 179744761C32C9E3004730C2 /* AlertBlock.swift */; };
-		179744851C32C9E3004730C2 /* AuthorBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 179744781C32C9E3004730C2 /* AuthorBlock.swift */; };
 		1797448B1C32CAE5004730C2 /* CellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 179744891C32CAE5004730C2 /* CellDelegate.swift */; };
 		1797448C1C32CAE5004730C2 /* DebugTrace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1797448A1C32CAE5004730C2 /* DebugTrace.swift */; };
 		179B30891C0DD656001005E2 /* UniversNextPro-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 179B30881C0DD656001005E2 /* UniversNextPro-Bold.otf */; };
@@ -475,7 +474,6 @@
 		179744711C32C9E3004730C2 /* SharedMedia.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SharedMedia.swift; path = "core/trc-core/SharedMedia.swift"; sourceTree = SOURCE_ROOT; };
 		179744741C32C9E3004730C2 /* StreamerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StreamerCell.swift; path = "core/trc-core/StreamerCell.swift"; sourceTree = SOURCE_ROOT; };
 		179744761C32C9E3004730C2 /* AlertBlock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AlertBlock.swift; path = "core/trc-core/AlertBlock.swift"; sourceTree = SOURCE_ROOT; };
-		179744781C32C9E3004730C2 /* AuthorBlock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AuthorBlock.swift; path = "core/trc-core/AuthorBlock.swift"; sourceTree = SOURCE_ROOT; };
 		179744891C32CAE5004730C2 /* CellDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CellDelegate.swift; path = "core/trc-core/CellDelegate.swift"; sourceTree = SOURCE_ROOT; };
 		1797448A1C32CAE5004730C2 /* DebugTrace.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DebugTrace.swift; path = "core/trc-core/DebugTrace.swift"; sourceTree = SOURCE_ROOT; };
 		179B30881C0DD656001005E2 /* UniversNextPro-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "UniversNextPro-Bold.otf"; path = "Resources/Fonts/LT Univers Next OTF/UniversNextPro-Bold.otf"; sourceTree = "<group>"; };
@@ -504,6 +502,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				177B29871CCFA9090010C74D /* DTCoreText.framework in Frameworks */,
 				1718D69A1C04AA370036DB5B /* Swinject.framework in Frameworks */,
 				1774DADA1BEB94F6007431EB /* Crashlytics.framework in Frameworks */,
 				1774DADB1BEB94F6007431EB /* Fabric.framework in Frameworks */,
@@ -518,7 +517,6 @@
 				1774DAD21BEB94B6007431EB /* AsyncDisplayKit.framework in Frameworks */,
 				1774DAD31BEB94B6007431EB /* BrightFutures.framework in Frameworks */,
 				1774DAD41BEB94B6007431EB /* Curry.framework in Frameworks */,
-				1774DAD51BEB94B6007431EB /* DTCoreText.framework in Frameworks */,
 				1774DAD61BEB94B6007431EB /* Kingfisher.framework in Frameworks */,
 				1774DABC1BEB9481007431EB /* DTFoundation.framework in Frameworks */,
 				1731BF9F1BEA5A780012D6FF /* libc++.tbd in Frameworks */,
@@ -625,7 +623,6 @@
 				1731BDB01BEA43630012D6FF /* ArticleViewController.swift */,
 				1731BDB21BEA43630012D6FF /* ASDisplayNode.swift */,
 				1731BDB31BEA43630012D6FF /* AuthenticationController.swift */,
-				179744781C32C9E3004730C2 /* AuthorBlock.swift */,
 				1718D6BB1C0738020036DB5B /* Block.swift */,
 				1731BDC21BEA43630012D6FF /* BlockChanges.swift */,
 				1731BDB81BEA43630012D6FF /* BlockContext.swift */,
@@ -1161,7 +1158,6 @@
 				179744811C32C9E3004730C2 /* StreamerCell.swift in Sources */,
 				1731BEE71BEA43BE0012D6FF /* VimeoBlock.swift in Sources */,
 				1731BF4E1BEA591B0012D6FF /* LoadingIndicatorViewController.swift in Sources */,
-				179744851C32C9E3004730C2 /* AuthorBlock.swift in Sources */,
 				1731BEBB1BEA43BE0012D6FF /* ServerErrorBlock.swift in Sources */,
 				1731BF961BEA59270012D6FF /* ErrorView.swift in Sources */,
 				1731BED21BEA43BE0012D6FF /* TrackedEvent.swift in Sources */,
