@@ -17,7 +17,7 @@ struct AppConfig {
     static let instabugKey = "96eff9b30e3192f192f24f927ba6de2f"
     
     // API
-    private static let server = Server.OnlineDemo
+    private static let server = Server.Production
     static var baseServerURL: NSURL {
         set(newValue) {
            NSUserDefaults.standardUserDefaults().setObject(newValue.absoluteString, forKey: AppConfigKey.BaseServerURL.rawValue)
@@ -46,7 +46,7 @@ struct AppConfig {
     static let preloadMediaFormat = MediaFormat.Medium
     static let maxMediaFormat = MediaFormat.Large
     
-    static let memorySize: UInt = 1000000
+    static let memorySize: UInt = 500000000
     static let cacheSize: UInt = 500000000
     static let cachePeriod: NSTimeInterval = 3.0*4.0*7.0*24.0*60.0*60.0 // 3 months
     static let customScheme = "hbsmb"
@@ -106,7 +106,7 @@ enum AppConfigNotification: String {
 enum Server: String {
     case Localhost = "http://localhost:5000"
     case LocalhostDemo = "http://localhost:5001"
-    case OnlineDemo = "http://boeckler-select-api.trc.io"
+    case Production = "http://boeckler-select-api.trc.io"
 }
 
 enum BlockContext: String, Equatable {
