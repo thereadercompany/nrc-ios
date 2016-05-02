@@ -215,8 +215,8 @@ struct ArticleStyles {
     static let topInset: CGFloat = 0
     static let navBarAutoHideEnabled = true
     static let navigationBarHeight: CGFloat = 85 //65 + 20 statusbar    
-    static let textInset: CGFloat = Screen.value(24,80)
-    static let specialInset: CGFloat = Screen.value(0,40)
+    static var textInset: CGFloat { return Screen.value(24,80,208) }
+    static var specialInset: CGFloat { return Screen.value(0,40,168) }
     static let pushToHideThreshold: CGFloat = 120
     static let backgroundColor = Colors.accentColor
     static func navigationViewNeedsLine(style: NavigationViewStyle) -> Bool {
@@ -658,14 +658,14 @@ extension ArticleRefBlock {
     func sizeThatFits(constrainedWidth: CGFloat) -> CGSize {
         switch style {
         case BlockStyle.HighlightXL:
-            let height = Screen.value(constrainedWidth, 640)
+            let height = Screen.value(constrainedWidth, 536, 640)
             return CGSize(width: constrainedWidth, height: height)
         case BlockStyle.Highlight:
-            let height = round(Screen.value(constrainedWidth*0.7,constrainedWidth*0.43))
+            let height = round(Screen.value(constrainedWidth*0.7,338,430))
             return CGSize(width: constrainedWidth, height: height)
         default:
             let width = Screen.value(constrainedWidth,constrainedWidth/2)
-            let height = round(Screen.value(width*0.7,width*0.75))
+            let height = round(Screen.value(width*0.7,302,348))
             return CGSize(width: width, height: height)
         }
     }
@@ -813,6 +813,21 @@ extension MediaBlock {
             return Colors.imageBackgroundColor
         default:
             return backgroundColor
+        }
+    }
+    
+    var supportedMediaFormats: [MediaFormat]? {
+        switch (self, self.style) {
+        case (is ArticleHeaderBlock, _):
+            return Screen.value([MediaFormat.Medium,MediaFormat.Small],[MediaFormat.Large,MediaFormat.Medium,MediaFormat.Small])
+        case (is ArticleRefBlock, BlockStyle.HighlightXL):
+            return Screen.value([MediaFormat.Medium,MediaFormat.Small],[MediaFormat.Large,MediaFormat.Medium,MediaFormat.Small])
+        case (is ArticleRefBlock, BlockStyle.Highlight):
+            return Screen.value([MediaFormat.Medium,MediaFormat.Small],[MediaFormat.Large,MediaFormat.Medium,MediaFormat.Small])
+        case (is ArticleRefBlock, BlockStyle.Normal):
+            return Screen.value([MediaFormat.Medium,MediaFormat.Small],[MediaFormat.Medium,MediaFormat.Small])
+        default:
+            return nil
         }
     }
 }
