@@ -42,14 +42,14 @@ class ArticleRefCell : MediaCell {
             print("No article found in articleVC while snappshotting")
             return nil
         }
-        let size = UIScreen.mainScreen().bounds.size
+        let size = Window.size
         return ArticlePreview(article: article, frame: CGRect(origin: CGPointZero, size: size), cellFactory: cellFactory)
     }
     
     var articlePreviewSnapshotFrame: CGRect {
-        let screenSize = UIScreen.mainScreen().bounds.size
+        let size = Window.size
         let imageHeight = ArticleHeaderCellStyles.imageHeight
-        return CGRect(x: 0, y: imageHeight, width: screenSize.width, height: screenSize.height)
+        return CGRect(x: 0, y: imageHeight, width: size.width, height: size.height)
     }
 
     func takeArticlePreviewSnapshot(completion: (snapshot: UIImage?) -> Void) {
