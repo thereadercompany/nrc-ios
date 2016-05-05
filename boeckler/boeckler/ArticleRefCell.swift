@@ -12,6 +12,7 @@ class ArticleRefCell : MediaCell {
     let dataController: BlockContextDataController
     let cellFactory: CellFactory
     var preview: ArticlePreview?
+    var previewOrientation: UIInterfaceOrientation?
     
     init(articleRef: ArticleRefBlock, dataController: BlockContextDataController, cellFactory: CellFactory) {
         self.articleRef = articleRef
@@ -20,14 +21,29 @@ class ArticleRefCell : MediaCell {
         super.init(block: articleRef)        
     }
     
-    override func scrollViewHalted(halted: Bool, resetFirst: Bool) {
-        super.scrollViewHalted(halted, resetFirst: resetFirst)
-        if resetFirst {
-            preview = nil
-            articlePreviewSnapshot = nil
+    override func scrollViewHalted() {
+        super.scrollViewHalted()
+        updatePreview()
+    }
+    
+    private func setPreview() {
+        preview = renderPreview()
+        previewOrientation = UIApplication.sharedApplication().statusBarOrientation
+    }
+    
+    private func resetPreview() {
+        preview = nil
+        previewOrientation = nil
+        articlePreviewSnapshot = nil
+    }
+    
+    private func updatePreview() {
+        let currentOrientation = UIApplication.sharedApplication().statusBarOrientation
+        if previewOrientation != currentOrientation {
+            resetPreview()
         }
-        if halted && preview == nil {
-            preview = renderPreview()
+        if preview == nil {
+            setPreview()
         }
     }
         
@@ -35,6 +51,7 @@ class ArticleRefCell : MediaCell {
         super.setVisible(visible)
         if !visible {
             preview = nil
+            previewOrientation = nil
         }
     }
     
@@ -57,9 +74,7 @@ class ArticleRefCell : MediaCell {
     }
 
     func takeArticlePreviewSnapshot(completion: (snapshot: UIImage?) -> Void) {
-        if preview == nil {
-            self.preview = renderPreview()
-        }
+        updatePreview()
         
         if let preview = self.preview {
             dispatch_sync(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) { () -> Void in
