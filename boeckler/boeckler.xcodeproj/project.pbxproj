@@ -15,7 +15,7 @@
 		1718D6AC1C05A4CC0036DB5B /* TrackerFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1718D6A91C05A4CC0036DB5B /* TrackerFactory.swift */; };
 		1718D6B41C05A5230036DB5B /* BlockContextDataSourceFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1718D6B31C05A5230036DB5B /* BlockContextDataSourceFactory.swift */; };
 		1718D6BC1C0738020036DB5B /* Block.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1718D6BB1C0738020036DB5B /* Block.swift */; };
-		171C7C901C4685BD002088E2 /* ParentContextSnapshotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 171C7C8F1C4685BD002088E2 /* ParentContextSnapshotView.swift */; };
+		171C7C901C4685BD002088E2 /* BlockContextSnapshotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 171C7C8F1C4685BD002088E2 /* BlockContextSnapshotView.swift */; };
 		171C7C921C46BBF6002088E2 /* ImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 171C7C911C46BBF6002088E2 /* ImageViewController.swift */; };
 		171C7C941C46C1C4002088E2 /* ZoomableImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 171C7C931C46C1C4002088E2 /* ZoomableImageView.swift */; };
 		171F6F8A1C0496A200B3A390 /* BlockDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 171F6F891C0496A200B3A390 /* BlockDecoder.swift */; };
@@ -192,6 +192,7 @@
 		175FF2001C0DE89A00F3458F /* Column.swift in Sources */ = {isa = PBXBuildFile; fileRef = 175FF1FF1C0DE89A00F3458F /* Column.swift */; };
 		175FF2041C0E00F300F3458F /* CustomStreamerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 175FF2031C0E00F300F3458F /* CustomStreamerCell.swift */; };
 		175FF2061C0E022A00F3458F /* DecorationNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 175FF2051C0E022A00F3458F /* DecorationNode.swift */; };
+		1764CE2F1CDA082F00A27884 /* CGPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1764CE2E1CDA082F00A27884 /* CGPoint.swift */; };
 		1774DABC1BEB9481007431EB /* DTFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1774DABB1BEB9481007431EB /* DTFoundation.framework */; };
 		1774DACA1BEB94B6007431EB /* Locksmith.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1774DABD1BEB94B6007431EB /* Locksmith.framework */; };
 		1774DACC1BEB94B6007431EB /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1774DABF1BEB94B6007431EB /* Result.framework */; };
@@ -256,7 +257,7 @@
 		1718D6A91C05A4CC0036DB5B /* TrackerFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TrackerFactory.swift; path = "core/trc-core/TrackerFactory.swift"; sourceTree = SOURCE_ROOT; };
 		1718D6B31C05A5230036DB5B /* BlockContextDataSourceFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BlockContextDataSourceFactory.swift; path = "core/trc-core/BlockContextDataSourceFactory.swift"; sourceTree = SOURCE_ROOT; };
 		1718D6BB1C0738020036DB5B /* Block.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Block.swift; path = "core/trc-core/Block.swift"; sourceTree = SOURCE_ROOT; };
-		171C7C8F1C4685BD002088E2 /* ParentContextSnapshotView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ParentContextSnapshotView.swift; path = "core/trc-core/ParentContextSnapshotView.swift"; sourceTree = SOURCE_ROOT; };
+		171C7C8F1C4685BD002088E2 /* BlockContextSnapshotView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BlockContextSnapshotView.swift; path = "core/trc-core/BlockContextSnapshotView.swift"; sourceTree = SOURCE_ROOT; };
 		171C7C911C46BBF6002088E2 /* ImageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ImageViewController.swift; path = "core/trc-core/ImageViewController.swift"; sourceTree = SOURCE_ROOT; };
 		171C7C931C46C1C4002088E2 /* ZoomableImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ZoomableImageView.swift; path = "core/trc-core/ZoomableImageView.swift"; sourceTree = SOURCE_ROOT; };
 		171F6F891C0496A200B3A390 /* BlockDecoder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BlockDecoder.swift; path = "core/trc-core/BlockDecoder.swift"; sourceTree = SOURCE_ROOT; };
@@ -440,6 +441,7 @@
 		175FF1FF1C0DE89A00F3458F /* Column.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Column.swift; path = "core/trc-core/Column.swift"; sourceTree = SOURCE_ROOT; };
 		175FF2031C0E00F300F3458F /* CustomStreamerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomStreamerCell.swift; sourceTree = "<group>"; };
 		175FF2051C0E022A00F3458F /* DecorationNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DecorationNode.swift; path = "core/trc-core/DecorationNode.swift"; sourceTree = SOURCE_ROOT; };
+		1764CE2E1CDA082F00A27884 /* CGPoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CGPoint.swift; path = "core/trc-core/CGPoint.swift"; sourceTree = SOURCE_ROOT; };
 		1774DABB1BEB9481007431EB /* DTFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DTFoundation.framework; path = core/Carthage/Build/iOS/DTFoundation.framework; sourceTree = "<group>"; };
 		1774DABD1BEB94B6007431EB /* Locksmith.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Locksmith.framework; path = core/Carthage/Build/iOS/Locksmith.framework; sourceTree = "<group>"; };
 		1774DABF1BEB94B6007431EB /* Result.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Result.framework; path = core/Carthage/Build/iOS/Result.framework; sourceTree = "<group>"; };
@@ -767,7 +769,7 @@
 				1731BEB51BEA43BE0012D6FF /* Window.swift */,
 				1731BEB61BEA43BE0012D6FF /* YoutubeBlock.swift */,
 				1731BEB71BEA43BE0012D6FF /* YoutubeCell.swift */,
-				171C7C8F1C4685BD002088E2 /* ParentContextSnapshotView.swift */,
+				171C7C8F1C4685BD002088E2 /* BlockContextSnapshotView.swift */,
 				171C7C911C46BBF6002088E2 /* ImageViewController.swift */,
 				171C7C931C46C1C4002088E2 /* ZoomableImageView.swift */,
 				17211F411C47CE7700236EA6 /* ImagePushAnimator.swift */,
@@ -780,6 +782,7 @@
 				17E6A4F61C73BBEE00EB9B52 /* UIScrollView.swift */,
 				17D53C931C75FC3E007B5E79 /* ArticleRefCell.swift */,
 				17927F021C8F4ECE00761D5D /* ImageBlock.swift */,
+				1764CE2E1CDA082F00A27884 /* CGPoint.swift */,
 			);
 			name = Sources;
 			sourceTree = "<group>";
@@ -1045,7 +1048,7 @@
 				175FF2001C0DE89A00F3458F /* Column.swift in Sources */,
 				17927F081C8F7DEC00761D5D /* PlayableMediaCell.swift in Sources */,
 				1731BF761BEA59270012D6FF /* BlockDecoration.swift in Sources */,
-				171C7C901C4685BD002088E2 /* ParentContextSnapshotView.swift in Sources */,
+				171C7C901C4685BD002088E2 /* BlockContextSnapshotView.swift in Sources */,
 				1731BF6A1BEA59270012D6FF /* ASDisplayNode.swift in Sources */,
 				1731BF3B1BEA59110012D6FF /* PlainTextCell.swift in Sources */,
 				1731BEE81BEA43BE0012D6FF /* VimeoCell.swift in Sources */,
@@ -1109,6 +1112,7 @@
 				1797447E1C32C9E3004730C2 /* SharedMedia.swift in Sources */,
 				1731BF621BEA59270012D6FF /* ArticleHeaderCell.swift in Sources */,
 				1731BF771BEA59270012D6FF /* BlocksRelationship.swift in Sources */,
+				1764CE2F1CDA082F00A27884 /* CGPoint.swift in Sources */,
 				1731BF8D1BEA59270012D6FF /* DispatchingMethods.swift in Sources */,
 				1731BF981BEA59270012D6FF /* Expression.swift in Sources */,
 				1731BF2D1BEA58EF0012D6FF /* Request.swift in Sources */,

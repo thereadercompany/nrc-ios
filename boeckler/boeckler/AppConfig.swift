@@ -31,13 +31,15 @@ struct AppConfig {
     
     static var baseMediaURL: NSURL {
         get {
-            return baseServerURL.URLByAppendingPathComponent("__media__")
+            let urlString = NSUserDefaults.standardUserDefaults().objectForKey(AppConfigKey.BaseMediaURL.rawValue) as! String
+            return NSURL(string: urlString)!
         }
     }
     
     static var authURL: NSURL {
         get {
-            return baseServerURL.URLByAppendingPathComponent("__auth__")
+            let urlString = NSUserDefaults.standardUserDefaults().objectForKey(AppConfigKey.AuthURL.rawValue) as! String
+            return NSURL(string: urlString)!
         }
     }
     
@@ -57,9 +59,9 @@ struct AppConfig {
     
     static func registerDefaults() {
         var defaults:[String : AnyObject] = [:]
-        defaults[AppConfigKey.BaseServerURL.rawValue] = server.rawValue;
-        defaults[AppConfigKey.BaseMediaURL.rawValue] = server.rawValue+"\\__media__";
-        defaults[AppConfigKey.AuthURL.rawValue] = server.rawValue+"\\__auth__";
+        defaults[AppConfigKey.BaseServerURL.rawValue] = server.rawValue+"/__api__";
+        defaults[AppConfigKey.BaseMediaURL.rawValue] = server.rawValue+"/__media__";
+        defaults[AppConfigKey.AuthURL.rawValue] = server.rawValue+"/__auth__";
         NSUserDefaults.standardUserDefaults().registerDefaults(defaults)
     }
     
@@ -78,7 +80,7 @@ struct AppConfig {
     }
     
     static func pushBaseServerURLStatusIfNeeded(prefix:String) {
-        if self.baseServerURL.absoluteString != server.rawValue {
+        if self.baseServerURL.absoluteString != server.rawValue+"/__api__" {
             StatusManager.sharedInstance.pushStatusMessage(prefix+self.baseServerURL.absoluteString, type: "", displayTime: 3, replayBlock: nil)
         }
     }

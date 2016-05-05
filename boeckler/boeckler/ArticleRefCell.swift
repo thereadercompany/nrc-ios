@@ -20,13 +20,17 @@ class ArticleRefCell : MediaCell {
         super.init(block: articleRef)        
     }
     
-    override func scrollViewHalted(halted: Bool) {
-        super.scrollViewHalted(halted)
+    override func scrollViewHalted(halted: Bool, resetFirst: Bool) {
+        super.scrollViewHalted(halted, resetFirst: resetFirst)
+        if resetFirst {
+            preview = nil
+            articlePreviewSnapshot = nil
+        }
         if halted && preview == nil {
             preview = renderPreview()
         }
     }
-    
+        
     override func setVisible(visible: Bool) {
         super.setVisible(visible)
         if !visible {
@@ -42,12 +46,12 @@ class ArticleRefCell : MediaCell {
             print("No article found in articleVC while snappshotting")
             return nil
         }
-        let size = Window.size
+        let size = Screen.size
         return ArticlePreview(article: article, frame: CGRect(origin: CGPointZero, size: size), cellFactory: cellFactory)
     }
     
     var articlePreviewSnapshotFrame: CGRect {
-        let size = Window.size
+        let size = Screen.size
         let imageHeight = ArticleHeaderCellStyles.imageHeight
         return CGRect(x: 0, y: imageHeight, width: size.width, height: size.height)
     }
@@ -59,7 +63,8 @@ class ArticleRefCell : MediaCell {
         
         if let preview = self.preview {
             dispatch_sync(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) { () -> Void in
-                let snapshot = preview.takeSnapshot(bounds: self.articlePreviewSnapshotFrame)
+                let bounds = self.articlePreviewSnapshotFrame
+                let snapshot = preview.takeSnapshot(bounds: bounds)
                 completion(snapshot: snapshot)
             }
         }
