@@ -40,7 +40,7 @@
 		1731BEBD1BEA43BE0012D6FF /* SpacingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1731BE871BEA43BE0012D6FF /* SpacingCell.swift */; };
 		1731BEBE1BEA43BE0012D6FF /* SQLite-Bridging.m in Sources */ = {isa = PBXBuildFile; fileRef = 1731BE891BEA43BE0012D6FF /* SQLite-Bridging.m */; };
 		1731BEBF1BEA43BE0012D6FF /* Cache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1731BE8A1BEA43BE0012D6FF /* Cache.swift */; };
-		1731BEC01BEA43BE0012D6FF /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1731BE8B1BEA43BE0012D6FF /* Store.swift */; };
+		1731BEC01BEA43BE0012D6FF /* SQLiteStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1731BE8B1BEA43BE0012D6FF /* SQLiteStore.swift */; };
 		1731BEC11BEA43BE0012D6FF /* Statement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1731BE8C1BEA43BE0012D6FF /* Statement.swift */; };
 		1731BEC21BEA43BE0012D6FF /* StatusBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1731BE8D1BEA43BE0012D6FF /* StatusBar.swift */; };
 		1731BEC31BEA43BE0012D6FF /* StoreEventHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1731BE8E1BEA43BE0012D6FF /* StoreEventHandler.swift */; };
@@ -193,6 +193,8 @@
 		175FF2041C0E00F300F3458F /* CustomStreamerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 175FF2031C0E00F300F3458F /* CustomStreamerCell.swift */; };
 		175FF2061C0E022A00F3458F /* DecorationNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 175FF2051C0E022A00F3458F /* DecorationNode.swift */; };
 		1764CE2F1CDA082F00A27884 /* CGPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1764CE2E1CDA082F00A27884 /* CGPoint.swift */; };
+		1764CE311CDC7B7200A27884 /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1764CE301CDC7B7200A27884 /* Store.swift */; };
+		1764CE331CDC7BB000A27884 /* SQLiteDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1764CE321CDC7BB000A27884 /* SQLiteDatabase.swift */; };
 		1774DABC1BEB9481007431EB /* DTFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1774DABB1BEB9481007431EB /* DTFoundation.framework */; };
 		1774DACA1BEB94B6007431EB /* Locksmith.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1774DABD1BEB94B6007431EB /* Locksmith.framework */; };
 		1774DACC1BEB94B6007431EB /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1774DABF1BEB94B6007431EB /* Result.framework */; };
@@ -372,7 +374,7 @@
 		1731BE881BEA43BE0012D6FF /* SQLite-Bridging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "SQLite-Bridging.h"; path = "core/trc-core/SQLite-Bridging.h"; sourceTree = SOURCE_ROOT; };
 		1731BE891BEA43BE0012D6FF /* SQLite-Bridging.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "SQLite-Bridging.m"; path = "core/trc-core/SQLite-Bridging.m"; sourceTree = SOURCE_ROOT; };
 		1731BE8A1BEA43BE0012D6FF /* Cache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Cache.swift; path = "core/trc-core/Cache.swift"; sourceTree = SOURCE_ROOT; };
-		1731BE8B1BEA43BE0012D6FF /* Store.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Store.swift; path = "core/trc-core/Store.swift"; sourceTree = SOURCE_ROOT; };
+		1731BE8B1BEA43BE0012D6FF /* SQLiteStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SQLiteStore.swift; path = "core/trc-core/SQLiteStore.swift"; sourceTree = SOURCE_ROOT; };
 		1731BE8C1BEA43BE0012D6FF /* Statement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Statement.swift; path = "core/trc-core/Statement.swift"; sourceTree = SOURCE_ROOT; };
 		1731BE8D1BEA43BE0012D6FF /* StatusBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StatusBar.swift; path = "core/trc-core/StatusBar.swift"; sourceTree = SOURCE_ROOT; };
 		1731BE8E1BEA43BE0012D6FF /* StoreEventHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StoreEventHandler.swift; path = "core/trc-core/StoreEventHandler.swift"; sourceTree = SOURCE_ROOT; };
@@ -442,6 +444,8 @@
 		175FF2031C0E00F300F3458F /* CustomStreamerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomStreamerCell.swift; sourceTree = "<group>"; };
 		175FF2051C0E022A00F3458F /* DecorationNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DecorationNode.swift; path = "core/trc-core/DecorationNode.swift"; sourceTree = SOURCE_ROOT; };
 		1764CE2E1CDA082F00A27884 /* CGPoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CGPoint.swift; path = "core/trc-core/CGPoint.swift"; sourceTree = SOURCE_ROOT; };
+		1764CE301CDC7B7200A27884 /* Store.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Store.swift; path = "core/trc-core/Store.swift"; sourceTree = SOURCE_ROOT; };
+		1764CE321CDC7BB000A27884 /* SQLiteDatabase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SQLiteDatabase.swift; sourceTree = "<group>"; };
 		1774DABB1BEB9481007431EB /* DTFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DTFoundation.framework; path = core/Carthage/Build/iOS/DTFoundation.framework; sourceTree = "<group>"; };
 		1774DABD1BEB94B6007431EB /* Locksmith.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Locksmith.framework; path = core/Carthage/Build/iOS/Locksmith.framework; sourceTree = "<group>"; };
 		1774DABF1BEB94B6007431EB /* Result.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Result.framework; path = core/Carthage/Build/iOS/Result.framework; sourceTree = "<group>"; };
@@ -726,7 +730,9 @@
 				1731BE891BEA43BE0012D6FF /* SQLite-Bridging.m */,
 				1731BE8C1BEA43BE0012D6FF /* Statement.swift */,
 				1731BE8D1BEA43BE0012D6FF /* StatusBar.swift */,
-				1731BE8B1BEA43BE0012D6FF /* Store.swift */,
+				1764CE301CDC7B7200A27884 /* Store.swift */,
+				1764CE321CDC7BB000A27884 /* SQLiteDatabase.swift */,
+				1731BE8B1BEA43BE0012D6FF /* SQLiteStore.swift */,
 				1731BE8E1BEA43BE0012D6FF /* StoreEventHandler.swift */,
 				1731BE8F1BEA43BE0012D6FF /* StreamerBlock.swift */,
 				179744741C32C9E3004730C2 /* StreamerCell.swift */,
@@ -1018,6 +1024,7 @@
 				17211F421C47CE7700236EA6 /* ImagePushAnimator.swift in Sources */,
 				1731BF2F1BEA59110012D6FF /* NetworkError.swift in Sources */,
 				17F0C9CE1C1090500088B74C /* FooterCell.swift in Sources */,
+				1764CE331CDC7BB000A27884 /* SQLiteDatabase.swift in Sources */,
 				1731BF901BEA59270012D6FF /* DTCSSStylesheet.swift in Sources */,
 				1731BED31BEA43BE0012D6FF /* Tracker.swift in Sources */,
 				1718D6BC1C0738020036DB5B /* Block.swift in Sources */,
@@ -1134,6 +1141,7 @@
 				1731BF631BEA59270012D6FF /* ArticleLayout.swift in Sources */,
 				1731BEDE1BEA43BE0012D6FF /* UIImage.swift in Sources */,
 				171F6F8A1C0496A200B3A390 /* BlockDecoder.swift in Sources */,
+				1764CE311CDC7B7200A27884 /* Store.swift in Sources */,
 				1731BD941BEA41460012D6FF /* AppDelegate.swift in Sources */,
 				17E64CC31C32EF8400E0BEB2 /* BlockCategory.swift in Sources */,
 				1731BF5B1BEA59270012D6FF /* AppTakeoverData.swift in Sources */,
@@ -1151,7 +1159,7 @@
 				1731BF461BEA591B0012D6FF /* ImageCell.swift in Sources */,
 				1731BF911BEA59270012D6FF /* Encodable.swift in Sources */,
 				1731BEBC1BEA43BE0012D6FF /* SpacingBlock.swift in Sources */,
-				1731BEC01BEA43BE0012D6FF /* Store.swift in Sources */,
+				1731BEC01BEA43BE0012D6FF /* SQLiteStore.swift in Sources */,
 				1731BEDF1BEA43BE0012D6FF /* UIView.swift in Sources */,
 				1731BF8B1BEA59270012D6FF /* DefaultDirectories.swift in Sources */,
 				1797447A1C32C9E3004730C2 /* ArticleRefPopAnimatableView.swift in Sources */,

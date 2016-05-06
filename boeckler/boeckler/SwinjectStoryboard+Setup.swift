@@ -16,7 +16,12 @@ extension SwinjectStoryboard {
         
         container.register(NetworkRequestHandler.self) { _  in CoreNetworkRequestHandler()}
         container.register(BlockDecoder.self) { _ in CustomBlockDecoder() }.inObjectScope(.Container)
-        container.register(Store.self) { r in SQLiteStore(decoder: r.resolve(BlockDecoder.self)!) }.inObjectScope(.Container)
+        
+        let databasePath = NSString(string: DefaultDirectories.documents).stringByAppendingPathComponent("store.sqlite")
+        let database = Database(databasePath)
+        let databaseWrapper = SQLiteDatabase(database:database, databasePath: databasePath)
+        
+        container.register(Store.self) { r in SQLiteStore(database: databaseWrapper, decoder: r.resolve(BlockDecoder.self)!) }.inObjectScope(.Container)
         container.register(Cache.self) { r in CoreCache(store: r.resolve(Store.self)!) }.inObjectScope(.Container)
         container.register(PaywallStateController.self) { _ in CorePaywallStateController() }.inObjectScope(.Container)
         container.register(PaywallDataInterceptor.self) { r in CorePaywallDataInterceptor(paywallController: r.resolve(PaywallStateController.self)!) }.inObjectScope(.Container)
