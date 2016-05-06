@@ -8,27 +8,36 @@
 
 import Foundation
 
-class SQLiteDatabase {
-    
-    let database: Database
+protocol SQLiteDatabaseFactory {
+    func create() -> Database
+}
 
-    init(database: Database, databasePath: String) {
-        let manager = NSFileManager.defaultManager()
-        let databaseExists = manager.fileExistsAtPath(databasePath)
-        self.database = database
-        if !databaseExists {
-            createTables()
-        }
+class SQLiteDiskDatabaseFactory: SQLiteDatabaseFactory {
+    
+    let databasePath: String
+    
+    init(databasePath: String) {
+        self.databasePath = databasePath
     }
     
     //MARK: Tables
-    func createTables() {
-        addTables([BlockContextTable.self, BlockTable.self, RelationshipTable.self, ObjectTable.self])
+    private func createTables(database: Database) {
+        addTables([BlockContextTable.self, BlockTable.self, RelationshipTable.self, ObjectTable.self], database: database)
     }
     
-    private func addTables(tables: [Table.Type]) {
+    private func addTables(tables: [Table.Type], database: Database) {
         for table in tables {
             table.create(inDatabase: database)
         }
+    }
+    
+    func create() -> Database {
+        let database = Database(databasePath)
+        let manager = NSFileManager.defaultManager()
+        let databaseExists = manager.fileExistsAtPath(databasePath)
+        if !databaseExists {
+            createTables(database)
+        }
+        return database
     }
 }
