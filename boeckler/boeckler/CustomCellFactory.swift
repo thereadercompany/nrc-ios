@@ -93,7 +93,7 @@ class CustomCellFactory: CellFactory {
         switch (block.context,block.style) {
         case (.Article, BlockStyle.ArticleFooter):
             return FooterCell(spacingBlock: block)
-        case (.Article, BlockStyle.Normal), (.Article, BlockStyle.Inset):
+        case (.Article, BlockStyle.Normal), (.Article, BlockStyle.Inset), (.Article, BlockStyle.Image):
             return SpacingCell(spacingBlock: block)
         case (.Timeline, _):
             return SpacingCell(spacingBlock: block)

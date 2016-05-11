@@ -19,6 +19,7 @@ extension BlockStyle {
     static let Quote = BlockStyle(rawValue: "quote")
     static let Intro = BlockStyle(rawValue: "intro")
     static let Byline = BlockStyle(rawValue: "byline")
+    static let Image = BlockStyle(rawValue: "image")
     static let Inset = BlockStyle(rawValue: "inset")
     static let InsetH1 = BlockStyle(rawValue: "inset-h1")
     static let InsetH2 = BlockStyle(rawValue: "inset-h2")
@@ -285,9 +286,9 @@ struct ArticleRefCellStyles {
     static func gradientPositions(style: BlockStyle) -> [GradientPosition] {
         switch style {
         case BlockStyle.HighlightXL:
-            return [.Top(0.2, 0.7), .Left(0.8, 1), .Bottom(0.5, 0.7)]
+            return [.Top(0.2, 0.6), .Bottom(0.7, 0.8)]
         default:
-            return [.Bottom(0.5, 0.7)]
+            return [.Bottom(0.5, 0.9)]
         }
     }
 }
@@ -360,7 +361,7 @@ struct LabelStyles {
 struct IssueLabelStyles {
     static let backgroundColor = Colors.transparant
     static let foregroundColor = Colors.titleOverImageColor
-    static let font = Fonts.alternativeMediumFont.fallbackWithSize(Screen.value(24,28))
+    static let font = Fonts.lightFont.fallbackWithSize(13)
 }
 
 struct ErrorStyles {
@@ -516,6 +517,8 @@ extension Block {
         switch style {
         case BlockStyle.Inset,BlockStyle.InsetH1,BlockStyle.InsetH2 where decoration != .None:
             return Colors.insetBackgroundColor
+        case BlockStyle.Image where decoration != .None:
+            return Colors.imageBackgroundColor
         default: return nil
         }
     }
@@ -833,7 +836,19 @@ extension MediaBlock {
 }
 
 class HeadlineStyler : Styler {
+    
+    var centerHeadline: Bool {
         
+        if Screen.isPhone { return false }
+        
+        switch block.style {
+        case BlockStyle.HighlightXL:
+            return true
+        default:
+            return false
+        }
+    }
+    
     var headlineBackgroundColor: UIColor? {
         return nil
     }
@@ -857,10 +872,12 @@ class HeadlineStyler : Styler {
     
     var headlineFont: UIFont {
         switch (block.context, block, block.style) {
-        case (.Timeline, is ArticleRefBlock, BlockStyle.Highlight),(.Timeline, is ArticleRefBlock, BlockStyle.Normal):
+        case (.Timeline, is ArticleRefBlock, BlockStyle.Normal):
             return Fonts.mediumFont.fallbackWithSize(24)
+        case (.Timeline, is ArticleRefBlock, BlockStyle.Highlight):
+            return Fonts.mediumFont.fallbackWithSize(Screen.value(24, 36))
         case (.Timeline, is ArticleRefBlock, BlockStyle.HighlightXL):
-            return Fonts.mediumFont.fallbackWithSize(Screen.value(33,44))
+            return Fonts.mediumFont.fallbackWithSize(Screen.value(36,53))
         case (.Article, is ArticleHeaderBlock,_):
             return Fonts.alternativeMediumFont.fallbackWithSize(Screen.value(34,38))
         case (.Article, is StreamerBlock, _):
@@ -879,9 +896,9 @@ class HeadlineStyler : Styler {
     var headlineLinespacing: CGFloat {
         switch (block.context, block, block.style) {
         case (.Timeline, is ArticleRefBlock, BlockStyle.Highlight),(.Timeline, is ArticleRefBlock, BlockStyle.Normal):
-            return 4
+            return Screen.value(3,4)
         case (.Timeline, is ArticleRefBlock, BlockStyle.HighlightXL):
-            return 4
+            return Screen.value(3,4)
         case (.Article, is StreamerBlock, _ ):
             return 6
         case (_, is MediaBlock, _):
@@ -943,7 +960,7 @@ class HeadlineStyler : Styler {
         case (is ArticleRefBlock, BlockStyle.Highlight), (is ArticleRefBlock, BlockStyle.Normal):
             return Screen.value(4,8)
         case (is ArticleRefBlock, BlockStyle.HighlightXL):
-            return Screen.value(4,12)
+            return Screen.value(8,10)
         default:
             return 0
         }
