@@ -32,9 +32,9 @@ class SQLiteDiskDatabaseFactory: SQLiteDatabaseFactory {
     }
     
     func create() -> Database {
-        let database = Database(databasePath)
         let manager = NSFileManager.defaultManager()
         let databaseExists = manager.fileExistsAtPath(databasePath)
+        let database = Database(databasePath)
         if !databaseExists {
             createTables(database)
         }
