@@ -77,6 +77,7 @@ class ArticleRefCell : MediaCell {
         updatePreview()
         
         if let preview = self.preview {
+            NSThread.currentThread().isMainThread
             dispatch_sync(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) { () -> Void in
                 let bounds = self.articlePreviewSnapshotFrame
                 let snapshot = preview.takeSnapshot(bounds: bounds)

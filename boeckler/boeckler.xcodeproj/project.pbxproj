@@ -693,10 +693,11 @@
 				1731BDF91BEA43640012D6FF /* MarkupTag.swift */,
 				1731BDFA1BEA43640012D6FF /* Media.swift */,
 				1731BDFB1BEA43640012D6FF /* MediaCell.swift */,
-				1797446D1C32C9E3004730C2 /* ArticleRefPopAnimatableView.swift */,
-				1797446E1C32C9E3004730C2 /* ArticleRefPopAnimator.swift */,
-				1797446F1C32C9E3004730C2 /* ArticleReflPushAnimatibeView.swift */,
-				179744701C32C9E3004730C2 /* ArticleRefPushAnimator.swift */,
+				17211F411C47CE7700236EA6 /* ImagePushAnimator.swift */,
+				17211F431C47CECB00236EA6 /* ImagePushAnimatibleView.swift */,
+				17211F451C47FE5400236EA6 /* ImagePopAnimator.swift */,
+				17211F471C47FE7700236EA6 /* ImagePopAnimatableView.swift */,
+				1747B90A1D071A6F00BAAAE5 /* Animations */,
 				1731BDFC1BEA43640012D6FF /* NavigationView.swift */,
 				1731BDFD1BEA43640012D6FF /* NavigationViewController.swift */,
 				1731BDFE1BEA43640012D6FF /* NetworkError.swift */,
@@ -778,10 +779,6 @@
 				171C7C8F1C4685BD002088E2 /* BlockContextSnapshotView.swift */,
 				171C7C911C46BBF6002088E2 /* ImageViewController.swift */,
 				171C7C931C46C1C4002088E2 /* ZoomableImageView.swift */,
-				17211F411C47CE7700236EA6 /* ImagePushAnimator.swift */,
-				17211F431C47CECB00236EA6 /* ImagePushAnimatibleView.swift */,
-				17211F451C47FE5400236EA6 /* ImagePopAnimator.swift */,
-				17211F471C47FE7700236EA6 /* ImagePopAnimatableView.swift */,
 				17211F4B1C4928B300236EA6 /* NavigationControllerDelegate.swift */,
 				172DF3491C4FD229001E4568 /* PullToCloseView.swift */,
 				175AAC991C6A201700E40194 /* UIDeviceOrientation.swift */,
@@ -856,6 +853,17 @@
 				174192F61BF0F72A008B94A0 /* UniversNextPro-BoldCond.otf */,
 			);
 			name = Fonts;
+			sourceTree = "<group>";
+		};
+		1747B90A1D071A6F00BAAAE5 /* Animations */ = {
+			isa = PBXGroup;
+			children = (
+				1797446D1C32C9E3004730C2 /* ArticleRefPopAnimatableView.swift */,
+				1797446E1C32C9E3004730C2 /* ArticleRefPopAnimator.swift */,
+				1797446F1C32C9E3004730C2 /* ArticleReflPushAnimatibeView.swift */,
+				179744701C32C9E3004730C2 /* ArticleRefPushAnimator.swift */,
+			);
+			name = Animations;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

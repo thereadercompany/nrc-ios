@@ -2,6 +2,7 @@
 //  CustomNavigationControllerDelegate.swift
 //
 //  Created by Emiel van der Veen on 15/01/16.
+//  Copyright © 2016 TRC. All rights reserved.
 //
 
 import Foundation
