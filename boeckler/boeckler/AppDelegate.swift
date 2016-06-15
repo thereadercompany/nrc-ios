@@ -30,8 +30,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         return shouldHandleURL
     }
-
+    
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+        enableBackgroundFetch()
+        
         do {
             try Fonts.load()
         } catch {
@@ -75,5 +77,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationWillTerminate(application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+    }
+    
+    // MARK:Background Fetch
+    func enableBackgroundFetch() {
+        UIApplication.sharedApplication().setMinimumBackgroundFetchInterval(UIApplicationBackgroundFetchIntervalMinimum)
+    }
+    
+    func application(application: UIApplication, performFetchWithCompletionHandler completionHandler: (UIBackgroundFetchResult) -> Void) {
+        
+        let fetcher = SwinjectStoryboard.defaultContainer.resolve(BackgroundFetcher.self)!
+        let futureFetchResult = fetcher.execute()
+        futureFetchResult
+            .onSuccess { result in
+                completionHandler(result)
+            }.onFailure { error in
+                completionHandler(.NoData)
+            }
     }
 }

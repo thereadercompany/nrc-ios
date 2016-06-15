@@ -104,7 +104,6 @@ enum AppConfigNotification: String {
     case BaseServerURLOverride = "io.trc.boeckler.baseserverurl.override"
 }
 
-
 enum Server: String {
     case Localhost = "http://localhost:5000"
     case LocalhostDemo = "http://localhost:5001"

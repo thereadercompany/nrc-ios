@@ -59,7 +59,7 @@ class ArticleRefCell : MediaCell {
     var articlePreviewSnapshot: UIImage?
 
     func renderPreview() -> ArticlePreview? {
-        guard let article: Article = dataController.readBlockContext(identifier: articleRef.articleIdentifier) else {
+        guard let article: Article = dataController.read(identifier: articleRef.articleIdentifier) else {
             print("No article found in articleVC while snappshotting")
             return nil
         }

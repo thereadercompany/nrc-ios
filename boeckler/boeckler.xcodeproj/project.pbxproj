@@ -18,6 +18,7 @@
 		171C7C901C4685BD002088E2 /* BlockContextSnapshotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 171C7C8F1C4685BD002088E2 /* BlockContextSnapshotView.swift */; };
 		171C7C921C46BBF6002088E2 /* ImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 171C7C911C46BBF6002088E2 /* ImageViewController.swift */; };
 		171C7C941C46C1C4002088E2 /* ZoomableImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 171C7C931C46C1C4002088E2 /* ZoomableImageView.swift */; };
+		171D96BF1D0AD96C000F864B /* BackgroundFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 171D96BE1D0AD96C000F864B /* BackgroundFetcher.swift */; };
 		171F6F8A1C0496A200B3A390 /* BlockDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 171F6F891C0496A200B3A390 /* BlockDecoder.swift */; };
 		171F6F8C1C0496D000B3A390 /* CustomBlockDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 171F6F8B1C0496D000B3A390 /* CustomBlockDecoder.swift */; };
 		17211F421C47CE7700236EA6 /* ImagePushAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17211F411C47CE7700236EA6 /* ImagePushAnimator.swift */; };
@@ -237,6 +238,7 @@
 		179B30931C0DDC67001005E2 /* SabonNextCom-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 179B308F1C0DDC67001005E2 /* SabonNextCom-Regular.ttf */; };
 		179B30951C0DE29B001005E2 /* CustomCellFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 179B30941C0DE29B001005E2 /* CustomCellFactory.swift */; };
 		179B30971C0DE2E6001005E2 /* CellFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 179B30961C0DE2E6001005E2 /* CellFactory.swift */; };
+		17AAC8501D117F67008292C9 /* Queue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17AAC84F1D117F67008292C9 /* Queue.swift */; };
 		17AB6D6A1BF3428400840425 /* IssueLabelNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17AB6D691BF3428400840425 /* IssueLabelNode.swift */; };
 		17CA4AB71BF225050011495A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 17CA4AB51BF225050011495A /* LaunchScreen.storyboard */; };
 		17CA90AF1C15EEDF008875BF /* Cartfile in Resources */ = {isa = PBXBuildFile; fileRef = 17CA90AE1C15EEDF008875BF /* Cartfile */; };
@@ -262,6 +264,7 @@
 		171C7C8F1C4685BD002088E2 /* BlockContextSnapshotView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BlockContextSnapshotView.swift; path = "core/trc-core/BlockContextSnapshotView.swift"; sourceTree = SOURCE_ROOT; };
 		171C7C911C46BBF6002088E2 /* ImageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ImageViewController.swift; path = "core/trc-core/ImageViewController.swift"; sourceTree = SOURCE_ROOT; };
 		171C7C931C46C1C4002088E2 /* ZoomableImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ZoomableImageView.swift; path = "core/trc-core/ZoomableImageView.swift"; sourceTree = SOURCE_ROOT; };
+		171D96BE1D0AD96C000F864B /* BackgroundFetcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BackgroundFetcher.swift; path = "core/trc-core/BackgroundFetcher.swift"; sourceTree = SOURCE_ROOT; };
 		171F6F891C0496A200B3A390 /* BlockDecoder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BlockDecoder.swift; path = "core/trc-core/BlockDecoder.swift"; sourceTree = SOURCE_ROOT; };
 		171F6F8B1C0496D000B3A390 /* CustomBlockDecoder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomBlockDecoder.swift; sourceTree = "<group>"; };
 		17211F411C47CE7700236EA6 /* ImagePushAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ImagePushAnimator.swift; path = "core/trc-core/ImagePushAnimator.swift"; sourceTree = SOURCE_ROOT; };
@@ -490,6 +493,7 @@
 		179B308F1C0DDC67001005E2 /* SabonNextCom-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SabonNextCom-Regular.ttf"; path = "Resources/Fonts/LT Sabon Next OTF/SabonNextCom-Regular.ttf"; sourceTree = "<group>"; };
 		179B30941C0DE29B001005E2 /* CustomCellFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCellFactory.swift; sourceTree = "<group>"; };
 		179B30961C0DE2E6001005E2 /* CellFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CellFactory.swift; path = "core/trc-core/CellFactory.swift"; sourceTree = SOURCE_ROOT; };
+		17AAC84F1D117F67008292C9 /* Queue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Queue.swift; path = "core/trc-core/Queue.swift"; sourceTree = SOURCE_ROOT; };
 		17AB6D691BF3428400840425 /* IssueLabelNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IssueLabelNode.swift; path = "core/trc-core/IssueLabelNode.swift"; sourceTree = SOURCE_ROOT; };
 		17CA4AB61BF225050011495A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		17CA90AE1C15EEDF008875BF /* Cartfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Cartfile; path = core/Cartfile; sourceTree = SOURCE_ROOT; };
@@ -786,6 +790,8 @@
 				17D53C931C75FC3E007B5E79 /* ArticleRefCell.swift */,
 				17927F021C8F4ECE00761D5D /* ImageBlock.swift */,
 				1764CE2E1CDA082F00A27884 /* CGPoint.swift */,
+				171D96BE1D0AD96C000F864B /* BackgroundFetcher.swift */,
+				17AAC84F1D117F67008292C9 /* Queue.swift */,
 			);
 			name = Sources;
 			sourceTree = "<group>";
@@ -1003,6 +1009,7 @@
 				1731BEBA1BEA43BE0012D6FF /* SegueHandling.swift in Sources */,
 				1731BF401BEA591B0012D6FF /* HighlightCell.swift in Sources */,
 				1731BEEC1BEA43BE0012D6FF /* YoutubeCell.swift in Sources */,
+				171D96BF1D0AD96C000F864B /* BackgroundFetcher.swift in Sources */,
 				1731BF5C1BEA59270012D6FF /* AppTakeoverView.swift in Sources */,
 				174658E31C0A2349003FEAA8 /* TimelineNavigationView.swift in Sources */,
 				175DFB671BF2090C00A181C1 /* CustomTimelineNavigationView.swift in Sources */,
@@ -1023,6 +1030,7 @@
 				1731BF531BEA591B0012D6FF /* MediaCell.swift in Sources */,
 				17211F481C47FE7700236EA6 /* ImagePopAnimatableView.swift in Sources */,
 				1797447D1C32C9E3004730C2 /* ArticleRefPushAnimator.swift in Sources */,
+				17AAC8501D117F67008292C9 /* Queue.swift in Sources */,
 				1731BED11BEA43BE0012D6FF /* Trackable.swift in Sources */,
 				1797446A1C32C96C004730C2 /* Font.swift in Sources */,
 				1731BEC71BEA43BE0012D6FF /* Table.swift in Sources */,

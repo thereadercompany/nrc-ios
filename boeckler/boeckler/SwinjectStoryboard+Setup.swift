@@ -34,6 +34,8 @@ extension SwinjectStoryboard {
         container.register(AuthenticationController.self) { r in CoreAuthenticationController(paywallController: r.resolve(PaywallStateController.self)! )}.inObjectScope(.Container)
         container.register(URLHandler.self) { r in CoreURLHandler(paywallController: r.resolve(PaywallStateController.self)!, authController: r.resolve(AuthenticationController.self)!) }.inObjectScope(.Container)
         
+        container.register(BackgroundFetcher.self) { r in CoreBackgroundFetcher(dataSourceFactory: BlockContextDataSourceFactory(dataController: r.resolve(BlockContextDataController.self, name: "default-data-controller")!)) }.inObjectScope(.Container)
+        
         container.registerForStoryboard(MainViewController.self) { r, c in
             c.dataController = r.resolve(BlockContextDataController.self, name: "default-data-controller")
             c.delegate = r.resolve(NavigationControllerDelegate.self)
@@ -42,26 +44,23 @@ extension SwinjectStoryboard {
         container.registerForStoryboard(TimelineViewController.self) { r, c in
             c.navigationViewController = CustomTimelineNavigationViewController()
             c.urlHandler = r.resolve(URLHandler.self)
-            c.dataController = r.resolve(BlockContextDataController.self, name: "default-data-controller")
             c.cellFactory = r.resolve(CellFactory.self)
-            c.dataSourceFactory = BlockContextDataSourceFactory(dataController: c.dataController)
+            c.dataSourceFactory = BlockContextDataSourceFactory(dataController: r.resolve(BlockContextDataController.self, name: "default-data-controller")!)
             c.visibilityStateController = CoreVisibilityStateController(trackerFactory: r.resolve(TrackerFactory.self)!)
         }
 
         container.registerForStoryboard(CustomArticleViewController.self) { r, c in
             c.navigationViewController = CoreArticleNavigationViewController()
             c.urlHandler = r.resolve(URLHandler.self)
-            c.dataController = r.resolve(BlockContextDataController.self, name: "default-data-controller")
             c.cellFactory = r.resolve(CellFactory.self)
-            c.dataSourceFactory = BlockContextDataSourceFactory(dataController: c.dataController)
+            c.dataSourceFactory = BlockContextDataSourceFactory(dataController: r.resolve(BlockContextDataController.self, name: "default-data-controller")!)
             c.visibilityStateController = CoreVisibilityStateController(trackerFactory: r.resolve(TrackerFactory.self)!)
         }
         
         container.registerForStoryboard(PaywallViewController.self) { r, c in
             c.urlHandler = r.resolve(URLHandler.self)            
-            c.dataController = r.resolve(BlockContextDataController.self, name: "paywall-data-controller")
             c.cellFactory = r.resolve(CellFactory.self)
-            c.dataSourceFactory = BlockContextDataSourceFactory(dataController: c.dataController)
+            c.dataSourceFactory = BlockContextDataSourceFactory(dataController: r.resolve(BlockContextDataController.self, name: "paywall-data-controller")!)
             c.visibilityStateController = CoreVisibilityStateController(trackerFactory: r.resolve(TrackerFactory.self)!)
         }
     }
