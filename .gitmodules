@@ -1,3 +1,3 @@
 [submodule "boeckler/core"]
 	path = boeckler/core
-	url = git@bitbucket.org:thereadercompany/core-ios.git
+	url = https://emielvdveen@github.com/thereadercompany/core-ios
