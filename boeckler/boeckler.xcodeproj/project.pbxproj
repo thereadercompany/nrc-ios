@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		170166DB1D12E04A00E73D3C /* RxSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 170166D81D12E04A00E73D3C /* RxSwift.framework */; };
+		170166DC1D12E04A00E73D3C /* RxCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 170166D91D12E04A00E73D3C /* RxCocoa.framework */; };
+		170166DD1D12E04A00E73D3C /* RxBlocking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 170166DA1D12E04A00E73D3C /* RxBlocking.framework */; };
 		1704ECEA1C99EA97000D9440 /* StatusManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1704ECE91C99EA97000D9440 /* StatusManager.swift */; };
 		1718D69A1C04AA370036DB5B /* Swinject.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1718D6991C04AA370036DB5B /* Swinject.framework */; };
 		1718D69E1C04BD210036DB5B /* SwinjectStoryboard+Setup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1718D69D1C04BD210036DB5B /* SwinjectStoryboard+Setup.swift */; };
@@ -187,9 +190,6 @@
 		174192F91BF0F72A008B94A0 /* UniversNextPro-BoldCond.otf in Resources */ = {isa = PBXBuildFile; fileRef = 174192F61BF0F72A008B94A0 /* UniversNextPro-BoldCond.otf */; };
 		174658E31C0A2349003FEAA8 /* TimelineNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 174658E11C0A2349003FEAA8 /* TimelineNavigationView.swift */; };
 		174658E41C0A2349003FEAA8 /* TimelineNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 174658E21C0A2349003FEAA8 /* TimelineNavigationViewController.swift */; };
-		175146441D12A54800181F59 /* RxBlocking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 175146411D12A54800181F59 /* RxBlocking.framework */; };
-		175146451D12A54800181F59 /* RxCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 175146421D12A54800181F59 /* RxCocoa.framework */; };
-		175146461D12A54800181F59 /* RxSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 175146431D12A54800181F59 /* RxSwift.framework */; };
 		175AAC9A1C6A201700E40194 /* UIDeviceOrientation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 175AAC991C6A201700E40194 /* UIDeviceOrientation.swift */; };
 		175DFB671BF2090C00A181C1 /* CustomTimelineNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 175DFB661BF2090C00A181C1 /* CustomTimelineNavigationView.swift */; };
 		175DFB691BF209E500A181C1 /* CustomTimelineNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 175DFB681BF209E500A181C1 /* CustomTimelineNavigationViewController.swift */; };
@@ -256,6 +256,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		170166D81D12E04A00E73D3C /* RxSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxSwift.framework; path = core/Carthage/Build/iOS/RxSwift.framework; sourceTree = "<group>"; };
+		170166D91D12E04A00E73D3C /* RxCocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxCocoa.framework; path = core/Carthage/Build/iOS/RxCocoa.framework; sourceTree = "<group>"; };
+		170166DA1D12E04A00E73D3C /* RxBlocking.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxBlocking.framework; path = core/Carthage/Build/iOS/RxBlocking.framework; sourceTree = "<group>"; };
 		1704ECE91C99EA97000D9440 /* StatusManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StatusManager.swift; path = "core/trc-core/StatusManager.swift"; sourceTree = SOURCE_ROOT; };
 		1718D6991C04AA370036DB5B /* Swinject.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Swinject.framework; path = core/Carthage/Build/iOS/Swinject.framework; sourceTree = "<group>"; };
 		1718D69D1C04BD210036DB5B /* SwinjectStoryboard+Setup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SwinjectStoryboard+Setup.swift"; sourceTree = "<group>"; };
@@ -443,9 +446,6 @@
 		174658C21C08989E003FEAA8 /* trc-core-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "trc-core-Bridging-Header.h"; path = "core/trc-core/trc-core-Bridging-Header.h"; sourceTree = SOURCE_ROOT; };
 		174658E11C0A2349003FEAA8 /* TimelineNavigationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TimelineNavigationView.swift; path = "core/trc-core/TimelineNavigationView.swift"; sourceTree = SOURCE_ROOT; };
 		174658E21C0A2349003FEAA8 /* TimelineNavigationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TimelineNavigationViewController.swift; path = "core/trc-core/TimelineNavigationViewController.swift"; sourceTree = SOURCE_ROOT; };
-		175146411D12A54800181F59 /* RxBlocking.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxBlocking.framework; path = "core/Submodules/RxSwift/build/Debug-iphoneos/RxBlocking.framework"; sourceTree = "<group>"; };
-		175146421D12A54800181F59 /* RxCocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxCocoa.framework; path = "core/Submodules/RxSwift/build/Debug-iphoneos/RxCocoa.framework"; sourceTree = "<group>"; };
-		175146431D12A54800181F59 /* RxSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxSwift.framework; path = "core/Submodules/RxSwift/build/Debug-iphoneos/RxSwift.framework"; sourceTree = "<group>"; };
 		175AAC991C6A201700E40194 /* UIDeviceOrientation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIDeviceOrientation.swift; path = "core/trc-core/UIDeviceOrientation.swift"; sourceTree = SOURCE_ROOT; };
 		175DFB661BF2090C00A181C1 /* CustomTimelineNavigationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTimelineNavigationView.swift; sourceTree = "<group>"; };
 		175DFB681BF209E500A181C1 /* CustomTimelineNavigationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTimelineNavigationViewController.swift; sourceTree = "<group>"; };
@@ -518,9 +518,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				175146441D12A54800181F59 /* RxBlocking.framework in Frameworks */,
-				175146451D12A54800181F59 /* RxCocoa.framework in Frameworks */,
-				175146461D12A54800181F59 /* RxSwift.framework in Frameworks */,
+				170166DB1D12E04A00E73D3C /* RxSwift.framework in Frameworks */,
+				170166DC1D12E04A00E73D3C /* RxCocoa.framework in Frameworks */,
+				170166DD1D12E04A00E73D3C /* RxBlocking.framework in Frameworks */,
 				177B29871CCFA9090010C74D /* DTCoreText.framework in Frameworks */,
 				1718D69A1C04AA370036DB5B /* Swinject.framework in Frameworks */,
 				1774DADA1BEB94F6007431EB /* Crashlytics.framework in Frameworks */,
@@ -560,6 +560,9 @@
 		1731BD751BEA41050012D6FF = {
 			isa = PBXGroup;
 			children = (
+				170166D81D12E04A00E73D3C /* RxSwift.framework */,
+				170166D91D12E04A00E73D3C /* RxCocoa.framework */,
+				170166DA1D12E04A00E73D3C /* RxBlocking.framework */,
 				1731BD9C1BEA42C30012D6FF /* core */,
 				1731BD801BEA41050012D6FF /* boeckler */,
 				1731BD7F1BEA41050012D6FF /* Products */,
@@ -808,9 +811,6 @@
 		1731BEFA1BEA55B20012D6FF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				175146411D12A54800181F59 /* RxBlocking.framework */,
-				175146421D12A54800181F59 /* RxCocoa.framework */,
-				175146431D12A54800181F59 /* RxSwift.framework */,
 				1718D6991C04AA370036DB5B /* Swinject.framework */,
 				1774DAD71BEB94F6007431EB /* Crashlytics.framework */,
 				1774DAD81BEB94F6007431EB /* Fabric.framework */,
@@ -989,6 +989,9 @@
 				"$(PROJECT_DIR)/core/Carthage/Build/iOS/Locksmith.framework",
 				"$(PROJECT_DIR)/core/Carthage/Build/iOS/Result.framework",
 				"$(PROJECT_DIR)/core/Carthage/Build/iOS/Swinject.framework",
+				"$(PROJECT_DIR)/core/Carthage/Build/iOS/RxSwift.framework",
+				"$(PROJECT_DIR)/core/Carthage/Build/iOS/RxCocoa.framework",
+				"$(PROJECT_DIR)/core/Carthage/Build/iOS/RxBlocking.framework",
 			);
 			name = "Carthage copy frameworks";
 			outputPaths = (
@@ -1337,7 +1340,6 @@
 					"$(PROJECT_DIR)/core/trc-core",
 					"$(PROJECT_DIR)/core/Carthage/Build/iOS",
 					"$(PROJECT_DIR)/core/Frameworks",
-					"$(PROJECT_DIR)/core/Submodules/RxSwift/build/Debug-iphoneos",
 				);
 				INFOPLIST_FILE = boeckler/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
@@ -1367,7 +1369,6 @@
 					"$(PROJECT_DIR)/core/trc-core",
 					"$(PROJECT_DIR)/core/Carthage/Build/iOS",
 					"$(PROJECT_DIR)/core/Frameworks",
-					"$(PROJECT_DIR)/core/Submodules/RxSwift/build/Debug-iphoneos",
 				);
 				INFOPLIST_FILE = boeckler/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
@@ -1433,7 +1434,6 @@
 					"$(PROJECT_DIR)/core/trc-core",
 					"$(PROJECT_DIR)/core/Carthage/Build/iOS",
 					"$(PROJECT_DIR)/core/Frameworks",
-					"$(PROJECT_DIR)/core/Submodules/RxSwift/build/Debug-iphoneos",
 				);
 				INFOPLIST_FILE = boeckler/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;

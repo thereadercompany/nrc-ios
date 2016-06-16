@@ -4,7 +4,4 @@
    <FileRef
       location = "group:boeckler/boeckler.xcodeproj">
    </FileRef>
-   <FileRef
-      location = "group:boeckler/core/Submodules/RxSwift/Rx.xcodeproj">
-   </FileRef>
 </Workspace>
