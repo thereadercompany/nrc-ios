@@ -461,7 +461,6 @@
 		17A650D81D1431ED00286D34 /* YoutubeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = YoutubeCell.swift; path = "core-ios/Sources/YoutubeCell.swift"; sourceTree = SOURCE_ROOT; };
 		17A650D91D1431ED00286D34 /* ZoomableImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ZoomableImageView.swift; path = "core-ios/Sources/ZoomableImageView.swift"; sourceTree = SOURCE_ROOT; };
 		17A6519D1D14320100286D34 /* Cartfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Cartfile; path = "core-ios/Cartfile"; sourceTree = SOURCE_ROOT; };
-		17A6519E1D14320100286D34 /* trc-core-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "trc-core-Bridging-Header.h"; path = "core-ios/trc-core-Bridging-Header.h"; sourceTree = SOURCE_ROOT; };
 		17A651AC1D1432A700286D34 /* YouTubeiOSPlayerHelper.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = YouTubeiOSPlayerHelper.framework; path = "core-ios/Carthage/Build/iOS/YouTubeiOSPlayerHelper.framework"; sourceTree = SOURCE_ROOT; };
 		17A651AD1D1432A700286D34 /* Swinject.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Swinject.framework; path = "core-ios/Carthage/Build/iOS/Swinject.framework"; sourceTree = SOURCE_ROOT; };
 		17A651AE1D1432A700286D34 /* SwiftBox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftBox.framework; path = "core-ios/Carthage/Build/iOS/SwiftBox.framework"; sourceTree = SOURCE_ROOT; };
@@ -514,6 +513,7 @@
 		17A652131D14353D00286D34 /* AsyncDisplayKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AsyncDisplayKit.framework; path = "core-ios/Carthage/Build/iOS/AsyncDisplayKit.framework"; sourceTree = SOURCE_ROOT; };
 		17A652151D1814A000286D34 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = Resources/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		17A652161D1814A000286D34 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Main.storyboard; path = Resources/Main.storyboard; sourceTree = "<group>"; };
+		17CD31781D183B5A00038FB4 /* trc-core-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "trc-core-Bridging-Header.h"; path = "core-ios/Sources/trc-core-Bridging-Header.h"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -581,8 +581,8 @@
 		1731BD9C1BEA42C30012D6FF /* core-ios */ = {
 			isa = PBXGroup;
 			children = (
+				17CD31781D183B5A00038FB4 /* trc-core-Bridging-Header.h */,
 				17A6519D1D14320100286D34 /* Cartfile */,
-				17A6519E1D14320100286D34 /* trc-core-Bridging-Header.h */,
 				17A650121D1431D300286D34 /* Sources */,
 				17A651A21D14323D00286D34 /* Resources */,
 				17A651A01D14321100286D34 /* Frameworks */,
