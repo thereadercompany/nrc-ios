@@ -87,12 +87,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, performFetchWithCompletionHandler completionHandler: (UIBackgroundFetchResult) -> Void) {
         
         let fetcher = SwinjectStoryboard.defaultContainer.resolve(BackgroundFetcher.self)!
-        let futureFetchResult = fetcher.execute()
-        futureFetchResult
-            .onSuccess { result in
-                completionHandler(result)
-            }.onFailure { error in
-                completionHandler(.NoData)
-            }
+        fetcher.execute()
+//        futureFetchResult
+//            .onSuccess { result in
+//                completionHandler(result)
+//            }.onFailure { error in
+//                completionHandler(.NoData)
+//            }
     }
 }

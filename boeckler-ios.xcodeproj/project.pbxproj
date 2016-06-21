@@ -86,8 +86,8 @@
 		17A651201D1431ED00286D34 /* DTCSSStylesheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A650591D1431ED00286D34 /* DTCSSStylesheet.swift */; };
 		17A651211D1431ED00286D34 /* Encodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A6505A1D1431ED00286D34 /* Encodable.swift */; };
 		17A651251D1431ED00286D34 /* ErrorTypeConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A6505E1D1431ED00286D34 /* ErrorTypeConvertible.swift */; };
-		17A651261D1431ED00286D34 /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A6505F1D1431ED00286D34 /* ErrorView.swift */; };
-		17A651271D1431ED00286D34 /* ErrorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A650601D1431ED00286D34 /* ErrorViewController.swift */; };
+		17A651261D1431ED00286D34 /* ErrorMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A6505F1D1431ED00286D34 /* ErrorMessageView.swift */; };
+		17A651271D1431ED00286D34 /* ErrorMessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A650601D1431ED00286D34 /* ErrorMessageViewController.swift */; };
 		17A651281D1431ED00286D34 /* Expression.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A650611D1431ED00286D34 /* Expression.swift */; };
 		17A651291D1431ED00286D34 /* FallbackBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A650621D1431ED00286D34 /* FallbackBlock.swift */; };
 		17A6512A1D1431ED00286D34 /* FallbackContentBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A650631D1431ED00286D34 /* FallbackContentBlock.swift */; };
@@ -255,6 +255,10 @@
 		17A652141D14353D00286D34 /* AsyncDisplayKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 17A652131D14353D00286D34 /* AsyncDisplayKit.framework */; };
 		17A652171D1814A000286D34 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 17A652151D1814A000286D34 /* LaunchScreen.storyboard */; };
 		17A652181D1814A000286D34 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 17A652161D1814A000286D34 /* Main.storyboard */; };
+		17FA322D1D196DEF00F48129 /* ErrorMessageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17FA322C1D196DEF00F48129 /* ErrorMessageViewModel.swift */; };
+		17FA32311D1972D700F48129 /* custom.strings in Resources */ = {isa = PBXBuildFile; fileRef = 17FA32301D1972D700F48129 /* custom.strings */; };
+		17FA32351D19746900F48129 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17FA32341D19746900F48129 /* String.swift */; };
+		17FA32361D19860200F48129 /* core.strings in Resources */ = {isa = PBXBuildFile; fileRef = 17FA32381D19860200F48129 /* core.strings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -338,8 +342,8 @@
 		17A650591D1431ED00286D34 /* DTCSSStylesheet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DTCSSStylesheet.swift; path = "core-ios/Sources/DTCSSStylesheet.swift"; sourceTree = SOURCE_ROOT; };
 		17A6505A1D1431ED00286D34 /* Encodable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Encodable.swift; path = "core-ios/Sources/Encodable.swift"; sourceTree = SOURCE_ROOT; };
 		17A6505E1D1431ED00286D34 /* ErrorTypeConvertible.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ErrorTypeConvertible.swift; path = "core-ios/Sources/ErrorTypeConvertible.swift"; sourceTree = SOURCE_ROOT; };
-		17A6505F1D1431ED00286D34 /* ErrorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ErrorView.swift; path = "core-ios/Sources/ErrorView.swift"; sourceTree = SOURCE_ROOT; };
-		17A650601D1431ED00286D34 /* ErrorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ErrorViewController.swift; path = "core-ios/Sources/ErrorViewController.swift"; sourceTree = SOURCE_ROOT; };
+		17A6505F1D1431ED00286D34 /* ErrorMessageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ErrorMessageView.swift; path = "core-ios/Sources/ErrorMessageView.swift"; sourceTree = SOURCE_ROOT; };
+		17A650601D1431ED00286D34 /* ErrorMessageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ErrorMessageViewController.swift; path = "core-ios/Sources/ErrorMessageViewController.swift"; sourceTree = SOURCE_ROOT; };
 		17A650611D1431ED00286D34 /* Expression.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Expression.swift; path = "core-ios/Sources/Expression.swift"; sourceTree = SOURCE_ROOT; };
 		17A650621D1431ED00286D34 /* FallbackBlock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FallbackBlock.swift; path = "core-ios/Sources/FallbackBlock.swift"; sourceTree = SOURCE_ROOT; };
 		17A650631D1431ED00286D34 /* FallbackContentBlock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FallbackContentBlock.swift; path = "core-ios/Sources/FallbackContentBlock.swift"; sourceTree = SOURCE_ROOT; };
@@ -514,6 +518,10 @@
 		17A652151D1814A000286D34 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = Resources/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		17A652161D1814A000286D34 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Main.storyboard; path = Resources/Main.storyboard; sourceTree = "<group>"; };
 		17CD31781D183B5A00038FB4 /* trc-core-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "trc-core-Bridging-Header.h"; path = "core-ios/Sources/trc-core-Bridging-Header.h"; sourceTree = SOURCE_ROOT; };
+		17FA322C1D196DEF00F48129 /* ErrorMessageViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ErrorMessageViewModel.swift; path = "core-ios/Sources/ErrorMessageViewModel.swift"; sourceTree = SOURCE_ROOT; };
+		17FA32301D1972D700F48129 /* custom.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = custom.strings; path = Resources/custom.strings; sourceTree = "<group>"; };
+		17FA32341D19746900F48129 /* String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = String.swift; path = "core-ios/Sources/String.swift"; sourceTree = SOURCE_ROOT; };
+		17FA32391D19862500F48129 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/core.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -661,8 +669,8 @@
 				17A650591D1431ED00286D34 /* DTCSSStylesheet.swift */,
 				17A6505A1D1431ED00286D34 /* Encodable.swift */,
 				17A6505E1D1431ED00286D34 /* ErrorTypeConvertible.swift */,
-				17A6505F1D1431ED00286D34 /* ErrorView.swift */,
-				17A650601D1431ED00286D34 /* ErrorViewController.swift */,
+				17A6505F1D1431ED00286D34 /* ErrorMessageView.swift */,
+				17A650601D1431ED00286D34 /* ErrorMessageViewController.swift */,
 				17A650611D1431ED00286D34 /* Expression.swift */,
 				17A650621D1431ED00286D34 /* FallbackBlock.swift */,
 				17A650631D1431ED00286D34 /* FallbackContentBlock.swift */,
@@ -783,6 +791,8 @@
 				17A650D71D1431ED00286D34 /* YoutubeBlock.swift */,
 				17A650D81D1431ED00286D34 /* YoutubeCell.swift */,
 				17A650D91D1431ED00286D34 /* ZoomableImageView.swift */,
+				17FA322C1D196DEF00F48129 /* ErrorMessageViewModel.swift */,
+				17FA32341D19746900F48129 /* String.swift */,
 			);
 			name = Sources;
 			sourceTree = "<group>";
@@ -840,6 +850,7 @@
 		17A651A21D14323D00286D34 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				17FA32381D19860200F48129 /* core.strings */,
 				17A651F91D1433F000286D34 /* vimeo.html */,
 			);
 			name = Resources;
@@ -873,6 +884,7 @@
 				17A652161D1814A000286D34 /* Main.storyboard */,
 				17A651F81D1433D500286D34 /* Fonts */,
 				17A651F61D1433C900286D34 /* Images.xcassets */,
+				17FA32301D1972D700F48129 /* custom.strings */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -943,6 +955,7 @@
 			knownRegions = (
 				en,
 				Base,
+				de,
 			);
 			mainGroup = 1731BD751BEA41050012D6FF;
 			productRefGroup = 1731BD7F1BEA41050012D6FF /* Products */;
@@ -966,10 +979,12 @@
 				17A6519F1D14320100286D34 /* Cartfile in Resources */,
 				17A6520C1D14340600286D34 /* UniversNextPro-Regular.otf in Resources */,
 				17A652181D1814A000286D34 /* Main.storyboard in Resources */,
+				17FA32361D19860200F48129 /* core.strings in Resources */,
 				17A652061D14340600286D34 /* SimpleHBS.otf in Resources */,
 				17A651FA1D1433F000286D34 /* vimeo.html in Resources */,
 				17A6520D1D14340600286D34 /* UniversNextPro-Cond.otf in Resources */,
 				17A652171D1814A000286D34 /* LaunchScreen.storyboard in Resources */,
+				17FA32311D1972D700F48129 /* custom.strings in Resources */,
 				17A651F71D1433C900286D34 /* Images.xcassets in Resources */,
 				17A6520B1D14340600286D34 /* UniversNextPro-Italic.otf in Resources */,
 				17A651D61D1432C200286D34 /* Instabug.bundle in Resources */,
@@ -1094,7 +1109,7 @@
 				17A651661D1431ED00286D34 /* SpacingBlock.swift in Sources */,
 				17A6518A1D1431ED00286D34 /* UIEdgeInsets.swift in Sources */,
 				17A651531D1431ED00286D34 /* ObjectType.swift in Sources */,
-				17A651261D1431ED00286D34 /* ErrorView.swift in Sources */,
+				17A651261D1431ED00286D34 /* ErrorMessageView.swift in Sources */,
 				17A651F31D1433A700286D34 /* CustomDividerCell.swift in Sources */,
 				17A651291D1431ED00286D34 /* FallbackBlock.swift in Sources */,
 				17A6515F1D1431ED00286D34 /* Renderable.swift in Sources */,
@@ -1105,7 +1120,7 @@
 				17A651EF1D1433A700286D34 /* CustomNavigationControllerDelegate.swift in Sources */,
 				17A651511D1431ED00286D34 /* NSURL.swift in Sources */,
 				17A651791D1431ED00286D34 /* TimelineNavigationView.swift in Sources */,
-				17A651271D1431ED00286D34 /* ErrorViewController.swift in Sources */,
+				17A651271D1431ED00286D34 /* ErrorMessageViewController.swift in Sources */,
 				17A6517D1D1431ED00286D34 /* Trackable.swift in Sources */,
 				17A651431D1431ED00286D34 /* LoginState.swift in Sources */,
 				17A651021D1431ED00286D34 /* BlockDecoration.swift in Sources */,
@@ -1166,6 +1181,7 @@
 				17A651881D1431ED00286D34 /* UIColor.swift in Sources */,
 				17A651061D1431ED00286D34 /* Cache.swift in Sources */,
 				17A650E81D1431ED00286D34 /* ArticleNavigationView.swift in Sources */,
+				17FA322D1D196DEF00F48129 /* ErrorMessageViewModel.swift in Sources */,
 				17A651811D1431ED00286D34 /* TrackingController.swift in Sources */,
 				17A6516B1D1431ED00286D34 /* Statement.swift in Sources */,
 				17A651611D1431ED00286D34 /* Row.swift in Sources */,
@@ -1174,6 +1190,7 @@
 				17A650FC1D1431ED00286D34 /* BlockContextDataSourceFactory.swift in Sources */,
 				17A650FA1D1431ED00286D34 /* BlockContextDataController.swift in Sources */,
 				17A651861D1431ED00286D34 /* UIActivityViewController.swift in Sources */,
+				17FA32351D19746900F48129 /* String.swift in Sources */,
 				17A651EB1D1433A700286D34 /* SwinjectStoryboard+Setup.swift in Sources */,
 				17A651781D1431ED00286D34 /* TimelineLayout.swift in Sources */,
 				17A6512A1D1431ED00286D34 /* FallbackContentBlock.swift in Sources */,
@@ -1235,6 +1252,18 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		17FA32381D19860200F48129 /* core.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				17FA32391D19862500F48129 /* de */,
+			);
+			name = core.strings;
+			path = "core-ios/Resources";
+			sourceTree = SOURCE_ROOT;
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		1731BD8E1BEA41050012D6FF /* Debug */ = {
