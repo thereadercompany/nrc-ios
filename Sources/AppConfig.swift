@@ -115,20 +115,6 @@ enum BlockContext: String, Equatable {
     case Article = "articles"
     case Paywall = "paywalls"
     case Unknown = "unknown"
-    
-    var patchEnabled: Bool {
-        switch self {
-        case .Timeline: return true
-        default: return false
-        }
-    }
-    
-    var pagingEnabled: Bool {
-        switch self {
-        case .Timeline, .Article: return true
-        default: return false
-        }
-    }
 }
 
 enum AuthenticationNotification: String {
