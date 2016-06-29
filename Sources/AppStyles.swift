@@ -468,11 +468,11 @@ extension Block {
     
     var decorationPaddingSide: CGFloat {
         switch (self.context, self, self.style) {
-        case (.Article, is TweetBlock, _):
+        case (CoreBlockContextType.Article, is TweetBlock, _):
             return 24
-        case (.Article, is ImageBlock, BlockStyle.Inset):
+        case (CoreBlockContextType.Article, is ImageBlock, BlockStyle.Inset):
             return 0
-        case (.Article, is ImageBlock, _), (.Article, is StreamerBlock, _):
+        case (CoreBlockContextType.Article, is ImageBlock, _), (CoreBlockContextType.Article, is StreamerBlock, _):
             return ArticleStyles.specialInset
         default:
             return 0
@@ -481,9 +481,9 @@ extension Block {
     
     var decorationPaddingBottom: CGFloat {
         switch (self.context, self, style) {
-        case (.Article, is TweetBlock, _):
+        case (CoreBlockContextType.Article, is TweetBlock, _):
             return self.decoration.tweetDecorationPaddingBottom
-        case (.Article, is StreamerBlock, _):
+        case (CoreBlockContextType.Article, is StreamerBlock, _):
             return 32
         default:
             return 0
@@ -496,7 +496,7 @@ extension Block {
     
     var mediaPaddingSide: CGFloat {
         switch(self.context) {
-            case BlockContext.Article:
+            case CoreBlockContextType.Article:
                 return ArticleStyles.specialInset
             default:
                 return 0
@@ -532,7 +532,7 @@ extension Block {
 
         var contentPadding: UIEdgeInsets
         switch (self.context, self, style) {
-        case (.Timeline, is ArticleRefBlock, _):
+        case (CustomBlockContextType.Timeline, is ArticleRefBlock, _):
              contentPadding =  UIEdgeInsets(top: 19, left: TimelineStyles.contentInset, bottom: 0, right: TimelineStyles.contentInset)
         case (_, is DividerBlock, _):
             contentPadding = UIEdgeInsets(top: 0, left: 0, bottom: 16, right: 0)
@@ -544,25 +544,25 @@ extension Block {
             contentPadding = UIEdgeInsets(top: 0, left: ArticleStyles.textInset-ArticleStyles.specialInset, bottom: 0, right: ArticleStyles.textInset-ArticleStyles.specialInset)
         case (_, is UnsupportedContentBlock, _),(_, is FallbackBlock, _):
             contentPadding = UIEdgeInsets(top: 20, left: ArticleStyles.textInset, bottom: 20, right: ArticleStyles.textInset)
-        case (.Timeline, _, _):
+        case (CustomBlockContextType.Timeline, _, _):
             contentPadding = UIEdgeInsets(top: 0, left: TimelineStyles.contentInset, bottom: 0, right: TimelineStyles.contentInset)
-        case (.Article, _, BlockStyle.Intro):
+        case (CoreBlockContextType.Article, _, BlockStyle.Intro):
             contentPadding = UIEdgeInsets(top: 0, left: ArticleStyles.textInset, bottom: 31, right: ArticleStyles.textInset)
-        case (.Article, is StreamerBlock, _):
+        case (CoreBlockContextType.Article, is StreamerBlock, _):
             contentPadding = UIEdgeInsets(top: 0, left: ArticleStyles.textInset-ArticleStyles.specialInset, bottom: 0, right: ArticleStyles.textInset)
-        case (.Article, is ArticleHeaderBlock, _):
+        case (CoreBlockContextType.Article, is ArticleHeaderBlock, _):
             contentPadding = UIEdgeInsets(top: 0, left: ArticleStyles.textInset, bottom: Screen.value(28,36), right: ArticleStyles.textInset)
-        case (.Article, is PlainTextBlock, BlockStyle.InsetH1):
+        case (CoreBlockContextType.Article, is PlainTextBlock, BlockStyle.InsetH1):
             contentPadding = UIEdgeInsets(top: 0, left: ArticleStyles.textInset, bottom: 13, right: ArticleStyles.textInset)
-        case (.Article, is PlainTextBlock, BlockStyle.H1):
+        case (CoreBlockContextType.Article, is PlainTextBlock, BlockStyle.H1):
             contentPadding = UIEdgeInsets(top: 8, left: ArticleStyles.textInset, bottom: Screen.value(16,20), right: ArticleStyles.textInset)
-        case (.Article, is PlainTextBlock, BlockStyle.H2):
+        case (CoreBlockContextType.Article, is PlainTextBlock, BlockStyle.H2):
             contentPadding = UIEdgeInsets(top: 8, left: ArticleStyles.textInset, bottom: Screen.value(12,12), right: ArticleStyles.textInset)
-        case (.Article, is TextBlock, BlockStyle.Byline):
+        case (CoreBlockContextType.Article, is TextBlock, BlockStyle.Byline):
             contentPadding = UIEdgeInsets(top: 0, left: ArticleStyles.textInset, bottom: Screen.value(40,48), right: ArticleStyles.textInset)
-        case (.Article, is SpacingBlock, BlockStyle.ArticleFooter):
+        case (CoreBlockContextType.Article, is SpacingBlock, BlockStyle.ArticleFooter):
             contentPadding = UIEdgeInsets(top: 0, left: 0, bottom: FooterCellStyles.lineHeight, right: 0)
-        case (.Article, _, _):
+        case (CoreBlockContextType.Article, _, _):
             contentPadding = UIEdgeInsets(top: 0, left: ArticleStyles.textInset, bottom: Screen.value(24, 30), right: ArticleStyles.textInset)
         default:
             contentPadding = UIEdgeInsetsZero
@@ -590,13 +590,13 @@ extension Block {
     
     var backgroundColor: UIColor {
         switch (context, self, style) {
-        case (.Timeline, is DividerBlock, _):
+        case (CustomBlockContextType.Timeline, is DividerBlock, _):
             return Colors.timelineDividerBackgroundColor
-        case (.Timeline, is SpacingBlock, _):
+        case (CustomBlockContextType.Timeline, is SpacingBlock, _):
             return Colors.timelineSpacingBackgroundColor
-        case (.Timeline, _, _):
+        case (CustomBlockContextType.Timeline, _, _):
             return Colors.cardBackgroundColor
-        case (.Article, _, _):
+        case (CoreBlockContextType.Article, _, _):
             return Colors.articleBackgroundColor
         default:
             return Colors.defaultBackgroundColor
@@ -855,11 +855,11 @@ class HeadlineStyler : Styler {
     
     var headlineFontColor: UIColor {
         switch (block.context, block, block.style) {
-        case (.Timeline, is ArticleRefBlock, _):
+        case (CustomBlockContextType.Timeline, is ArticleRefBlock, _):
             return Colors.titleOverImageColor
-        case (.Article, is ArticleHeaderBlock, _):
+        case (CoreBlockContextType.Article, is ArticleHeaderBlock, _):
             return Colors.accentColor
-        case (.Article, is StreamerBlock, _):
+        case (CoreBlockContextType.Article, is StreamerBlock, _):
             return Colors.accentColor
         case (_, is YoutubeBlock, _), (_, is VimeoBlock, _), (_, is UnsupportedContentBlock, _), (_, is FallbackBlock, _):
             return Colors.overlayFontColor
@@ -872,21 +872,21 @@ class HeadlineStyler : Styler {
     
     var headlineFont: UIFont {
         switch (block.context, block, block.style) {
-        case (.Timeline, is ArticleRefBlock, BlockStyle.Normal):
+        case (CustomBlockContextType.Timeline, is ArticleRefBlock, BlockStyle.Normal):
             return Fonts.mediumFont.fallbackWithSize(24)
-        case (.Timeline, is ArticleRefBlock, BlockStyle.Highlight):
+        case (CustomBlockContextType.Timeline, is ArticleRefBlock, BlockStyle.Highlight):
             return Fonts.mediumFont.fallbackWithSize(Screen.value(24, 36))
-        case (.Timeline, is ArticleRefBlock, BlockStyle.HighlightXL):
+        case (CustomBlockContextType.Timeline, is ArticleRefBlock, BlockStyle.HighlightXL):
             return Fonts.mediumFont.fallbackWithSize(Screen.value(36,53))
-        case (.Article, is ArticleHeaderBlock,_):
+        case (CoreBlockContextType.Article, is ArticleHeaderBlock,_):
             return Fonts.alternativeMediumFont.fallbackWithSize(Screen.value(34,38))
-        case (.Article, is StreamerBlock, _):
+        case (CoreBlockContextType.Article, is StreamerBlock, _):
             return Fonts.streamerFont.fallbackWithSize(32)
         case (_, is MediaBlock, _):
             return Fonts.lightFont.fallbackWithSize(Screen.value(16,18))
-        case (.Article, is UnsupportedContentBlock, _),(.Article, is FallbackBlock, _):
+        case (CoreBlockContextType.Article, is UnsupportedContentBlock, _),(CoreBlockContextType.Article, is FallbackBlock, _):
             return Fonts.mediumFont.fallbackWithSize(18)
-        case (.Article, is TweetBlock, _):
+        case (CoreBlockContextType.Article, is TweetBlock, _):
             return Fonts.tweetHeadlineFont.fallbackWithSize(15)
         default:
             return Fonts.mediumFont.fallbackWithSize(22)
@@ -895,15 +895,15 @@ class HeadlineStyler : Styler {
     
     var headlineLinespacing: CGFloat {
         switch (block.context, block, block.style) {
-        case (.Timeline, is ArticleRefBlock, BlockStyle.Highlight),(.Timeline, is ArticleRefBlock, BlockStyle.Normal):
+        case (CustomBlockContextType.Timeline, is ArticleRefBlock, BlockStyle.Highlight),(CustomBlockContextType.Timeline, is ArticleRefBlock, BlockStyle.Normal):
             return Screen.value(3,4)
-        case (.Timeline, is ArticleRefBlock, BlockStyle.HighlightXL):
+        case (CustomBlockContextType.Timeline, is ArticleRefBlock, BlockStyle.HighlightXL):
             return Screen.value(3,4)
-        case (.Article, is StreamerBlock, _ ):
+        case (CoreBlockContextType.Article, is StreamerBlock, _ ):
             return 6
         case (_, is MediaBlock, _):
             return Screen.value(3,60)
-        case (.Article, _,  _):
+        case (CoreBlockContextType.Article, _,  _):
             return 7
         default:
             return 3
@@ -1132,7 +1132,7 @@ class PlainTextStyler : Styler {
     
     var needsAllCaps: Bool {
         switch (block.context, block.style)  {
-        case (BlockContext.Article, BlockStyle.H1):
+        case (CoreBlockContextType.Article, BlockStyle.H1):
             return true
         default: return false
         }

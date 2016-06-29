@@ -14,9 +14,9 @@ class CustomBlockDecoder : BlockDecoder {
         return BlockType.all.contains(type)
     }
     
-    func decode(json: JSON, blockType: String, forContext context: BlockContext) -> Decoded<Block> {
+    func decode(json: JSON, blockType: String, forContext context: BlockContextType) -> Decoded<Block> {
         
-        if context == .Timeline && blockType == BlockType.Fallback {
+        if context == CustomBlockContextType.Timeline && blockType == BlockType.Fallback {
             return Decoded.Failure(.TypeMismatch(expected: "Non-fallback", actual:"Fallback"))
         }
         
@@ -32,7 +32,7 @@ class CustomBlockDecoder : BlockDecoder {
         return Decoded.Failure(.MissingKey("Unable to decode block with type \(blockType) in context \(context)"))
     }
     
-    func decode(decoder: JSONDecoder, blockType: String, forContext context: BlockContext) -> Block? {
+    func decode(decoder: JSONDecoder, blockType: String, forContext context: BlockContextType) -> Block? {
         switch blockType {
         case CoreBlockType.ArticleRef:
             return ArticleRefBlock(decoder: decoder, context: context)

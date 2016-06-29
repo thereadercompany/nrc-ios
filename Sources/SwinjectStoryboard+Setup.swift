@@ -36,7 +36,12 @@ extension SwinjectStoryboard {
         
         container.register(BlockContextDataSource.self, name: "timeline") { r in BlockContextDataSource<Timeline>(blockContextRef: BlockContextRef.None, dataController: r.resolve(BlockContextDataController.self, name: "default")!)}.inObjectScope(.Container)
 
-        container.register(BackgroundFetcher.self) { r in CoreBackgroundFetcher(dataSource: r.resolve(BlockContextDataSource.self, name: "timeline")!) }.inObjectScope(.Container)
+        container.register(BackgroundFetcher.self) { r in
+            let fetcher = CoreBackgroundFetcher()
+            fetcher.dataController = r.resolve(BlockContextDataController.self, name: "default")!
+            fetcher.dataSource = r.resolve(BlockContextDataSource.self, name: "timeline")!
+            return fetcher
+        }.inObjectScope(.Container)
         
         container.registerForStoryboard(MainViewController.self) { r, c in
             c.dataController = r.resolve(BlockContextDataController.self, name: "default")

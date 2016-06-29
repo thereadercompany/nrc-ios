@@ -48,13 +48,12 @@
 		17A650F61D1431ED00286D34 /* Block.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A6502F1D1431ED00286D34 /* Block.swift */; };
 		17A650F71D1431ED00286D34 /* BlockCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A650301D1431ED00286D34 /* BlockCategory.swift */; };
 		17A650F81D1431ED00286D34 /* BlockChanges.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A650311D1431ED00286D34 /* BlockChanges.swift */; };
-		17A650F91D1431ED00286D34 /* BlockContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A650321D1431ED00286D34 /* BlockContext.swift */; };
 		17A650FA1D1431ED00286D34 /* BlockContextDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A650331D1431ED00286D34 /* BlockContextDataController.swift */; };
 		17A650FB1D1431ED00286D34 /* BlockContextDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A650341D1431ED00286D34 /* BlockContextDataSource.swift */; };
 		17A650FC1D1431ED00286D34 /* BlockContextDataSourceFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A650351D1431ED00286D34 /* BlockContextDataSourceFactory.swift */; };
 		17A650FD1D1431ED00286D34 /* BlockContextReference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A650361D1431ED00286D34 /* BlockContextReference.swift */; };
 		17A650FE1D1431ED00286D34 /* BlockContextSnapshotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A650371D1431ED00286D34 /* BlockContextSnapshotView.swift */; };
-		17A650FF1D1431ED00286D34 /* BlockContextType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A650381D1431ED00286D34 /* BlockContextType.swift */; };
+		17A650FF1D1431ED00286D34 /* BlockContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A650381D1431ED00286D34 /* BlockContext.swift */; };
 		17A651001D1431ED00286D34 /* BlockContextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A650391D1431ED00286D34 /* BlockContextViewController.swift */; };
 		17A651011D1431ED00286D34 /* BlockDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A6503A1D1431ED00286D34 /* BlockDecoder.swift */; };
 		17A651021D1431ED00286D34 /* BlockDecoration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A6503B1D1431ED00286D34 /* BlockDecoration.swift */; };
@@ -219,7 +218,6 @@
 		17A651C81D1432A700286D34 /* DTFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 17A651B71D1432A700286D34 /* DTFoundation.framework */; };
 		17A651C91D1432A700286D34 /* DTCoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 17A651B81D1432A700286D34 /* DTCoreText.framework */; };
 		17A651CA1D1432A700286D34 /* Curry.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 17A651B91D1432A700286D34 /* Curry.framework */; };
-		17A651CC1D1432A700286D34 /* Argo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 17A651BB1D1432A700286D34 /* Argo.framework */; };
 		17A651CD1D1432A700286D34 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 17A651BC1D1432A700286D34 /* Alamofire.framework */; };
 		17A651D41D1432C200286D34 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 17A651CE1D1432C200286D34 /* Crashlytics.framework */; };
 		17A651D51D1432C200286D34 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 17A651CF1D1432C200286D34 /* Fabric.framework */; };
@@ -255,6 +253,9 @@
 		17A652141D14353D00286D34 /* AsyncDisplayKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 17A652131D14353D00286D34 /* AsyncDisplayKit.framework */; };
 		17A652171D1814A000286D34 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 17A652151D1814A000286D34 /* LaunchScreen.storyboard */; };
 		17A652181D1814A000286D34 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 17A652161D1814A000286D34 /* Main.storyboard */; };
+		17CEACE31D2287EC001AA107 /* Argo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 17CEACE21D2287EC001AA107 /* Argo.framework */; };
+		17CEACE51D2321F4001AA107 /* BlockContextDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17CEACE41D2321F4001AA107 /* BlockContextDecoder.swift */; };
+		17CEACE71D23230F001AA107 /* CustomBlockContextDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17CEACE61D23230F001AA107 /* CustomBlockContextDecoder.swift */; };
 		17FA322D1D196DEF00F48129 /* ErrorMessageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17FA322C1D196DEF00F48129 /* ErrorMessageViewModel.swift */; };
 		17FA32311D1972D700F48129 /* custom.strings in Resources */ = {isa = PBXBuildFile; fileRef = 17FA32301D1972D700F48129 /* custom.strings */; };
 		17FA32351D19746900F48129 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17FA32341D19746900F48129 /* String.swift */; };
@@ -304,13 +305,12 @@
 		17A6502F1D1431ED00286D34 /* Block.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Block.swift; path = "core-ios/Sources/Block.swift"; sourceTree = SOURCE_ROOT; };
 		17A650301D1431ED00286D34 /* BlockCategory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BlockCategory.swift; path = "core-ios/Sources/BlockCategory.swift"; sourceTree = SOURCE_ROOT; };
 		17A650311D1431ED00286D34 /* BlockChanges.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BlockChanges.swift; path = "core-ios/Sources/BlockChanges.swift"; sourceTree = SOURCE_ROOT; };
-		17A650321D1431ED00286D34 /* BlockContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BlockContext.swift; path = "core-ios/Sources/BlockContext.swift"; sourceTree = SOURCE_ROOT; };
 		17A650331D1431ED00286D34 /* BlockContextDataController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BlockContextDataController.swift; path = "core-ios/Sources/BlockContextDataController.swift"; sourceTree = SOURCE_ROOT; };
 		17A650341D1431ED00286D34 /* BlockContextDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BlockContextDataSource.swift; path = "core-ios/Sources/BlockContextDataSource.swift"; sourceTree = SOURCE_ROOT; };
 		17A650351D1431ED00286D34 /* BlockContextDataSourceFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BlockContextDataSourceFactory.swift; path = "core-ios/Sources/BlockContextDataSourceFactory.swift"; sourceTree = SOURCE_ROOT; };
 		17A650361D1431ED00286D34 /* BlockContextReference.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BlockContextReference.swift; path = "core-ios/Sources/BlockContextReference.swift"; sourceTree = SOURCE_ROOT; };
 		17A650371D1431ED00286D34 /* BlockContextSnapshotView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BlockContextSnapshotView.swift; path = "core-ios/Sources/BlockContextSnapshotView.swift"; sourceTree = SOURCE_ROOT; };
-		17A650381D1431ED00286D34 /* BlockContextType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BlockContextType.swift; path = "core-ios/Sources/BlockContextType.swift"; sourceTree = SOURCE_ROOT; };
+		17A650381D1431ED00286D34 /* BlockContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BlockContext.swift; path = "core-ios/Sources/BlockContext.swift"; sourceTree = SOURCE_ROOT; };
 		17A650391D1431ED00286D34 /* BlockContextViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BlockContextViewController.swift; path = "core-ios/Sources/BlockContextViewController.swift"; sourceTree = SOURCE_ROOT; };
 		17A6503A1D1431ED00286D34 /* BlockDecoder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BlockDecoder.swift; path = "core-ios/Sources/BlockDecoder.swift"; sourceTree = SOURCE_ROOT; };
 		17A6503B1D1431ED00286D34 /* BlockDecoration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BlockDecoration.swift; path = "core-ios/Sources/BlockDecoration.swift"; sourceTree = SOURCE_ROOT; };
@@ -479,7 +479,6 @@
 		17A651B71D1432A700286D34 /* DTFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DTFoundation.framework; path = "core-ios/Carthage/Build/iOS/DTFoundation.framework"; sourceTree = SOURCE_ROOT; };
 		17A651B81D1432A700286D34 /* DTCoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DTCoreText.framework; path = "core-ios/Carthage/Build/iOS/DTCoreText.framework"; sourceTree = SOURCE_ROOT; };
 		17A651B91D1432A700286D34 /* Curry.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Curry.framework; path = "core-ios/Carthage/Build/iOS/Curry.framework"; sourceTree = SOURCE_ROOT; };
-		17A651BB1D1432A700286D34 /* Argo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Argo.framework; path = "core-ios/Carthage/Build/iOS/Argo.framework"; sourceTree = SOURCE_ROOT; };
 		17A651BC1D1432A700286D34 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = "core-ios/Carthage/Build/iOS/Alamofire.framework"; sourceTree = SOURCE_ROOT; };
 		17A651CE1D1432C200286D34 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Crashlytics.framework; path = "core-ios/Frameworks/Crashlytics.framework"; sourceTree = SOURCE_ROOT; };
 		17A651CF1D1432C200286D34 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Fabric.framework; path = "core-ios/Frameworks/Fabric.framework"; sourceTree = SOURCE_ROOT; };
@@ -518,6 +517,9 @@
 		17A652151D1814A000286D34 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = Resources/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		17A652161D1814A000286D34 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Main.storyboard; path = Resources/Main.storyboard; sourceTree = "<group>"; };
 		17CD31781D183B5A00038FB4 /* trc-core-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "trc-core-Bridging-Header.h"; path = "core-ios/Sources/trc-core-Bridging-Header.h"; sourceTree = SOURCE_ROOT; };
+		17CEACE21D2287EC001AA107 /* Argo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Argo.framework; path = "core-ios/Carthage/Build/iOS/Argo.framework"; sourceTree = "<group>"; };
+		17CEACE41D2321F4001AA107 /* BlockContextDecoder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BlockContextDecoder.swift; path = "core-ios/Sources/BlockContextDecoder.swift"; sourceTree = SOURCE_ROOT; };
+		17CEACE61D23230F001AA107 /* CustomBlockContextDecoder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CustomBlockContextDecoder.swift; path = Sources/CustomBlockContextDecoder.swift; sourceTree = "<group>"; };
 		17FA322C1D196DEF00F48129 /* ErrorMessageViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ErrorMessageViewModel.swift; path = "core-ios/Sources/ErrorMessageViewModel.swift"; sourceTree = SOURCE_ROOT; };
 		17FA32301D1972D700F48129 /* custom.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = custom.strings; path = Resources/custom.strings; sourceTree = "<group>"; };
 		17FA32341D19746900F48129 /* String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = String.swift; path = "core-ios/Sources/String.swift"; sourceTree = SOURCE_ROOT; };
@@ -529,6 +531,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				17CEACE31D2287EC001AA107 /* Argo.framework in Frameworks */,
 				17A651C11D1432A700286D34 /* RxCocoa.framework in Frameworks */,
 				17A651C51D1432A700286D34 /* Result.framework in Frameworks */,
 				17A651C91D1432A700286D34 /* DTCoreText.framework in Frameworks */,
@@ -546,7 +549,6 @@
 				17A651CD1D1432A700286D34 /* Alamofire.framework in Frameworks */,
 				17A651C01D1432A700286D34 /* RxSwift.framework in Frameworks */,
 				1731BF241BEA569B0012D6FF /* QuartzCore.framework in Frameworks */,
-				17A651CC1D1432A700286D34 /* Argo.framework in Frameworks */,
 				1731BF251BEA569B0012D6FF /* OpenGLES.framework in Frameworks */,
 				17A651D51D1432C200286D34 /* Fabric.framework in Frameworks */,
 				17A651C41D1432A700286D34 /* BrightFutures.framework in Frameworks */,
@@ -631,15 +633,15 @@
 				17A6502F1D1431ED00286D34 /* Block.swift */,
 				17A650301D1431ED00286D34 /* BlockCategory.swift */,
 				17A650311D1431ED00286D34 /* BlockChanges.swift */,
-				17A650321D1431ED00286D34 /* BlockContext.swift */,
 				17A650331D1431ED00286D34 /* BlockContextDataController.swift */,
 				17A650341D1431ED00286D34 /* BlockContextDataSource.swift */,
 				17A650351D1431ED00286D34 /* BlockContextDataSourceFactory.swift */,
 				17A650361D1431ED00286D34 /* BlockContextReference.swift */,
 				17A650371D1431ED00286D34 /* BlockContextSnapshotView.swift */,
-				17A650381D1431ED00286D34 /* BlockContextType.swift */,
+				17A650381D1431ED00286D34 /* BlockContext.swift */,
 				17A650391D1431ED00286D34 /* BlockContextViewController.swift */,
 				17A6503A1D1431ED00286D34 /* BlockDecoder.swift */,
+				17CEACE41D2321F4001AA107 /* BlockContextDecoder.swift */,
 				17A6503B1D1431ED00286D34 /* BlockDecoration.swift */,
 				17A6503C1D1431ED00286D34 /* BlocksRelationship.swift */,
 				17A6503D1D1431ED00286D34 /* BlockStyle.swift */,
@@ -826,6 +828,7 @@
 		17A651A11D14322B00286D34 /* Carthage */ = {
 			isa = PBXGroup;
 			children = (
+				17CEACE21D2287EC001AA107 /* Argo.framework */,
 				17A652131D14353D00286D34 /* AsyncDisplayKit.framework */,
 				17A651AC1D1432A700286D34 /* YouTubeiOSPlayerHelper.framework */,
 				17A651AD1D1432A700286D34 /* Swinject.framework */,
@@ -841,7 +844,6 @@
 				17A651B71D1432A700286D34 /* DTFoundation.framework */,
 				17A651B81D1432A700286D34 /* DTCoreText.framework */,
 				17A651B91D1432A700286D34 /* Curry.framework */,
-				17A651BB1D1432A700286D34 /* Argo.framework */,
 				17A651BC1D1432A700286D34 /* Alamofire.framework */,
 			);
 			name = Carthage;
@@ -869,6 +871,7 @@
 				17A651E21D1433A700286D34 /* CustomTimelineNavigationViewController.swift */,
 				17A651E31D1433A700286D34 /* CustomStreamerCell.swift */,
 				17A651E41D1433A700286D34 /* CustomBlockDecoder.swift */,
+				17CEACE61D23230F001AA107 /* CustomBlockContextDecoder.swift */,
 				17A651E51D1433A700286D34 /* CustomDividerCell.swift */,
 				17A651E61D1433A700286D34 /* CustomArticleViewController.swift */,
 				17A651E71D1433A700286D34 /* CustomTimelineNavigationView.swift */,
@@ -1003,7 +1006,6 @@
 			files = (
 			);
 			inputPaths = (
-				"$(PROJECT_DIR)/core-ios/Carthage/Build/iOS/Argo.framework",
 				"$(PROJECT_DIR)/core-ios/Carthage/Build/iOS/Runes.framework",
 				"$(PROJECT_DIR)/core-ios/Carthage/Build/iOS/Alamofire.framework",
 				"$(PROJECT_DIR)/core-ios/Carthage/Build/iOS/BrightFutures.framework",
@@ -1020,6 +1022,7 @@
 				"$(PROJECT_DIR)/core-ios/Carthage/Build/iOS/RxSwift.framework",
 				"$(PROJECT_DIR)/core-ios/Carthage/Build/iOS/RxCocoa.framework",
 				"$(PROJECT_DIR)/core-ios/Carthage/Build/iOS/RxBlocking.framework",
+				"$(PROJECT_DIR)/core-ios/Carthage/Build/iOS/Argo.framework",
 			);
 			name = "Carthage copy frameworks";
 			outputPaths = (
@@ -1095,6 +1098,7 @@
 				17A6516C1D1431ED00286D34 /* StatusBar.swift in Sources */,
 				17A650E11D1431ED00286D34 /* AppTakeoverViewController.swift in Sources */,
 				17A650FD1D1431ED00286D34 /* BlockContextReference.swift in Sources */,
+				17CEACE51D2321F4001AA107 /* BlockContextDecoder.swift in Sources */,
 				17A650EE1D1431ED00286D34 /* ArticleRefPopAnimator.swift in Sources */,
 				17A651EC1D1433A700286D34 /* AppDelegate.swift in Sources */,
 				17A651051D1431ED00286D34 /* BorderNode.swift in Sources */,
@@ -1120,6 +1124,7 @@
 				17A651EF1D1433A700286D34 /* CustomNavigationControllerDelegate.swift in Sources */,
 				17A651511D1431ED00286D34 /* NSURL.swift in Sources */,
 				17A651791D1431ED00286D34 /* TimelineNavigationView.swift in Sources */,
+				17CEACE71D23230F001AA107 /* CustomBlockContextDecoder.swift in Sources */,
 				17A651271D1431ED00286D34 /* ErrorMessageViewController.swift in Sources */,
 				17A6517D1D1431ED00286D34 /* Trackable.swift in Sources */,
 				17A651431D1431ED00286D34 /* LoginState.swift in Sources */,
@@ -1164,7 +1169,6 @@
 				17A651971D1431ED00286D34 /* VimeoCell.swift in Sources */,
 				17A651ED1D1433A700286D34 /* AppStyles.swift in Sources */,
 				17A651F21D1433A700286D34 /* CustomBlockDecoder.swift in Sources */,
-				17A650F91D1431ED00286D34 /* BlockContext.swift in Sources */,
 				17A651871D1431ED00286D34 /* UIApplication.swift in Sources */,
 				17A650ED1D1431ED00286D34 /* ArticleRefPopAnimatableView.swift in Sources */,
 				17A6512F1D1431ED00286D34 /* FontLoader.swift in Sources */,
@@ -1220,7 +1224,7 @@
 				17A651E91D1433A700286D34 /* AppConfig.swift in Sources */,
 				17A651621D1431ED00286D34 /* ScrollState.swift in Sources */,
 				17A651EA1D1433A700286D34 /* ArticleRefCell.swift in Sources */,
-				17A650FF1D1431ED00286D34 /* BlockContextType.swift in Sources */,
+				17A650FF1D1431ED00286D34 /* BlockContext.swift in Sources */,
 				17A6511A1D1431ED00286D34 /* DecorationNode.swift in Sources */,
 				17A651F51D1433A700286D34 /* CustomTimelineNavigationView.swift in Sources */,
 				17A651721D1431ED00286D34 /* StringAttributes.swift in Sources */,

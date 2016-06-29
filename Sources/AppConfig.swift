@@ -110,13 +110,6 @@ enum Server: String {
     case Production = "http://boeckler-select-api.trc.io"
 }
 
-enum BlockContext: String, Equatable {
-    case Timeline = "timelines"
-    case Article = "articles"
-    case Paywall = "paywalls"
-    case Unknown = "unknown"
-}
-
 enum AuthenticationNotification: String {
     case Started = "io.trc.boeckler.authentication.started"
     case LoginCancelled = "io.trc.boeckler.authentication.cancelled"
