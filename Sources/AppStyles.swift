@@ -30,6 +30,7 @@ extension BlockStyle {
 struct Colors {
     static let placeholderColor = UIColor.lightGrayColor()
     static let accentColor = UIColor(hex: 0xD30910)
+    static let accentColorDarker = Colors.accentColor.darker()
     static let iceBlue = UIColor(hex: 0xD3ECEE)
     static let sand = UIColor(hex: 0xEFEDE2)
     static let defaultBorderColor = UIColor.blackColor().colorWithAlphaComponent(0.05)
@@ -37,6 +38,8 @@ struct Colors {
     static let footerLineColor = accentColor
     static let linkColor = UIColor(hex: 0xD30910)
     static let cardBackgroundColor =  UIColor.whiteColor()
+    static let statusViewBackgroundColor = UIColor.whiteColor()
+    static let statusViewTextColor = Colors.accentColor
     static let articleBackgroundColor =  UIColor.whiteColor()
     static let timelineBackgroundColor =  UIColor(hex: 0x2A2D31)
     static let timelineDividerBackgroundColor = Colors.accentColor
@@ -104,6 +107,7 @@ struct Fonts {
     static let tweetHeadlineFont = HelveticaNeue.Medium
     
     static let fallbackUIFont = UIFont.systemFontOfSize(14)
+    static let statusFont = UIFont.boldSystemFontOfSize(11.5)
     
     static func load() throws {
     }
@@ -1241,12 +1245,12 @@ class RichTextStyler : Styler {
     }
     
     var tooMuchPaddingTop: CGFloat {
-        // somehow ASDK does not render the text well: too much padding at the top
+        //TODO: somehow ASDK does not render the text well: too much padding at the top
         return richTextLineSpacing / 2
     }
     
     var tooMuchClippingBottom: CGFloat {
-        // somehow ASDK does not render the text well: too much clipping on the bottom
+        //TODO: somehow ASDK does not render the text well: too much clipping on the bottom
         return 1
     }
     
