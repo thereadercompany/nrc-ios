@@ -85,7 +85,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(application: UIApplication, performFetchWithCompletionHandler completionHandler: (UIBackgroundFetchResult) -> Void) {
-        let fetcher = SwinjectStoryboard.defaultContainer.resolve(BackgroundFetcher.self)!
-        fetcher.startSession(completionHandler)
+        if let fetcher = SwinjectStoryboard.defaultContainer.resolve(BackgroundFetcher.self) {
+            fetcher.startSession(completionHandler)
+        }
     }
 }
