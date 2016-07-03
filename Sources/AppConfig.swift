@@ -53,7 +53,8 @@ struct AppConfig {
     static let cachePeriod: NSTimeInterval = 3.0*4.0*7.0*24.0*60.0*60.0 // 3 months
     static let customScheme = "hbsmb"
     
-    static let showTimelineDelay: NSTimeInterval = 1    
+    static let showTimelineDelay: NSTimeInterval = 1
+    static let minBackgroundTimeRemaining: NSTimeInterval = 5
     
     // AsyncDisplayKit
     static let linkAttributeName = "NSALink"

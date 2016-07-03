@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		171BCB991D29C31700DFD7D7 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 171BCB981D29C31700DFD7D7 /* Reachability.swift */; };
 		1731BF221BEA569B0012D6FF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1731BF171BEA569B0012D6FF /* UIKit.framework */; };
 		1731BF231BEA569B0012D6FF /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1731BF181BEA569B0012D6FF /* SystemConfiguration.framework */; };
 		1731BF241BEA569B0012D6FF /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1731BF191BEA569B0012D6FF /* QuartzCore.framework */; };
@@ -256,7 +257,6 @@
 		17CEACE31D2287EC001AA107 /* Argo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 17CEACE21D2287EC001AA107 /* Argo.framework */; };
 		17CEACE51D2321F4001AA107 /* BlockContextDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17CEACE41D2321F4001AA107 /* BlockContextDecoder.swift */; };
 		17CEACE71D23230F001AA107 /* CustomBlockContextDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17CEACE61D23230F001AA107 /* CustomBlockContextDecoder.swift */; };
-		17CEACE91D26CB64001AA107 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17CEACE81D26CB64001AA107 /* Reachability.swift */; };
 		17FA322D1D196DEF00F48129 /* ErrorMessageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17FA322C1D196DEF00F48129 /* ErrorMessageViewModel.swift */; };
 		17FA32311D1972D700F48129 /* custom.strings in Resources */ = {isa = PBXBuildFile; fileRef = 17FA32301D1972D700F48129 /* custom.strings */; };
 		17FA32351D19746900F48129 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17FA32341D19746900F48129 /* String.swift */; };
@@ -264,6 +264,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		171BCB981D29C31700DFD7D7 /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Reachability.swift; path = "core-ios/Sources/Reachability.swift"; sourceTree = SOURCE_ROOT; };
 		1731BD7E1BEA41050012D6FF /* boeckler-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "boeckler-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1731BF171BEA569B0012D6FF /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		1731BF181BEA569B0012D6FF /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
@@ -521,7 +522,6 @@
 		17CEACE21D2287EC001AA107 /* Argo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Argo.framework; path = "core-ios/Carthage/Build/iOS/Argo.framework"; sourceTree = "<group>"; };
 		17CEACE41D2321F4001AA107 /* BlockContextDecoder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BlockContextDecoder.swift; path = "core-ios/Sources/BlockContextDecoder.swift"; sourceTree = SOURCE_ROOT; };
 		17CEACE61D23230F001AA107 /* CustomBlockContextDecoder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CustomBlockContextDecoder.swift; path = Sources/CustomBlockContextDecoder.swift; sourceTree = "<group>"; };
-		17CEACE81D26CB64001AA107 /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Reachability.swift; path = "core-ios/Sources/Reachability.swift"; sourceTree = SOURCE_ROOT; };
 		17FA322C1D196DEF00F48129 /* ErrorMessageViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ErrorMessageViewModel.swift; path = "core-ios/Sources/ErrorMessageViewModel.swift"; sourceTree = SOURCE_ROOT; };
 		17FA32301D1972D700F48129 /* custom.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = custom.strings; path = Resources/custom.strings; sourceTree = "<group>"; };
 		17FA32341D19746900F48129 /* String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = String.swift; path = "core-ios/Sources/String.swift"; sourceTree = SOURCE_ROOT; };
@@ -797,7 +797,7 @@
 				17A650D91D1431ED00286D34 /* ZoomableImageView.swift */,
 				17FA322C1D196DEF00F48129 /* ErrorMessageViewModel.swift */,
 				17FA32341D19746900F48129 /* String.swift */,
-				17CEACE81D26CB64001AA107 /* Reachability.swift */,
+				171BCB981D29C31700DFD7D7 /* Reachability.swift */,
 			);
 			name = Sources;
 			sourceTree = "<group>";
@@ -1108,7 +1108,7 @@
 				17A651921D1431ED00286D34 /* UserFacingError.swift in Sources */,
 				17A6515C1D1431ED00286D34 /* Query.swift in Sources */,
 				17A651361D1431ED00286D34 /* ImageController.swift in Sources */,
-				17CEACE91D26CB64001AA107 /* Reachability.swift in Sources */,
+				171BCB991D29C31700DFD7D7 /* Reachability.swift in Sources */,
 				17A651521D1431ED00286D34 /* NSURLComponents.swift in Sources */,
 				17A6512E1D1431ED00286D34 /* FontError.swift in Sources */,
 				17A651321D1431ED00286D34 /* GradientNode.swift in Sources */,

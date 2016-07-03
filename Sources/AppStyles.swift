@@ -823,18 +823,12 @@ extension MediaBlock {
         }
     }
     
-    var supportedMediaFormats: [MediaFormat]? {
+    var supportedMediaFormats: [MediaFormat] {
         switch (self, self.style) {
-        case (is ArticleHeaderBlock, _):
-            return Screen.value([MediaFormat.Medium,MediaFormat.Small],[MediaFormat.Large,MediaFormat.Medium,MediaFormat.Small])
-        case (is ArticleRefBlock, BlockStyle.HighlightXL):
-            return Screen.value([MediaFormat.Medium,MediaFormat.Small],[MediaFormat.Large,MediaFormat.Medium,MediaFormat.Small])
-        case (is ArticleRefBlock, BlockStyle.Highlight):
-            return Screen.value([MediaFormat.Medium,MediaFormat.Small],[MediaFormat.Large,MediaFormat.Medium,MediaFormat.Small])
         case (is ArticleRefBlock, BlockStyle.Normal):
             return Screen.value([MediaFormat.Medium,MediaFormat.Small],[MediaFormat.Medium,MediaFormat.Small])
         default:
-            return nil
+            return Screen.value([MediaFormat.Medium,MediaFormat.Small],[MediaFormat.Large,MediaFormat.Medium,MediaFormat.Small])
         }
     }
 }
