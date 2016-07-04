@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		171BCB991D29C31700DFD7D7 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 171BCB981D29C31700DFD7D7 /* Reachability.swift */; };
+		171BCB9B1D2A436600DFD7D7 /* CustomBackgroundFetchStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 171BCB9A1D2A436600DFD7D7 /* CustomBackgroundFetchStrategy.swift */; };
 		1731BF221BEA569B0012D6FF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1731BF171BEA569B0012D6FF /* UIKit.framework */; };
 		1731BF231BEA569B0012D6FF /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1731BF181BEA569B0012D6FF /* SystemConfiguration.framework */; };
 		1731BF241BEA569B0012D6FF /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1731BF191BEA569B0012D6FF /* QuartzCore.framework */; };
@@ -265,6 +266,7 @@
 
 /* Begin PBXFileReference section */
 		171BCB981D29C31700DFD7D7 /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Reachability.swift; path = "core-ios/Sources/Reachability.swift"; sourceTree = SOURCE_ROOT; };
+		171BCB9A1D2A436600DFD7D7 /* CustomBackgroundFetchStrategy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomBackgroundFetchStrategy.swift; sourceTree = "<group>"; };
 		1731BD7E1BEA41050012D6FF /* boeckler-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "boeckler-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1731BF171BEA569B0012D6FF /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		1731BF181BEA569B0012D6FF /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
@@ -879,6 +881,7 @@
 				17A651E61D1433A700286D34 /* CustomArticleViewController.swift */,
 				17A651E71D1433A700286D34 /* CustomTimelineNavigationView.swift */,
 				17A651E81D1433A700286D34 /* boeckler-Bridging-Header.h */,
+				171BCB9A1D2A436600DFD7D7 /* CustomBackgroundFetchStrategy.swift */,
 			);
 			name = Sources;
 			sourceTree = "<group>";
@@ -1151,6 +1154,7 @@
 				17A651761D1431ED00286D34 /* TextCell.swift in Sources */,
 				17A651961D1431ED00286D34 /* VimeoBlock.swift in Sources */,
 				17A6519A1D1431ED00286D34 /* YoutubeBlock.swift in Sources */,
+				171BCB9B1D2A436600DFD7D7 /* CustomBackgroundFetchStrategy.swift in Sources */,
 				17A651681D1431ED00286D34 /* SQLite-Bridging.m in Sources */,
 				17A6517F1D1431ED00286D34 /* Tracker.swift in Sources */,
 				17A6516D1D1431ED00286D34 /* StatusManager.swift in Sources */,
