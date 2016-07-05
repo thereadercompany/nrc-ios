@@ -10,6 +10,9 @@ import AsyncDisplayKit
 import DTCoreText
 
 extension BlockStyle {
+    static let Small = BlockStyle(rawValue: "small")
+    static let Medium = BlockStyle(rawValue: "medium")
+    static let Large = BlockStyle(rawValue: "large")
     static let Normal = BlockStyle(rawValue: "normal")
     static let Highlight = BlockStyle(rawValue: "highlight")
     static let HighlightXL = BlockStyle(rawValue: "highlight-xl")
@@ -29,7 +32,6 @@ extension BlockStyle {
 
 struct Colors {
     static let placeholderColor = UIColor.lightGrayColor()
-    static let accentColor = UIColor(hex: 0xD30910)
     static let iceBlue = UIColor(hex: 0xD3ECEE)
     static let sand = UIColor(hex: 0xEFEDE2)
     static let defaultBorderColor = UIColor.blackColor().colorWithAlphaComponent(0.05)
@@ -78,13 +80,25 @@ struct Colors {
     static let navigationViewDividerColor = UIColor.blackColor().colorWithAlphaComponent(0.4)
     static let fallbackBackgroundColor = UIColor.yellowColor()
     static let overlayFontColor = UIColor.whiteColor()
-    static let labelTextColor = UIColor.whiteColor()
     static let taglineFontColor = UIColor(hex: 0xD30910)
     static let errorBackgroundColor = UIColor(hex: 0xE6EAEE)
     static let errorMessageTextColor = UIColor(hex: 0x2A2D31)
     static let errorActionButtonTextColor = UIColor(hex: 0xD30910)
     static let refreshControlTintColor = UIColor(hex: 0xE6EAEE).colorWithAlphaComponent(0.6)
     static let loadingIndicatorColor = UIColor.whiteColor()
+    
+    // NRC
+    static let labelBackgroundColor = UIColor.whiteColor()
+    static let labelBorderColor = UIColor(hex: 0xB3B3B3)
+    static let labelTextColor = UIColor(hex: 0x5E5E5E)
+    static let nrcRed = UIColor(hex: 0xD20810)
+    static let nrcRedLight = UIColor(hex: 0xFBE9E9)
+    static let nrcTextColor = UIColor(hex: 0x191919)
+    static let nrcLinkColor = UIColor(hex: 0x0b4f89)
+    static let nrcAnthracite = UIColor(hex: 0x1A1A1A)
+    static let nrcAnthraciteLightness70 = UIColor(hex: 0x676767)
+    static let nrcAnthraciteLightness80 = UIColor(hex: 0x4d4d4d)
+    static let accentColor = UIColor(hex: 0xD30910)
 }
 
 struct Fonts {
@@ -104,6 +118,9 @@ struct Fonts {
     static let defaultAuthorFont: Font = SimpleHBS.Regular
     static let tweetFont = HelveticaNeue.Light
     static let tweetHeadlineFont = HelveticaNeue.Medium
+    
+    //TODO: add NRCFonts
+    static let labelFont = HelveticaNeue.Medium
     
     static let fallbackUIFont = UIFont.systemFontOfSize(14)
     static let statusFont = UIFont.boldSystemFontOfSize(11.5)
@@ -244,6 +261,14 @@ struct FooterCellStyles {
 struct DividerCellStyles {
     static let height: CGFloat = 8
     static let color: UIColor = Colors.accentColor
+}
+
+enum MediumCellStyles {
+    static let titleInsets = CGPoint(x: 10, y: 15)
+    static let richTextInsets = CGPoint(x: 10, y: 12)
+    static let imageSpacing = CGPoint(x: 15, y: 10)
+    static let imageSize = CGSize(width: 77, height: 46)
+    static let sectionMarginTop: CGFloat = 15
 }
 
 struct SpacingCellStyles {
@@ -579,18 +604,6 @@ extension Block {
         return result
     }
     
-    
-    var lineColor: UIColor {
-        switch (self, style ) {
-        case (is StreamerBlock, _):
-            return Colors.transparant
-        case (is ArticleRefBlock, _):
-            return Colors.defaultLineColor
-        default:
-            return Colors.defaultLineColor;
-        }
-    }
-    
     var backgroundColor: UIColor {
         switch (context, self, style) {
         case (CustomBlockContextType.Timeline, is DividerBlock, _):
@@ -699,7 +712,7 @@ class Styler {
     
     static let NormalStyle = "normal"
     
-    init(value:String?, style: String = NormalStyle, block: Block) {
+    init(value:String? = nil, style: String = NormalStyle, block: Block) {
         self.value = value
         self.style = style
         self.block = block
@@ -735,8 +748,145 @@ class IssueLabelStyler: Styler {
         let attrs = StringAttributes(font: issueLabelFont, foregroundColor: issueLabelTextColor, lineSpacing: issueLabelTextLineSpacing, alignment: NSTextAlignment.Center)
         let result = NSMutableAttributedString(string:issueLabel.uppercaseString, attributes:attrs.dictionary)
         return result;
-    }}
+    }
+}
 
+
+class DateLabelStyler: Styler {
+    let date: NSDate?
+    
+    init(date: NSDate?, block: Block) {
+        self.date = date
+        super.init(value: nil, block: block)
+    }
+    
+    var dateCornerRadius: CGFloat {
+        return 0
+    }
+    
+    var shouldRenderDate: Bool {
+        return date != nil
+    }
+    
+    var dateInset: UIEdgeInsets {
+        return UIEdgeInsetsZero
+    }
+    
+    var dateFont: UIFont {
+        return Fonts.labelFont.fallbackWithSize(10)
+    }
+    
+    var dateTextColor: UIColor {
+        return Colors.labelTextColor
+    }
+    
+    var dateBackgroundColor: UIColor {
+        return Colors.labelBackgroundColor
+    }
+    
+    var dateBorderColor: UIColor? {
+        return Colors.labelBorderColor
+    }
+    
+    var dateTextInsets: UIEdgeInsets {
+        return UIEdgeInsets(top: 4, left: 10, bottom: 4, right: 10)
+    }
+    
+    var dateIcon: InlineIcon {
+        return .Clock
+    }
+    
+    var dateIconColor: UIColor? {
+        return dateBorderColor
+    }
+    
+    var dateTextAlignment: NSTextAlignment {
+        return .Left
+    }
+    
+    var relativeDateString: String? {
+        guard let date = date else {
+            return nil
+        }
+        
+        let now = NSDate()
+        let calendar = NSCalendar.autoupdatingCurrentCalendar()
+        let components = calendar.components([.Day, .Hour, .Minute], fromDate: date, toDate: now, options: .MatchFirst)
+        
+        guard components.month == NSNotFound else {
+            assertionFailure("not expecting months")
+            return nil
+        }
+        
+        //TODO: localize formats
+        switch (components.day, components.hour, components.minute) {
+        case (let day, _, _) where day == 1:
+            return "1 dag"
+        case (let day, _, _) where day > 1 && date != NSNotFound:
+            return "\(day) dagen"
+        case (_, let hour, _) where hour > 0 && date != NSNotFound:
+            return "\(hour) uur"
+        case (_, _, let minute) where minute > 0 && minute != NSNotFound:
+            return "\(minute) min"
+        default:
+            return "Zojuist"
+        }
+    }
+    
+    var attributedDate: NSAttributedString {
+        guard let dateString = self.relativeDateString else {  return NSAttributedString() }
+        let attributes = StringAttributes(font: dateFont, foregroundColor: dateTextColor, lineSpacing: 0, alignment: dateTextAlignment)
+        return NSAttributedString(string: dateString, attributes: attributes.dictionary)
+    }
+}    
+
+
+class LineStyler: Styler {
+    
+    var lineColor: UIColor {
+        switch (block, block.style ) {
+        case (is StreamerBlock, _):
+            return Colors.transparant
+        case (is ArticleRefBlock, _):
+            return Colors.defaultLineColor
+        default:
+            return Colors.defaultLineColor;
+        }
+    }
+}
+
+class SectionStyler: Styler {
+    var shouldRenderSection: Bool {
+        switch block.style {
+        case BlockStyle.Large, BlockStyle.Medium, BlockStyle.Small:
+            return value != nil
+        default:
+            return false
+        }
+    }
+    
+    var attributedSection: NSAttributedString {
+        guard let section = value else { return NSAttributedString(string: "") }
+        let attributes = StringAttributes(font: sectionFont, foregroundColor: sectionFontColor, lineSpacing: sectionLineSpacing)
+        return NSAttributedString(string: section, attributes: attributes.dictionary)
+    }
+    
+    var sectionFont: UIFont {
+        return Fonts.labelFont.fallbackWithSize(13)
+    }
+    
+    var sectionFontColor: UIColor {
+        //TODO: replace theme with style
+//        if let theme = self as? protocol<BlockType,ThemeContaining>, color = theme.themeTextColor {
+//            return color
+//        }
+        return Colors.nrcAnthraciteLightness70
+    }
+    
+    var sectionLineSpacing: CGFloat {
+        return 20
+    }
+}
 
 class LabelStyler: Styler {
     

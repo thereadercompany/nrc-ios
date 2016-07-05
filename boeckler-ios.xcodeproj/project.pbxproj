@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		172C44841D2B892100A9857F /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 172C44831D2B892100A9857F /* Reachability.swift */; };
 		172C46A21D2C3CBC00A9857F /* MediumCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 172C46A11D2C3CBC00A9857F /* MediumCell.swift */; };
+		172C46A41D2C429B00A9857F /* IconType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 172C46A31D2C429B00A9857F /* IconType.swift */; };
 		1731BF221BEA569B0012D6FF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1731BF171BEA569B0012D6FF /* UIKit.framework */; };
 		1731BF231BEA569B0012D6FF /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1731BF181BEA569B0012D6FF /* SystemConfiguration.framework */; };
 		1731BF241BEA569B0012D6FF /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1731BF191BEA569B0012D6FF /* QuartzCore.framework */; };
@@ -267,6 +268,7 @@
 /* Begin PBXFileReference section */
 		172C44831D2B892100A9857F /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Reachability.swift; path = "core-ios/Sources/Reachability.swift"; sourceTree = SOURCE_ROOT; };
 		172C46A11D2C3CBC00A9857F /* MediumCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MediumCell.swift; path = Sources/MediumCell.swift; sourceTree = "<group>"; };
+		172C46A31D2C429B00A9857F /* IconType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IconType.swift; path = Sources/IconType.swift; sourceTree = "<group>"; };
 		1731BD7E1BEA41050012D6FF /* boeckler-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "boeckler-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1731BF171BEA569B0012D6FF /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		1731BF181BEA569B0012D6FF /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
@@ -882,6 +884,7 @@
 				17A651E61D1433A700286D34 /* CustomArticleViewController.swift */,
 				17A651E71D1433A700286D34 /* CustomTimelineNavigationView.swift */,
 				17A651E81D1433A700286D34 /* boeckler-Bridging-Header.h */,
+				172C46A31D2C429B00A9857F /* IconType.swift */,
 			);
 			name = Sources;
 			sourceTree = "<group>";
@@ -1173,6 +1176,7 @@
 				17A6516A1D1431ED00286D34 /* SQLiteStore.swift in Sources */,
 				17A651251D1431ED00286D34 /* ErrorTypeConvertible.swift in Sources */,
 				17A6515E1D1431ED00286D34 /* RelationshipType.swift in Sources */,
+				172C46A41D2C429B00A9857F /* IconType.swift in Sources */,
 				17A651041D1431ED00286D34 /* BlockStyle.swift in Sources */,
 				17A651971D1431ED00286D34 /* VimeoCell.swift in Sources */,
 				17A651ED1D1433A700286D34 /* AppStyles.swift in Sources */,
