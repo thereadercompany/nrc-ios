@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		172C44841D2B892100A9857F /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 172C44831D2B892100A9857F /* Reachability.swift */; };
+		172C46A21D2C3CBC00A9857F /* MediumCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 172C46A11D2C3CBC00A9857F /* MediumCell.swift */; };
 		1731BF221BEA569B0012D6FF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1731BF171BEA569B0012D6FF /* UIKit.framework */; };
 		1731BF231BEA569B0012D6FF /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1731BF181BEA569B0012D6FF /* SystemConfiguration.framework */; };
 		1731BF241BEA569B0012D6FF /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1731BF191BEA569B0012D6FF /* QuartzCore.framework */; };
@@ -263,6 +265,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		172C44831D2B892100A9857F /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Reachability.swift; path = "core-ios/Sources/Reachability.swift"; sourceTree = SOURCE_ROOT; };
+		172C46A11D2C3CBC00A9857F /* MediumCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MediumCell.swift; path = Sources/MediumCell.swift; sourceTree = "<group>"; };
 		1731BD7E1BEA41050012D6FF /* boeckler-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "boeckler-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1731BF171BEA569B0012D6FF /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		1731BF181BEA569B0012D6FF /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
@@ -605,6 +609,7 @@
 		17A650121D1431D300286D34 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				172C44831D2B892100A9857F /* Reachability.swift */,
 				17A650131D1431ED00286D34 /* Account.swift */,
 				17A650141D1431ED00286D34 /* AlertBlock.swift */,
 				17A650161D1431ED00286D34 /* AnimatableView.swift */,
@@ -861,6 +866,7 @@
 		17A651D91D14338200286D34 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				172C46A11D2C3CBC00A9857F /* MediumCell.swift */,
 				17A651DB1D1433A700286D34 /* AppConfig.swift */,
 				17A651DC1D1433A700286D34 /* ArticleRefCell.swift */,
 				17A651DD1D1433A700286D34 /* SwinjectStoryboard+Setup.swift */,
@@ -1062,6 +1068,7 @@
 				17A650EF1D1431ED00286D34 /* ArticleRefPushAnimator.swift in Sources */,
 				17A651461D1431ED00286D34 /* Media.swift in Sources */,
 				17A651911D1431ED00286D34 /* UserActivity.swift in Sources */,
+				172C46A21D2C3CBC00A9857F /* MediumCell.swift in Sources */,
 				17A6514C1D1431ED00286D34 /* NetworkRequestHandler.swift in Sources */,
 				17A6514B1D1431ED00286D34 /* NetworkError.swift in Sources */,
 				17A6513C1D1431ED00286D34 /* Instabug.swift in Sources */,
@@ -1091,6 +1098,7 @@
 				17A651921D1431ED00286D34 /* UserFacingError.swift in Sources */,
 				17A6515C1D1431ED00286D34 /* Query.swift in Sources */,
 				17A651361D1431ED00286D34 /* ImageController.swift in Sources */,
+				172C44841D2B892100A9857F /* Reachability.swift in Sources */,
 				17A651521D1431ED00286D34 /* NSURLComponents.swift in Sources */,
 				17A6512E1D1431ED00286D34 /* FontError.swift in Sources */,
 				17A651321D1431ED00286D34 /* GradientNode.swift in Sources */,

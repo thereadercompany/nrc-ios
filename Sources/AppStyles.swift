@@ -36,6 +36,8 @@ struct Colors {
     static let decorationBorderColor = UIColor.blackColor().colorWithAlphaComponent(0.05)
     static let footerLineColor = accentColor
     static let linkColor = UIColor(hex: 0xD30910)
+    static let statusViewBackgroundColor = Colors.accentColor
+    static let statusViewTextColor = UIColor.whiteColor()
     static let cardBackgroundColor =  UIColor.whiteColor()
     static let articleBackgroundColor =  UIColor.whiteColor()
     static let timelineBackgroundColor =  UIColor(hex: 0x2A2D31)
@@ -104,6 +106,7 @@ struct Fonts {
     static let tweetHeadlineFont = HelveticaNeue.Medium
     
     static let fallbackUIFont = UIFont.systemFontOfSize(14)
+    static let statusFont = UIFont.boldSystemFontOfSize(11.5)
     
     static func load() throws {
     }
