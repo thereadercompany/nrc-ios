@@ -18,11 +18,11 @@ class CustomNavigationControllerDelegate : NSObject, NavigationControllerDelegat
     func navigationController(navigationController: UINavigationController, animationControllerForOperation operation: UINavigationControllerOperation, fromViewController fromVC: UIViewController, toViewController toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         
         switch (operation, fromVC, toVC) {
-        case (UINavigationControllerOperation.Push, let blockContextVC as BlockContextViewController, let articleVC as ArticleViewController):
+        case (UINavigationControllerOperation.Push, let blockContextVC as BlockContextTransitioning, let articleVC as ArticleViewController):
             if let cell = blockContextVC.cellForReference(articleVC.contextReference) as? ArticleRefCell {
                 return ArticleRefPushAnimator(cell: cell, cellFactory: cellFactory)
             }
-        case (UINavigationControllerOperation.Pop, let articleVC as ArticleViewController, let blockContextVC as BlockContextViewController):
+        case (UINavigationControllerOperation.Pop, let articleVC as ArticleViewController, let blockContextVC as BlockContextTransitioning):
             if let cell = blockContextVC.cellForReference(articleVC.contextReference) as? ArticleRefCell {
                 return ArticleRefPopAnimator(cell: cell, instructions: articleVC.pullToCloseInstructions)
             }

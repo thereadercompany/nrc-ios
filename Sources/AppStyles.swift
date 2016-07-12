@@ -30,6 +30,7 @@ extension BlockStyle {
 struct Colors {
     static let placeholderColor = UIColor.lightGrayColor()
     static let accentColor = UIColor(hex: 0xD30910)
+    static let accentColorDarker = Colors.accentColor.darker()
     static let iceBlue = UIColor(hex: 0xD3ECEE)
     static let sand = UIColor(hex: 0xEFEDE2)
     static let defaultBorderColor = UIColor.blackColor().colorWithAlphaComponent(0.05)

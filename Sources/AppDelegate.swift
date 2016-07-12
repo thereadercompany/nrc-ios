@@ -14,6 +14,9 @@ import Swinject
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    var mainViewController: MainViewController?
+    
+    let container = Container.setup()
 
     func setupDebuggingTools() {
         Fabric.with([Crashlytics.self()])
@@ -23,7 +26,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func setupURLHandling(launchOptions: [NSObject: AnyObject]?) -> Bool {
         var shouldHandleURL: Bool
         if let url = launchOptions?[UIApplicationLaunchOptionsURLKey] as? NSURL {
-            let urlHandler = SwinjectStoryboard.defaultContainer.resolve(URLHandler.self)!
+            let urlHandler = container.resolve(URLHandler.self)!
             shouldHandleURL = !urlHandler.handleOpenURL(url, afterFinishedLaunching: true, appDelegate: self)
         } else {
             shouldHandleURL = true
@@ -33,7 +36,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         enableBackgroundFetch()
+        mainViewController = container.resolve(MainViewController.self)
         
+        let window = UIWindow(frame: UIScreen.mainScreen().bounds)
+        window.backgroundColor = UIColor.whiteColor()
+        window.rootViewController = mainViewController
+        window.makeKeyAndVisible()
+        self.window = window
+
         do {
             try Fonts.load()
         } catch {
@@ -45,13 +55,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(app: UIApplication, openURL url: NSURL, options: [String : AnyObject]) -> Bool {
-        let urlHandler = SwinjectStoryboard.defaultContainer.resolve(URLHandler.self)!
+        let urlHandler = container.resolve(URLHandler.self)!
         return urlHandler.handleOpenURL(url, afterFinishedLaunching: false, appDelegate: self)
     }
     
     func application(application: UIApplication, continueUserActivity userActivity: NSUserActivity, restorationHandler: ([AnyObject]?) -> Void) -> Bool {
         if let action = userActivity.internalURLAction {
-            let urlHandler = SwinjectStoryboard.defaultContainer.resolve(URLHandler.self)!            
+            let urlHandler = container.resolve(URLHandler.self)!
             return urlHandler.handle(action)
         }
         return false
@@ -85,7 +95,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(application: UIApplication, performFetchWithCompletionHandler completionHandler: (UIBackgroundFetchResult) -> Void) {
-        let fetcher = SwinjectStoryboard.defaultContainer.resolve(BackgroundFetcher.self)!
+        let fetcher = container.resolve(BackgroundFetcher.self)!
         fetcher.startSession(completionHandler)
     }
 }
