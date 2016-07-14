@@ -47,8 +47,8 @@ class ArticleRefCell : MediaCell {
         }
     }
         
-    override func setVisible(visible: Bool) {
-        super.setVisible(visible)
+    override func visibilityDidChange(visible: Bool) {
+        super.visibilityDidChange(visible)
         if !visible {
             preview = nil
             previewOrientation = nil
