@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="QQa-Jr-NPG">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="QQa-Jr-NPG">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
@@ -115,7 +115,7 @@
         <!--NRC-->
         <scene sceneID="ZiM-B2-AfA">
             <objects>
-                <viewController id="ajJ-oR-pdv" customClass="TimelineViewController" customModule="boeckler_ios" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="ajJ-oR-pdv" customClass="TimelineViewController" customModule="Core" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="pfs-Kn-73J"/>
                         <viewControllerLayoutGuide type="bottom" id="9Vi-mI-N1C"/>
@@ -159,7 +159,7 @@
         <!--Main View Controller-->
         <scene sceneID="O4N-SK-SxT">
             <objects>
-                <navigationController navigationBarHidden="YES" id="QQa-Jr-NPG" customClass="MainViewController" customModule="boeckler_ios" customModuleProvider="target" sceneMemberID="viewController">
+                <navigationController navigationBarHidden="YES" id="QQa-Jr-NPG" customClass="MainViewController" customModule="Core" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" id="vEU-gd-bXl">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -177,7 +177,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="bmM-cV-bM6"/>
         <segue reference="hmW-1M-qH8"/>
+        <segue reference="fRS-ma-xC4"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -7,6 +7,7 @@
 
 import Foundation
 import RxSwift
+import Core
 
 class CustomBackgroundFetchStrategy : BackgroundFetchStrategy {
     var dataController: BlockContextDataController!

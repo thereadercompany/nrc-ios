@@ -5,7 +5,8 @@
 //  Created by Taco Vollmer on 02/09/15.
 //
 
-import Foundation
+import Core
+import UIKit
 
 class CustomTimelineNavigationViewController: TimelineNavigationViewController {
 
@@ -17,7 +18,7 @@ class CustomTimelineNavigationViewController: TimelineNavigationViewController {
         let navigationView = CustomTimelineNavigationView(style: style)
         self.transition(toView: navigationView, animated: animated)
     }
-    
+
     //MARK - initialization
 
     init() {

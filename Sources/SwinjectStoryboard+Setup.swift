@@ -7,13 +7,17 @@
 
 import Foundation
 import Swinject
+import Core
 
 extension SwinjectStoryboard {
     class func setup() {
         AppConfig.registerDefaults()
         
         let container = defaultContainer
-        
+
+        container.register(ErrorMessageViewStyles.self) { _ in ErrorMessageViewStyles(
+            backgroundColor: Colors.errorBackgroundColor, messageTextColor: Colors.errorMessageTextColor, messageFont: ErrorStyles.messageFont, titleFont: ErrorStyles.buttonFont, titleColor: Colors.errorActionButtonTextColor, highlightedTitleColor: Colors.errorMessageTextColor) }
+
         container.register(NetworkRequestHandler.self) { _  in CoreNetworkRequestHandler()}
         container.register(BlockDecoder.self) { _ in CustomBlockDecoder() }.inObjectScope(.Container)
         container.register(BlockContextDecoder.self) { _ in CustomBlockContextDecoder() }.inObjectScope(.Container)
@@ -25,14 +29,14 @@ extension SwinjectStoryboard {
         container.register(Cache.self) { r in CoreCache(store: r.resolve(Store.self)!) }.inObjectScope(.Container)
         container.register(PaywallStateController.self) { _ in CorePaywallStateController() }.inObjectScope(.Container)
         container.register(PaywallDataInterceptor.self) { r in CorePaywallDataInterceptor(paywallController: r.resolve(PaywallStateController.self)!) }.inObjectScope(.Container)
-        container.register(BlockContextDataController.self, name: "default") { r in CoreBlockContextDataController(cache: r.resolve(Cache.self)!, networkRequestHandler: r.resolve(NetworkRequestHandler.self)!, interceptor: r.resolve(PaywallDataInterceptor.self)! )  }.inObjectScope(.Container)
-        container.register(BlockContextDataController.self, name: "paywall") { r in CoreBlockContextDataController(cache: r.resolve(Cache.self)!, networkRequestHandler: r.resolve(NetworkRequestHandler.self)!) }.inObjectScope(.Container)
+        container.register(BlockContextDataController.self, name: "default") { r in CoreBlockContextDataController(cache: r.resolve(Cache.self)!, networkRequestHandler: r.resolve(NetworkRequestHandler.self)!, baseServerURL: apiBaseURL(), interceptor: r.resolve(PaywallDataInterceptor.self)! )  }.inObjectScope(.Container)
+        container.register(BlockContextDataController.self, name: "paywall") { r in CoreBlockContextDataController(cache: r.resolve(Cache.self)!, networkRequestHandler: r.resolve(NetworkRequestHandler.self)!, baseServerURL: apiBaseURL()) }.inObjectScope(.Container)
         container.register(TrackerFactory.self) { r in CoreTrackerFactory.init(delegate: r.resolve(BlockContextDataController.self, name: "default")!)}.inObjectScope(.Container)
         
         container.register(CellFactory.self) { r in CustomCellFactory(trackerFactory: r.resolve(TrackerFactory.self)!, dataController: r.resolve(BlockContextDataController.self, name: "default")!) }.inObjectScope(.Container)
         
         container.register(NavigationControllerDelegate.self) { r  in CustomNavigationControllerDelegate(cellFactory: r.resolve(CellFactory.self)!)}.inObjectScope(.Container)
-        container.register(AuthenticationController.self) { r in CoreAuthenticationController(paywallController: r.resolve(PaywallStateController.self)! )}.inObjectScope(.Container)
+        container.register(AuthenticationController.self) { r in CoreAuthenticationController(paywallController: r.resolve(PaywallStateController.self)!, authURL: serverBaseURL(), errorStyles: r.resolve(ErrorMessageViewStyles.self)!)}.inObjectScope(.Container)
         container.register(URLHandler.self) { r in CoreURLHandler(paywallController: r.resolve(PaywallStateController.self)!, authController: r.resolve(AuthenticationController.self)!) }.inObjectScope(.Container)
         
         container.register(BlockContextDataSource.self, name: "timeline") { r in BlockContextDataSource<Timeline>(blockContextRef: BlockContextRef.None, isSingleton:true, dataController: r.resolve(BlockContextDataController.self, name: "default")!)}.inObjectScope(.Container)
@@ -64,14 +68,22 @@ extension SwinjectStoryboard {
             c.dataSource = r.resolve(BlockContextDataSource.self, name: "timeline")!
             c.articleDataSourceFactory = BlockContextDataSourceFactory(dataController: r.resolve(BlockContextDataController.self, name: "default")!)
             c.visibilityStateController = CoreVisibilityStateController(trackerFactory: r.resolve(TrackerFactory.self)!)
+            c.backgroundColor = TimelineStyles.backgroundColorBoot
+            c.refreshControl.tintColor = LoadingStyles.refreshControlTintColor
+            c.errorStyles = r.resolve(ErrorMessageViewStyles.self)!
         }
 
         container.registerForStoryboard(CustomArticleViewController.self) { r, c in
-            c.navigationViewController = CoreArticleNavigationViewController()
+            c.navigationViewController = CoreArticleNavigationViewController(autoHideNavBar: true, accentColor: Colors.accentColor)
+
             c.urlHandler = r.resolve(URLHandler.self)
             c.cellFactory = r.resolve(CellFactory.self)
             c.dataSourceFactory = BlockContextDataSourceFactory(dataController: r.resolve(BlockContextDataController.self, name: "default")!)
             c.visibilityStateController = CoreVisibilityStateController(trackerFactory: r.resolve(TrackerFactory.self)!)
+            c.styles = ArticleViewControllerStyles(pushToHideThreshold: ArticleStyles.pushToHideThreshold, navigationBarHeight: ArticleStyles.navigationBarHeight, topInset: ArticleStyles.topInset, backgroundColor: { (article) -> UIColor in
+                ArticleStyles.backgroundColor
+            })
+            c.errorStyles = r.resolve(ErrorMessageViewStyles.self)!
         }
         
         container.registerForStoryboard(PaywallViewController.self) { r, c in
@@ -79,6 +91,7 @@ extension SwinjectStoryboard {
             c.cellFactory = r.resolve(CellFactory.self)
             c.dataSourceFactory = BlockContextDataSourceFactory(dataController: r.resolve(BlockContextDataController.self, name: "paywall")!)
             c.visibilityStateController = CoreVisibilityStateController(trackerFactory: r.resolve(TrackerFactory.self)!)
+            c.errorStyles = r.resolve(ErrorMessageViewStyles.self)!
         }
     }
 }

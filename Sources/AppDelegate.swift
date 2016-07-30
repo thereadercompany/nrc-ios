@@ -9,6 +9,7 @@ import UIKit
 import Fabric
 import Crashlytics
 import Swinject
+import Core
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -24,7 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         var shouldHandleURL: Bool
         if let url = launchOptions?[UIApplicationLaunchOptionsURLKey] as? NSURL {
             let urlHandler = SwinjectStoryboard.defaultContainer.resolve(URLHandler.self)!
-            shouldHandleURL = !urlHandler.handleOpenURL(url, afterFinishedLaunching: true, appDelegate: self)
+            shouldHandleURL = !urlHandler.handleOpenURL(url, afterFinishedLaunching: true)
         } else {
             shouldHandleURL = true
         }
@@ -46,7 +47,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(app: UIApplication, openURL url: NSURL, options: [String : AnyObject]) -> Bool {
         let urlHandler = SwinjectStoryboard.defaultContainer.resolve(URLHandler.self)!
-        return urlHandler.handleOpenURL(url, afterFinishedLaunching: false, appDelegate: self)
+        return urlHandler.handleOpenURL(url, afterFinishedLaunching: false)
     }
     
     func application(application: UIApplication, continueUserActivity userActivity: NSUserActivity, restorationHandler: ([AnyObject]?) -> Void) -> Bool {

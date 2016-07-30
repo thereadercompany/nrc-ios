@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Core
 
 class CustomTimelineNavigationView: TimelineNavigationView {
     // images
@@ -21,18 +22,12 @@ class CustomTimelineNavigationView: TimelineNavigationView {
         
         // labels
         super.init(style: style, logoView: logoView, accountButton: nil, loginButton: nil)
-        
-        needsLine = TimelineStyles.navigationViewNeedsLine(style)
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func applyStyle() {
-        super.applyStyle()
-    }
-
     override func addSubviews() {
         super.addSubviews()
         addSubview(logoView)

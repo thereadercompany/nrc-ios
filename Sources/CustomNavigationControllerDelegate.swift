@@ -5,7 +5,7 @@
 //  Copyright © 2016 TRC. All rights reserved.
 //
 
-import Foundation
+import Core
 
 class CustomNavigationControllerDelegate : NSObject, NavigationControllerDelegate {
     
@@ -20,7 +20,7 @@ class CustomNavigationControllerDelegate : NSObject, NavigationControllerDelegat
         switch (operation, fromVC, toVC) {
         case (UINavigationControllerOperation.Push, let blockContextVC as BlockContextViewController, let articleVC as ArticleViewController):
             if let cell = blockContextVC.cellForReference(articleVC.contextReference) as? ArticleRefCell {
-                return ArticleRefPushAnimator(cell: cell, cellFactory: cellFactory)
+                return ArticleRefPushAnimator(cell: cell, cellFactory: cellFactory, styles: ArticleRefPushAnimatorStyles(pushAnimationDuration: cell.mediaStyles.pushAnimationDuration, pushAnimationFadeInDuration: ContextStyles.pushAnimationFadeInDuration))
             }
         case (UINavigationControllerOperation.Pop, let articleVC as ArticleViewController, let blockContextVC as BlockContextViewController):
             if let cell = blockContextVC.cellForReference(articleVC.contextReference) as? ArticleRefCell {

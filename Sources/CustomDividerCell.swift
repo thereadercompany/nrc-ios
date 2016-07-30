@@ -6,16 +6,17 @@
 //  Copyright © 2016 TRC. All rights reserved.
 //
 
-import Foundation
+import Core
+import UIKit
 
 class CustomDividerCell : Cell {
     
-    init(block: DividerBlock) {
-        super.init(block: block)
+    init(block: DividerBlock, styles: CellStyles) {
+        super.init(block: block, styles: styles)
     }
     
     var contentHeight: CGFloat {
-        return DividerCellStyles.height
+        return 8
     }
     
     override func calculateSizeThatFits(constrainedSize: CGSize) -> CGSize {

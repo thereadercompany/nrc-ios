@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import Core
 
 /**
     Temporary config. Should be moved to a configuration file.
@@ -54,7 +55,6 @@ struct AppConfig {
     static let customScheme = "hbsmb"
     
     static let showTimelineDelay: NSTimeInterval = 1
-    static let minBackgroundTimeRemaining: NSTimeInterval = 5
     
     // AsyncDisplayKit
     static let linkAttributeName = "NSALink"
@@ -112,11 +112,3 @@ enum Server: String {
     case Production = "http://boeckler-select-api.trc.io"
 }
 
-enum AuthenticationNotification: String {
-    case Started = "io.trc.boeckler.authentication.started"
-    case LoginCancelled = "io.trc.boeckler.authentication.cancelled"
-    case LoginFailed = "io.trc.boeckler.authentication.failed"
-    case LoginSucceeded = "io.trc.boeckler.authentication.succeeded"
-    case Finished = "io.trc.boeckler.authentication.finished"
-    case Revoked = "io.trc.boeckler.authentication.revoked"
-}

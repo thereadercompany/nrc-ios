@@ -9,6 +9,21 @@
 import Foundation
 import BrightFutures
 import AsyncDisplayKit
+import Core
+
+class CustomStreamerCellStyles: CellStyles {
+    var attributedHeadline: NSAttributedString = NSAttributedString()
+    var attributedSubHeadline: NSAttributedString?
+    var shouldRenderSubHeadline: Bool = true
+    var subHeadlineMarginTop: CGFloat = 0
+    var subHeadlineMarginBottom: CGFloat = 0
+    var headlineMarginBottom: CGFloat = 0
+    var contentPadding: UIEdgeInsets = UIEdgeInsetsZero
+    var iconSize: CGFloat = 40
+    var iconMarginTop: CGFloat = 0
+    var iconMarginLeft: CGFloat = 0
+    var headlineMarginTop: CGFloat = 0
+}
 
 class CustomStreamerCell : Cell {
     
@@ -17,18 +32,20 @@ class CustomStreamerCell : Cell {
     let subHeadlineNode: ASTextNode
     
     let streamerBlock: StreamerBlock
-    
-    let headlineStyler: HeadlineStyler
-    let subHeadlineStyler: SubHeadlineStyler
-    
-    init(streamerBlock: StreamerBlock) {
+    let customStreamerStyles: CustomStreamerCellStyles
+
+//    let headlineStyler: HeadlineStyler
+//    let subHeadlineStyler: SubHeadlineStyler
+
+    init(streamerBlock: StreamerBlock, styles: CustomStreamerCellStyles) {
         self.streamerBlock = streamerBlock
         iconNode = ASImageNode()
         headlineNode = ASTextNode()
         subHeadlineNode = ASTextNode()
-        headlineStyler = HeadlineStyler(value: streamerBlock.text, block: streamerBlock)
-        subHeadlineStyler = SubHeadlineStyler(value: streamerBlock.author, block: streamerBlock)
-        super.init(block: streamerBlock)
+        customStreamerStyles = styles
+//        headlineStyler = HeadlineStyler(value: streamerBlock.text, block: streamerBlock)
+//        subHeadlineStyler = SubHeadlineStyler(value: streamerBlock.author, block: streamerBlock)
+        super.init(block: streamerBlock, styles: styles)
         addSubnode(iconNode)
         addSubnode(headlineNode)
         addSubnode(subHeadlineNode)
@@ -39,43 +56,43 @@ class CustomStreamerCell : Cell {
             iconNode.image = UIImage(named: "icon-streamer")
         }
         
-        backgroundColor = streamerBlock.backgroundColor
-        headlineNode.attributedString = headlineStyler.attributedHeadline
-        subHeadlineNode.attributedString = subHeadlineStyler.attributedSubHeadline
+        backgroundColor = customStreamerStyles.backgroundColor //streamerBlock.backgroundColor
+        headlineNode.attributedString = customStreamerStyles.attributedHeadline
+        subHeadlineNode.attributedString = customStreamerStyles.attributedSubHeadline
     }
     
     var subHeadlineMarginTop: CGFloat {
-        guard subHeadlineStyler.shouldRenderSubHeadline else { return 0 }
-        return StreamerCellStyles.subHeadlineMarginTop
+        guard customStreamerStyles.shouldRenderSubHeadline else { return 0 }
+        return customStreamerStyles.subHeadlineMarginTop
     }
 
     var marginBottom: CGFloat {
-        if subHeadlineStyler.shouldRenderSubHeadline {
-            return StreamerCellStyles.subHeadlineMarginBottom
+        if customStreamerStyles.shouldRenderSubHeadline {
+            return customStreamerStyles.subHeadlineMarginBottom
         }
-        return StreamerCellStyles.headlineMarginBottom
+        return customStreamerStyles.headlineMarginBottom
     }
     
     func headlineSize(constraintWidth: CGFloat) -> CGSize {
-        return headlineStyler.attributedHeadline.boundingSizeForWidth(constraintWidth)
+        return customStreamerStyles.attributedHeadline.boundingSizeForWidth(constraintWidth)
     }
     
     func subHeadlineSize(constraintWidth: CGFloat) -> CGSize {
-        guard let subHeadline = subHeadlineStyler.attributedSubHeadline else { return CGSizeZero }
+        guard let subHeadline = customStreamerStyles.attributedSubHeadline else { return CGSizeZero }
         return subHeadline.boundingSizeForWidth(constraintWidth)
     }
     
     override func calculateSizeThatFits(constrainedSize: CGSize) -> CGSize {
-        let contentPadding = block.contentPadding
+        let contentPadding = customStreamerStyles.contentPadding
         let contentWidth = constrainedSize.width - (contentPadding.left + contentPadding.right)
         var contentHeight = contentPadding.top + contentPadding.bottom
         
         let headlineHeight = self.headlineSize(contentWidth).height
         let subHeadlineHeight = self.subHeadlineSize(contentWidth).height
 
-        contentHeight += StreamerCellStyles.iconMarginTop
-        contentHeight += StreamerCellStyles.iconSize
-        contentHeight += StreamerCellStyles.headlineMarginTop
+        contentHeight += customStreamerStyles.iconMarginTop
+        contentHeight += customStreamerStyles.iconSize
+        contentHeight += customStreamerStyles.headlineMarginTop
         contentHeight += headlineHeight
         contentHeight += subHeadlineMarginTop
         contentHeight += subHeadlineHeight
@@ -87,11 +104,11 @@ class CustomStreamerCell : Cell {
     override func layout() {
         super.layout()
         
-        let contentRect = self.frame.insetsBy(block.contentPadding)
+        let contentRect = self.frame.insetsBy(customStreamerStyles.contentPadding)
         
-        iconNode.frame = CGRect(x: block.decorationPadding.left+StreamerCellStyles.iconMarginLeft, y: StreamerCellStyles.iconMarginTop, width: StreamerCellStyles.iconSize, height: StreamerCellStyles.iconSize)
+        iconNode.frame = CGRect(x: customStreamerStyles.decorationPadding.left+customStreamerStyles.iconMarginLeft, y: customStreamerStyles.iconMarginTop, width: customStreamerStyles.iconSize, height: customStreamerStyles.iconSize)
         let headlineSize = self.headlineSize(contentRect.width)
-        headlineNode.frame = CGRect(origin: CGPoint(x: contentRect.origin.x, y: CGRectGetMaxY(iconNode.frame)+StreamerCellStyles.headlineMarginTop), size: headlineSize)
+        headlineNode.frame = CGRect(origin: CGPoint(x: contentRect.origin.x, y: CGRectGetMaxY(iconNode.frame)+customStreamerStyles.headlineMarginTop), size: headlineSize)
         let subHeadlineSize = self.subHeadlineSize(contentRect.width)
         subHeadlineNode.frame = CGRect(origin: CGPoint(x: contentRect.origin.x, y: CGRectGetMaxY(headlineNode.frame) + subHeadlineMarginTop), size: subHeadlineSize)
     }
