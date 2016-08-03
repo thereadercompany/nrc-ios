@@ -39,7 +39,7 @@ extension SwinjectStoryboard {
         container.register(AuthenticationController.self) { r in CoreAuthenticationController(paywallController: r.resolve(PaywallStateController.self)!, authURL: serverBaseURL(), errorStyles: r.resolve(ErrorMessageViewStyles.self)!)}.inObjectScope(.Container)
         container.register(URLHandler.self) { r in CoreURLHandler(paywallController: r.resolve(PaywallStateController.self)!, authController: r.resolve(AuthenticationController.self)!) }.inObjectScope(.Container)
         
-        container.register(BlockContextDataSource.self, name: "timeline") { r in BlockContextDataSource<Timeline>(blockContextRef: BlockContextRef.None, isSingleton:true, dataController: r.resolve(BlockContextDataController.self, name: "default")!)}.inObjectScope(.Container)
+        container.register(BlockDataSource.self, name: "timeline") { r in BlockContextDataSource<Timeline>(blockContextRef: BlockContextRef.None, isSingleton:true, dataController: r.resolve(BlockContextDataController.self, name: "default")!)}.inObjectScope(.Container)
 
         container.register(BackgroundFetchStrategy.self) { r in
             let strategy = CustomBackgroundFetchStrategy()
@@ -65,7 +65,7 @@ extension SwinjectStoryboard {
             c.navigationViewController = CustomTimelineNavigationViewController()
             c.urlHandler = r.resolve(URLHandler.self)
             c.cellFactory = r.resolve(CellFactory.self)
-            c.dataSource = r.resolve(BlockContextDataSource.self, name: "timeline")!
+            c.dataSource = r.resolve(BlockDataSource.self, name: "timeline")!
             c.articleDataSourceFactory = BlockContextDataSourceFactory(dataController: r.resolve(BlockContextDataController.self, name: "default")!)
             c.visibilityStateController = CoreVisibilityStateController(trackerFactory: r.resolve(TrackerFactory.self)!)
             c.backgroundColor = TimelineStyles.backgroundColorBoot
