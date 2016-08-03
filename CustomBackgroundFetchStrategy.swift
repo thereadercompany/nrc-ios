@@ -58,7 +58,7 @@ class CustomBackgroundFetchStrategy : BackgroundFetchStrategy {
     }
     
     private func readArticleFromDatabase(identifier: String) -> Article? {
-        return articleDataSource(identifier).blockContext
+        return articleDataSource(identifier).blockContext as? Article
     }
     
     private func articleDataSource(identifier:String) -> BlockContextDataSource<Article> {
