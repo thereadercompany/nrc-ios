@@ -7,4 +7,5 @@ target 'boeckler-ios' do
   pod 'Fabric', '~> 1.6'
   pod 'Instabug', '~> 5.3'
   pod 'Reveal-iOS-SDK', :configurations => ['Debug']
+  pod 'RxCocoa', '~> 2.6'
 end

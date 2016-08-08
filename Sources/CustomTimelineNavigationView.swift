@@ -11,6 +11,7 @@ import Core
 class CustomTimelineNavigationView: TimelineNavigationView {
     // images
     let logo: UIImage
+    let menuButton: UIButton
     
     required init(style: NavigationViewStyle) {
         // images
@@ -19,9 +20,18 @@ class CustomTimelineNavigationView: TimelineNavigationView {
         // views
         let logoView = UIImageView(image: logo)
         logoView.contentMode = .ScaleAspectFit
-        
+
+
+        menuButton = UIButton()
+        menuButton.setTitle("Menu", forState: .Normal)
+
         // labels
         super.init(style: style, logoView: logoView, accountButton: nil, loginButton: nil)
+
+        menuButton.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(menuButton)
+        menuButton.leftAnchor.constraintEqualToAnchor(leftAnchor, constant: 10).active = true
+        menuButton.centerYAnchor.constraintEqualToAnchor(logoView.centerYAnchor).active = true
     }
     
     required init?(coder aDecoder: NSCoder) {

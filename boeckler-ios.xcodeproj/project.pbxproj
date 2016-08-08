@@ -35,7 +35,10 @@
 		17A652181D1814A000286D34 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 17A652161D1814A000286D34 /* Main.storyboard */; };
 		17FA32311D1972D700F48129 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 17FA32301D1972D700F48129 /* Localizable.strings */; };
 		377795914E5DBE6896A14EEC /* Pods_boeckler_ios.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F859A944BD739EF47CFA33C /* Pods_boeckler_ios.framework */; };
+		904601401D4E4DF40069B3E2 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9046013F1D4E4DF40069B3E2 /* MenuViewController.swift */; };
 		908FFB771D3CECD3006DE524 /* Instabug.swift in Sources */ = {isa = PBXBuildFile; fileRef = 908FFB761D3CECD3006DE524 /* Instabug.swift */; };
+		909B334C1D586D6F00B38C3D /* HTMLMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 909B334B1D586D6F00B38C3D /* HTMLMenuViewController.swift */; };
+		90DDEA2F1D5086BB00C07375 /* Menu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90DDEA2E1D5086BB00C07375 /* Menu.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -72,7 +75,10 @@
 		26A339A0A3C3593242612811 /* Pods-boeckler-ios.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-boeckler-ios.release.xcconfig"; path = "Pods/Target Support Files/Pods-boeckler-ios/Pods-boeckler-ios.release.xcconfig"; sourceTree = "<group>"; };
 		83F31E83613E9E9C50887830 /* Pods-boeckler-ios.adhoc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-boeckler-ios.adhoc.xcconfig"; path = "Pods/Target Support Files/Pods-boeckler-ios/Pods-boeckler-ios.adhoc.xcconfig"; sourceTree = "<group>"; };
 		904419961D38E5FF009B6A30 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
+		9046013F1D4E4DF40069B3E2 /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		908FFB761D3CECD3006DE524 /* Instabug.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Instabug.swift; path = Sources/Instabug.swift; sourceTree = "<group>"; };
+		909B334B1D586D6F00B38C3D /* HTMLMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTMLMenuViewController.swift; sourceTree = "<group>"; };
+		90DDEA2E1D5086BB00C07375 /* Menu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Menu.swift; path = Sources/Menu.swift; sourceTree = "<group>"; };
 		C483A882C7A41D69739DC997 /* Pods-boeckler-ios.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-boeckler-ios.debug.xcconfig"; path = "Pods/Target Support Files/Pods-boeckler-ios/Pods-boeckler-ios.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -124,6 +130,9 @@
 				17A651E71D1433A700286D34 /* CustomTimelineNavigationView.swift */,
 				17A651E81D1433A700286D34 /* boeckler-Bridging-Header.h */,
 				171BCB9A1D2A436600DFD7D7 /* CustomBackgroundFetchStrategy.swift */,
+				9046013F1D4E4DF40069B3E2 /* MenuViewController.swift */,
+				90DDEA2E1D5086BB00C07375 /* Menu.swift */,
+				909B334B1D586D6F00B38C3D /* HTMLMenuViewController.swift */,
 			);
 			name = Sources;
 			sourceTree = "<group>";
@@ -344,14 +353,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				909B334C1D586D6F00B38C3D /* HTMLMenuViewController.swift in Sources */,
 				17A651F11D1433A700286D34 /* CustomStreamerCell.swift in Sources */,
 				17A651EE1D1433A700286D34 /* CustomCellFactory.swift in Sources */,
 				908FFB771D3CECD3006DE524 /* Instabug.swift in Sources */,
+				904601401D4E4DF40069B3E2 /* MenuViewController.swift in Sources */,
 				17A651F41D1433A700286D34 /* CustomArticleViewController.swift in Sources */,
 				17A651EC1D1433A700286D34 /* AppDelegate.swift in Sources */,
 				17A651F31D1433A700286D34 /* CustomDividerCell.swift in Sources */,
 				17A651EF1D1433A700286D34 /* CustomNavigationControllerDelegate.swift in Sources */,
 				171BCB9B1D2A436600DFD7D7 /* CustomBackgroundFetchStrategy.swift in Sources */,
+				90DDEA2F1D5086BB00C07375 /* Menu.swift in Sources */,
 				17A651F01D1433A700286D34 /* CustomTimelineNavigationViewController.swift in Sources */,
 				17A651ED1D1433A700286D34 /* AppStyles.swift in Sources */,
 				17A651EB1D1433A700286D34 /* SwinjectStoryboard+Setup.swift in Sources */,

@@ -8,6 +8,7 @@
 import Foundation
 import Swinject
 import Core
+import RxCocoa
 
 extension SwinjectStoryboard {
     class func setup() {
@@ -39,7 +40,13 @@ extension SwinjectStoryboard {
         container.register(AuthenticationController.self) { r in CoreAuthenticationController(paywallController: r.resolve(PaywallStateController.self)!, authURL: serverBaseURL(), errorStyles: r.resolve(ErrorMessageViewStyles.self)!)}.inObjectScope(.Container)
         container.register(URLHandler.self) { r in CoreURLHandler(paywallController: r.resolve(PaywallStateController.self)!, authController: r.resolve(AuthenticationController.self)!) }.inObjectScope(.Container)
         
-        container.register(BlockDataSource.self, name: "timeline") { r in BlockContextDataSource<Timeline>(blockContextRef: BlockContextRef.None, isSingleton:true, dataController: r.resolve(BlockContextDataController.self, name: "default")!)}.inObjectScope(.Container)
+        container.register(BlockDataSource.self, name: "timeline") { r in
+            BlockContextDataSource<Timeline>(blockContextRef: BlockContextRef.None, isSingleton:false, dataController: r.resolve(BlockContextDataController.self, name: "default")!)
+            }.inObjectScope(.Container)
+
+        container.register(BlockDataSource.self, name: "menu") { r in
+            BlockContextDataSource<Menu>(blockContextRef: BlockContextRef.None, isSingleton:false, dataController: r.resolve(BlockContextDataController.self, name: "default")!)
+            }.inObjectScope(.Container)
 
         container.register(BackgroundFetchStrategy.self) { r in
             let strategy = CustomBackgroundFetchStrategy()
@@ -62,7 +69,8 @@ extension SwinjectStoryboard {
         }
         
         container.registerForStoryboard(TimelineViewController.self) { r, c in
-            c.navigationViewController = CustomTimelineNavigationViewController()
+            let navController = CustomTimelineNavigationViewController()
+            c.navigationViewController = navController
             c.urlHandler = r.resolve(URLHandler.self)
             c.cellFactory = r.resolve(CellFactory.self)
             c.dataSource = r.resolve(BlockDataSource.self, name: "timeline")!
@@ -71,6 +79,15 @@ extension SwinjectStoryboard {
             c.backgroundColor = TimelineStyles.backgroundColorBoot
             c.refreshControl.tintColor = LoadingStyles.refreshControlTintColor
             c.errorStyles = r.resolve(ErrorMessageViewStyles.self)!
+
+            _ = navController.timelineNavigationView.menuButton.rx_tap.takeUntil(c.rx_deallocated).subscribeNext({ (_) in
+                let controller = UINavigationController(rootViewController: HTMLMenuViewController())
+//                controller.visibilityStateController = CoreVisibilityStateController(trackerFactory: r.resolve(TrackerFactory.self)!)
+//                controller.dataSource = r.resolve(BlockDataSource.self, name: "menu")
+//                c.cellFactory = r.resolve(CellFactory.self)
+                controller.modalPresentationStyle = .FullScreen
+                c.showViewController(controller, sender: nil)
+            })
         }
 
         container.registerForStoryboard(CustomArticleViewController.self) { r, c in
