@@ -8,6 +8,7 @@
 
 import UIKit
 import WebKit
+import Core
 
 
 public class HTMLMenuViewController: UIViewController {
@@ -27,7 +28,7 @@ public class HTMLMenuViewController: UIViewController {
         webView.leftAnchor.constraintEqualToAnchor(view.leftAnchor)
         webView.rightAnchor.constraintEqualToAnchor(view.rightAnchor)
 
-        webView.loadRequest(NSURLRequest(URL: NSURL(string: "http://tweakers.net")!))
+        webView.loadRequest(NSURLRequest(URL: serverBaseURL().URLByAppendingPathComponent("__staticmenu__")))
     }
 
 

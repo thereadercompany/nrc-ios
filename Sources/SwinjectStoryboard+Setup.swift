@@ -82,11 +82,12 @@ extension SwinjectStoryboard {
 
             _ = navController.timelineNavigationView.menuButton.rx_tap.takeUntil(c.rx_deallocated).subscribeNext({ (_) in
                 let controller = UINavigationController(rootViewController: HTMLMenuViewController())
-//                controller.visibilityStateController = CoreVisibilityStateController(trackerFactory: r.resolve(TrackerFactory.self)!)
-//                controller.dataSource = r.resolve(BlockDataSource.self, name: "menu")
-//                c.cellFactory = r.resolve(CellFactory.self)
+                controller.navigationBar.barTintColor = Colors.accentColor
+                controller.navigationBar.translucent = false
+                controller.navigationBar.tintColor = UIColor.whiteColor()
                 controller.modalPresentationStyle = .FullScreen
                 c.showViewController(controller, sender: nil)
+                controller.navigationBar.barStyle = .Black
             })
         }
 
