@@ -522,9 +522,9 @@ struct StreamerCellStyles {
     static let iconSize: CGFloat = 35
     static let iconMarginLeft: CGFloat = Screen.value(19, 24)
     static let headlineMarginTop: CGFloat = Screen.value(8, 12)
-    static let headlineMarginBottom: CGFloat = 40
+    static let headlineMarginBottom: CGFloat = 24
     static let subHeadlineMarginTop: CGFloat = 24
-    static let subHeadlineMarginBottom: CGFloat = 42
+    static let subHeadlineMarginBottom: CGFloat = 0
     static let lineHeight: CGFloat = 1
 }
 //

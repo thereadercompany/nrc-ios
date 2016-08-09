@@ -34,8 +34,6 @@ class CustomStreamerCell : Cell {
     let streamerBlock: StreamerBlock
     let customStreamerStyles: CustomStreamerCellStyles
 
-//    let headlineStyler: HeadlineStyler
-//    let subHeadlineStyler: SubHeadlineStyler
 
     init(streamerBlock: StreamerBlock, styles: CustomStreamerCellStyles) {
         self.streamerBlock = streamerBlock
@@ -43,8 +41,6 @@ class CustomStreamerCell : Cell {
         headlineNode = ASTextNode()
         subHeadlineNode = ASTextNode()
         customStreamerStyles = styles
-//        headlineStyler = HeadlineStyler(value: streamerBlock.text, block: streamerBlock)
-//        subHeadlineStyler = SubHeadlineStyler(value: streamerBlock.author, block: streamerBlock)
         super.init(block: streamerBlock, styles: styles)
         addSubnode(iconNode)
         addSubnode(headlineNode)
@@ -55,8 +51,7 @@ class CustomStreamerCell : Cell {
         } else {
             iconNode.image = UIImage(named: "icon-streamer")
         }
-        
-        backgroundColor = customStreamerStyles.backgroundColor //streamerBlock.backgroundColor
+
         headlineNode.attributedString = customStreamerStyles.attributedHeadline
         subHeadlineNode.attributedString = customStreamerStyles.attributedSubHeadline
     }
