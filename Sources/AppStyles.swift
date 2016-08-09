@@ -1197,8 +1197,10 @@ class HeadlineStyler : Styler {
             return Screen.value(3,4)
         case (CoreBlockContextType.Article, is StreamerBlock, _ ):
             return 6
+        case (_, is ArticleHeaderBlock, _):
+            return Screen.value(3, 6)
         case (_, is MediaBlock, _):
-            return Screen.value(3,60)
+            return Screen.value(3, 60)
         case (CoreBlockContextType.Article, _,  _):
             return 7
         default:
