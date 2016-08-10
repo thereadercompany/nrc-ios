@@ -95,6 +95,8 @@ struct Fonts {
     static let mediumFont:Font = UniversNextPro.BoldCond
     static let largeFont:Font = UniversNextPro.BoldCond
     static let lightFont:Font = UniversNextPro.Regular
+    static let bylineFont: Font = UniversNextPro.Regular
+    static let bylineMediumFont: Font = UniversNextPro.BoldCond
     static let alternativeTextFont: Font = SimpleHBS.Regular
     static let alternativeMediumFont: Font = SimpleHBS.Regular
     static let errorFont:Font = UniversNextPro.Bold
@@ -926,7 +928,7 @@ public class RichTextStyler: Styler {
         case (is TextBlock, BlockStyle.Intro):
             return Fonts.introFont
         case (is TextBlock, BlockStyle.Byline):
-            return Fonts.alternativeTextFont
+            return Fonts.bylineFont
         case (is MediaBlock, _):
             return Fonts.mediaCaptionFont
         case (is TweetBlock, _):
