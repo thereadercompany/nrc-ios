@@ -34,11 +34,43 @@
 		17A652171D1814A000286D34 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 17A652151D1814A000286D34 /* LaunchScreen.storyboard */; };
 		17A652181D1814A000286D34 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 17A652161D1814A000286D34 /* Main.storyboard */; };
 		17FA32311D1972D700F48129 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 17FA32301D1972D700F48129 /* Localizable.strings */; };
-		377795914E5DBE6896A14EEC /* Pods_boeckler_ios.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F859A944BD739EF47CFA33C /* Pods_boeckler_ios.framework */; };
+		44FEF054416E095544D1749B /* Pods_App_beta.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB9EA11079594AD185C70956 /* Pods_App_beta.framework */; };
 		904601401D4E4DF40069B3E2 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9046013F1D4E4DF40069B3E2 /* MenuViewController.swift */; };
 		908FFB771D3CECD3006DE524 /* Instabug.swift in Sources */ = {isa = PBXBuildFile; fileRef = 908FFB761D3CECD3006DE524 /* Instabug.swift */; };
 		909B334C1D586D6F00B38C3D /* HTMLMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 909B334B1D586D6F00B38C3D /* HTMLMenuViewController.swift */; };
+		909B33561D5C84A800B38C3D /* HTMLMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 909B334B1D586D6F00B38C3D /* HTMLMenuViewController.swift */; };
+		909B33571D5C84A800B38C3D /* CustomStreamerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A651E31D1433A700286D34 /* CustomStreamerCell.swift */; };
+		909B33581D5C84A800B38C3D /* CustomCellFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A651E01D1433A700286D34 /* CustomCellFactory.swift */; };
+		909B33591D5C84A800B38C3D /* Instabug.swift in Sources */ = {isa = PBXBuildFile; fileRef = 908FFB761D3CECD3006DE524 /* Instabug.swift */; };
+		909B335A1D5C84A800B38C3D /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9046013F1D4E4DF40069B3E2 /* MenuViewController.swift */; };
+		909B335B1D5C84A800B38C3D /* CustomArticleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A651E61D1433A700286D34 /* CustomArticleViewController.swift */; };
+		909B335C1D5C84A800B38C3D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A651DE1D1433A700286D34 /* AppDelegate.swift */; };
+		909B335D1D5C84A800B38C3D /* CustomDividerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A651E51D1433A700286D34 /* CustomDividerCell.swift */; };
+		909B335E1D5C84A800B38C3D /* CustomNavigationControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A651E11D1433A700286D34 /* CustomNavigationControllerDelegate.swift */; };
+		909B335F1D5C84A800B38C3D /* CustomBackgroundFetchStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 171BCB9A1D2A436600DFD7D7 /* CustomBackgroundFetchStrategy.swift */; };
+		909B33601D5C84A800B38C3D /* Menu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90DDEA2E1D5086BB00C07375 /* Menu.swift */; };
+		909B33611D5C84A800B38C3D /* CustomTimelineNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A651E21D1433A700286D34 /* CustomTimelineNavigationViewController.swift */; };
+		909B33621D5C84A800B38C3D /* AppStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A651DF1D1433A700286D34 /* AppStyles.swift */; };
+		909B33631D5C84A800B38C3D /* SwinjectStoryboard+Setup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A651DD1D1433A700286D34 /* SwinjectStoryboard+Setup.swift */; };
+		909B33641D5C84A800B38C3D /* AppConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A651DB1D1433A700286D34 /* AppConfig.swift */; };
+		909B33651D5C84A800B38C3D /* CustomTimelineNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A651E71D1433A700286D34 /* CustomTimelineNavigationView.swift */; };
+		909B33691D5C84A800B38C3D /* SabonNextCom-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 17A651FC1D14340600286D34 /* SabonNextCom-Bold.ttf */; };
+		909B336A1D5C84A800B38C3D /* UniversNextPro-BoldItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 17A652031D14340600286D34 /* UniversNextPro-BoldItalic.otf */; };
+		909B336B1D5C84A800B38C3D /* SabonNextCom-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 17A651FD1D14340600286D34 /* SabonNextCom-BoldItalic.ttf */; };
+		909B336C1D5C84A800B38C3D /* SabonNextCom-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 17A651FF1D14340600286D34 /* SabonNextCom-Regular.ttf */; };
+		909B336D1D5C84A800B38C3D /* UniversNextPro-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 17A652011D14340600286D34 /* UniversNextPro-Regular.otf */; };
+		909B336E1D5C84A800B38C3D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 17A652161D1814A000286D34 /* Main.storyboard */; };
+		909B336F1D5C84A800B38C3D /* SimpleHBS.otf in Resources */ = {isa = PBXBuildFile; fileRef = 17A651FB1D14340600286D34 /* SimpleHBS.otf */; };
+		909B33701D5C84A800B38C3D /* UniversNextPro-Cond.otf in Resources */ = {isa = PBXBuildFile; fileRef = 17A652021D14340600286D34 /* UniversNextPro-Cond.otf */; };
+		909B33711D5C84A800B38C3D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 17A652151D1814A000286D34 /* LaunchScreen.storyboard */; };
+		909B33721D5C84A800B38C3D /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 17FA32301D1972D700F48129 /* Localizable.strings */; };
+		909B33731D5C84A800B38C3D /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 17A651F61D1433C900286D34 /* Images.xcassets */; };
+		909B33741D5C84A800B38C3D /* UniversNextPro-Italic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 17A652001D14340600286D34 /* UniversNextPro-Italic.otf */; };
+		909B33751D5C84A800B38C3D /* UniversNextPro-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 17A652041D14340600286D34 /* UniversNextPro-Bold.otf */; };
+		909B33761D5C84A800B38C3D /* UniversNextPro-BoldCond.otf in Resources */ = {isa = PBXBuildFile; fileRef = 17A652051D14340600286D34 /* UniversNextPro-BoldCond.otf */; };
+		909B33771D5C84A800B38C3D /* SabonNextCom-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 17A651FE1D14340600286D34 /* SabonNextCom-Italic.ttf */; };
 		90DDEA2F1D5086BB00C07375 /* Menu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90DDEA2E1D5086BB00C07375 /* Menu.swift */; };
+		DC61791C85756B08D8EE6A86 /* Pods_App_release.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 70F33507877EB64B50BF3C0B /* Pods_App_release.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -71,15 +103,25 @@
 		17A652151D1814A000286D34 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = Resources/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		17A652161D1814A000286D34 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Main.storyboard; path = Resources/Main.storyboard; sourceTree = "<group>"; };
 		17FA32301D1972D700F48129 /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = Resources/Localizable.strings; sourceTree = "<group>"; };
+		1D4E92DC453D3E7C4CF92242 /* Pods-App-release.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-App-release.debug.xcconfig"; path = "Pods/Target Support Files/Pods-App-release/Pods-App-release.debug.xcconfig"; sourceTree = "<group>"; };
 		1F859A944BD739EF47CFA33C /* Pods_boeckler_ios.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_boeckler_ios.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		26A339A0A3C3593242612811 /* Pods-boeckler-ios.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-boeckler-ios.release.xcconfig"; path = "Pods/Target Support Files/Pods-boeckler-ios/Pods-boeckler-ios.release.xcconfig"; sourceTree = "<group>"; };
+		34D83D6A4B04A14627343677 /* Pods-App-beta.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-App-beta.debug.xcconfig"; path = "Pods/Target Support Files/Pods-App-beta/Pods-App-beta.debug.xcconfig"; sourceTree = "<group>"; };
+		6464ADE487DA0EEA42354BE0 /* Pods-App-release.adhoc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-App-release.adhoc.xcconfig"; path = "Pods/Target Support Files/Pods-App-release/Pods-App-release.adhoc.xcconfig"; sourceTree = "<group>"; };
+		70F33507877EB64B50BF3C0B /* Pods_App_release.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_App_release.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		83F31E83613E9E9C50887830 /* Pods-boeckler-ios.adhoc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-boeckler-ios.adhoc.xcconfig"; path = "Pods/Target Support Files/Pods-boeckler-ios/Pods-boeckler-ios.adhoc.xcconfig"; sourceTree = "<group>"; };
+		8A647E1B688FFC234C5381FF /* Pods-App-beta.adhoc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-App-beta.adhoc.xcconfig"; path = "Pods/Target Support Files/Pods-App-beta/Pods-App-beta.adhoc.xcconfig"; sourceTree = "<group>"; };
 		904419961D38E5FF009B6A30 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		9046013F1D4E4DF40069B3E2 /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		908FFB761D3CECD3006DE524 /* Instabug.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Instabug.swift; path = Sources/Instabug.swift; sourceTree = "<group>"; };
 		909B334B1D586D6F00B38C3D /* HTMLMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTMLMenuViewController.swift; sourceTree = "<group>"; };
+		909B33801D5C84A800B38C3D /* release.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = release.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		909B33811D5C84A800B38C3D /* boeckler-ios copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "boeckler-ios copy-Info.plist"; path = "/Users/jeroen/Code/TRC/boeckler-ios/boeckler-ios copy-Info.plist"; sourceTree = "<absolute>"; };
 		90DDEA2E1D5086BB00C07375 /* Menu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Menu.swift; path = Sources/Menu.swift; sourceTree = "<group>"; };
+		9B9EC9822AEE1CA5C6BDEFBF /* Pods-App-beta.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-App-beta.release.xcconfig"; path = "Pods/Target Support Files/Pods-App-beta/Pods-App-beta.release.xcconfig"; sourceTree = "<group>"; };
+		AB9EA11079594AD185C70956 /* Pods_App_beta.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_App_beta.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C483A882C7A41D69739DC997 /* Pods-boeckler-ios.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-boeckler-ios.debug.xcconfig"; path = "Pods/Target Support Files/Pods-boeckler-ios/Pods-boeckler-ios.debug.xcconfig"; sourceTree = "<group>"; };
+		F603E8A53C46AE9C622FE843 /* Pods-App-release.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-App-release.release.xcconfig"; path = "Pods/Target Support Files/Pods-App-release/Pods-App-release.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,7 +129,15 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				377795914E5DBE6896A14EEC /* Pods_boeckler_ios.framework in Frameworks */,
+				44FEF054416E095544D1749B /* Pods_App_beta.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		909B33661D5C84A800B38C3D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DC61791C85756B08D8EE6A86 /* Pods_App_release.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -102,6 +152,7 @@
 				1731BD7F1BEA41050012D6FF /* Products */,
 				4F921A39EE2E4B95A3D96FB1 /* Pods */,
 				BB3A9776ABCA48BE2F48D09C /* Frameworks */,
+				909B33811D5C84A800B38C3D /* boeckler-ios copy-Info.plist */,
 			);
 			sourceTree = "<group>";
 		};
@@ -109,6 +160,7 @@
 			isa = PBXGroup;
 			children = (
 				1731BD7E1BEA41050012D6FF /* boeckler-ios.app */,
+				909B33801D5C84A800B38C3D /* release.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -173,6 +225,12 @@
 				C483A882C7A41D69739DC997 /* Pods-boeckler-ios.debug.xcconfig */,
 				26A339A0A3C3593242612811 /* Pods-boeckler-ios.release.xcconfig */,
 				83F31E83613E9E9C50887830 /* Pods-boeckler-ios.adhoc.xcconfig */,
+				34D83D6A4B04A14627343677 /* Pods-App-beta.debug.xcconfig */,
+				9B9EC9822AEE1CA5C6BDEFBF /* Pods-App-beta.release.xcconfig */,
+				8A647E1B688FFC234C5381FF /* Pods-App-beta.adhoc.xcconfig */,
+				1D4E92DC453D3E7C4CF92242 /* Pods-App-release.debug.xcconfig */,
+				F603E8A53C46AE9C622FE843 /* Pods-App-release.release.xcconfig */,
+				6464ADE487DA0EEA42354BE0 /* Pods-App-release.adhoc.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -182,6 +240,8 @@
 			children = (
 				904419961D38E5FF009B6A30 /* libsqlite3.tbd */,
 				1F859A944BD739EF47CFA33C /* Pods_boeckler_ios.framework */,
+				AB9EA11079594AD185C70956 /* Pods_App_beta.framework */,
+				70F33507877EB64B50BF3C0B /* Pods_App_release.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -189,9 +249,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		1731BD7D1BEA41050012D6FF /* boeckler-ios */ = {
+		1731BD7D1BEA41050012D6FF /* beta */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 1731BD901BEA41050012D6FF /* Build configuration list for PBXNativeTarget "boeckler-ios" */;
+			buildConfigurationList = 1731BD901BEA41050012D6FF /* Build configuration list for PBXNativeTarget "beta" */;
 			buildPhases = (
 				1957466569B9F16BA0643B4D /* [CP] Check Pods Manifest.lock */,
 				1731BD7A1BEA41050012D6FF /* Sources */,
@@ -206,9 +266,31 @@
 			);
 			dependencies = (
 			);
-			name = "boeckler-ios";
+			name = beta;
 			productName = boeckler;
 			productReference = 1731BD7E1BEA41050012D6FF /* boeckler-ios.app */;
+			productType = "com.apple.product-type.application";
+		};
+		909B33531D5C84A800B38C3D /* release */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 909B337C1D5C84A800B38C3D /* Build configuration list for PBXNativeTarget "release" */;
+			buildPhases = (
+				909B33541D5C84A800B38C3D /* [CP] Check Pods Manifest.lock */,
+				909B33551D5C84A800B38C3D /* Sources */,
+				909B33661D5C84A800B38C3D /* Frameworks */,
+				909B33681D5C84A800B38C3D /* Resources */,
+				909B33781D5C84A800B38C3D /* ShellScript */,
+				909B33791D5C84A800B38C3D /* ShellScript */,
+				909B337A1D5C84A800B38C3D /* [CP] Embed Pods Frameworks */,
+				909B337B1D5C84A800B38C3D /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = release;
+			productName = boeckler;
+			productReference = 909B33801D5C84A800B38C3D /* release.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -228,6 +310,9 @@
 						CreatedOnToolsVersion = 7.0.1;
 						DevelopmentTeam = WM2T968KAX;
 					};
+					909B33531D5C84A800B38C3D = {
+						DevelopmentTeam = MNR4X9A43Z;
+					};
 				};
 			};
 			buildConfigurationList = 1731BD791BEA41050012D6FF /* Build configuration list for PBXProject "boeckler-ios" */;
@@ -244,7 +329,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				1731BD7D1BEA41050012D6FF /* boeckler-ios */,
+				1731BD7D1BEA41050012D6FF /* beta */,
+				909B33531D5C84A800B38C3D /* release */,
 			);
 		};
 /* End PBXProject section */
@@ -269,6 +355,28 @@
 				17A6520F1D14340600286D34 /* UniversNextPro-Bold.otf in Resources */,
 				17A652101D14340600286D34 /* UniversNextPro-BoldCond.otf in Resources */,
 				17A652091D14340600286D34 /* SabonNextCom-Italic.ttf in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		909B33681D5C84A800B38C3D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				909B33691D5C84A800B38C3D /* SabonNextCom-Bold.ttf in Resources */,
+				909B336A1D5C84A800B38C3D /* UniversNextPro-BoldItalic.otf in Resources */,
+				909B336B1D5C84A800B38C3D /* SabonNextCom-BoldItalic.ttf in Resources */,
+				909B336C1D5C84A800B38C3D /* SabonNextCom-Regular.ttf in Resources */,
+				909B336D1D5C84A800B38C3D /* UniversNextPro-Regular.otf in Resources */,
+				909B336E1D5C84A800B38C3D /* Main.storyboard in Resources */,
+				909B336F1D5C84A800B38C3D /* SimpleHBS.otf in Resources */,
+				909B33701D5C84A800B38C3D /* UniversNextPro-Cond.otf in Resources */,
+				909B33711D5C84A800B38C3D /* LaunchScreen.storyboard in Resources */,
+				909B33721D5C84A800B38C3D /* Localizable.strings in Resources */,
+				909B33731D5C84A800B38C3D /* Images.xcassets in Resources */,
+				909B33741D5C84A800B38C3D /* UniversNextPro-Italic.otf in Resources */,
+				909B33751D5C84A800B38C3D /* UniversNextPro-Bold.otf in Resources */,
+				909B33761D5C84A800B38C3D /* UniversNextPro-BoldCond.otf in Resources */,
+				909B33771D5C84A800B38C3D /* SabonNextCom-Italic.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -328,7 +436,78 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-boeckler-ios/Pods-boeckler-ios-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-App-beta/Pods-App-beta-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		909B33541D5C84A800B38C3D /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		909B33781D5C84A800B38C3D /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "${PODS_ROOT}/Fabric/run b289d725acc41407337f65f1275bcbd07d9bec67 e9c62040bf10199a6b8c4875050b5b19983b3d39897659fe16fefe7c57e65fb2";
+		};
+		909B33791D5C84A800B38C3D /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "TAGS=\"WARNING:\"\necho \"searching ${SRCROOT} for ${TAGS}\"\nfind \"${SRCROOT}\" \\( -name \"*.swift\" \\) -print0 | xargs -0 egrep --with-filename --line-number --only-matching \"($TAGS).*\\$\" | perl -p -e \"s/($TAGS)/ warning: \\$1/\"";
+		};
+		909B337A1D5C84A800B38C3D /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-App-release/Pods-App-release-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		909B337B1D5C84A800B38C3D /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-App-release/Pods-App-release-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		F8F0AEA284670648F95F9977 /* [CP] Embed Pods Frameworks */ = {
@@ -343,7 +522,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-boeckler-ios/Pods-boeckler-ios-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-App-beta/Pods-App-beta-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -369,6 +548,29 @@
 				17A651EB1D1433A700286D34 /* SwinjectStoryboard+Setup.swift in Sources */,
 				17A651E91D1433A700286D34 /* AppConfig.swift in Sources */,
 				17A651F51D1433A700286D34 /* CustomTimelineNavigationView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		909B33551D5C84A800B38C3D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				909B33561D5C84A800B38C3D /* HTMLMenuViewController.swift in Sources */,
+				909B33571D5C84A800B38C3D /* CustomStreamerCell.swift in Sources */,
+				909B33581D5C84A800B38C3D /* CustomCellFactory.swift in Sources */,
+				909B33591D5C84A800B38C3D /* Instabug.swift in Sources */,
+				909B335A1D5C84A800B38C3D /* MenuViewController.swift in Sources */,
+				909B335B1D5C84A800B38C3D /* CustomArticleViewController.swift in Sources */,
+				909B335C1D5C84A800B38C3D /* AppDelegate.swift in Sources */,
+				909B335D1D5C84A800B38C3D /* CustomDividerCell.swift in Sources */,
+				909B335E1D5C84A800B38C3D /* CustomNavigationControllerDelegate.swift in Sources */,
+				909B335F1D5C84A800B38C3D /* CustomBackgroundFetchStrategy.swift in Sources */,
+				909B33601D5C84A800B38C3D /* Menu.swift in Sources */,
+				909B33611D5C84A800B38C3D /* CustomTimelineNavigationViewController.swift in Sources */,
+				909B33621D5C84A800B38C3D /* AppStyles.swift in Sources */,
+				909B33631D5C84A800B38C3D /* SwinjectStoryboard+Setup.swift in Sources */,
+				909B33641D5C84A800B38C3D /* AppConfig.swift in Sources */,
+				909B33651D5C84A800B38C3D /* CustomTimelineNavigationView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -458,7 +660,7 @@
 		};
 		1731BD911BEA41050012D6FF /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C483A882C7A41D69739DC997 /* Pods-boeckler-ios.debug.xcconfig */;
+			baseConfigurationReference = 34D83D6A4B04A14627343677 /* Pods-App-beta.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -478,7 +680,7 @@
 		};
 		1731BD921BEA41050012D6FF /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 26A339A0A3C3593242612811 /* Pods-boeckler-ios.release.xcconfig */;
+			baseConfigurationReference = 9B9EC9822AEE1CA5C6BDEFBF /* Pods-App-beta.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -533,7 +735,7 @@
 		};
 		174BAB121C5115B800523560 /* Adhoc */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 83F31E83613E9E9C50887830 /* Pods-boeckler-ios.adhoc.xcconfig */;
+			baseConfigurationReference = 8A647E1B688FFC234C5381FF /* Pods-App-beta.adhoc.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -543,6 +745,62 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				PRODUCT_BUNDLE_IDENTIFIER = io.trc.hbs.mitbestimmung;
 				PRODUCT_NAME = "boeckler-ios";
+				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "Sources/boeckler-Bridging-Header.h";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Adhoc;
+		};
+		909B337D1D5C84A800B38C3D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1D4E92DC453D3E7C4CF92242 /* Pods-App-release.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				INFOPLIST_FILE = "boeckler-ios copy-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				PRODUCT_BUNDLE_IDENTIFIER = de.boeckler.mitbestimmung;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "Sources/boeckler-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		909B337E1D5C84A800B38C3D /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F603E8A53C46AE9C622FE843 /* Pods-App-release.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				INFOPLIST_FILE = "boeckler-ios copy-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				PRODUCT_BUNDLE_IDENTIFIER = de.boeckler.mitbestimmung;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "Sources/boeckler-Bridging-Header.h";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		909B337F1D5C84A800B38C3D /* Adhoc */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6464ADE487DA0EEA42354BE0 /* Pods-App-release.adhoc.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				INFOPLIST_FILE = "boeckler-ios copy-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				PRODUCT_BUNDLE_IDENTIFIER = de.boeckler.mitbestimmung;
+				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Sources/boeckler-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -562,12 +820,22 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		1731BD901BEA41050012D6FF /* Build configuration list for PBXNativeTarget "boeckler-ios" */ = {
+		1731BD901BEA41050012D6FF /* Build configuration list for PBXNativeTarget "beta" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				1731BD911BEA41050012D6FF /* Debug */,
 				1731BD921BEA41050012D6FF /* Release */,
 				174BAB121C5115B800523560 /* Adhoc */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		909B337C1D5C84A800B38C3D /* Build configuration list for PBXNativeTarget "release" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				909B337D1D5C84A800B38C3D /* Debug */,
+				909B337E1D5C84A800B38C3D /* Release */,
+				909B337F1D5C84A800B38C3D /* Adhoc */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

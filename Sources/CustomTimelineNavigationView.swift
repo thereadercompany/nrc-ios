@@ -23,7 +23,7 @@ class CustomTimelineNavigationView: TimelineNavigationView {
 
 
         menuButton = UIButton()
-        menuButton.setTitle("Menu", forState: .Normal)
+        menuButton.setImage(UIImage(named: "menu_btn"), forState: .Normal)
 
         // labels
         super.init(style: style, logoView: logoView, accountButton: nil, loginButton: nil)

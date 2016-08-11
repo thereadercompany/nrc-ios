@@ -1,6 +1,6 @@
 platform :ios, '9.0'
 
-target 'boeckler-ios' do
+abstract_target 'App' do
   use_frameworks!
   pod 'Core', :path => 'core-ios'
   pod 'Crashlytics', '~> 3.7'
@@ -8,4 +8,7 @@ target 'boeckler-ios' do
   pod 'Instabug', '~> 5.3'
   pod 'Reveal-iOS-SDK', :configurations => ['Debug']
   pod 'RxCocoa', '~> 2.6'
+
+  target 'beta'
+  target 'release'
 end
