@@ -169,7 +169,7 @@ extension Font {
 struct ContextStyles {
     static let endOfContentThreshold: CGFloat = 1.0
     static let hrefUnderlineStyle: NSUnderlineStyle = NSUnderlineStyle.StyleSingle
-    static let pushAnimationDuration: NSTimeInterval = 0.45
+    static let pushAnimationDuration: NSTimeInterval = 0.54
     static let pushAnimationFadeInDuration: NSTimeInterval = 0.2
     static let popAnimationDuration: NSTimeInterval = 0.34
     static let popAnimationDurationXL: NSTimeInterval = 0.4
@@ -293,7 +293,7 @@ struct CellStyleFactory {
             }
         }
         
-        s.pushAnimationDuration = ContextStyles.pushAnimationDuration
+        s.pushDuration = ContextStyles.pushAnimationDuration
 
         s.headerImageHeight = Window.vval([Screen.vXS: Screen.vXS*(9/12),Screen.vS:Screen.vS*(9/12),Screen.vM:Screen.vM*(9/12), Screen.vL:Screen.vL*9/12])
 
@@ -377,7 +377,7 @@ struct CellStyleFactory {
         s.decorationBorderColor = block.decorationColor
 
         s.popDuration = ContextStyles.popAnimationDuration
-        s.pushAnimationDuration = ContextStyles.pushAnimationDuration
+        s.pushDuration = ContextStyles.pushAnimationDuration
 
         s.supportedMediaFormats = block.supportedMediaFormats
         s.placeholderColor = Colors.placeholderColor

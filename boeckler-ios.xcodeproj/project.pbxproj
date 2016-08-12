@@ -32,7 +32,6 @@
 		17A6520F1D14340600286D34 /* UniversNextPro-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 17A652041D14340600286D34 /* UniversNextPro-Bold.otf */; };
 		17A652101D14340600286D34 /* UniversNextPro-BoldCond.otf in Resources */ = {isa = PBXBuildFile; fileRef = 17A652051D14340600286D34 /* UniversNextPro-BoldCond.otf */; };
 		17A652171D1814A000286D34 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 17A652151D1814A000286D34 /* LaunchScreen.storyboard */; };
-		17A652181D1814A000286D34 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 17A652161D1814A000286D34 /* Main.storyboard */; };
 		17FA32311D1972D700F48129 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 17FA32301D1972D700F48129 /* Localizable.strings */; };
 		44FEF054416E095544D1749B /* Pods_App_beta.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB9EA11079594AD185C70956 /* Pods_App_beta.framework */; };
 		904601401D4E4DF40069B3E2 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9046013F1D4E4DF40069B3E2 /* MenuViewController.swift */; };
@@ -101,7 +100,6 @@
 		17A652041D14340600286D34 /* UniversNextPro-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "UniversNextPro-Bold.otf"; path = "Resources/Fonts/LT Univers Next OTF/UniversNextPro-Bold.otf"; sourceTree = "<group>"; };
 		17A652051D14340600286D34 /* UniversNextPro-BoldCond.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "UniversNextPro-BoldCond.otf"; path = "Resources/Fonts/LT Univers Next OTF/UniversNextPro-BoldCond.otf"; sourceTree = "<group>"; };
 		17A652151D1814A000286D34 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = Resources/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		17A652161D1814A000286D34 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Main.storyboard; path = Resources/Main.storyboard; sourceTree = "<group>"; };
 		17FA32301D1972D700F48129 /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = Resources/Localizable.strings; sourceTree = "<group>"; };
 		1D4E92DC453D3E7C4CF92242 /* Pods-App-release.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-App-release.debug.xcconfig"; path = "Pods/Target Support Files/Pods-App-release/Pods-App-release.debug.xcconfig"; sourceTree = "<group>"; };
 		1F859A944BD739EF47CFA33C /* Pods_boeckler_ios.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_boeckler_ios.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -193,7 +191,6 @@
 			isa = PBXGroup;
 			children = (
 				17A652151D1814A000286D34 /* LaunchScreen.storyboard */,
-				17A652161D1814A000286D34 /* Main.storyboard */,
 				17A651F81D1433D500286D34 /* Fonts */,
 				17A651F61D1433C900286D34 /* Images.xcassets */,
 				17FA32301D1972D700F48129 /* Localizable.strings */,
@@ -345,7 +342,6 @@
 				17A652081D14340600286D34 /* SabonNextCom-BoldItalic.ttf in Resources */,
 				17A6520A1D14340600286D34 /* SabonNextCom-Regular.ttf in Resources */,
 				17A6520C1D14340600286D34 /* UniversNextPro-Regular.otf in Resources */,
-				17A652181D1814A000286D34 /* Main.storyboard in Resources */,
 				17A652061D14340600286D34 /* SimpleHBS.otf in Resources */,
 				17A6520D1D14340600286D34 /* UniversNextPro-Cond.otf in Resources */,
 				17A652171D1814A000286D34 /* LaunchScreen.storyboard in Resources */,

@@ -5,7 +5,7 @@
 //  Created by Taco Vollmer on 02/09/15.
 //
 
-import Foundation
+import UIKit
 import Core
 
 class CustomTimelineNavigationView: TimelineNavigationView {
