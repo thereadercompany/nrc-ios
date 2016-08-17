@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		171BCB9B1D2A436600DFD7D7 /* CustomBackgroundFetchStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 171BCB9A1D2A436600DFD7D7 /* CustomBackgroundFetchStrategy.swift */; };
 		17A651E91D1433A700286D34 /* AppConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A651DB1D1433A700286D34 /* AppConfig.swift */; };
-		17A651EB1D1433A700286D34 /* SwinjectStoryboard+Setup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A651DD1D1433A700286D34 /* SwinjectStoryboard+Setup.swift */; };
+		17A651EB1D1433A700286D34 /* SwinjectSetup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A651DD1D1433A700286D34 /* SwinjectSetup.swift */; };
 		17A651EC1D1433A700286D34 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A651DE1D1433A700286D34 /* AppDelegate.swift */; };
 		17A651ED1D1433A700286D34 /* AppStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A651DF1D1433A700286D34 /* AppStyles.swift */; };
 		17A651EE1D1433A700286D34 /* CustomCellFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A651E01D1433A700286D34 /* CustomCellFactory.swift */; };
@@ -50,7 +50,7 @@
 		909B33601D5C84A800B38C3D /* Menu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90DDEA2E1D5086BB00C07375 /* Menu.swift */; };
 		909B33611D5C84A800B38C3D /* CustomTimelineNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A651E21D1433A700286D34 /* CustomTimelineNavigationViewController.swift */; };
 		909B33621D5C84A800B38C3D /* AppStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A651DF1D1433A700286D34 /* AppStyles.swift */; };
-		909B33631D5C84A800B38C3D /* SwinjectStoryboard+Setup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A651DD1D1433A700286D34 /* SwinjectStoryboard+Setup.swift */; };
+		909B33631D5C84A800B38C3D /* SwinjectSetup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A651DD1D1433A700286D34 /* SwinjectSetup.swift */; };
 		909B33641D5C84A800B38C3D /* AppConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A651DB1D1433A700286D34 /* AppConfig.swift */; };
 		909B33651D5C84A800B38C3D /* CustomTimelineNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A651E71D1433A700286D34 /* CustomTimelineNavigationView.swift */; };
 		909B33691D5C84A800B38C3D /* SabonNextCom-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 17A651FC1D14340600286D34 /* SabonNextCom-Bold.ttf */; };
@@ -58,7 +58,7 @@
 		909B336B1D5C84A800B38C3D /* SabonNextCom-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 17A651FD1D14340600286D34 /* SabonNextCom-BoldItalic.ttf */; };
 		909B336C1D5C84A800B38C3D /* SabonNextCom-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 17A651FF1D14340600286D34 /* SabonNextCom-Regular.ttf */; };
 		909B336D1D5C84A800B38C3D /* UniversNextPro-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 17A652011D14340600286D34 /* UniversNextPro-Regular.otf */; };
-		909B336E1D5C84A800B38C3D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 17A652161D1814A000286D34 /* Main.storyboard */; };
+		909B336E1D5C84A800B38C3D /* (null) in Resources */ = {isa = PBXBuildFile; };
 		909B336F1D5C84A800B38C3D /* SimpleHBS.otf in Resources */ = {isa = PBXBuildFile; fileRef = 17A651FB1D14340600286D34 /* SimpleHBS.otf */; };
 		909B33701D5C84A800B38C3D /* UniversNextPro-Cond.otf in Resources */ = {isa = PBXBuildFile; fileRef = 17A652021D14340600286D34 /* UniversNextPro-Cond.otf */; };
 		909B33711D5C84A800B38C3D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 17A652151D1814A000286D34 /* LaunchScreen.storyboard */; };
@@ -76,7 +76,7 @@
 		171BCB9A1D2A436600DFD7D7 /* CustomBackgroundFetchStrategy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomBackgroundFetchStrategy.swift; sourceTree = "<group>"; };
 		1731BD7E1BEA41050012D6FF /* boeckler-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "boeckler-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		17A651DB1D1433A700286D34 /* AppConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppConfig.swift; path = Sources/AppConfig.swift; sourceTree = "<group>"; };
-		17A651DD1D1433A700286D34 /* SwinjectStoryboard+Setup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "SwinjectStoryboard+Setup.swift"; path = "Sources/SwinjectStoryboard+Setup.swift"; sourceTree = "<group>"; };
+		17A651DD1D1433A700286D34 /* SwinjectSetup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SwinjectSetup.swift; path = Sources/SwinjectSetup.swift; sourceTree = "<group>"; };
 		17A651DE1D1433A700286D34 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = Sources/AppDelegate.swift; sourceTree = "<group>"; };
 		17A651DF1D1433A700286D34 /* AppStyles.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppStyles.swift; path = Sources/AppStyles.swift; sourceTree = "<group>"; };
 		17A651E01D1433A700286D34 /* CustomCellFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CustomCellFactory.swift; path = Sources/CustomCellFactory.swift; sourceTree = "<group>"; };
@@ -168,7 +168,7 @@
 			children = (
 				908FFB761D3CECD3006DE524 /* Instabug.swift */,
 				17A651DB1D1433A700286D34 /* AppConfig.swift */,
-				17A651DD1D1433A700286D34 /* SwinjectStoryboard+Setup.swift */,
+				17A651DD1D1433A700286D34 /* SwinjectSetup.swift */,
 				17A651DE1D1433A700286D34 /* AppDelegate.swift */,
 				17A651DF1D1433A700286D34 /* AppStyles.swift */,
 				17A651E01D1433A700286D34 /* CustomCellFactory.swift */,
@@ -363,7 +363,7 @@
 				909B336B1D5C84A800B38C3D /* SabonNextCom-BoldItalic.ttf in Resources */,
 				909B336C1D5C84A800B38C3D /* SabonNextCom-Regular.ttf in Resources */,
 				909B336D1D5C84A800B38C3D /* UniversNextPro-Regular.otf in Resources */,
-				909B336E1D5C84A800B38C3D /* Main.storyboard in Resources */,
+				909B336E1D5C84A800B38C3D /* (null) in Resources */,
 				909B336F1D5C84A800B38C3D /* SimpleHBS.otf in Resources */,
 				909B33701D5C84A800B38C3D /* UniversNextPro-Cond.otf in Resources */,
 				909B33711D5C84A800B38C3D /* LaunchScreen.storyboard in Resources */,
@@ -541,7 +541,7 @@
 				90DDEA2F1D5086BB00C07375 /* Menu.swift in Sources */,
 				17A651F01D1433A700286D34 /* CustomTimelineNavigationViewController.swift in Sources */,
 				17A651ED1D1433A700286D34 /* AppStyles.swift in Sources */,
-				17A651EB1D1433A700286D34 /* SwinjectStoryboard+Setup.swift in Sources */,
+				17A651EB1D1433A700286D34 /* SwinjectSetup.swift in Sources */,
 				17A651E91D1433A700286D34 /* AppConfig.swift in Sources */,
 				17A651F51D1433A700286D34 /* CustomTimelineNavigationView.swift in Sources */,
 			);
@@ -564,7 +564,7 @@
 				909B33601D5C84A800B38C3D /* Menu.swift in Sources */,
 				909B33611D5C84A800B38C3D /* CustomTimelineNavigationViewController.swift in Sources */,
 				909B33621D5C84A800B38C3D /* AppStyles.swift in Sources */,
-				909B33631D5C84A800B38C3D /* SwinjectStoryboard+Setup.swift in Sources */,
+				909B33631D5C84A800B38C3D /* SwinjectSetup.swift in Sources */,
 				909B33641D5C84A800B38C3D /* AppConfig.swift in Sources */,
 				909B33651D5C84A800B38C3D /* CustomTimelineNavigationView.swift in Sources */,
 			);
