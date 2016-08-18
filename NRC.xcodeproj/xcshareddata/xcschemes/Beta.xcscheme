@@ -17,7 +17,7 @@
                BlueprintIdentifier = "1731BD7D1BEA41050012D6FF"
                BuildableName = "boeckler-ios.app"
                BlueprintName = "beta"
-               ReferencedContainer = "container:boeckler-ios.xcodeproj">
+               ReferencedContainer = "container:NRC.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -35,7 +35,7 @@
             BlueprintIdentifier = "1731BD7D1BEA41050012D6FF"
             BuildableName = "boeckler-ios.app"
             BlueprintName = "beta"
-            ReferencedContainer = "container:boeckler-ios.xcodeproj">
+            ReferencedContainer = "container:NRC.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -58,7 +58,7 @@
             BlueprintIdentifier = "1731BD7D1BEA41050012D6FF"
             BuildableName = "boeckler-ios.app"
             BlueprintName = "beta"
-            ReferencedContainer = "container:boeckler-ios.xcodeproj">
+            ReferencedContainer = "container:NRC.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -77,7 +77,7 @@
             BlueprintIdentifier = "1731BD7D1BEA41050012D6FF"
             BuildableName = "boeckler-ios.app"
             BlueprintName = "beta"
-            ReferencedContainer = "container:boeckler-ios.xcodeproj">
+            ReferencedContainer = "container:NRC.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

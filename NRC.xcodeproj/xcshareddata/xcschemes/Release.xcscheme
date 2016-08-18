@@ -17,7 +17,7 @@
                BlueprintIdentifier = "909B33531D5C84A800B38C3D"
                BuildableName = "release.app"
                BlueprintName = "release"
-               ReferencedContainer = "container:boeckler-ios.xcodeproj">
+               ReferencedContainer = "container:NRC.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -35,7 +35,7 @@
             BlueprintIdentifier = "909B33531D5C84A800B38C3D"
             BuildableName = "release.app"
             BlueprintName = "release"
-            ReferencedContainer = "container:boeckler-ios.xcodeproj">
+            ReferencedContainer = "container:NRC.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -58,7 +58,7 @@
             BlueprintIdentifier = "909B33531D5C84A800B38C3D"
             BuildableName = "release.app"
             BlueprintName = "release"
-            ReferencedContainer = "container:boeckler-ios.xcodeproj">
+            ReferencedContainer = "container:NRC.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -77,7 +77,7 @@
             BlueprintIdentifier = "909B33531D5C84A800B38C3D"
             BuildableName = "release.app"
             BlueprintName = "release"
-            ReferencedContainer = "container:boeckler-ios.xcodeproj">
+            ReferencedContainer = "container:NRC.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

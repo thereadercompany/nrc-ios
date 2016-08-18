@@ -34,6 +34,8 @@
 		17A652171D1814A000286D34 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 17A652151D1814A000286D34 /* LaunchScreen.storyboard */; };
 		17FA32311D1972D700F48129 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 17FA32301D1972D700F48129 /* Localizable.strings */; };
 		44FEF054416E095544D1749B /* Pods_App_beta.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB9EA11079594AD185C70956 /* Pods_App_beta.framework */; };
+		90071B781D65B6C50049EEC6 /* NormalArticleRefCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90071B771D65B6C50049EEC6 /* NormalArticleRefCell.swift */; };
+		90071B791D65B6C50049EEC6 /* NormalArticleRefCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90071B771D65B6C50049EEC6 /* NormalArticleRefCell.swift */; };
 		904601401D4E4DF40069B3E2 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9046013F1D4E4DF40069B3E2 /* MenuViewController.swift */; };
 		908FFB771D3CECD3006DE524 /* Instabug.swift in Sources */ = {isa = PBXBuildFile; fileRef = 908FFB761D3CECD3006DE524 /* Instabug.swift */; };
 		909B334C1D586D6F00B38C3D /* HTMLMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 909B334B1D586D6F00B38C3D /* HTMLMenuViewController.swift */; };
@@ -109,6 +111,7 @@
 		70F33507877EB64B50BF3C0B /* Pods_App_release.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_App_release.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		83F31E83613E9E9C50887830 /* Pods-boeckler-ios.adhoc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-boeckler-ios.adhoc.xcconfig"; path = "Pods/Target Support Files/Pods-boeckler-ios/Pods-boeckler-ios.adhoc.xcconfig"; sourceTree = "<group>"; };
 		8A647E1B688FFC234C5381FF /* Pods-App-beta.adhoc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-App-beta.adhoc.xcconfig"; path = "Pods/Target Support Files/Pods-App-beta/Pods-App-beta.adhoc.xcconfig"; sourceTree = "<group>"; };
+		90071B771D65B6C50049EEC6 /* NormalArticleRefCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NormalArticleRefCell.swift; path = Sources/NormalArticleRefCell.swift; sourceTree = "<group>"; };
 		904419961D38E5FF009B6A30 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		9046013F1D4E4DF40069B3E2 /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		908FFB761D3CECD3006DE524 /* Instabug.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Instabug.swift; path = Sources/Instabug.swift; sourceTree = "<group>"; };
@@ -166,6 +169,7 @@
 		17A651D91D14338200286D34 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				90071B761D65B6960049EEC6 /* Cells */,
 				908FFB761D3CECD3006DE524 /* Instabug.swift */,
 				17A651DB1D1433A700286D34 /* AppConfig.swift */,
 				17A651DD1D1433A700286D34 /* SwinjectSetup.swift */,
@@ -230,6 +234,14 @@
 				6464ADE487DA0EEA42354BE0 /* Pods-App-release.adhoc.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		90071B761D65B6960049EEC6 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				90071B771D65B6C50049EEC6 /* NormalArticleRefCell.swift */,
+			);
+			name = Cells;
 			sourceTree = "<group>";
 		};
 		BB3A9776ABCA48BE2F48D09C /* Frameworks */ = {
@@ -312,7 +324,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 1731BD791BEA41050012D6FF /* Build configuration list for PBXProject "boeckler-ios" */;
+			buildConfigurationList = 1731BD791BEA41050012D6FF /* Build configuration list for PBXProject "NRC" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -540,6 +552,7 @@
 				171BCB9B1D2A436600DFD7D7 /* CustomBackgroundFetchStrategy.swift in Sources */,
 				90DDEA2F1D5086BB00C07375 /* Menu.swift in Sources */,
 				17A651F01D1433A700286D34 /* CustomTimelineNavigationViewController.swift in Sources */,
+				90071B781D65B6C50049EEC6 /* NormalArticleRefCell.swift in Sources */,
 				17A651ED1D1433A700286D34 /* AppStyles.swift in Sources */,
 				17A651EB1D1433A700286D34 /* SwinjectSetup.swift in Sources */,
 				17A651E91D1433A700286D34 /* AppConfig.swift in Sources */,
@@ -563,6 +576,7 @@
 				909B335F1D5C84A800B38C3D /* CustomBackgroundFetchStrategy.swift in Sources */,
 				909B33601D5C84A800B38C3D /* Menu.swift in Sources */,
 				909B33611D5C84A800B38C3D /* CustomTimelineNavigationViewController.swift in Sources */,
+				90071B791D65B6C50049EEC6 /* NormalArticleRefCell.swift in Sources */,
 				909B33621D5C84A800B38C3D /* AppStyles.swift in Sources */,
 				909B33631D5C84A800B38C3D /* SwinjectSetup.swift in Sources */,
 				909B33641D5C84A800B38C3D /* AppConfig.swift in Sources */,
@@ -806,7 +820,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		1731BD791BEA41050012D6FF /* Build configuration list for PBXProject "boeckler-ios" */ = {
+		1731BD791BEA41050012D6FF /* Build configuration list for PBXProject "NRC" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				1731BD8E1BEA41050012D6FF /* Debug */,

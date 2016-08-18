@@ -1,0 +1,44 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "681BD94CF4257CD83EE98FA129F6A9B7D42B0E87+++1776840",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "1C2B77087F90A7E57D7BCF82E0CEDFB4361E44D4+++9F5EE7D" : 0,
+    "681BD94CF4257CD83EE98FA129F6A9B7D42B0E87+++DEAEB6C" : 0,
+    "681BD94CF4257CD83EE98FA129F6A9B7D42B0E87+++67E3A18" : 0,
+    "681BD94CF4257CD83EE98FA129F6A9B7D42B0E87+++1776840" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "0F331C83-AAD2-4382-8DCA-A8D9624EE223",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "1C2B77087F90A7E57D7BCF82E0CEDFB4361E44D4+++9F5EE7D" : "nrc-ios\/core-ios\/",
+    "681BD94CF4257CD83EE98FA129F6A9B7D42B0E87+++DEAEB6C" : "boeckler-ios\/",
+    "681BD94CF4257CD83EE98FA129F6A9B7D42B0E87+++67E3A18" : "boeckler-ios\/",
+    "681BD94CF4257CD83EE98FA129F6A9B7D42B0E87+++1776840" : "nrc-ios\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "NRC",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "NRC.xcworkspace",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/thereadercompany\/core-ios.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "1C2B77087F90A7E57D7BCF82E0CEDFB4361E44D4+++9F5EE7D"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/thereadercompany\/nrc-ios.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "681BD94CF4257CD83EE98FA129F6A9B7D42B0E87+++1776840"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/thereadercompany\/boeckler-ios.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "681BD94CF4257CD83EE98FA129F6A9B7D42B0E87+++67E3A18"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/thereadercompany\/nrc-ios.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "681BD94CF4257CD83EE98FA129F6A9B7D42B0E87+++DEAEB6C"
+    }
+  ]
+}
