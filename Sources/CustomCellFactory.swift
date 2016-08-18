@@ -57,7 +57,7 @@ class CustomCellFactory: CellFactory {
         case  BlockStyle.Normal, BlockStyle.Highlight, BlockStyle.HighlightXL:
             return NormalHeadlineCell(articleRef: block, dataController: dataController, cellFactory: self, styles: CellStyleFactory.highlight(block))
         default:
-            return nil
+            return NormalHeadlineCell(articleRef: block, dataController: dataController, cellFactory: self, styles: CellStyleFactory.highlight(block))
         }
     }
     

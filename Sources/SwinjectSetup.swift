@@ -14,6 +14,9 @@ func setupDefaultContainer() -> Container {
     AppConfig.registerDefaults()
     let container = Container()
 
+    let apiURL = NSURL(string: "https://app-api.nrc.nl")!
+    updateServerBaseURL(apiURL)
+
     container.register(ErrorMessageViewStyles.self) { _ in ErrorMessageViewStyles(
         backgroundColor: Colors.errorBackgroundColor, messageTextColor: Colors.errorMessageTextColor, messageFont: ErrorStyles.messageFont, titleFont: ErrorStyles.buttonFont, titleColor: Colors.errorActionButtonTextColor, highlightedTitleColor: Colors.errorMessageTextColor) }
 
@@ -28,8 +31,8 @@ func setupDefaultContainer() -> Container {
     container.register(Cache.self) { r in CoreCache(store: r.resolve(Store.self)!) }.inObjectScope(.Container)
     container.register(PaywallStateController.self) { _ in CorePaywallStateController() }.inObjectScope(.Container)
     container.register(PaywallDataInterceptor.self) { r in CorePaywallDataInterceptor(paywallController: r.resolve(PaywallStateController.self)!) }.inObjectScope(.Container)
-    container.register(BlockContextDataController.self, name: "default") { r in CoreBlockContextDataController(cache: r.resolve(Cache.self)!, networkRequestHandler: r.resolve(NetworkRequestHandler.self)!, baseServerURL: apiBaseURL(), interceptor: r.resolve(PaywallDataInterceptor.self)! )  }.inObjectScope(.Container)
-    container.register(BlockContextDataController.self, name: "paywall") { r in CoreBlockContextDataController(cache: r.resolve(Cache.self)!, networkRequestHandler: r.resolve(NetworkRequestHandler.self)!, baseServerURL: apiBaseURL()) }.inObjectScope(.Container)
+    container.register(BlockContextDataController.self, name: "default") { r in CoreBlockContextDataController(cache: r.resolve(Cache.self)!, networkRequestHandler: r.resolve(NetworkRequestHandler.self)!, baseServerURL: apiURL, interceptor: r.resolve(PaywallDataInterceptor.self)! )  }.inObjectScope(.Container)
+    container.register(BlockContextDataController.self, name: "paywall") { r in CoreBlockContextDataController(cache: r.resolve(Cache.self)!, networkRequestHandler: r.resolve(NetworkRequestHandler.self)!, baseServerURL: apiURL) }.inObjectScope(.Container)
     container.register(TrackerFactory.self) { r in CoreTrackerFactory.init(delegate: r.resolve(BlockContextDataController.self, name: "default")!)}.inObjectScope(.Container)
     
     container.register(CellFactory.self) { r in CustomCellFactory(trackerFactory: r.resolve(TrackerFactory.self)!, dataController: r.resolve(BlockContextDataController.self, name: "default")!) }.inObjectScope(.Container)
