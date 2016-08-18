@@ -33,13 +33,9 @@ class HeadlineCell: ArticleRefCell {
         lineNode.backgroundColor = articleRef.lineColor
     }
 
-    //MARK: - layout
-    var useLayoutSpec: Bool {
-        return true
-    }
-
-    func layoutFrames() {
-
+    override func imageRect(constrainedRect: CGRect) -> CGRect {
+        //let rect = constrainedRect.horizontalInsetsBy(highlightStyles.decorationPadding)
+        return imageNode.frame
     }
 
     override func layoutSpecThatFits(constrainedSize: ASSizeRange) -> ASLayoutSpec {
@@ -52,6 +48,22 @@ class HeadlineCell: ArticleRefCell {
         let contentLayoutSpec = ASStackLayoutSpec(direction: .Vertical, spacing: 0, justifyContent: .Start, alignItems: .Start, children: content)
         return contentLayoutSpec
 //        return self.decorationLayoutSpec(contentLayoutSpec: contentLayoutSpec)
+    }
+
+    override func fetchData() {
+        super.fetchData()
+        preloadImage()
+    }
+
+    func preloadImage() {
+        let media = articleRef.media
+        if media.identifier.isEmpty { return }
+        let URL = media.URL(forFormat: .Large)
+        ImageController.shared.loadImageWithURL(URL) { [weak self] (image, error) -> Void in
+            if image != nil {
+                self?.image = image
+            }
+        }
     }
 
 //    private func decorationLayoutSpec(contentLayoutSpec content: ASLayoutable) -> ASLayoutSpec {
