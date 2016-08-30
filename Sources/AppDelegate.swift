@@ -74,7 +74,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(application: UIApplication, performFetchWithCompletionHandler completionHandler: (UIBackgroundFetchResult) -> Void) {
         if let fetcher = container.resolve(BackgroundFetcher.self) {
-            fetcher.startSession(completionHandler)
+            fetcher.run(completionHandler)
         }
     }
 }
