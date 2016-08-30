@@ -35,6 +35,7 @@
 		1CECA3C11D7425F0000179BF /* SectionRefBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CECA3C01D7425F0000179BF /* SectionRefBlock.swift */; };
 		1CECA3C51D7425FE000179BF /* SectionRefCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CECA3C31D7425FE000179BF /* SectionRefCell.swift */; };
 		1CECA3C81D742610000179BF /* ImagePolicy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CECA3C61D742610000179BF /* ImagePolicy.swift */; };
+		1CECA3C91D742610000179BF /* LoginButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CECA3C71D742610000179BF /* LoginButton.swift */; };
 		44FEF054416E095544D1749B /* Pods_App_beta.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB9EA11079594AD185C70956 /* Pods_App_beta.framework */; };
 		90071B781D65B6C50049EEC6 /* NormalArticleRefCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90071B771D65B6C50049EEC6 /* NormalArticleRefCell.swift */; };
 		90071B791D65B6C50049EEC6 /* NormalArticleRefCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90071B771D65B6C50049EEC6 /* NormalArticleRefCell.swift */; };
@@ -100,6 +101,7 @@
 		1CECA3C01D7425F0000179BF /* SectionRefBlock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SectionRefBlock.swift; path = Sources/SectionRefBlock.swift; sourceTree = "<group>"; };
 		1CECA3C31D7425FE000179BF /* SectionRefCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SectionRefCell.swift; path = Sources/SectionRefCell.swift; sourceTree = "<group>"; };
 		1CECA3C61D742610000179BF /* ImagePolicy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ImagePolicy.swift; path = Sources/ImagePolicy.swift; sourceTree = "<group>"; };
+		1CECA3C71D742610000179BF /* LoginButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginButton.swift; path = Sources/LoginButton.swift; sourceTree = "<group>"; };
 		1D4E92DC453D3E7C4CF92242 /* Pods-App-release.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-App-release.debug.xcconfig"; path = "Pods/Target Support Files/Pods-App-release/Pods-App-release.debug.xcconfig"; sourceTree = "<group>"; };
 		1F859A944BD739EF47CFA33C /* Pods_boeckler_ios.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_boeckler_ios.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		26A339A0A3C3593242612811 /* Pods-boeckler-ios.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-boeckler-ios.release.xcconfig"; path = "Pods/Target Support Files/Pods-boeckler-ios/Pods-boeckler-ios.release.xcconfig"; sourceTree = "<group>"; };
@@ -183,6 +185,7 @@
 				90DDEA2E1D5086BB00C07375 /* Menu.swift */,
 				909B334B1D586D6F00B38C3D /* HTMLMenuViewController.swift */,
 				1CECA3C61D742610000179BF /* ImagePolicy.swift */,
+				1CECA3C71D742610000179BF /* LoginButton.swift */,
 			);
 			name = Sources;
 			sourceTree = "<group>";
@@ -546,6 +549,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				17A651F11D1433A700286D34 /* CustomStreamerCell.swift in Sources */,
+				1CECA3C91D742610000179BF /* LoginButton.swift in Sources */,
 				1CECA3C51D7425FE000179BF /* SectionRefCell.swift in Sources */,
 				17A651EE1D1433A700286D34 /* CustomCellFactory.swift in Sources */,
 				908FFB771D3CECD3006DE524 /* Instabug.swift in Sources */,
