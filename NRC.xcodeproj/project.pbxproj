@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		171BCB9B1D2A436600DFD7D7 /* CustomBackgroundFetchStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 171BCB9A1D2A436600DFD7D7 /* CustomBackgroundFetchStrategy.swift */; };
 		17A651E91D1433A700286D34 /* AppConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A651DB1D1433A700286D34 /* AppConfig.swift */; };
 		17A651EB1D1433A700286D34 /* SwinjectSetup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A651DD1D1433A700286D34 /* SwinjectSetup.swift */; };
 		17A651EC1D1433A700286D34 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A651DE1D1433A700286D34 /* AppDelegate.swift */; };
@@ -36,20 +35,14 @@
 		44FEF054416E095544D1749B /* Pods_App_beta.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB9EA11079594AD185C70956 /* Pods_App_beta.framework */; };
 		90071B781D65B6C50049EEC6 /* NormalArticleRefCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90071B771D65B6C50049EEC6 /* NormalArticleRefCell.swift */; };
 		90071B791D65B6C50049EEC6 /* NormalArticleRefCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90071B771D65B6C50049EEC6 /* NormalArticleRefCell.swift */; };
-		904601401D4E4DF40069B3E2 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9046013F1D4E4DF40069B3E2 /* MenuViewController.swift */; };
 		908FFB771D3CECD3006DE524 /* Instabug.swift in Sources */ = {isa = PBXBuildFile; fileRef = 908FFB761D3CECD3006DE524 /* Instabug.swift */; };
-		909B334C1D586D6F00B38C3D /* HTMLMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 909B334B1D586D6F00B38C3D /* HTMLMenuViewController.swift */; };
-		909B33561D5C84A800B38C3D /* HTMLMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 909B334B1D586D6F00B38C3D /* HTMLMenuViewController.swift */; };
 		909B33571D5C84A800B38C3D /* CustomStreamerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A651E31D1433A700286D34 /* CustomStreamerCell.swift */; };
 		909B33581D5C84A800B38C3D /* CustomCellFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A651E01D1433A700286D34 /* CustomCellFactory.swift */; };
 		909B33591D5C84A800B38C3D /* Instabug.swift in Sources */ = {isa = PBXBuildFile; fileRef = 908FFB761D3CECD3006DE524 /* Instabug.swift */; };
-		909B335A1D5C84A800B38C3D /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9046013F1D4E4DF40069B3E2 /* MenuViewController.swift */; };
 		909B335B1D5C84A800B38C3D /* CustomArticleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A651E61D1433A700286D34 /* CustomArticleViewController.swift */; };
 		909B335C1D5C84A800B38C3D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A651DE1D1433A700286D34 /* AppDelegate.swift */; };
 		909B335D1D5C84A800B38C3D /* CustomDividerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A651E51D1433A700286D34 /* CustomDividerCell.swift */; };
 		909B335E1D5C84A800B38C3D /* CustomNavigationControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A651E11D1433A700286D34 /* CustomNavigationControllerDelegate.swift */; };
-		909B335F1D5C84A800B38C3D /* CustomBackgroundFetchStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 171BCB9A1D2A436600DFD7D7 /* CustomBackgroundFetchStrategy.swift */; };
-		909B33601D5C84A800B38C3D /* Menu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90DDEA2E1D5086BB00C07375 /* Menu.swift */; };
 		909B33611D5C84A800B38C3D /* CustomTimelineNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A651E21D1433A700286D34 /* CustomTimelineNavigationViewController.swift */; };
 		909B33621D5C84A800B38C3D /* AppStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A651DF1D1433A700286D34 /* AppStyles.swift */; };
 		909B33631D5C84A800B38C3D /* SwinjectSetup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A651DD1D1433A700286D34 /* SwinjectSetup.swift */; };
@@ -70,12 +63,10 @@
 		909B33751D5C84A800B38C3D /* UniversNextPro-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 17A652041D14340600286D34 /* UniversNextPro-Bold.otf */; };
 		909B33761D5C84A800B38C3D /* UniversNextPro-BoldCond.otf in Resources */ = {isa = PBXBuildFile; fileRef = 17A652051D14340600286D34 /* UniversNextPro-BoldCond.otf */; };
 		909B33771D5C84A800B38C3D /* SabonNextCom-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 17A651FE1D14340600286D34 /* SabonNextCom-Italic.ttf */; };
-		90DDEA2F1D5086BB00C07375 /* Menu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90DDEA2E1D5086BB00C07375 /* Menu.swift */; };
 		DC61791C85756B08D8EE6A86 /* Pods_App_release.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 70F33507877EB64B50BF3C0B /* Pods_App_release.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		171BCB9A1D2A436600DFD7D7 /* CustomBackgroundFetchStrategy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomBackgroundFetchStrategy.swift; sourceTree = "<group>"; };
 		1731BD7E1BEA41050012D6FF /* boeckler-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "boeckler-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		17A651DB1D1433A700286D34 /* AppConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppConfig.swift; path = Sources/AppConfig.swift; sourceTree = "<group>"; };
 		17A651DD1D1433A700286D34 /* SwinjectSetup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SwinjectSetup.swift; path = Sources/SwinjectSetup.swift; sourceTree = "<group>"; };
@@ -113,12 +104,9 @@
 		8A647E1B688FFC234C5381FF /* Pods-App-beta.adhoc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-App-beta.adhoc.xcconfig"; path = "Pods/Target Support Files/Pods-App-beta/Pods-App-beta.adhoc.xcconfig"; sourceTree = "<group>"; };
 		90071B771D65B6C50049EEC6 /* NormalArticleRefCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NormalArticleRefCell.swift; path = Sources/NormalArticleRefCell.swift; sourceTree = "<group>"; };
 		904419961D38E5FF009B6A30 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
-		9046013F1D4E4DF40069B3E2 /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		908FFB761D3CECD3006DE524 /* Instabug.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Instabug.swift; path = Sources/Instabug.swift; sourceTree = "<group>"; };
-		909B334B1D586D6F00B38C3D /* HTMLMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTMLMenuViewController.swift; sourceTree = "<group>"; };
 		909B33801D5C84A800B38C3D /* release.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = release.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		909B33811D5C84A800B38C3D /* boeckler-ios copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "boeckler-ios copy-Info.plist"; path = "/Users/jeroen/Code/TRC/boeckler-ios/boeckler-ios copy-Info.plist"; sourceTree = "<absolute>"; };
-		90DDEA2E1D5086BB00C07375 /* Menu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Menu.swift; path = Sources/Menu.swift; sourceTree = "<group>"; };
 		9B9EC9822AEE1CA5C6BDEFBF /* Pods-App-beta.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-App-beta.release.xcconfig"; path = "Pods/Target Support Files/Pods-App-beta/Pods-App-beta.release.xcconfig"; sourceTree = "<group>"; };
 		AB9EA11079594AD185C70956 /* Pods_App_beta.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_App_beta.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C483A882C7A41D69739DC997 /* Pods-boeckler-ios.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-boeckler-ios.debug.xcconfig"; path = "Pods/Target Support Files/Pods-boeckler-ios/Pods-boeckler-ios.debug.xcconfig"; sourceTree = "<group>"; };
@@ -540,17 +528,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				909B334C1D586D6F00B38C3D /* HTMLMenuViewController.swift in Sources */,
 				17A651F11D1433A700286D34 /* CustomStreamerCell.swift in Sources */,
 				17A651EE1D1433A700286D34 /* CustomCellFactory.swift in Sources */,
 				908FFB771D3CECD3006DE524 /* Instabug.swift in Sources */,
-				904601401D4E4DF40069B3E2 /* MenuViewController.swift in Sources */,
 				17A651F41D1433A700286D34 /* CustomArticleViewController.swift in Sources */,
 				17A651EC1D1433A700286D34 /* AppDelegate.swift in Sources */,
 				17A651F31D1433A700286D34 /* CustomDividerCell.swift in Sources */,
 				17A651EF1D1433A700286D34 /* CustomNavigationControllerDelegate.swift in Sources */,
-				171BCB9B1D2A436600DFD7D7 /* CustomBackgroundFetchStrategy.swift in Sources */,
-				90DDEA2F1D5086BB00C07375 /* Menu.swift in Sources */,
 				17A651F01D1433A700286D34 /* CustomTimelineNavigationViewController.swift in Sources */,
 				90071B781D65B6C50049EEC6 /* NormalArticleRefCell.swift in Sources */,
 				17A651ED1D1433A700286D34 /* AppStyles.swift in Sources */,
@@ -564,17 +548,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				909B33561D5C84A800B38C3D /* HTMLMenuViewController.swift in Sources */,
 				909B33571D5C84A800B38C3D /* CustomStreamerCell.swift in Sources */,
 				909B33581D5C84A800B38C3D /* CustomCellFactory.swift in Sources */,
 				909B33591D5C84A800B38C3D /* Instabug.swift in Sources */,
-				909B335A1D5C84A800B38C3D /* MenuViewController.swift in Sources */,
 				909B335B1D5C84A800B38C3D /* CustomArticleViewController.swift in Sources */,
 				909B335C1D5C84A800B38C3D /* AppDelegate.swift in Sources */,
 				909B335D1D5C84A800B38C3D /* CustomDividerCell.swift in Sources */,
 				909B335E1D5C84A800B38C3D /* CustomNavigationControllerDelegate.swift in Sources */,
-				909B335F1D5C84A800B38C3D /* CustomBackgroundFetchStrategy.swift in Sources */,
-				909B33601D5C84A800B38C3D /* Menu.swift in Sources */,
 				909B33611D5C84A800B38C3D /* CustomTimelineNavigationViewController.swift in Sources */,
 				90071B791D65B6C50049EEC6 /* NormalArticleRefCell.swift in Sources */,
 				909B33621D5C84A800B38C3D /* AppStyles.swift in Sources */,
