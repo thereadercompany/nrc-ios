@@ -16,6 +16,10 @@ func setupDefaultContainer() -> Container {
 
     let apiURL = NSURL(string: "https://app-api.nrc.nl")!
     updateServerBaseURL(apiURL)
+    
+    container.register(ImagePolicy.self) { _ in
+        ImagePolicy(mediaLocator: MediaLocator(mediaEndpoint: apiURL.URLByAppendingPathComponent("__media__")))
+    }
 
     container.register(ErrorMessageViewStyles.self) { _ in ErrorMessageViewStyles(
         backgroundColor: Colors.errorBackgroundColor, messageTextColor: Colors.errorMessageTextColor, messageFont: ErrorStyles.messageFont, titleFont: ErrorStyles.buttonFont, titleColor: Colors.errorActionButtonTextColor, highlightedTitleColor: Colors.errorMessageTextColor) }
@@ -24,6 +28,7 @@ func setupDefaultContainer() -> Container {
     container.register(BlockDecoder.self) { _ in
         let blockDecoder = BlockDecoder()
         // register custom blocks here
+        blockDecoder.register(block: ArticleRefBlock.self, forType: "article-refs")
         blockDecoder.register(block: SectionRefBlock.self, forType: "section-refs")
         return blockDecoder
     }.inObjectScope(.Container)
@@ -41,7 +46,9 @@ func setupDefaultContainer() -> Container {
     container.register(BlockContextDataController.self, name: "paywall") { r in CoreBlockContextDataController(cache: r.resolve(Cache.self)!, networkRequestHandler: r.resolve(NetworkRequestHandler.self)!, baseServerURL: apiURL) }.inObjectScope(.Container)
     container.register(TrackerFactory.self) { r in CoreTrackerFactory.init(delegate: r.resolve(BlockContextDataController.self, name: "default")!)}.inObjectScope(.Container)
     
-    container.register(CellFactory.self) { r in CustomCellFactory(trackerFactory: r.resolve(TrackerFactory.self)!, dataController: r.resolve(BlockContextDataController.self, name: "default")!) }.inObjectScope(.Container)
+    container.register(CellFactory.self) { r in
+        let cellStyleFactory = CellStyleFactory(imagePolicy: r.resolve(ImagePolicy.self)!)
+        return CustomCellFactory(trackerFactory: r.resolve(TrackerFactory.self)!, dataController: r.resolve(BlockContextDataController.self, name: "default")!, styleFactory: cellStyleFactory) }.inObjectScope(.Container)
     
     container.register(NavigationControllerDelegate.self) { r  in CustomNavigationControllerDelegate(cellFactory: r.resolve(CellFactory.self)!)}.inObjectScope(.Container)
     container.register(AuthenticationController.self) { r in CoreAuthenticationController(paywallController: r.resolve(PaywallStateController.self)!, authURL: serverBaseURL(), errorStyles: r.resolve(ErrorMessageViewStyles.self)!)}.inObjectScope(.Container)
@@ -53,24 +60,16 @@ func setupDefaultContainer() -> Container {
         BlockContextDataSource<Timeline>(blockContextRef: BlockContextRef.None, isSingleton:false, dataController: r.resolve(BlockContextDataController.self, name: "default")!)
         }.inObjectScope(.Container)
 
-    container.register(BlockContextDataSource.self, name: "menu") { r in
-        BlockContextDataSource<Menu>(blockContextRef: BlockContextRef.None, isSingleton:false, dataController: r.resolve(BlockContextDataController.self, name: "default")!)
-        }.inObjectScope(.Container)
-
     container.register(BackgroundFetchStrategy.self) { r in
-        let strategy = CustomBackgroundFetchStrategy()
-        strategy.dataController = r.resolve(BlockContextDataController.self, name: "default")!
-        return strategy
+        let imagePolicy = r.resolve(ImagePolicy.self)!
+        let imageProvider: BlockImageLoadingStrategy = { block in backgroundImageProvider(imagePolicy, block: block) }
+        return TimelineWithCompleteArticlesBackgroundFetchStrategy(dataController: r.resolve(BlockContextDataController.self, name: "default")!, dataSource: r.resolve(BlockContextDataSource.self, name: "timeline")!, blockImageURLProvider: imageProvider)
         }.inObjectScope(.Container)
     
     
     container.register(BackgroundFetcher.self) { r in
-        let fetcher = CoreBackgroundFetcher()
-        fetcher.strategy = r.resolve(BackgroundFetchStrategy.self)!
-        fetcher.dataController = r.resolve(BlockContextDataController.self, name: "default")!
-        fetcher.dataSource = r.resolve(BlockContextDataSource.self, name: "timeline")!
-        return fetcher
-    }.inObjectScope(.Container)
+        return BackgroundFetcher(strategy: r.resolve(BackgroundFetchStrategy.self)!)
+        }.inObjectScope(.Container)
     
     container.register(TimelineViewController.self) { r in
         let c = TimelineViewController()
@@ -85,15 +84,6 @@ func setupDefaultContainer() -> Container {
         c.refreshControl.tintColor = LoadingStyles.refreshControlTintColor
         c.errorStyles = r.resolve(ErrorMessageViewStyles.self)!
 
-        _ = navController.timelineNavigationView.menuButton.rx_tap.takeUntil(c.rx_deallocated).subscribeNext({ (_) in
-            let controller = UINavigationController(rootViewController: HTMLMenuViewController())
-            controller.navigationBar.barTintColor = Colors.accentColor
-            controller.navigationBar.translucent = false
-            controller.navigationBar.tintColor = UIColor.whiteColor()
-            controller.modalPresentationStyle = .FullScreen
-            c.showViewController(controller, sender: nil)
-            controller.navigationBar.barStyle = .Black
-        })
         return c
     }
 
