@@ -56,6 +56,9 @@ class CustomCellFactory: CellFactory {
         switch block.style {
         case  BlockStyle.Normal, BlockStyle.Highlight, BlockStyle.HighlightXL:
             return NormalHeadlineCell(articleRef: block, dataController: dataController, cellFactory: self, styles: CellStyleFactory.highlight(block))
+    private func createCell(block: SectionRefBlock) -> Cell? {
+        return SectionHeaderCell(sectionRef: block, styles: CellStyles())
+    }
         default:
             return NormalHeadlineCell(articleRef: block, dataController: dataController, cellFactory: self, styles: CellStyleFactory.highlight(block))
         }

@@ -21,7 +21,13 @@ func setupDefaultContainer() -> Container {
         backgroundColor: Colors.errorBackgroundColor, messageTextColor: Colors.errorMessageTextColor, messageFont: ErrorStyles.messageFont, titleFont: ErrorStyles.buttonFont, titleColor: Colors.errorActionButtonTextColor, highlightedTitleColor: Colors.errorMessageTextColor) }
 
     container.register(NetworkRequestHandler.self) { _  in CoreNetworkRequestHandler()}
-    container.register(BlockDecoder.self) { _ in CustomBlockDecoder() }.inObjectScope(.Container)
+    container.register(BlockDecoder.self) { _ in
+        let blockDecoder = BlockDecoder()
+        // register custom blocks here
+        blockDecoder.register(block: SectionRefBlock.self, forType: "section-refs")
+        return blockDecoder
+    }.inObjectScope(.Container)
+    
     container.register(BlockContextDecoder.self) { _ in CustomBlockContextDecoder() }.inObjectScope(.Container)
     
     let databasePath = NSString(string: DefaultDirectories.documents).stringByAppendingPathComponent("store.sqlite")
