@@ -28,8 +28,13 @@ func setupDefaultContainer() -> Container {
     container.register(BlockDecoder.self) { _ in
         let blockDecoder = BlockDecoder()
         // register custom blocks here
-        blockDecoder.register(block: ArticleRefBlock.self, forType: "article-refs")
-        blockDecoder.register(block: SectionRefBlock.self, forType: "section-refs")
+        
+        blockDecoder.register([
+            "article-refs" : ArticleRefBlock.self,
+            "section-refs" : SectionRefBlock.self,
+            "bylines" : BylineBlock.self
+        ])
+
         return blockDecoder
     }.inObjectScope(.Container)
     
