@@ -180,10 +180,6 @@
 				17A651E61D1433A700286D34 /* CustomArticleViewController.swift */,
 				17A651E71D1433A700286D34 /* CustomTimelineNavigationView.swift */,
 				17A651E81D1433A700286D34 /* boeckler-Bridging-Header.h */,
-				171BCB9A1D2A436600DFD7D7 /* CustomBackgroundFetchStrategy.swift */,
-				9046013F1D4E4DF40069B3E2 /* MenuViewController.swift */,
-				90DDEA2E1D5086BB00C07375 /* Menu.swift */,
-				909B334B1D586D6F00B38C3D /* HTMLMenuViewController.swift */,
 				1CECA3C61D742610000179BF /* ImagePolicy.swift */,
 				1CECA3C71D742610000179BF /* LoginButton.swift */,
 			);

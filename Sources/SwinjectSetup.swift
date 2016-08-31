@@ -73,6 +73,14 @@ func setupDefaultContainer() -> Container {
     
     container.register(TimelineViewController.self) { r in
         let c = TimelineViewController()
+        c.navigationViewHeight = 65 //44 + 20 statusbar
+        c.indicatorStyle = .Black
+        
+        let logoImage = UIImage(named: "nrc-nl-logo-grey")!
+        let logo = BlockContextBackgroundLogo(image: logoImage, topMargin: 196 + 20)
+        let backgroundViewController = BlockContextBackgroundViewController(backgroundColor: TimelineStyles.backgroundColor, logo: logo)
+        c.backgroundViewController = backgroundViewController
+
         let navController = CustomTimelineNavigationViewController()
         c.navigationViewController = navController
         c.urlHandler = r.resolve(URLHandler.self)
@@ -80,7 +88,6 @@ func setupDefaultContainer() -> Container {
         c.dataSource = r.resolve(BlockContextDataSource.self, name: "timeline")!
         c.articleDataSourceFactory = BlockContextDataSourceFactory(dataController: r.resolve(BlockContextDataController.self, name: "default")!)
         c.visibilityStateController = CoreVisibilityStateController(trackerFactory: r.resolve(TrackerFactory.self)!)
-        c.backgroundColor = TimelineStyles.backgroundColorBoot
         c.refreshControl.tintColor = LoadingStyles.refreshControlTintColor
         c.errorStyles = r.resolve(ErrorMessageViewStyles.self)!
 

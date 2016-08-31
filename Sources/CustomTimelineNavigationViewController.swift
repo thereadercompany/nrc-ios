@@ -30,7 +30,32 @@ class CustomTimelineNavigationViewController: TimelineNavigationViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func preferredStatusBarStyle() -> UIStatusBarStyle {
-        return TimelineStyles.preferredStatusBarStyle(navigationView.style)
+    override func preferredStatusBarUpdateAnimation() -> UIStatusBarAnimation {
+        return .Slide
     }
+    
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        return .Default
+    }
+    
+    override func configureAccountButton(target target: AnyObject, action: Selector) {
+        timelineNavigationView.accountButton?.addTarget(target, action: action, forControlEvents: UIControlEvents.TouchUpInside)
+    }
+    
+    override func configureLoginButton(target target: AnyObject, action: Selector) {
+        timelineNavigationView.loginButton?.addTarget(target, action: action, forControlEvents: UIControlEvents.TouchUpInside)
+    }
+    
+    override func updateLoginState(loggedIn: Bool) {
+        timelineNavigationView.updateAccountButton()
+    }
+    
+    func handleUserLoggedIn() {
+        timelineNavigationView.updateAccountButton()
+    }
+    
+    func handleUserLoggedOut() {
+        timelineNavigationView.updateAccountButton()
+    }
+    
 }
