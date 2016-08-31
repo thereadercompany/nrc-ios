@@ -11,9 +11,11 @@ import DTCoreText
 import Core
 
 extension BlockStyle {
+    static let Large = BlockStyle(rawValue: "large")
+    static let Medium = BlockStyle(rawValue: "medium")
+    static let Small = BlockStyle(rawValue: "small")
+    
     static let Normal = BlockStyle(rawValue: "normal")
-    static let Highlight = BlockStyle(rawValue: "highlight")
-    static let HighlightXL = BlockStyle(rawValue: "highlight-xl")
     static let H1 = BlockStyle(rawValue: "h1")
     static let H2 = BlockStyle(rawValue: "h2")
     static let XL = BlockStyle(rawValue: "xl")
@@ -62,7 +64,7 @@ public struct Colors {
     static let defaultLineColor = UIColor(hex: 0xE6EAEE)
     static let defaultShadowColor = UIColor.blackColor().colorWithAlphaComponent(0.35)
     static let cardShadowColor = UIColor.blackColor().colorWithAlphaComponent(0.5)
-    static let paywallButtonTitleColor = UIColor.whiteColor()
+    static let paywallButtonTitleColor = UIColor(hex: 0x158B02)
     static let paywallButtonBackgroundColor = UIColor(hex: 1411842)
     static let enhancedBannerRichTextBorder = UIColor.whiteColor().colorWithAlphaComponent(0.4)
     static let enhancedBannerRichTextBackground = normalButton
@@ -76,16 +78,27 @@ public struct Colors {
     static let navigationViewLightSubtitleColor = UIColor.blackColor()
     static let navigationViewDarkSubtitleColor = UIColor(hex: 0xA7A8A9)
     static let navigationViewTransparentBackgroundColor = UIColor.clearColor()
-    static let navigationViewDividerColor = UIColor.blackColor().colorWithAlphaComponent(0.4)
+    static let navigationViewDividerColor = UIColor(hex: 0xD1D2D4)
     static let fallbackBackgroundColor = UIColor.whiteColor()
     static let overlayFontColor = UIColor.whiteColor()
-    static let labelTextColor = UIColor.whiteColor()
     static let taglineFontColor = UIColor(hex: 0xD30910)
     static let errorBackgroundColor = UIColor(hex: 0xE6EAEE)
     static let errorMessageTextColor = UIColor(hex: 0x2A2D31)
     static let errorActionButtonTextColor = UIColor(hex: 0xD30910)
-    static let refreshControlTintColor = UIColor(hex: 0xE6EAEE).colorWithAlphaComponent(0.6)
+    static let refreshControlTintColor = UIColor(hex: 0xE6EAEE)
     static let loadingIndicatorColor = UIColor.whiteColor()
+    
+    static let labelTextColor = UIColor(hex: 0x5E5E5E)
+    static let labelBackgroundColor = UIColor.whiteColor()
+    static let labelBorderColor = UIColor(hex: 0xB3B3B3)
+    
+    static let nrcRed = UIColor(hex: 0xD20810)
+    static let nrcRedLight = UIColor(hex: 0xFBE9E9)
+    static let nrcTextColor = UIColor(hex: 0x191919)
+    static let nrcLinkColor = UIColor(hex: 0x0b4f89)
+    static let nrcAnthracite = UIColor(hex: 0x1A1A1A)
+    static let nrcAnthraciteLightness70 = UIColor(hex: 0x676767)
+    static let nrcAnthraciteLightness80 = UIColor(hex: 0x4d4d4d)
 }
 
 struct Fonts {
@@ -110,6 +123,8 @@ struct Fonts {
     
     static let fallbackUIFont = UIFont.systemFontOfSize(14)
     static let statusFont = UIFont.boldSystemFontOfSize(11.5)
+    
+    static let labelFont = HelveticaNeue.Medium //Etica.Book
     
     static func load() throws {
     }
@@ -192,7 +207,7 @@ struct TimelineStyles {
     static let lineInset: CGFloat = 16
     static let lineHeight: CGFloat = 1
     static let initiallyHideNavigationView = false
-    static let navigationViewStyle = NavigationViewStyle.Dark(Colors.accentColor)
+    static let navigationViewStyle = NavigationViewStyle.Dark(Colors.navigationViewLightBackgroundColor)
     static func navigationViewNeedsLine(style: NavigationViewStyle) -> Bool {
         return true
     }
@@ -221,138 +236,163 @@ struct TimelineStyles {
 struct ArticleStyles {
     static let topInset: CGFloat = 0
     static let navBarAutoHideEnabled = true
-    static let navigationBarHeight: CGFloat = 85 //65 + 20 statusbar    
+    static let navigationBarHeight: CGFloat = 85 //65 + 20 statusbar
     static var textInset: CGFloat { return Screen.value(24,80,208) }
     static var specialInset: CGFloat { return Screen.value(0,40,168) }
     static let pushToHideThreshold: CGFloat = 120
     static let backgroundColor = Colors.accentColor
-//    static func navigationViewNeedsLine(style: NavigationViewStyle) -> Bool {
-//        switch style {
-//        case .Light:
-//            return true
-//        default: return false
-//        }
-//    }
+    //    static func navigationViewNeedsLine(style: NavigationViewStyle) -> Bool {
+    //        switch style {
+    //        case .Light:
+    //            return true
+    //        default: return false
+    //        }
+    //    }
 }
 
 
+func backgroundImageProvider(imagePolicy: ImagePolicy, block: Block) -> [NSURL] {
+    switch block {
+    case let mediaBlock as MediaBlock:
+        if mediaBlock.media.identifier.isEmpty { return [] }
+        return [imagePolicy.URL(block, media: mediaBlock.media)]
+    default:
+        return []
+    }
+}
 
-
+class ArticleRefCellStyles: Core.ArticleRefCellStyles {
+    var titleFont = Fonts.mediumFont.fallbackWithSize(19)
+    var titleFontColor = Colors.defaultFontColor
+    
+    var abstractFont = Fonts.lightFont.fallbackWithSize(20)
+    var abstractFontColor = Colors.defaultFontColor
+    
+    var labelFont = Fonts.labelFont.fallbackWithSize(10)
+    var labelTextColor = Colors.labelTextColor
+    var labelBackgroundColor = Colors.labelBackgroundColor
+    
+    var lineColor = Colors.defaultLineColor
+    var lineHeight: CGFloat = 0.5
+}
 
 
 struct CellStyleFactory {
-    static let highlight = stylesBuilder(HighlightCellStyles()) {(s, block: ArticleRefBlock) in
-        s.centerHeadline = false
-        s.maximumLineCount = 3
-        s.headlineMarginTop = 18
-        s.richTextMarginTop = 6
-        s.roundedImageCorners = []
-
+    let imagePolicy: ImagePolicy
+    
+    func headline(block: ArticleRefBlock) -> ArticleRefCellStyles {
+        let s = ArticleRefCellStyles()
         s.defaultBackgroundColor = Colors.defaultBackgroundColor
-
-        s.issueLabelBackgroundColor = IssueLabelStyles.backgroundColor
-
+        
         switch block.style {
-        case BlockStyle.HighlightXL:
-            s.gradientPositions = [.Top(0.2, 0.6), .Bottom(0.7, 0.8)]
+        case BlockStyle.Large:
             s.popDuration = ContextStyles.popAnimationDurationXL
+            s.titleFont = Fonts.mediumFont.fallbackWithSize(26)
         default:
-            s.gradientPositions = [.Bottom(0.5, 0.9)]
             s.popDuration = ContextStyles.popAnimationDuration
         }
-        s.initialSpringVelocity = 0.95
-
-        s.attributedIssueLabel = IssueLabelStyler(value: block.issueLabel, style: block.style.rawValue, block: block).attributedIssueLabel
-        s.attributedHeadline = HeadlineStyler(value: block.headline, style: block.style.rawValue, block: block).attributedHeadline
-        let labelStyler = LabelStyler(value: block.label, style: block.style.rawValue, block: block)
-        s.attributedLabel = labelStyler.attributedLabel
-        let readingTimeStyler = ReadingTimeStyler(value: block.readingTime, style: block.style.rawValue, block: block)
-        s.attributedReadingTime = readingTimeStyler.attributedReadingTime
-
-
-        s.labelTextInsets = LabelStyles.labelTextInsets
-        s.labelBackgroundColor = Colors.accentColor
-        s.labelInsetBottom = labelStyler.labelInsetBottom
-
-        s.readingTimeInsetLeft = readingTimeStyler.insetLeft
-
-        s.contentPadding = block.contentPadding
-
-        s.sizeThatFits = {(constrainedWidth) in
-            switch block.style {
-            case BlockStyle.HighlightXL:
-                let height = Screen.value(constrainedWidth, 536, 640)
-                return CGSize(width: constrainedWidth, height: height)
-            case BlockStyle.Highlight:
-                let height = round(Screen.value(constrainedWidth*0.7,338,430))
-                return CGSize(width: constrainedWidth, height: height)
-            default:
-                let width = Screen.value(constrainedWidth,constrainedWidth/2)
-                let height = round(Screen.value(width*0.7,302,348))
-                return CGSize(width: width, height: height)
-            }
+        
+        switch (block.theme, block.style) {
+        case (.Highlight, _):
+            s.backgroundColor = Colors.nrcRedLight
+            s.lineColor = UIColor(hex: 0xD9BBBB)
+            s.labelBackgroundColor = Colors.accentColor
+        case (.Live, BlockStyle.Large):
+            s.titleFontColor = Colors.overlayFontColor
+            s.abstractFontColor = Colors.overlayFontColor
+            s.labelTextColor = Colors.overlayFontColor
+            s.labelBackgroundColor = Colors.accentColor
+            s.lineColor = UIColor(hex: 0xD9BBBB)
+            s.backgroundColor = Colors.nrcRed
+        case (.Live, _):
+            s.titleFontColor = Colors.overlayFontColor
+            s.abstractFontColor = Colors.overlayFontColor
+            s.backgroundColor = Colors.nrcRed
+            s.labelTextColor = Colors.accentColor
+            s.lineColor = UIColor(hex: 0xD9BBBB)
+        case (.Urgent, BlockStyle.Large):
+            Colors.overlayFontColor
+            s.titleFontColor = Colors.overlayFontColor
+            s.abstractFontColor = Colors.overlayFontColor
+            s.labelTextColor = Colors.overlayFontColor
+            s.labelBackgroundColor = UIColor(hex: 0xD30910)
+            s.lineColor = UIColor(hex: 0x555555)
+            s.backgroundColor = Colors.nrcAnthracite
+        case (.Urgent, _):
+            s.titleFontColor = Colors.overlayFontColor
+            s.abstractFontColor = Colors.overlayFontColor
+            s.labelTextColor = Colors.nrcAnthracite
+            s.backgroundColor = Colors.nrcAnthracite
+            s.lineColor = UIColor(hex: 0x555555)
+        default:()
         }
         
+        s.initialSpringVelocity = 0.95
         s.pushDuration = ContextStyles.pushAnimationDuration
-
         s.headerImageHeight = Window.vval([Screen.vXS: Screen.vXS*(9/12),Screen.vS:Screen.vS*(9/12),Screen.vM:Screen.vM*(9/12), Screen.vL:Screen.vL*9/12])
-
         s.articleBackgroundColor = {(article: Article?) in Colors.articleBackgroundColor }
-
         s.placeholderColor = Colors.placeholderColor
         s.decorationColor = block.decorationColor
-        s.backgroundColor = block.backgroundColor
+        s.imageURL = imagePolicy.URL(block, media: block.media)
+        
+        return s
     }
-
-    static let articleHeader = stylesBuilder(ArticleHeaderCellStyles()) { (s: ArticleHeaderCellStyles, block: ArticleHeaderBlock) in
+    
+    func articleHeader(block: ArticleHeaderBlock) -> ArticleHeaderCellStyles {
+        let s = ArticleHeaderCellStyles()
         s.imageHeight = Window.vval([Screen.vXS: Screen.vXS*(9/12),Screen.vS:Screen.vS*(9/12),Screen.vM:Screen.vM*(9/12), Screen.vL:Screen.vL*9/12])
         s.headlineMarginTop = Screen.value(32,52)
         s.minImageHeight = TimelineStyles.navigationBarHeight
         s.contentPadding = block.contentPadding
         s.attributedHeadline = HeadlineStyler(value: block.headline, style: block.style.rawValue, block: block).attributedHeadline
-
+        
         s.placeholderColor = Colors.placeholderColor
-        s.supportedMediaFormats = block.supportedMediaFormats
-
-
+        s.imageURL = imagePolicy.URL(block, media: block.media)
+        
         s.backgroundColor = block.backgroundColor
         s.decorationColor = block.decorationColor
         s.defaultContextBackgroundColor = Colors.articleBackgroundColor
-
+        
         s.mediaHeightForWidth = {width in block.media.heightForWidth(width)}
+        return s
     }
-
-    static let text = stylesBuilder(TextCellStyles()) { (s: TextCellStyles, block: TextBlock) in
+    
+    func text(block: TextBlock) -> TextCellStyles {
+        let s = TextCellStyles()
         s.contentPadding = block.contentPadding
         s.paddingTop = block.paddingTop
         let styler = RichTextStyler(value: block.richText, style: block.style.rawValue, block: block)
         s.tooMuchPaddingTop = styler.tooMuchPaddingTop
         s.tooMuchClippingBottom = styler.tooMuchClippingBottom
         s.attributedRichText = styler.attributedRichText
-
+        
         s.backgroundColor = block.backgroundColor
         s.decorationColor = block.decorationColor
         s.defaultContextBackgroundColor = Colors.articleBackgroundColor
+        return s
     }
-
-    static let plainText = stylesBuilder(PlainTextCellStyles()) { (s: PlainTextCellStyles, block: PlainTextBlock) in
+    
+    func plainText(block: PlainTextBlock) -> PlainTextCellStyles {
+        let s = PlainTextCellStyles()
         s.attributedPlainText = PlainTextStyler(value: block.plainText, style: block.style.rawValue, block: block).attributedPlainText
         s.contentPadding = block.contentPadding
-
+        
         s.backgroundColor = block.backgroundColor
         s.decorationColor = block.decorationColor
         s.defaultContextBackgroundColor = Colors.articleBackgroundColor
+        return s
     }
-
-    static let streamer = stylesBuilder(CustomStreamerCellStyles()) { (s: CustomStreamerCellStyles, block: StreamerBlock) in
+    
+    func streamer(block: StreamerBlock) -> CustomStreamerCellStyles {
+        let s = CustomStreamerCellStyles()
         s.attributedHeadline = HeadlineStyler(value: block.text, style: block.style.rawValue, block: block).attributedHeadline
         let subHeadlineStyler = SubHeadlineStyler(value: block.author, style: block.style.rawValue, block: block)
         s.attributedSubHeadline = subHeadlineStyler.attributedSubHeadline
         s.shouldRenderSubHeadline = subHeadlineStyler.shouldRenderSubHeadline
-
+        
         s.contentPadding = block.contentPadding
-
-
+        
+        
         s.iconMarginTop = StreamerCellStyles.iconMarginTop
         s.iconSize = StreamerCellStyles.iconSize
         s.iconMarginLeft = StreamerCellStyles.iconMarginLeft
@@ -360,126 +400,162 @@ struct CellStyleFactory {
         s.headlineMarginBottom = StreamerCellStyles.headlineMarginBottom
         s.subHeadlineMarginTop = StreamerCellStyles.subHeadlineMarginTop
         s.subHeadlineMarginBottom = StreamerCellStyles.subHeadlineMarginBottom
-
+        
         s.backgroundColor = block.backgroundColor
         s.decorationColor = block.decorationColor
         s.defaultContextBackgroundColor = Colors.articleBackgroundColor
+        return s
     }
-
-    static let image = stylesBuilder(ImageCellStyles()) { (s: ImageCellStyles, block: ImageBlock) in
+    
+    func image(block: ImageBlock) -> ImageCellStyles {
+        let s = ImageCellStyles()
         s.imageRatio = 16/9
         s.contentPadding = block.contentPadding
         s.textPaddingTop = block.textPaddingTop
         s.textPaddingBottom = block.textPaddingBottom
-
+        
         s.attributedCaption = RichTextStyler(value: block.caption, block: block).attributedRichText
-
+        
         s.decorationBorderColor = block.decorationColor
-
+        
         s.popDuration = ContextStyles.popAnimationDuration
         s.pushDuration = ContextStyles.pushAnimationDuration
-
-        s.supportedMediaFormats = block.supportedMediaFormats
+        
+        s.imageURL = imagePolicy.URL(block, media: block.media)
+        
         s.placeholderColor = Colors.placeholderColor
-
+        
         s.backgroundColor = block.backgroundColor
         s.decorationColor = block.decorationColor
         s.defaultContextBackgroundColor = Colors.articleBackgroundColor
-
+        
         s.mediaHeightForWidth = {width in block.media.heightForWidth(width)}
+        return s
     }
-
-    static let spacing = stylesBuilder(SpacingCellStyles()) { (s: SpacingCellStyles, block: SpacingBlock) in
-        s.topShadowAlpha = 0.4
-        s.bottomShadowAlpha = 0.4
-
+    
+    func spacing(block: SpacingBlock) -> SpacingCellStyles {
+        let s = SpacingCellStyles()
         s.backgroundColor = block.backgroundColor
         s.decorationColor = block.decorationColor
         s.defaultContextBackgroundColor = Colors.articleBackgroundColor
+        s.spacingMultiplier = 1
+        return s
     }
-
-    static let footer = stylesBuilder(FooterCellStyles()) { (s: FooterCellStyles, block: SpacingBlock) in
+    
+    func footer(block: SpacingBlock) -> FooterCellStyles {
+        let s = FooterCellStyles()
         s.backgroundColor = block.backgroundColor
         s.decorationColor = block.decorationColor
         s.defaultContextBackgroundColor = Colors.articleBackgroundColor
-
+        
         s.footerLineColor = Colors.footerLineColor
         s.contentPadding = block.contentPadding
         s.lineHeight = 4
+        return s
     }
-
-    static let fallback = stylesBuilder(FallbackContentCellStyles()) { (s: FallbackContentCellStyles, block: FallbackBlock) in
+    
+    func fallback(block: FallbackBlock) -> FallbackContentCellStyles {
+        let s = FallbackContentCellStyles()
         s.attributedHeadline = HeadlineStyler(value: block.headline, style: block.style.rawValue, block: block).attributedHeadline
         s.attributedSubHeadline = SubHeadlineStyler(value: block.subHeadline, style: block.style.rawValue, block: block).attributedSubHeadline
-
+        
         s.contentPadding = block.contentPadding
         
         s.backgroundColor = block.backgroundColor
         s.decorationColor = block.decorationColor
         s.defaultContextBackgroundColor = Colors.articleBackgroundColor
-
+        
         s.mediaHeightForWidth = {width in block.media.heightForWidth(width)}
+        return s
     }
-
-    static let twitter = stylesBuilder(TweetCellStyles()) { (s: TweetCellStyles, block: TweetBlock) in
+    
+    func tweet(block: TweetBlock) -> TweetCellStyles {
+        let s = TweetCellStyles()
+        s.headlineLeftMargin = 8
+        //s.richTextLeftMargin = 20
+        s.twitterLogoSize = CGSize(width: 17, height: 14)
+        s.topPadding = 20
+        s.richTextTopMargin = 8
+        s.bottomPadding = 26
+        //    static let tweetDateFormatter: NSDateFormatter = {
+        //        let formatter = NSDateFormatter()
+        //        formatter.dateFormat = "d/MM/yy"
+        //        return formatter
+        
+        
+        
+        s.attributedHeadline = HeadlineStyler(value: block.headline, style: block.style.rawValue, block: block).attributedHeadline
+        s.attributedSubHeadline = SubHeadlineStyler(value: block.author, style: block.style.rawValue, block: block).attributedSubHeadline
+        s.attributedRichText = RichTextStyler(value: block.richText, style: block.style.rawValue, block: block).attributedRichText
+        
+        s.imageSize = 35
+        s.backgroundColor = block.backgroundColor
+        s.decorationColor = block.decorationColor
+        s.contentPadding = block.contentPadding
+        
+        s.imageURL = imagePolicy.URL(block, media: block.media)
+        if let photo = block.photos?.first {
+            s.photoURL = imagePolicy.URL(block, media: photo)
+        }
+        
+        return s
     }
-
-    static let youtube = stylesBuilder(YoutubeCellStyles()) { (s: YoutubeCellStyles, block: YoutubeBlock) in
+    
+    func youtube(block: YoutubeBlock) -> YoutubeCellStyles {
+        let s = YoutubeCellStyles()
         s.paddingBottom = block.paddingBottom
         s.playImageLeftMargin = VideoStyles.playImageLeftMargin
         s.playImageBottomMargin = VideoStyles.playImageLeftMargin
-
+        
         s.mediaPaddingSide = block.mediaPaddingSide
         s.imageRatio = block.imageRatio
         s.contentPadding = block.contentPadding
         s.textPaddingTop = block.textPaddingTop
         s.textPaddingBottom = block.textPaddingBottom
         s.attributedCaption = RichTextStyler(value: block.caption, block: block).attributedRichText
-
-        //        public var popDuration: NSTimeInterval = 10
-        //        public var popAnimationDuration: NSTimeInterval = 10
-        //        public var pushAnimationDuration: NSTimeInterval = 10
-        s.supportedMediaFormats = block.supportedMediaFormats
+        
+        s.imageURL = imagePolicy.URL(block, media: block.media)
         s.placeholderColor = Colors.placeholderColor
-
+        
         s.backgroundColor = block.backgroundColor
         s.decorationColor = block.decorationColor
         s.defaultContextBackgroundColor = Colors.articleBackgroundColor
-
+        
         s.mediaHeightForWidth = {width in block.media.heightForWidth(width)}
+        return s
     }
-
-    static let vimeo = stylesBuilder(VimeoCellStyles()) { (s: VimeoCellStyles, block: VimeoBlock) in
+    
+    func vimeo(block: VimeoBlock) -> VimeoCellStyles {
+        let s = VimeoCellStyles()
         s.paddingBottom = block.paddingBottom
         s.playImageLeftMargin = VideoStyles.playImageLeftMargin
         s.playImageBottomMargin = VideoStyles.playImageLeftMargin
-
+        
         s.mediaPaddingSide = block.mediaPaddingSide
         s.imageRatio = block.imageRatio
         s.contentPadding = block.contentPadding
         s.textPaddingTop = block.textPaddingTop
         s.textPaddingBottom = block.textPaddingBottom
         s.attributedCaption = RichTextStyler(value: block.caption, block: block).attributedRichText
-
-//        public var popDuration: NSTimeInterval = 10
-//        public var popAnimationDuration: NSTimeInterval = 10
-//        public var pushAnimationDuration: NSTimeInterval = 10
-        s.supportedMediaFormats = block.supportedMediaFormats
+        
+        s.imageURL = imagePolicy.URL(block, media: block.media)
         s.placeholderColor = Colors.placeholderColor
-
+        
         s.backgroundColor = block.backgroundColor
         s.decorationColor = block.decorationColor
         s.defaultContextBackgroundColor = Colors.articleBackgroundColor
-
+        
         s.mediaHeightForWidth = {width in block.media.heightForWidth(width)}
+        return s
     }
-
-    static let divider = stylesBuilder(DividerCellStyles()) { (s: DividerCellStyles, block: DividerBlock) in
+    
+    func divider(block: DividerBlock) -> DividerCellStyles {
+        let s = DividerCellStyles()
         s.backgroundColor = block.backgroundColor
         s.decorationColor = block.decorationColor
         s.defaultContextBackgroundColor = Colors.articleBackgroundColor
+        return s
     }
-
 }
 
 
@@ -507,7 +583,7 @@ struct DividerStyles {
 //    static func roundedImageCorners() -> UIRectCorner {
 //        return []
 //    }
-//    
+//
 //    static func gradientPositions(style: BlockStyle) -> [GradientPosition] {
 //        switch style {
 //        case BlockStyle.HighlightXL:
@@ -533,7 +609,6 @@ struct StreamerCellStyles {
 //struct TweetCellStyles {
 //    static let headlineLeftMargin: CGFloat = 8
 //    static let richTextLeftMargin: CGFloat = 20
-//    static let imageSize: CGFloat = 36
 //    static let twitterLogoSize = CGSize(width: 17, height: 14)
 //    static let topPadding: CGFloat = 20
 //    static let richTextTopMargin: CGFloat = 8
@@ -543,9 +618,9 @@ struct StreamerCellStyles {
 //        formatter.dateFormat = "d/MM/yy"
 //        return formatter
 //    }()
-//    
+//
 //}
-//    
+//
 struct VideoStyles {
     static let captionPaddingBottom: CGFloat = 12
     static let captionPaddingLeftRight: CGFloat = 24
@@ -575,7 +650,7 @@ struct ErrorStyles {
 struct LoadingStyles {
     static let intensity: CGFloat = 0.15
     static let color: UIColor = UIColor.blackColor()
-    static let refreshControlTintColor = UIColor.whiteColor()
+    static let refreshControlTintColor = Colors.refreshControlTintColor
 }
 //
 //extension NavigationViewStyle {
@@ -589,7 +664,7 @@ struct LoadingStyles {
 //            return Colors.navigationViewLightBackgroundColor
 //        }
 //    }
-//    
+//
 //    var titleColor: UIColor {
 //        switch self {
 //        case .Transparent, .Dark:
@@ -598,7 +673,7 @@ struct LoadingStyles {
 //            return Colors.navigationViewLightTitleColor
 //        }
 //    }
-//    
+//
 //    var subtitleColor: UIColor {
 //        switch self {
 //        case .Transparent, .Dark:
@@ -607,15 +682,15 @@ struct LoadingStyles {
 //            return Colors.navigationViewLightSubtitleColor
 //        }
 //    }
-//    
+//
 //    var titleFont: UIFont {
 //        return Fonts.alternativeMediumFont.fallbackWithSize(16)
 //    }
-//    
+//
 //    var subtitleFont: UIFont? {
 //        return Fonts.alternativeTextFont.fallbackWithSize(11)
 //    }
-//    
+//
 //    var autoHideDelay: NSTimeInterval? {
 //        return 2
 //    }
@@ -692,17 +767,17 @@ extension Block {
             return 0
         }
     }
-
+    
     var decorationPadding: UIEdgeInsets {
         return UIEdgeInsets(top: 0, left: decorationPaddingSide, bottom: decorationPaddingBottom, right: decorationPaddingSide)
     }
     
     var mediaPaddingSide: CGFloat {
         switch(self.context) {
-            case CoreBlockContextType.Article:
-                return ArticleStyles.specialInset
-            default:
-                return 0
+        case CoreBlockContextType.Article:
+            return ArticleStyles.specialInset
+        default:
+            return 0
         }
     }
     
@@ -718,7 +793,7 @@ extension Block {
         }
         
         switch style {
-        case BlockStyle.Inset,BlockStyle.InsetH1,BlockStyle.InsetH2 where decoration != .None:
+        case BlockStyle.Inset, BlockStyle.InsetH1, BlockStyle.InsetH2, BlockStyle.InsetH3:
             return Colors.insetBackgroundColor
         case BlockStyle.Image where decoration != .None:
             return Colors.imageBackgroundColor
@@ -729,20 +804,20 @@ extension Block {
     func drawFullDecoration(view: UIView) {
         // currently not used
     }
-        
+    
     var contentPadding: UIEdgeInsets {
         let decorationPadding = self.decorationPadding
-
+        
         var contentPadding: UIEdgeInsets
         switch (self.context, self, style) {
         case (CustomBlockContextType.Timeline, is ArticleRefBlock, _):
-             contentPadding =  UIEdgeInsets(top: 19, left: TimelineStyles.contentInset, bottom: 0, right: TimelineStyles.contentInset)
+            contentPadding =  UIEdgeInsets(top: 19, left: TimelineStyles.contentInset, bottom: 0, right: TimelineStyles.contentInset)
         case (_, is DividerBlock, _):
             contentPadding = UIEdgeInsets(top: 0, left: 0, bottom: 16, right: 0)
         case (_, is TweetBlock, _):
             contentPadding = UIEdgeInsets(top: 0, left: 20, bottom: 24, right: 20)
         case (_, is ImageBlock, BlockStyle.Inset):
-            contentPadding = UIEdgeInsets(top: 0, left: ArticleStyles.textInset, bottom: 0, right: ArticleStyles.textInset)            
+            contentPadding = UIEdgeInsets(top: 0, left: ArticleStyles.textInset, bottom: 0, right: ArticleStyles.textInset)
         case (_, is ImageBlock, _):
             contentPadding = UIEdgeInsets(top: 0, left: ArticleStyles.textInset-ArticleStyles.specialInset, bottom: 0, right: ArticleStyles.textInset-ArticleStyles.specialInset)
         case (_, is UnsupportedContentBlock, _),(_, is FallbackBlock, _):
@@ -830,8 +905,8 @@ extension Block {
         case ( _, BlockStyle.H2):
             return 8+6
         case ( _, BlockStyle.InsetH1):
-            return Screen.value(12,24)
-        case ( _, BlockStyle.InsetH2):
+            return Screen.value(12, 24)
+        case ( _, BlockStyle.InsetH2), (_, BlockStyle.InsetH3):
             return 8
         case ( is ArticleHeaderBlock, _):
             return 24+6
@@ -850,13 +925,13 @@ extension ImageBlock {
     
     var textPaddingBottom: CGFloat {
         switch decoration {
-            case BlockDecoration.None, BlockDecoration.Full:
-                return Screen.value(18,24)
-            default:
-                return Screen.value(23,40)
+        case BlockDecoration.None, BlockDecoration.Full:
+            return Screen.value(18,24)
+        default:
+            return Screen.value(23,40)
         }
         
-
+        
     }
 }
 //
@@ -886,7 +961,7 @@ extension ImageBlock {
 //            return Fonts.textFont.fallbackWithSize(16)
 //        }
 //    }
-//    
+//
 //    var fontColor: UIColor {
 //        return Colors.defaultFontColor
 //    }
@@ -899,11 +974,11 @@ public class RichTextStyler: Styler {
     var richTextAlignment: NSTextAlignment {
         return .Left
     }
-
+    
     var linkColor: UIColor {
         return Colors.linkColor
     }
-
+    
     static func attributedString(fromRichText richText: String?, attributes: StringAttributes) -> NSAttributedString? {
         guard let richText = richText where !richText.isEmpty else { return nil }
         // somehow the guardian font renders a huge padding below each text node, this can be prevented by putting a bullshit tag in front
@@ -915,14 +990,14 @@ public class RichTextStyler: Styler {
             let string = NSAttributedString(string: richText, attributes: attributes.dictionary)
             return string
         }
-
+        
     }
-
+    
     var attributedRichText: NSAttributedString? {
         let attributes = StringAttributes(font: richTextFont.fallbackWithSize(richTextFontSize), foregroundColor: richTextFontColor, backgroundColor: nil, lineSpacing: richTextLineSpacing, alignment: richTextAlignment, shadow: nil, linkColor: linkColor)
         return self.dynamicType.attributedString(fromRichText: value, attributes: attributes)
     }
-
+    
     var richTextFont: Font {
         switch (block.self, block.style) {
         case (is TextBlock, BlockStyle.Intro):
@@ -939,7 +1014,7 @@ public class RichTextStyler: Styler {
             return Fonts.textFont
         }
     }
-
+    
     var richTextFontColor: UIColor {
         switch (block, block.style) {
         case (is TextBlock, BlockStyle.Byline):
@@ -952,17 +1027,17 @@ public class RichTextStyler: Styler {
             return Colors.defaultFontColor
         }
     }
-
+    
     var richTextFontSize: CGFloat {
-
+        
         if case is MediaBlock = block {
             return Screen.value(16,20)
         }
-
+        
         if case is ArticleRefBlock = block {
             return 14
         }
-
+        
         switch block.style {
         case BlockStyle.Intro:
             return Screen.value(22,26)
@@ -972,7 +1047,7 @@ public class RichTextStyler: Styler {
             return Screen.value(17,22)
         }
     }
-
+    
     var richTextLineSpacing: CGFloat {
         switch (block, block.style) {
         case (is ArticleRefBlock, _):
@@ -991,17 +1066,17 @@ public class RichTextStyler: Styler {
             return Screen.value(7,10)
         }
     }
-
+    
     var tooMuchPaddingTop: CGFloat {
         //TODO: somehow ASDK does not render the text well: too much padding at the top
         return richTextLineSpacing / 2
     }
-
+    
     var tooMuchClippingBottom: CGFloat {
         //TODO: somehow ASDK does not render the text well: too much clipping on the bottom
         return 1
     }
-
+    
     var shouldRenderRichText: Bool {
         guard let richText = value where !richText.isEmpty else { return false }
         return true
@@ -1104,34 +1179,7 @@ class LabelStyler: Styler {
 }
 
 
-extension MediaBlock {
-    var shouldRenderImage: Bool {
-        guard !media.identifier.isEmpty else { return false }
-        return true
-    }
-    
-    func mediaHeightForWidth(width: CGFloat) -> CGFloat {
-        return media.heightForWidth(width)
-    }
-    
-//    var mediaBackgroundColor: UIColor {
-//        switch self {
-//        case is ImageBlock:
-//            return Colors.imageBackgroundColor
-//        default:
-//            return backgroundColor
-//        }
-//    }
 
-    var supportedMediaFormats: [MediaFormat] {
-        switch (self, self.style) {
-        case (is ArticleRefBlock, BlockStyle.Normal):
-            return Screen.value([MediaFormat.Medium,MediaFormat.Small],[MediaFormat.Medium,MediaFormat.Small])
-        default:
-            return Screen.value([MediaFormat.Medium,MediaFormat.Small],[MediaFormat.Large,MediaFormat.Medium,MediaFormat.Small])
-        }
-    }
-}
 //
 class HeadlineStyler : Styler {
     
@@ -1273,7 +1321,7 @@ class SubHeadlineStyler : Styler {
         guard let subHeadline = value else { return false }
         return !subHeadline.isEmpty
     }
-
+    
     var subHeadlineFontColor: UIColor {
         switch block {
         case is TweetBlock:
@@ -1381,10 +1429,10 @@ class PlainTextStyler : Styler {
         switch (block, block.style) {
         case (is FallbackBlock, _):
             return Fonts.lightFont.fallbackWithSize(15)
-        case (_ , BlockStyle.InsetH1):
-            return Fonts.mediumFont.fallbackWithSize(Screen.value(20,24))
-        case (_, BlockStyle.InsetH2):
-            return  Fonts.mediumFont.fallbackWithSize(16)
+        case (_ , BlockStyle.InsetH1), (_, BlockStyle.InsetH2):
+            return Fonts.alternativeMediumFont.fallbackWithSize(Screen.value(20,24))
+        case (_, BlockStyle.InsetH3):
+            return  Fonts.mediumFont.fallbackWithSize(Screen.value(20, 24))
         case (_, BlockStyle.H1):
             return Fonts.alternativeMediumFont.fallbackWithSize(Screen.value(20, 24))
         case (_, BlockStyle.H2):
@@ -1408,10 +1456,10 @@ class PlainTextStyler : Styler {
             return Colors.defaultBackgroundColor
         }
     }
-
+    
     var plainTextColor: UIColor {
         switch block.style {
-        case BlockStyle.InsetH1, BlockStyle.H1:
+        case BlockStyle.InsetH1, BlockStyle.InsetH2, BlockStyle.H1:
             return Colors.accentColor
         default:
             return Colors.defaultFontColor
@@ -1424,7 +1472,7 @@ class PlainTextStyler : Styler {
         if needsAllCaps {
             plainText = plainText.uppercaseString
         }
-
+        
         let attrs = StringAttributes(font: plainTextFont, foregroundColor: plainTextColor, lineSpacing: plainTextLinespacing)
         let result = NSMutableAttributedString(string:plainText, attributes:attrs.dictionary)
         return result;
