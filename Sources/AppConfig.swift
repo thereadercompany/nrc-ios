@@ -15,7 +15,7 @@ import Core
 struct AppConfig {
     
     // Instabug
-    static let instabugKey = "96eff9b30e3192f192f24f927ba6de2f"
+    static let instabugKey = "77f996a762dafc1695f83685d8e028b2"
     
     // API
     private static let server = Server.Production
@@ -46,8 +46,6 @@ struct AppConfig {
     
     static let serverIsFileBased = baseServerURL.URLString.rangeOfString("5001") != nil
     static let currentPaywallIdentfierKey = "nl.nrc.timeline.paywall.currentIdentfier"
-    static let preloadMediaFormat = MediaFormat.Medium
-    static let maxMediaFormat = MediaFormat.Large
     
     static let memorySize: UInt = 50000000
     static let cacheSize: UInt = 500000000
