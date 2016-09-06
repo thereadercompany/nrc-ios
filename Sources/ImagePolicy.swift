@@ -14,23 +14,40 @@ private extension CGSize {
     }
 }
 
-struct ImagePolicy {
-    let small = UIScreen.mainScreen().bounds.width / 4
-    let medium = UIScreen.mainScreen().bounds.width
-    let large = UIScreen.mainScreen().bounds.height
+enum ImageSize {
+    case Small
+    case Medium
+    case Large
+    
+    private var size: CGSize {
+        let sideLength: CGFloat
+        switch self {
+        case Small:
+            sideLength = UIScreen.mainScreen().bounds.width / 4
+        case Medium:
+            sideLength = UIScreen.mainScreen().bounds.width
+        case Large:
+            sideLength = UIScreen.mainScreen().bounds.height
+        }
+        
+        let scaledSideLength = sideLength * UIScreen.mainScreen().scale
+        return CGSize(singleDimension: scaledSideLength)
+    }
+}
 
+struct ImagePolicy {
     let mediaLocator: MediaLocator
 
-    func size(block: Block, media: Media, name: String? = nil) -> CGSize {
-        switch (block, block.style, name) {
-        case (is ArticleRefBlock, BlockStyle.Normal, _):
-            return CGSize(singleDimension: medium)
-        default:
-            return CGSize(singleDimension: large)
-        }
+    func size(block block: Block, media: Media, name: String? = nil) -> CGSize {
+        return ImageSize.Large.size
+    }
+    
+    func URL(block block: Block, media: Media, name: String? = nil) -> NSURL {
+        let size = self.size(block: block, media: media, name: name)
+        return mediaLocator.URL(media: media, size: size)
     }
 
-    func URL(block: Block, media: Media, name: String? = nil) -> NSURL {
-        return mediaLocator.URL(media, size: size(block, media: media, name: name))
+    func URL(media media: Media, size: ImageSize) -> NSURL {
+        return mediaLocator.URL(media: media, size: size.size)
     }
 }

@@ -10,10 +10,10 @@ import UIKit
 import Core
 
 class SectionRefBlock: Block {
-    let label: String
+    let title: String
     
     required init?(decoder: JSONDecoder, context: BlockContextType) {
-        label = decoder.value(["attributes", "label"], "")
+        title = decoder.value(["attributes", "label"], "")
         super.init(decoder: decoder, context: context)
         if decoder.error != nil { return nil }
     }

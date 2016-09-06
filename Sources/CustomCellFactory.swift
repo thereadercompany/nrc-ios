@@ -12,140 +12,111 @@ import Core
 /**
  Implements a Renderer based on the AsyncDisplayKit by Facebook
  */
-class CustomCellFactory: CellFactory {
-    
+
+
+class NRCCellFactory: CellFactory {
     let trackerFactory: TrackerFactory
+    let imagePolicy: ImagePolicy
     let dataController: BlockContextDataController
-    let styleFactory: CellStyleFactory
-    
-    init(trackerFactory: TrackerFactory, dataController: BlockContextDataController, styleFactory: CellStyleFactory) {
+
+    init(trackerFactory: TrackerFactory, dataController: BlockContextDataController, imagePolicy: ImagePolicy) {
         self.trackerFactory = trackerFactory
         self.dataController = dataController
-        self.styleFactory = styleFactory
+        self.imagePolicy = imagePolicy
     }
-    
-    func cell(forBlock block: Block) -> Cell {
-        if let cell = createCell(block) {
-            if let trackingData = block.trackingData {
-                cell.tracker = trackerFactory.createTracker(trackingData)
-            }
-            return cell
+
+    func cell(block block: Block, delegate: CellDelegate?) -> ASCellNode {
+        switch block {
+        case let sectionRef as SectionRefBlock:
+            let node: SectionHeaderNode = contentNode(block: sectionRef)
+            return NRCCell(contentNode: node, delegate: delegate)
+        case let articleRef as ArticleRefBlock:
+            return ArticleRefCell(articleRef: articleRef, dataController: dataController, cellFactory: self, styles: ArticleRefCellStyles())
+//            let node: ArticleRefNode = contentNode(block: articleRef)
+//            return NRCCell(contentNode: node, delegate: delegate)
+        default:()
         }
+
+        //TODO: fallback
         let fallbackBlock = FallbackBlock(block: block)
         return FallbackContentCell(fallbackContentBlock: fallbackBlock, styles: FallbackContentCellStyles())
     }
     
-    func createCell(block: Block) -> Cell? {
-        switch block {
-        case let block as ArticleRefBlock: return createCell(block)
-        case let block as SectionRefBlock: return createCell(block)
-        case let block as ArticleHeaderBlock: return createCell(block)
-        case let block as BylineBlock: return createCell(block)
-        case let block as DividerBlock: return createCell(block)
-        case let block as FallbackBlock: return createCell(block)
-        case let block as VimeoBlock: return createCell(block)
-        case let block as YoutubeBlock: return createCell(block)
-        case let block as ImageBlock: return createCell(block)
-        case let block as ServerErrorBlock: return createCell(block)
-        case let block as SpacingBlock: return createCell(block)
-        case let block as StreamerBlock: return createCell(block)
-        case let block as TextBlock: return createCell(block)
-        case let block as PlainTextBlock: return createCell(block)
-        case let block as TweetBlock: return createCell(block)
-        case let block as UnsupportedContentBlock: return createCell(block)
-        default: return nil
-        }
+    private func contentNode(block block: SectionRefBlock) -> SectionHeaderNode {
+        let attributes = StringAttributes(font: Fonts.boldFont.fallbackWithSize(20), foregroundColor: UIColor.blackColor())
+        let title = NSAttributedString(string: block.title, attributes: attributes)
+
+        let model = SectionHeaderContent(title: title)
+        model.decoration = block.decoration
+        model.decorationModel = timelineDecorationModel
+        return SectionHeaderNode(model: model)
     }
-    
-    private func createCell(block: SectionRefBlock) -> Cell? {
-        return SectionHeaderCell(sectionRef: block, styles: CellStyles())
-    }
-    
-    private func createCell(block: ArticleRefBlock) -> Cell? {
-        let styles = styleFactory.headline(block)
+
+    private func contentNode(block block: ArticleRefBlock) -> ArticleRefNode {
+        let titleFontSize: CGFloat
+        let nodeType: ArticleRefNode.Type
+        let contentPadding: UIEdgeInsets
+        let imageSize: ImageSize
         
         switch (block.style, block.theme) {
-        case (BlockStyle.Large, .Urgent),(BlockStyle.Large, .Live):
-            return ExtraLargeArticleRefCell(articleRef: block, dataController: dataController, cellFactory: self, styles: styles)
+        case (BlockStyle.Large, .Urgent), (BlockStyle.Large, .Live):
+            nodeType = ExtraLargeArticleRefNode.self
+            titleFontSize = 26
+            imageSize = .Large
+            contentPadding = UIEdgeInsets(top: 0, left: TimelineStyles.contentInset, bottom: 0, right: TimelineStyles.contentInset)
         case (BlockStyle.Large, _):
-            return LargeArticleRefCell(articleRef: block, dataController: dataController, cellFactory: self, styles: styles)
+            nodeType = LargeArticleRefNode.self
+            titleFontSize = 22
+            imageSize = .Medium
+            contentPadding = UIEdgeInsets(top: 20, left: TimelineStyles.contentInset, bottom: 20, right: TimelineStyles.contentInset)
         default:
-            return NormalArticleRefCell(articleRef: block, dataController: dataController, cellFactory: self, styles: styles)
+            nodeType = NormalArticleRefNode.self
+            titleFontSize = 19
+            imageSize = .Small
+            contentPadding = UIEdgeInsets(top: 20, left: TimelineStyles.contentInset, bottom: 20, right: TimelineStyles.contentInset)
         }
+        
+        let titleAttributes = StringAttributes(
+            font: Fonts.mediumFont.fallbackWithSize(titleFontSize),
+            foregroundColor: Colors.defaultFontColor,
+            lineSpacing: 2,
+            hyphenationFactor: 0.8
+        )
+        
+        let title = NSAttributedString(string: block.headline, attributes: titleAttributes)
+        let model = ArticleRefNodeContent(articleIdentifier: block.articleIdentifier, url: block.url, title: title, line: block.line)
+        model.image = imagePolicy.URL(media: block.media, size: imageSize)
+        model.backgroundColor = block.backgroundColor
+        model.decoration = block.decoration
+        model.decorationModel = timelineDecorationModel
+        model.contentPadding = contentPadding
+        
+        return nodeType.init(model: model)
     }
-    
-    private func createCell(block: ArticleHeaderBlock) -> Cell? {
-        return ArticleHeaderCell(articleHeaderBlock: block, styles: styleFactory.articleHeader(block))
-    }
-    
-    private func createCell(block: DividerBlock) -> Cell? {
-        return CustomDividerCell(block: block, styles: styleFactory.divider(block))
-    }
-    
-    private func createCell(block: FallbackBlock) -> Cell? {
-        return FallbackContentCell(fallbackContentBlock: block, styles: styleFactory.fallback(block))
-    }
-    
-    private func createCell(block: ImageBlock) -> Cell? {
-        return ImageCell(block: block, styles: styleFactory.image(block))
-    }
-    
-    private func createCell(block: PlainTextBlock) -> Cell? {
-        switch block.style {
-        case BlockStyle.H1, BlockStyle.H2, BlockStyle.InsetH1, BlockStyle.InsetH2, BlockStyle.InsetH3:
-            return PlainTextCell(plainTextBlock: block, styles: styleFactory.plainText(block))
-        default:
+}
+
+private let timelineDecorationModel = DecorationModel(
+    color: Colors.timelineBackgroundColor,
+    cornerInfo: CornerInfo(radius: 8),
+    padding: UIEdgeInsets(top: 0, left: 0, bottom: 30, right: 0)
+)
+
+extension ArticleRefBlock {
+    var line: LineModel? {
+        let thickness: CGFloat = 0.5
+        let color: UIColor
+        
+        switch (decoration, theme) {
+        case (.Bottom, _), (.None, _):
             return nil
-        }
-    }
-    
-    private func createCell(block: BylineBlock) -> Cell? {
-        return BylineCell(bylineBlock: block, styles: CellStyles())
-    }
-    
-    private func createCell(block: ServerErrorBlock) -> Cell? {
-        return FallbackContentCell(fallbackContentBlock: block, styles: FallbackContentCellStyles())
-    }
-    
-    private func createCell(block: SpacingBlock) -> Cell? {
-        switch (block.context,block.style) {
-        case (CoreBlockContextType.Article, BlockStyle.ArticleFooter):
-            return FooterCell(spacingBlock: block, styles: styleFactory.footer(block))
-        case (CoreBlockContextType.Article, BlockStyle.Normal), (CoreBlockContextType.Article, BlockStyle.Inset), (CoreBlockContextType.Article, BlockStyle.Image):
-            return SpacingCell(spacingBlock: block, styles: styleFactory.spacing(block))
-        case (CustomBlockContextType.Timeline, _):
-            return SpacingCell(spacingBlock: block, styles: styleFactory.spacing(block))
+        case (_, .Urgent):
+            color = UIColor(hex: 0x555555)
+        case (_, .Live), (_, .Highlight):
+            color = UIColor(hex: 0xD9BBBB)
         default:
-            return nil
+            color = Colors.defaultLineColor
         }
-    }
-    
-    private func createCell(block: StreamerBlock) -> Cell? {
-        return CustomStreamerCell(streamerBlock: block, styles: styleFactory.streamer(block))
-    }
-    
-    private func createCell(block: TextBlock) -> Cell? {
-        switch block.style {
-        case BlockStyle.Normal, BlockStyle.Inset, BlockStyle.Intro, BlockStyle.Byline:
-            return TextCell(richTextBlock: block, styles: styleFactory.text(block))
-        default:
-            return nil
-        }
-    }
-    
-    private func createCell(block: TweetBlock) -> Cell? {
-        return TweetCell(tweetBlock: block, styles: styleFactory.tweet(block))
-    }
-    
-    private func createCell(block: UnsupportedContentBlock) -> Cell? {
-        return FallbackContentCell(fallbackContentBlock: block, styles: FallbackContentCellStyles())
-    }
-    
-    private func createCell(block: VimeoBlock) -> Cell? {
-        return VimeoCell(vimeoBlock: block, styles: styleFactory.vimeo(block))
-    }
-    
-    private func createCell(block: YoutubeBlock) -> Cell? {
-        return YoutubeCell(youtubeBlock: block, styles: styleFactory.youtube(block))
+        
+        return LineModel(color: color, thickness: thickness)
     }
 }

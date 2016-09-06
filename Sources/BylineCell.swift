@@ -10,7 +10,7 @@ import UIKit
 import AsyncDisplayKit
 import Core
 
-class BylineCell: Cell {
+class BylineCell: Core.Cell {
     let iconNode = ASImageNode()
     let textNode = ASTextNode()
     let padding = UIEdgeInsets(top: 0, left: ArticleStyles.textInset, bottom: 3, right: ArticleStyles.textInset)

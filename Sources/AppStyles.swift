@@ -92,6 +92,8 @@ public struct Colors {
     static let labelBackgroundColor = UIColor.whiteColor()
     static let labelBorderColor = UIColor(hex: 0xB3B3B3)
     
+    static let cellBackgroundColor = UIColor.whiteColor()
+    
     static let nrcRed = UIColor(hex: 0xD20810)
     static let nrcRedLight = UIColor(hex: 0xFBE9E9)
     static let nrcTextColor = UIColor(hex: 0x191919)
@@ -255,7 +257,7 @@ func backgroundImageProvider(imagePolicy: ImagePolicy, block: Block) -> [NSURL] 
     switch block {
     case let mediaBlock as MediaBlock:
         if mediaBlock.media.identifier.isEmpty { return [] }
-        return [imagePolicy.URL(block, media: mediaBlock.media)]
+        return [imagePolicy.URL(block: mediaBlock, media: mediaBlock.media)]
     default:
         return []
     }
@@ -306,7 +308,7 @@ struct CellStyleFactory {
             s.backgroundColor = Colors.nrcRed
         case (.Live, _):
             s.titleFontColor = Colors.overlayFontColor
-            s.abstractFontColor = Colors.overlayFontColor
+//            s.abstractFontColor = Colors.overlayFontColor
             s.backgroundColor = Colors.nrcRed
             s.labelTextColor = Colors.accentColor
             s.lineColor = UIColor(hex: 0xD9BBBB)
@@ -333,7 +335,7 @@ struct CellStyleFactory {
         s.articleBackgroundColor = {(article: Article?) in Colors.articleBackgroundColor }
         s.placeholderColor = Colors.placeholderColor
         s.decorationColor = block.decorationColor
-        s.imageURL = imagePolicy.URL(block, media: block.media)
+        s.imageURL = imagePolicy.URL(block: block, media: block.media)
         
         return s
     }
@@ -347,7 +349,7 @@ struct CellStyleFactory {
         s.attributedHeadline = HeadlineStyler(value: block.headline, style: block.style.rawValue, block: block).attributedHeadline
         
         s.placeholderColor = Colors.placeholderColor
-        s.imageURL = imagePolicy.URL(block, media: block.media)
+        s.imageURL = imagePolicy.URL(block: block, media: block.media)
         
         s.backgroundColor = block.backgroundColor
         s.decorationColor = block.decorationColor
@@ -421,7 +423,7 @@ struct CellStyleFactory {
         s.popDuration = ContextStyles.popAnimationDuration
         s.pushDuration = ContextStyles.pushAnimationDuration
         
-        s.imageURL = imagePolicy.URL(block, media: block.media)
+        s.imageURL = imagePolicy.URL(block: block, media: block.media)
         
         s.placeholderColor = Colors.placeholderColor
         
@@ -493,9 +495,9 @@ struct CellStyleFactory {
         s.decorationColor = block.decorationColor
         s.contentPadding = block.contentPadding
         
-        s.imageURL = imagePolicy.URL(block, media: block.media)
+        s.imageURL = imagePolicy.URL(block: block, media: block.media)
         if let photo = block.photos?.first {
-            s.photoURL = imagePolicy.URL(block, media: photo)
+            s.photoURL = imagePolicy.URL(block: block, media: photo)
         }
         
         return s
@@ -514,7 +516,7 @@ struct CellStyleFactory {
         s.textPaddingBottom = block.textPaddingBottom
         s.attributedCaption = RichTextStyler(value: block.caption, block: block).attributedRichText
         
-        s.imageURL = imagePolicy.URL(block, media: block.media)
+        s.imageURL = imagePolicy.URL(block: block, media: block.media)
         s.placeholderColor = Colors.placeholderColor
         
         s.backgroundColor = block.backgroundColor
@@ -538,7 +540,7 @@ struct CellStyleFactory {
         s.textPaddingBottom = block.textPaddingBottom
         s.attributedCaption = RichTextStyler(value: block.caption, block: block).attributedRichText
         
-        s.imageURL = imagePolicy.URL(block, media: block.media)
+        s.imageURL = imagePolicy.URL(block: block, media: block.media)
         s.placeholderColor = Colors.placeholderColor
         
         s.backgroundColor = block.backgroundColor
@@ -742,6 +744,7 @@ extension BlockDecoration {
 //    }
 //}
 //
+
 extension Block {
     
     var decorationPaddingSide: CGFloat {
@@ -793,7 +796,7 @@ extension Block {
         }
         
         switch style {
-        case BlockStyle.Inset, BlockStyle.InsetH1, BlockStyle.InsetH2, BlockStyle.InsetH3:
+        case BlockStyle.Inset, BlockStyle.InsetH1, BlockStyle.InsetH2:
             return Colors.insetBackgroundColor
         case BlockStyle.Image where decoration != .None:
             return Colors.imageBackgroundColor
@@ -867,15 +870,22 @@ extension Block {
     }
     
     var backgroundColor: UIColor {
-        switch (context, self, style) {
-        case (CustomBlockContextType.Timeline, is DividerBlock, _):
+        switch (context, self) {
+        case (CustomBlockContextType.Timeline, let articleRef as ArticleRefBlock):
+            switch articleRef.theme {
+            case .Highlight:
+                return Colors.nrcRedLight
+            case .Live:
+                return Colors.nrcRed
+            case .Urgent:
+                return Colors.nrcAnthracite
+            default:
+                return Colors.cellBackgroundColor
+            }
+        case (CustomBlockContextType.Timeline, is DividerBlock):
             return Colors.timelineDividerBackgroundColor
-        case (CustomBlockContextType.Timeline, is SpacingBlock, _):
+        case (CustomBlockContextType.Timeline, is SpacingBlock):
             return Colors.timelineSpacingBackgroundColor
-        case (CustomBlockContextType.Timeline, _, _):
-            return Colors.cardBackgroundColor
-        case (CoreBlockContextType.Article, _, _):
-            return Colors.articleBackgroundColor
         default:
             return Colors.defaultBackgroundColor
         }
@@ -906,7 +916,7 @@ extension Block {
             return 8+6
         case ( _, BlockStyle.InsetH1):
             return Screen.value(12, 24)
-        case ( _, BlockStyle.InsetH2), (_, BlockStyle.InsetH3):
+        case ( _, BlockStyle.InsetH2):
             return 8
         case ( is ArticleHeaderBlock, _):
             return 24+6
@@ -1129,10 +1139,8 @@ class LabelStyler: Styler {
     
     var labelInsetBottom: CGFloat {
         switch (block, block.style) {
-        case (is ArticleRefBlock, BlockStyle.Normal),(is ArticleRefBlock, BlockStyle.Highlight):
+        case (is ArticleRefBlock, BlockStyle.Normal):
             return Screen.value(23,28)
-        case (is ArticleRefBlock, BlockStyle.HighlightXL):
-            return Screen.value(23,49)
         default:
             return 0
         }
@@ -1184,15 +1192,7 @@ class LabelStyler: Styler {
 class HeadlineStyler : Styler {
     
     var centerHeadline: Bool {
-        
-        if Screen.isPhone { return false }
-        
-        switch block.style {
-        case BlockStyle.HighlightXL:
-            return true
-        default:
-            return false
-        }
+        return false
     }
     
     var headlineBackgroundColor: UIColor? {
@@ -1220,10 +1220,6 @@ class HeadlineStyler : Styler {
         switch (block.context, block, block.style) {
         case (CustomBlockContextType.Timeline, is ArticleRefBlock, BlockStyle.Normal):
             return Fonts.mediumFont.fallbackWithSize(24)
-        case (CustomBlockContextType.Timeline, is ArticleRefBlock, BlockStyle.Highlight):
-            return Fonts.mediumFont.fallbackWithSize(Screen.value(24, 36))
-        case (CustomBlockContextType.Timeline, is ArticleRefBlock, BlockStyle.HighlightXL):
-            return Fonts.mediumFont.fallbackWithSize(Screen.value(36,53))
         case (CoreBlockContextType.Article, is ArticleHeaderBlock,_):
             return Fonts.alternativeMediumFont.fallbackWithSize(Screen.value(34,38))
         case (CoreBlockContextType.Article, is StreamerBlock, _):
@@ -1241,9 +1237,7 @@ class HeadlineStyler : Styler {
     
     var headlineLinespacing: CGFloat {
         switch (block.context, block, block.style) {
-        case (CustomBlockContextType.Timeline, is ArticleRefBlock, BlockStyle.Highlight),(CustomBlockContextType.Timeline, is ArticleRefBlock, BlockStyle.Normal):
-            return Screen.value(3,4)
-        case (CustomBlockContextType.Timeline, is ArticleRefBlock, BlockStyle.HighlightXL):
+        case (CustomBlockContextType.Timeline, is ArticleRefBlock, BlockStyle.Normal):
             return Screen.value(3,4)
         case (CoreBlockContextType.Article, is StreamerBlock, _ ):
             return 6
@@ -1305,10 +1299,8 @@ class HeadlineStyler : Styler {
     
     var insetBottom: CGFloat {
         switch (block, block.style) {
-        case (is ArticleRefBlock, BlockStyle.Highlight), (is ArticleRefBlock, BlockStyle.Normal):
+        case (is ArticleRefBlock, BlockStyle.Normal):
             return Screen.value(4,8)
-        case (is ArticleRefBlock, BlockStyle.HighlightXL):
-            return Screen.value(8,10)
         default:
             return 0
         }
@@ -1431,8 +1423,6 @@ class PlainTextStyler : Styler {
             return Fonts.lightFont.fallbackWithSize(15)
         case (_ , BlockStyle.InsetH1), (_, BlockStyle.InsetH2):
             return Fonts.alternativeMediumFont.fallbackWithSize(Screen.value(20,24))
-        case (_, BlockStyle.InsetH3):
-            return  Fonts.mediumFont.fallbackWithSize(Screen.value(20, 24))
         case (_, BlockStyle.H1):
             return Fonts.alternativeMediumFont.fallbackWithSize(Screen.value(20, 24))
         case (_, BlockStyle.H2):

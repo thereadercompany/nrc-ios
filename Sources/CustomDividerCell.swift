@@ -9,7 +9,7 @@
 import Core
 import UIKit
 
-class CustomDividerCell : Cell {
+class CustomDividerCell : Core.Cell {
     
     init(block: DividerBlock, styles: CellStyles) {
         super.init(block: block, styles: styles)

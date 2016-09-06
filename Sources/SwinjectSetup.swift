@@ -51,9 +51,15 @@ func setupDefaultContainer() -> Container {
     container.register(BlockContextDataController.self, name: "paywall") { r in CoreBlockContextDataController(cache: r.resolve(Cache.self)!, networkRequestHandler: r.resolve(NetworkRequestHandler.self)!, baseServerURL: apiURL) }.inObjectScope(.Container)
     container.register(TrackerFactory.self) { r in CoreTrackerFactory.init(delegate: r.resolve(BlockContextDataController.self, name: "default")!)}.inObjectScope(.Container)
     
+//    container.register(CellFactory.self) { r in
+//        let cellStyleFactory = CellStyleFactory(imagePolicy: r.resolve(ImagePolicy.self)!)
+//        return CustomCellFactory(trackerFactory: r.resolve(TrackerFactory.self)!, dataController: r.resolve(BlockContextDataController.self, name: "default")!, styleFactory: cellStyleFactory) }.inObjectScope(.Container)
     container.register(CellFactory.self) { r in
-        let cellStyleFactory = CellStyleFactory(imagePolicy: r.resolve(ImagePolicy.self)!)
-        return CustomCellFactory(trackerFactory: r.resolve(TrackerFactory.self)!, dataController: r.resolve(BlockContextDataController.self, name: "default")!, styleFactory: cellStyleFactory) }.inObjectScope(.Container)
+        let trackerFactory = r.resolve(TrackerFactory.self)!
+        let dataController = r.resolve(BlockContextDataController.self, name: "default")!
+        let imagePolicy = r.resolve(ImagePolicy.self)!
+        return NRCCellFactory(trackerFactory: trackerFactory, dataController: dataController, imagePolicy: imagePolicy) }.inObjectScope(.Container)
+
     
     container.register(NavigationControllerDelegate.self) { r  in CustomNavigationControllerDelegate(cellFactory: r.resolve(CellFactory.self)!)}.inObjectScope(.Container)
     container.register(AuthenticationController.self) { r in CoreAuthenticationController(paywallController: r.resolve(PaywallStateController.self)!, authURL: serverBaseURL(), errorStyles: r.resolve(ErrorMessageViewStyles.self)!)}.inObjectScope(.Container)
@@ -127,7 +133,7 @@ func setupDefaultContainer() -> Container {
     container.register(MainViewController.self) { r in
         let timelineViewController = r.resolve(TimelineViewController.self)!
         let mainViewController = MainViewController(rootViewController: timelineViewController)
-        mainViewController.delegate = r.resolve(NavigationControllerDelegate.self)
+        //mainViewController.delegate = r.resolve(NavigationControllerDelegate.self)
         return mainViewController
     }
 

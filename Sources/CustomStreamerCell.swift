@@ -25,7 +25,7 @@ class CustomStreamerCellStyles: CellStyles {
     var headlineMarginTop: CGFloat = 0
 }
 
-class CustomStreamerCell : Cell {
+class CustomStreamerCell : Core.Cell {
     
     let iconNode: ASImageNode
     let headlineNode: ASTextNode

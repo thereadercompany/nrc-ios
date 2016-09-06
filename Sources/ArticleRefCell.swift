@@ -10,73 +10,112 @@ import UIKit
 import AsyncDisplayKit
 import Core
 
-class ArticleRefCell: Core.ArticleRefCell {
-    let titleNode = ASTextNode()
-    let lineNode = ASDisplayNode()
-    var contentPadding: UIEdgeInsets {
-        return UIEdgeInsets(top: 20, left: TimelineStyles.contentInset, bottom: 20, right: TimelineStyles.contentInset)
-    }
-    
-    let lineHeight: CGFloat
-
-    //MARK: - initialization
-    init(articleRef: ArticleRefBlock, dataController: BlockContextDataController, cellFactory: CellFactory, styles: ArticleRefCellStyles) {
-        lineHeight = styles.lineHeight
-        super.init(articleRef: articleRef, dataController: dataController, cellFactory: cellFactory, styles: styles)
-        addSubnode(titleNode)
-        
-        if shouldRenderLineNode {
-            addSubnode(lineNode)
-        }
-        
-        titleNode.flexShrink = true
-
-        let attrs = StringAttributes(font: styles.titleFont, foregroundColor: styles.titleFontColor, lineSpacing: 2, hyphenationFactor: 0.8)
-        titleNode.attributedString = NSMutableAttributedString(string: articleRef.headline, attributes: attrs.dictionary)
-        
-        imageNode.clipsToBounds = true
-    }
-    
-    override func didLoad() {
-        super.didLoad()
-        lineNode.backgroundColor = articleRef.lineColor
-    }
-
-    override func imageRect(constrainedRect: CGRect) -> CGRect {
-        //let rect = constrainedRect.horizontalInsetsBy(highlightStyles.decorationPadding)
-        return imageNode.frame
-    }
-
-    override func layoutSpecThatFits(constrainedSize: ASSizeRange) -> ASLayoutSpec {
-        
-        let width = constrainedSize.max.width
-        let titleLayoutSpec = ASInsetLayoutSpec(insets: contentPadding, child: titleNode)
-        let content: [ASLayoutable] = [titleLayoutSpec, lineNode]
-        lineNode.preferredFrameSize = CGSize(width: width, height: lineHeight)
-
-        let contentLayoutSpec = ASStackLayoutSpec(direction: .Vertical, spacing: 0, justifyContent: .Start, alignItems: .Start, children: content)
-        return contentLayoutSpec
-//        return self.decorationLayoutSpec(contentLayoutSpec: contentLayoutSpec)
-    }
-    
-    var shouldRenderLineNode: Bool {
-        switch articleRef.decoration {
-        case .Top, .Middle: return true
-        default: return false
-        }
+extension NSAttributedString {
+    convenience init (string: String, attributes: StringAttributes) {
+        self.init(string: string, attributes: attributes.dictionary)
     }
 }
 
-class NormalArticleRefCell: ArticleRefCell {
+extension ASTextNode {
+    convenience init?(text: NSAttributedString?) {
+        guard let text = text else { return nil }
+        self.init()
+        self.attributedText = text
+    }
+}
+
+extension ASNetworkImageNode {
+    convenience init?(url: NSURL?) {
+        guard let url = url else { return nil }
+        self.init()
+        self.URL = url
+    }
+}
+
+struct LineModel {
+    let color: UIColor
+    let thickness: CGFloat
+}
+
+class ArticleRefNodeContent: CellContent {
+    let articleIdentifier: String
+    let url: NSURL?
+    
+    let title: NSAttributedString
+    let line: LineModel?
+    
+    var abstract: NSAttributedString? = nil
+    var image: NSURL? = nil
+    var label: LabelModel? = nil
+    
+    init(articleIdentifier: String, url: NSURL?, title: NSAttributedString, line: LineModel?) {
+        self.articleIdentifier = articleIdentifier
+        self.url = url
+        self.title = title
+        self.line = line
+    }
+}
+
+class ArticleRefNode: ContentNode<ArticleRefNodeContent> {
+    let titleNode = ASTextNode()
+    let lineNode = ASDisplayNode()
+    let imageNode: ASNetworkImageNode?
+    
+    var lineThickness: CGFloat {
+        return model.line?.thickness ?? 0
+    }
+    
+    //MARK: - initialization
+    required init(model: ArticleRefNodeContent) {
+        imageNode = ASNetworkImageNode(url: model.image)
+        super.init(model: model)
+        
+        // title
+        addSubnode(titleNode)
+        titleNode.flexShrink = true
+        titleNode.attributedText = model.title
+        
+        // image
+        if let imageNode = imageNode {
+            addSubnode(imageNode)
+            imageNode.clipsToBounds = true
+        }
+        
+        // line
+        if let line = model.line {
+            addSubnode(lineNode)
+            lineNode.backgroundColor = line.color
+        }
+    }
+    
+    override var action: CellAction? {
+        if let url = model.url {
+            return .OpenURL(url)
+        }
+        
+        return .ShowArticle(identifier: model.articleIdentifier, image: imageNode?.image)
+    }
+    
+    override func contentLayoutSpecThatFits(constrainedSize: ASSizeRange) -> ASLayoutSpec {
+        let width = constrainedSize.max.width
+        let titleLayoutSpec = ASInsetLayoutSpec(insets: model.contentPadding, child: titleNode)
+        let content: [ASLayoutable] = [titleLayoutSpec, lineNode]
+        lineNode.preferredFrameSize = CGSize(width: width, height: lineThickness)
+        
+        return ASStackLayoutSpec(direction: .Vertical, spacing: 0, justifyContent: .Start, alignItems: .Start, children: content)
+    }
+}
+
+class NormalArticleRefNode: ArticleRefNode {
     private let imageSize = CGSize(width: 92, height: 56)
     private let imageTitleSpacing: CGFloat = 10
     
-    override func layoutSpecThatFits(constrainedSize: ASSizeRange) -> ASLayoutSpec {
+    override func contentLayoutSpecThatFits(constrainedSize: ASSizeRange) -> ASLayoutSpec {
         let width = constrainedSize.max.width
         
         // layout content
         var content: [ASLayoutable] = [titleNode]
-        if mediaStyles.shouldRenderImage {
+        if let imageNode = imageNode {
             imageNode.preferredFrameSize = imageSize
             imageNode.spacingAfter = imageTitleSpacing
             content.insert(imageNode, atIndex: 0)
@@ -84,32 +123,30 @@ class NormalArticleRefCell: ArticleRefCell {
         let contentStack = ASStackLayoutSpec(direction: .Horizontal, spacing: 0, justifyContent: .Start, alignItems: .Center, children: content)
         
         // add contentpadding
-        let paddedContentStack = ASInsetLayoutSpec(insets: contentPadding, child: contentStack)
+        let paddedContentStack = ASInsetLayoutSpec(insets: model.contentPadding, child: contentStack)
         
         // add line
-        lineNode.preferredFrameSize = CGSize(width: width, height: lineHeight)
+        lineNode.preferredFrameSize = CGSize(width: width, height: lineThickness)
         let cellItems: [ASLayoutable] = [paddedContentStack, lineNode]
-        let contentLayoutSpec = ASStackLayoutSpec(direction: .Vertical, spacing: 0, justifyContent: .Start, alignItems: .Start, children: cellItems)
-        return contentLayoutSpec
-        //return decorationLayoutSpec(contentLayoutSpec: contentLayoutSpec)
+        return ASStackLayoutSpec(direction: .Vertical, spacing: 0, justifyContent: .Start, alignItems: .Start, children: cellItems)
     }
 }
 
-class LargeArticleRefCell: ArticleRefCell {
+class LargeArticleRefNode: ArticleRefNode {
     private let imageRatio: CGFloat = 5/3
     private let imageTitleSpacing: CGFloat = 15
-
-    override func layoutSpecThatFits(constrainedSize: ASSizeRange) -> ASLayoutSpec {
+    
+    override func contentLayoutSpecThatFits(constrainedSize: ASSizeRange) -> ASLayoutSpec {
         let width = constrainedSize.max.width
-        let contentPadding = UIEdgeInsets(top: 0, left: TimelineStyles.contentInset, bottom: 15, right: TimelineStyles.contentInset)
+        let contentPadding = model.contentPadding
         let titleInsets = UIEdgeInsets(top: 0, left: contentPadding.left, bottom: contentPadding.bottom, right: contentPadding.right)
         let titleInsetsSpec = ASInsetLayoutSpec(insets: titleInsets, child: titleNode)
-
+        
         // setup line
-        lineNode.preferredFrameSize = CGSize(width: width, height: lineHeight)
-
+        lineNode.preferredFrameSize = CGSize(width: width, height: lineThickness)
+        
         var content: [ASLayoutable] = [titleInsetsSpec, lineNode]
-        if mediaStyles.shouldRenderImage {
+        if let imageNode = imageNode {
             imageNode.spacingAfter = imageTitleSpacing
             let imageWidth = width
             let imageHeight = imageWidth / imageRatio
@@ -117,53 +154,28 @@ class LargeArticleRefCell: ArticleRefCell {
             imageNode.preferredFrameSize = imageSize
             content.insert(imageNode, atIndex: 0)
         }
-
-        let contentLayoutSpec = ASStackLayoutSpec(direction: .Vertical, spacing: 0, justifyContent: .Start, alignItems: .Start, children: content)
-        return contentLayoutSpec
-//        return decorationLayoutSpec(contentLayoutSpec: contentLayoutSpec)
+        
+        return ASStackLayoutSpec(direction: .Vertical, spacing: 0, justifyContent: .Start, alignItems: .Start, children: content)
     }
 }
 
-class ExtraLargeArticleRefCell: ArticleRefCell {
-    let labelNode = LabelNode()
-    let richTextNode = ASTextNode()
-    let gradientNode: ASDisplayNode
-    
-    override var contentPadding: UIEdgeInsets {
-        return UIEdgeInsets(top: 0, left: TimelineStyles.contentInset, bottom: 0, right: TimelineStyles.contentInset)
-    }
+class ExtraLargeArticleRefNode: ArticleRefNode {
+    let labelNode: LabelNode?
+    let abstractNode: ASTextNode?
+    let gradientNode = ASDisplayNode(layerBlock: {
+        let gradientLayer = CAGradientLayer()
+        gradientLayer.colors = [UIColor.clearColor().CGColor,UIColor.blackColor().CGColor]
+        gradientLayer.endPoint = CGPoint(x: 0.5, y: 1.7)
+        return gradientLayer
+    })
     
     // Cell
-    override init(articleRef: ArticleRefBlock, dataController: BlockContextDataController, cellFactory: CellFactory, styles: ArticleRefCellStyles) {
-        gradientNode = ASDisplayNode(layerBlock: {
-            let gradientLayer = CAGradientLayer()
-//            gradientLayer.colors = [UIColor.clearColor().CGColor,UIColor.blackColor().CGColor]
-//            gradientLayer.endPoint = CGPoint(x: 0.5, y: 1.7)
-            return gradientLayer
-        })
-        
-        super.init(articleRef: articleRef, dataController: dataController, cellFactory: cellFactory, styles: styles)
+    required init(model: ArticleRefNodeContent) {
+        labelNode = LabelNode(model: model.label)
+        abstractNode = ASTextNode(text: model.abstract)
+        super.init(model: model)
         addSubnode(gradientNode)
         
-        if let label = articleRef.label {
-            addSubnode(labelNode)
-            let attributes = StringAttributes(font: Fonts.labelFont.fallbackWithSize(10), foregroundColor: styles.labelTextColor, lineSpacing: 0).dictionary
-            labelNode.text = NSAttributedString(string: label, attributes: attributes)
-            labelNode.applyStyle(textInsets: UIEdgeInsets(top: 4, left: 10, bottom: 4, right: 10), backgroundColor: styles.labelBackgroundColor, cornerRadius: 10)
-        }
-
-        if let richText = articleRef.abstract {
-            addSubnode(richTextNode)
-            let attributes = StringAttributes(font: Fonts.lightFont.fallbackWithSize(20), foregroundColor: styles.abstractFontColor, lineSpacing: 0).dictionary
-            richTextNode.attributedString = NSAttributedString(string: richText, attributes: attributes)
-        }
-        
-        backgroundColor = UIColor.whiteColor()
-        imageNode = ImageNode()
-    }
-    
-    override func didLoad() {
-        super.didLoad()
         let shadowColor = UIColor.blackColor().CGColor
         let shadowOffset = CGSize(width: 1, height: 0)
         let shadowOpacity: CGFloat = 1
@@ -173,30 +185,38 @@ class ExtraLargeArticleRefCell: ArticleRefCell {
         titleNode.shadowOpacity = shadowOpacity
         titleNode.shadowRadius = shadowRadius
         
-        if let _ = articleRef.abstract {
-            richTextNode.shadowColor = shadowColor
-            richTextNode.shadowOffset = shadowOffset
-            richTextNode.shadowOpacity = shadowOpacity
-            richTextNode.shadowRadius = shadowRadius
+        if let labelNode = labelNode {
+            addSubnode(labelNode)
         }
+        if let abstractNode = abstractNode {
+            addSubnode(abstractNode)
+            abstractNode.shadowColor = shadowColor
+            abstractNode.shadowOffset = shadowOffset
+            abstractNode.shadowOpacity = shadowOpacity
+            abstractNode.shadowRadius = shadowRadius
+        }
+        
+        backgroundColor = UIColor.whiteColor()
     }
     
-    override func layoutSpecThatFits(constrainedSize: ASSizeRange) -> ASLayoutSpec {
-        if shouldRenderLineNode {
-            lineNode.preferredFrameSize = CGSize(width: constrainedSize.max.width, height: 1)
-        }
+    override func didLoad() {
+        super.didLoad()
+        //TEST: moved shadow to init is it rendered?
+    }
+    
+    override func contentLayoutSpecThatFits(constrainedSize: ASSizeRange) -> ASLayoutSpec {
+        lineNode.preferredFrameSize = CGSize(width: constrainedSize.max.width, height: lineThickness)
         
         var textNodes: [ASLayoutable] = []
-        
-        if let _ = articleRef.label {
+        if let labelNode = labelNode {
             textNodes.append(labelNode)
             labelNode.spacingAfter = 14
         }
         
         textNodes.append(titleNode)
         titleNode.spacingAfter = 10
-        if let _ = articleRef.abstract {
-            textNodes.append(richTextNode)
+        if let abstractNode = abstractNode {
+            textNodes.append(abstractNode)
         }
         textNodes.last?.spacingAfter = 0
         for node in textNodes {
@@ -204,19 +224,13 @@ class ExtraLargeArticleRefCell: ArticleRefCell {
         }
         
         let textContent = ASStackLayoutSpec(direction: .Vertical, spacing: 0, justifyContent: .Start, alignItems: .Start, children: textNodes)
-        let paddedContent = ASInsetLayoutSpec(insets: contentPadding, child: textContent)
+        let paddedContent = ASInsetLayoutSpec(insets: model.contentPadding, child: textContent)
         let gradientContent = ASBackgroundLayoutSpec(child: paddedContent, background: gradientNode)
         gradientContent.spacingBefore = 250
         
         let card = ASStackLayoutSpec(direction: .Vertical, spacing: 0, justifyContent: .Start, alignItems: .Stretch, children: [gradientContent,lineNode])
-        let imageCard = ASBackgroundLayoutSpec(child: card, background: imageNode)
+        return ASBackgroundLayoutSpec(child: card, background: imageNode)
         
-        return imageCard
-//        let decorationPadding = ASInsetLayoutSpec(insets: articleRef.decorationPadding, child: imageCard)
-
-//        let combined = ASBackgroundLayoutSpec(child: decorationPadding, background: decorationNode)
-//        return combined
     }
-
 }
 
