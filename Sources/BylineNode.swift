@@ -1,5 +1,5 @@
 //
-//  BylineCell.swift
+//  BylineNode.swift
 //  ios-nrc-nl
 //
 //  Created by Taco Vollmer on 02/12/15.
@@ -10,23 +10,32 @@ import UIKit
 import AsyncDisplayKit
 import Core
 
-class BylineCell: Core.Cell {
+class BylineContent: CellContent {
+    let icon: InlineIcon
+    let text: NSAttributedString
+    
+    init(icon: InlineIcon,
+         text: NSAttributedString,
+         backgroundColor: UIColor = .whiteColor(),
+         padding: UIEdgeInsets = UIEdgeInsets()
+        ) {
+        self.icon = icon
+        self.text = text
+        super.init(backgroundColor: backgroundColor, padding: padding)
+    }
+}
+
+class BylineNode: ContentNode<BylineContent> {
     let iconNode = ASImageNode()
     let textNode = ASTextNode()
     let padding = UIEdgeInsets(top: 0, left: ArticleStyles.textInset, bottom: 3, right: ArticleStyles.textInset)
     
-    let bylineBlock: BylineBlock
-    
-    init(bylineBlock: BylineBlock, styles: CellStyles) {
-        self.bylineBlock = bylineBlock
-        super.init(block: bylineBlock, styles: styles)
+    required init(content: BylineContent) {
+        super.init(content: content)
         self.addSubnode(iconNode)
         self.addSubnode(textNode)
-        iconNode.image = bylineBlock.icon.image
-        
-        let font = Fonts.alternativeMediumFont.fallbackWithSize(15)
-        let attributes = StringAttributes(font: font, foregroundColor: Colors.defaultFontColor, lineSpacing: 3).dictionary
-        textNode.attributedText = NSAttributedString(string: bylineBlock.plainText, attributes: attributes)
+        iconNode.image = content.icon.image
+        textNode.attributedText = content.text
     }
     
     override func layoutSpecThatFits(constrainedSize: ASSizeRange) -> ASLayoutSpec {

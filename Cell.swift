@@ -23,14 +23,41 @@ extension Tracker {
     }
 }
 
-protocol ActionProvider {
-    var action: CellAction? { get }
+// NRC project level Cell - introduces cell decoration
+public class NRCCell: Cell {
+    let decoration: Decoration?
+    let decorationNode: DecorationNode?
+    
+    init(contentNode: ASDisplayNode, decoration: Decoration?, delegate: CellDelegate?) {
+        self.decoration = decoration
+        self.decorationNode = DecorationNode(decoration: decoration)
+        
+        super.init(contentNode: contentNode, delegate: delegate)
+        
+        if let decorationNode = decorationNode {
+            addSubnode(decorationNode)
+        }
+    }
+    
+    override public func layoutSpecThatFits(constrainedSize: ASSizeRange) -> ASLayoutSpec {
+        let decorationPadding = decoration?.padding ?? UIEdgeInsets()
+        let contentLayoutSpec = contentNode.layoutSpecThatFits(constrainedSize)
+        let decoratedContentSpec = ASInsetLayoutSpec(insets: decorationPadding, child: contentLayoutSpec)
+        return ASBackgroundLayoutSpec(child: decoratedContentSpec, background: decorationNode)
+    }
 }
 
-public class NRCCell: ASCellNode {
+
+// conform content nodes that should handle a cell action to this protocol and the actions will be handled when tapping it's containing cell
+public protocol ActionNode {
+    var action: CellAction { get }
+}
+
+// Cell baseclass for tracking visibility and handling cell actions
+public class Cell: ASCellNode {
     private let contentNode: ASDisplayNode
-    var tracker: Tracker? = nil
-    weak var delegate: CellDelegate?
+    private var tracker: Tracker? = nil
+    private weak var delegate: CellDelegate?
     
     public init(contentNode: ASDisplayNode, delegate: CellDelegate?) {
         self.contentNode = contentNode
@@ -42,26 +69,35 @@ public class NRCCell: ASCellNode {
         backgroundColor = contentNode.backgroundColor
     }
     
+    //MARK: - Layout
     override public func layoutSpecThatFits(constrainedSize: ASSizeRange) -> ASLayoutSpec {
         return contentNode.layoutSpecThatFits(constrainedSize)
     }
     
+    //MARK: - Interaction
     override public func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent!) {
-        setHighlighted(true)
         super.touchesBegan(touches, withEvent: event)
     }
     
     override public func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent!) {
-        setHighlighted(false)
         handleTap()
         super.touchesEnded(touches, withEvent: event)
     }
     
     override public func touchesCancelled(touches: Set<UITouch>?, withEvent event: UIEvent?) {
-        setHighlighted(false, animated: false)
         super.touchesCancelled(touches, withEvent: event)
     }
     
+    func handleTap() {
+        tracker?.trackTap()
+        
+        if let delegate = delegate,
+            actionNode = contentNode as? ActionNode {
+            delegate.handleCellAction(self, cellAction: actionNode.action)
+        }
+    }
+    
+    //MARK: - Visibility
     override public func visibilityDidChange(visible: Bool) {
         if visible {
             tracker?.trackVisible()
@@ -69,17 +105,4 @@ public class NRCCell: ASCellNode {
             tracker?.trackInvisible()
         }
     }
-    
-    func handleTap() {
-        tracker?.trackTap()
-        
-        if let delegate = delegate,
-            actionProvider = contentNode as? ActionProvider,
-            action = actionProvider.action {
-            delegate.handleCellAction(self, cellAction: action)
-        }
-    }
-    
-    //MARK: - for subclasses
-    func setHighlighted(value: Bool, animated: Bool = true) {}
 }

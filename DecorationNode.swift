@@ -1,40 +1,77 @@
+//
+//  DecorationNode.swift
+//  NRC
+//
+//  Created by Taco Vollmer on 08/09/16.
+//  Copyright © 2016 TRC. All rights reserved.
+//
+
 import UIKit
 import AsyncDisplayKit
 import Core
 
-class DecorationNode: ASDisplayNode {
-    private let model: DecorationModel
-    private let decoration: BlockDecoration
-    private let maskedLayer = CALayer()
-    private let strokeLayer = CAShapeLayer()
+struct Decoration {
+    let type: DecorationType
+    private let layerModel: DecorationLayerModel
     
-    init(model: DecorationModel, decoration: BlockDecoration) {
-        self.model = model
-        self.decoration = decoration
-        super.init()
-        
-        strokeLayer.strokeColor = model.border?.color.CGColor
-        strokeLayer.lineWidth = model.border?.width ?? 0
-        maskedLayer.backgroundColor = model.color.CGColor
+    init(type: DecorationType, layerModel: DecorationLayerModel) {
+        self.type = type
+        self.layerModel = layerModel
     }
     
-    override func didLoad() {
-        super.didLoad()
+    var padding: UIEdgeInsets {
+        return layerModel.padding(type: type)
+    }
+    
+    private func mask(rect rect: CGRect) -> CALayer {
+        return layerModel.mask(rect: rect, type: type)
+    }
+    
+    private func strokingPath(rect rect: CGRect) ->  UIBezierPath? {
+        return layerModel.strokingPath(rect: rect, type: type)
+    }
+    
+    private var maskedLayer: CALayer {
+        return layerModel.maskedLayer
+    }
+    
+    private var strokeLayer: CAShapeLayer? {
+        return layerModel.strokeLayer
+    }
+}
+
+class DecorationNode: ASDisplayNode {
+    private let decoration: Decoration
+    private let maskedLayer: CALayer
+    private let strokeLayer: CAShapeLayer?
+    
+    init(decoration: Decoration) {
+        self.decoration = decoration
+        maskedLayer = decoration.maskedLayer
+        strokeLayer = decoration.strokeLayer
+        
+        super.init()
         layer.addSublayer(maskedLayer)
-        maskedLayer.backgroundColor = model.color.CGColor
-        if let border = model.border where decoration != .None {
-            strokeLayer.strokeColor = border.color.CGColor
-            strokeLayer.fillColor = UIColor.clearColor().CGColor
+        
+        if let strokeLayer = strokeLayer {
             layer.addSublayer(strokeLayer)
         }
-        
     }
-    
+
     override var frame: CGRect {
         didSet {
+            guard frame != CGRect.zero else { return }
+            
             maskedLayer.frame = bounds
-            maskedLayer.mask = model.maskingLayer(forBounds: bounds, decoration: decoration)
-            strokeLayer.path = model.strokingPath(forRect: bounds, decoration: decoration)?.CGPath
+            strokeLayer?.frame = bounds
+            
+            maskedLayer.mask = decoration.mask(rect: bounds)
+            strokeLayer?.path = decoration.strokingPath(rect: bounds)?.CGPath
         }
+    }
+    
+    convenience init?(decoration: Decoration?) {
+        guard let decoration = decoration else { return nil }
+        self.init(decoration: decoration)
     }
 }

@@ -58,7 +58,7 @@ func setupDefaultContainer() -> Container {
         let trackerFactory = r.resolve(TrackerFactory.self)!
         let dataController = r.resolve(BlockContextDataController.self, name: "default")!
         let imagePolicy = r.resolve(ImagePolicy.self)!
-        return NRCCellFactory(trackerFactory: trackerFactory, dataController: dataController, imagePolicy: imagePolicy) }.inObjectScope(.Container)
+        return CellFactory(trackerFactory: trackerFactory, dataController: dataController, imagePolicy: imagePolicy) }.inObjectScope(.Container)
 
     
     container.register(NavigationControllerDelegate.self) { r  in CustomNavigationControllerDelegate(cellFactory: r.resolve(CellFactory.self)!)}.inObjectScope(.Container)

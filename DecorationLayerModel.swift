@@ -4,48 +4,9 @@ import Core
 private let π = CGFloat(M_PI)
 private let π_2 = CGFloat(M_PI_2)
 
-public struct Border {
-    public let color: UIColor
-    public let width: CGFloat
-    
-    public init(color: UIColor, width: CGFloat = 1) {
-        self.color = color
-        self.width = width
-    }
-}
-
-public struct CornerInfo {
-    let allowedCorners: UIRectCorner
-    let radius: CGFloat
-    
-    var radii: CGSize {
-        return CGSize(width: radius, height: radius)
-    }
-    
-    init(allowedCorners: UIRectCorner = .AllCorners, radius: CGFloat) {
-        self.allowedCorners = allowedCorners
-        self.radius = radius
-    }
-}
-
-private extension BlockDecoration {
-    var corners: UIRectCorner {
-        switch self {
-        case .Full:
-            return [.TopLeft, .TopRight, .BottomLeft, .BottomRight]
-        case .Top:
-            return [.TopLeft, .TopRight]
-        case .Bottom:
-            return [.BottomLeft, .BottomRight]
-        default:
-            return []
-        }
-    }
-}
-
 private extension UIEdgeInsets {
-    func clip(decoration decoration: BlockDecoration, offset: CGFloat = 0) -> UIEdgeInsets {
-        switch decoration {
+    func clip(type type: DecorationType, offset: CGFloat = 0) -> UIEdgeInsets {
+        switch type {
         case .Full:
             return UIEdgeInsets(top: top + offset, left: left + offset, bottom: bottom + offset, right: right + offset)
         case .Top:
@@ -60,39 +21,29 @@ private extension UIEdgeInsets {
     }
 }
 
-public struct DecorationModel {
-    public let color: UIColor
-    public let border: Border?
-    public let padding: UIEdgeInsets
-    public let cornerInfo: CornerInfo
+struct DecorationLayerModel {
+    private let color: UIColor
+    private let border: Border?
+    private let padding: UIEdgeInsets
+    private let cornerInfo: CornerInfo
     
-    public init(color: UIColor, padding: UIEdgeInsets = UIEdgeInsets(), cornerInfo: CornerInfo = CornerInfo(allowedCorners: .AllCorners, radius: 8), border: Border? = nil) {
+    init(color: UIColor,
+         padding: UIEdgeInsets = UIEdgeInsets(),
+         cornerInfo: CornerInfo = CornerInfo(radius: 8, position: .AllCorners),
+         border: Border? = nil
+        ) {
         self.color = color
         self.padding = padding
         self.cornerInfo = cornerInfo
         self.border = border
     }
     
-    public func padding(decoration decoration: BlockDecoration) -> UIEdgeInsets {
-        return padding.clip(decoration: decoration)
+    func padding(type type: DecorationType) -> UIEdgeInsets {
+        return padding.clip(type: type)
     }
     
-    private func corners(decoration decoration: BlockDecoration) -> UIRectCorner {
-        return decoration.corners.intersect(cornerInfo.allowedCorners)
-    }
-    
-    private func maskingPath(rect rect: CGRect, decoration: BlockDecoration) -> UIBezierPath {
-        let corners = self.corners(decoration: decoration)
-        let cornerRadii = self.cornerInfo.radii
-        let padding = self.padding(decoration: decoration)
-        let frame = rect.insetsBy(padding)
-        let path = UIBezierPath(roundedRect: frame, byRoundingCorners: corners, cornerRadii: cornerRadii)
-        path.closePath()
-        return path
-    }
-    
-    public func strokingPath(forRect rect: CGRect, decoration: BlockDecoration) -> UIBezierPath? {
-        let padding = self.padding(decoration: decoration)
+    func strokingPath(rect rect: CGRect, type: DecorationType) -> UIBezierPath? {
+        let padding = self.padding(type: type)
         let decorationRect = rect.insetsBy(padding)
         let path = UIBezierPath()
         let left = decorationRect.minX
@@ -101,13 +52,13 @@ public struct DecorationModel {
         let bottom = decorationRect.maxY
         let cornerRadius = cornerInfo.radius
         
-        switch decoration {
+        switch type {
         case .None:
             return nil
         case .Full:
-            return maskingPath(rect: rect, decoration: decoration)
+            return maskingPath(rect: rect, type: type)
         case .Top:
-            let corners = self.corners(decoration: decoration)
+            let corners = cornerInfo.corners(decoration: type)
             path.moveToPoint(CGPoint(x: left, y: bottom))
             
             if corners.contains(.TopLeft) {
@@ -135,7 +86,7 @@ public struct DecorationModel {
             path.moveToPoint(CGPoint(x: right, y: top))
             path.addLineToPoint(CGPoint(x: right, y: bottom))
         case .Bottom:
-            let corners = self.corners(decoration: decoration)
+            let corners = cornerInfo.corners(decoration: type)
             path.moveToPoint(CGPoint(x: left, y: top))
             
             if corners.contains(.BottomLeft) {
@@ -162,14 +113,39 @@ public struct DecorationModel {
         return path
     }
     
-    public func maskingLayer(forBounds bounds: CGRect, decoration: BlockDecoration) -> CAShapeLayer {
-        let outerPath = UIBezierPath(rect: bounds)
+    func mask(rect rect: CGRect, type: DecorationType) -> CAShapeLayer {
+        let outerPath = UIBezierPath(rect: rect)
         outerPath.usesEvenOddFillRule = true
-        let maskPath = maskingPath(rect: bounds, decoration: decoration)
+        let maskPath = maskingPath(rect: rect, type: type)
         outerPath.appendPath(maskPath)
         let maskLayer = CAShapeLayer()
+        maskLayer.frame = rect
         maskLayer.path = outerPath.CGPath
         maskLayer.fillRule = kCAFillRuleEvenOdd
         return maskLayer
+    }
+    
+    var maskedLayer: CALayer {
+        let layer = CALayer()
+        layer.backgroundColor = color.CGColor
+        return layer
+    }
+    
+    var strokeLayer: CAShapeLayer? {
+        guard let border = border else { return nil }
+        let layer = CAShapeLayer()
+        layer.strokeColor = border.color.CGColor
+        layer.fillColor = UIColor.clearColor().CGColor
+        return layer
+    }
+
+    private func maskingPath(rect rect: CGRect, type: DecorationType) -> UIBezierPath {
+        let corners = cornerInfo.corners(decoration: type)
+        let cornerRadii = self.cornerInfo.radii
+        let padding = self.padding(type: type)
+        let frame = rect.insetsBy(padding)
+        let path = UIBezierPath(roundedRect: frame, byRoundingCorners: corners, cornerRadii: cornerRadii)
+        path.closePath()
+        return path
     }
 }

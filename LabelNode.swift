@@ -10,64 +10,55 @@ import UIKit
 import AsyncDisplayKit
 import Core
 
-public struct LabelModel {
-    let text: String
-    let font: UIFont
-    let textColor: UIColor
-    let textInsets: UIEdgeInsets
-    let backgroundColor: UIColor
-    
-    public init(text: String,
-                font: UIFont = Fonts.labelFont.fallbackWithSize(10),
-                textColor: UIColor = Colors.labelTextColor,
-                textInsets: UIEdgeInsets = UIEdgeInsets(top: 4, left: 10, bottom: 4, right: 10),
-                backgroundColor: UIColor  = Colors.labelBackgroundColor) {
-        self.text = text
-        self.font = font
-        self.textColor = textColor
-        self.textInsets = textInsets
-        self.backgroundColor = backgroundColor
-    }
-    var attributes: StringAttributes {
-        return StringAttributes(font: font, foregroundColor: textColor, lineSpacing: 0)
-    }
-    var attributedString: NSAttributedString {
-        return NSAttributedString(string: text, attributes: attributes.dictionary)
-    }
+struct LabelContent {
+    let text: NSAttributedString
+    let insets: UIEdgeInsets
+    let backgroundColor: UIColor?
+    let corners: CornerInfo?
+    let border: Border?
+    let bullet: Bullet?
 }
 
-public class LabelNode : ASDisplayNode {
+class LabelNode : ASDisplayNode {
     let textNode = ASTextNode()
-    let model: LabelModel
-    public init?(model: LabelModel?) {
-        guard let model = model else { return nil }
+    let bulletNode: ASDisplayNode?
+    
+    let label: LabelContent
+    
+    init(label: LabelContent ) {
+        self.label = label
+        bulletNode = BulletNode(bullet: label.bullet)
         
-        self.model = model
         super.init()
-        self.addSubnode(self.textNode)
+        
+        backgroundColor = label.backgroundColor
+        cornerRadius = label.corners?.radius ?? 0
+        borderColor = label.border?.color.CGColor
+        borderWidth = label.border?.width ?? 0
+        
+        // bullet
+        if let bulletNode = bulletNode {
+            addSubnode(bulletNode)
+        }
+        
+        // text
+        addSubnode(self.textNode)
+        textNode.attributedText = label.text
         textNode.userInteractionEnabled = true
         textNode.linkAttributeNames = [ linkAttributeName ];
     }
     
-    public var text: NSAttributedString? {
-        didSet {
-            self.textNode.attributedString = text
-        }
+    // optional initializer that returns nil if label is nil. this makes it more convenient to initialize an optional labelNode in containing nodes
+    convenience init?(label: LabelContent?) {
+        guard let label = label else { return nil }
+        self.init(label: label)
     }
     
-    override public func calculateSizeThatFits(constrainedSize: CGSize) -> CGSize {
-        let textSize = self.textNode.calculateSizeThatFits(constrainedSize)
-        let width = textSize.width + (model.textInsets.left + model.textInsets.right)
-        let height = textSize.height + (model.textInsets.top + model.textInsets.bottom)
-        return CGSize(width: width, height: height)
-    }
-    
-    override public func layout() {
-        super.layout()
-        let width = self.frame.width - (model.textInsets.left + model.textInsets.right)
-        let height = self.frame.height - (model.textInsets.top + model.textInsets.bottom)
-        let origin = CGPoint(x: (frame.width-width)/2, y: model.textInsets.top)
-        self.textNode.frame = CGRect(origin: origin, size: CGSize(width: width, height: height))
+    override func layoutSpecThatFits(constrainedSize: ASSizeRange) -> ASLayoutSpec {
+        let optionalNodes: [ASLayoutable?] = [bulletNode, textNode]
+        let nodes = optionalNodes.flatMap { $0 }
+        let stackSpec = ASStackLayoutSpec(direction: .Horizontal, spacing: 10, justifyContent: .Start, alignItems: .Center, children: nodes)
+        return ASInsetLayoutSpec(insets: label.insets, child: stackSpec)
+
     }
 }
-    
