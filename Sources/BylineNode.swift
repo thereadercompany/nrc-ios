@@ -10,7 +10,7 @@ import UIKit
 import AsyncDisplayKit
 import Core
 
-class BylineContent: CellContent {
+class BylineContent: Content {
     let icon: InlineIcon
     let text: NSAttributedString
     

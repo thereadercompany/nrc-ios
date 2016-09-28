@@ -14,6 +14,14 @@ private extension CGSize {
     }
 }
 
+private extension CGSize {
+    func scale(factor factor: CGFloat) -> CGSize {
+        let width = self.width * factor
+        let height = self.height * factor
+        return CGSize(width: width, height: height)
+    }
+}
+
 enum ImageSize {
     case Small
     case Medium
@@ -49,5 +57,11 @@ struct ImagePolicy {
 
     func URL(media media: Media, size: ImageSize) -> NSURL {
         return mediaLocator.URL(media: media, size: size.size)
+    }
+    
+    // size in points
+    func URL(media media: Media, size: CGSize) -> NSURL {
+        let sizeInPixels = size.scale(factor: UIScreen.mainScreen().scale)
+        return mediaLocator.URL(media: media, size: sizeInPixels)
     }
 }

@@ -25,4 +25,12 @@ extension ASNetworkImageNode {
         self.init()
         self.URL = url
     }
+//    
+//    convenience init?(image: Image?) {
+//        guard let image = image else { return nil }
+//        self.init()
+//        if case .Sized(let url) = image.URL {
+//            self.URL = url
+//        }
+//    }
 }

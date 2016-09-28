@@ -1,19 +1,19 @@
 //
-//  SectionRefBlock.swift
+//  ImageBlock.swift
 //  NRC
 //
-//  Created by Taco Vollmer on 24/08/16.
+//  Created by Taco Vollmer on 14/09/16.
 //  Copyright © 2016 TRC. All rights reserved.
 //
 
 import UIKit
 import Core
 
-class SectionRefBlock: Block {
-    let title: String
+class ImageBlock: Core.ImageBlock {
+    let credit: String?
     
     required init?(decoder: JSONDecoder, context: String) {
-        title = decoder.value(["attributes", "label"], "")
+        credit = decoder.value(["attributes", "credit"])
         super.init(decoder: decoder, context: context)
         if decoder.error != nil { return nil }
     }

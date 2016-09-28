@@ -26,18 +26,18 @@ private extension DecorationType {
 
 struct CornerInfo {
     let radius: CGFloat
-    let position: UIRectCorner
+    let corners: UIRectCorner
     
     var radii: CGSize {
         return CGSize(width: radius, height: radius)
     }
     
-    init(radius: CGFloat, position: UIRectCorner = .AllCorners) {
+    init(radius: CGFloat, corners: UIRectCorner = .AllCorners) {
         self.radius = radius
-        self.position = position
+        self.corners = corners
     }
     
     func corners(decoration type: DecorationType) -> UIRectCorner {
-        return position.intersect(type.corners)
+        return corners.intersect(type.corners)
     }
 }

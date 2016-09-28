@@ -1,4 +1,4 @@
-
+//
 //  SectionHeaderNode.swift
 //  NRC
 //
@@ -10,7 +10,7 @@ import UIKit
 import AsyncDisplayKit
 import Core
 
-class SectionHeaderContent: CellContent {
+class SectionHeaderContent: Content {
     let title: NSAttributedString
     let height: CGFloat
     

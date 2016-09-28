@@ -32,7 +32,7 @@ extension Theme: Decodable {
 class ArticleRefBlock: Core.ArticleRefBlock {
     let url: NSURL?
     let theme: Theme
-    required internal init?(decoder: JSONDecoder, context: BlockContextType) {
+    required internal init?(decoder: JSONDecoder, context: String) {
         url = decoder.value(["attributes", "url"])
         theme = decoder.value(["attributes", "theme"], .Default)
         super.init(decoder: decoder, context: context)

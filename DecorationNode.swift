@@ -51,6 +51,7 @@ class DecorationNode: ASDisplayNode {
         strokeLayer = decoration.strokeLayer
         
         super.init()
+        self.clipsToBounds = false
         layer.addSublayer(maskedLayer)
         
         if let strokeLayer = strokeLayer {

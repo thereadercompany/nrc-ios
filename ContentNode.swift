@@ -10,7 +10,7 @@ import UIKit
 import AsyncDisplayKit
 import Core
 
-class CellContent {
+class Content {
     let backgroundColor: UIColor
     let padding: UIEdgeInsets
     
@@ -20,7 +20,10 @@ class CellContent {
     }
 }
 
-class ContentNode<C: CellContent>: ASDisplayNode {
+/*
+ Abstract Node for displaying Content
+*/
+class ContentNode<C: Content>: ASDisplayNode {
     let content: C
     
     required init(content: C) {

@@ -10,8 +10,8 @@ import UIKit
 import AsyncDisplayKit
 import Core
 
-//MARK: - content
-class ArticleRefNodeContent: CellContent {
+//MARK: - Content
+class ArticleRefNodeContent: Content {
     let articleIdentifier: String
     let url: NSURL?
     let title: NSAttributedString

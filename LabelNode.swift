@@ -17,6 +17,15 @@ struct LabelContent {
     let corners: CornerInfo?
     let border: Border?
     let bullet: Bullet?
+    
+    init (text: NSAttributedString, insets: UIEdgeInsets, backgroundColor: UIColor? = nil, corners: CornerInfo? = nil, border: Border? = nil, bullet: Bullet? = nil) {
+        self.text = text
+        self.insets = insets
+        self.backgroundColor = backgroundColor
+        self.corners = corners
+        self.border = border
+        self.bullet = bullet
+    }
 }
 
 class LabelNode : ASDisplayNode {

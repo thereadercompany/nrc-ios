@@ -22,9 +22,9 @@ enum InlineIcon: String, Decodable {
 class BylineBlock: PlainTextBlock {
     let icon: InlineIcon
     
-    required init?(decoder: JSONDecoder, context: BlockContextType) {
+    required init?(decoder: JSONDecoder, context: String) {
         icon = decoder.value(["attributes", "icon-name"], nullValue: .Pen)
         super.init(decoder: decoder, context: context)
         if decoder.error != nil { return nil }
-    }
+    }    
 }

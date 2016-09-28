@@ -1,6 +1,6 @@
 //
 //  SwinjectStoryboard+Setup.swift
-//  boeckler
+//  Core
 //
 //  Created by Emiel van der Veen on 24/11/15.
 //
@@ -32,7 +32,8 @@ func setupDefaultContainer() -> Container {
         blockDecoder.register([
             "article-refs" : ArticleRefBlock.self,
             "section-refs" : SectionRefBlock.self,
-            "bylines" : BylineBlock.self
+            "bylines" : BylineBlock.self,
+            "images" : ImageBlock.self,
         ])
 
         return blockDecoder

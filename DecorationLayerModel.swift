@@ -23,13 +23,13 @@ private extension UIEdgeInsets {
 
 struct DecorationLayerModel {
     private let color: UIColor
-    private let border: Border?
     private let padding: UIEdgeInsets
     private let cornerInfo: CornerInfo
+    private let border: Border?
     
     init(color: UIColor,
          padding: UIEdgeInsets = UIEdgeInsets(),
-         cornerInfo: CornerInfo = CornerInfo(radius: 8, position: .AllCorners),
+         cornerInfo: CornerInfo = CornerInfo(radius: 0, corners: .AllCorners),
          border: Border? = nil
         ) {
         self.color = color
@@ -39,7 +39,9 @@ struct DecorationLayerModel {
     }
     
     func padding(type type: DecorationType) -> UIEdgeInsets {
-        return padding.clip(type: type)
+        // correction for drawing a line around a point, half before and half after
+        let offset = (border?.width ?? 0)/2
+        return padding.clip(type: type, offset: offset)
     }
     
     func strokingPath(rect rect: CGRect, type: DecorationType) -> UIBezierPath? {
