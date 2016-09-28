@@ -3,3 +3,4 @@ core-ios
 Podfile.lock
 Pods
 xcuserdata
+/Carthage/Checkouts
