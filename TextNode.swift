@@ -10,7 +10,7 @@ import UIKit
 import AsyncDisplayKit
 import Core
 
-class TextContent: Content {
+class TextNodeContent: Content {
     let text: NSAttributedString
     
     init(text: NSAttributedString, backgroundColor: UIColor, padding: UIEdgeInsets = UIEdgeInsets()) {
@@ -19,7 +19,7 @@ class TextContent: Content {
     }
 }
 
-class TextNode<C: TextContent>: ContentNode<C> {
+class TextNode<C: TextNodeContent>: ContentNode<C>, ASTextNodeDelegate {
     let textNode = ASTextNode()
     
     required init(content: C) {

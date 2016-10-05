@@ -66,11 +66,11 @@ class CellFactory: Core.CellFactory {
     }
     
     //MARK: - SectionRef
-    private func contentNode(block block: SectionRefBlock) -> SectionHeaderNode {
+    private func contentNode(block block: SectionRefBlock) -> SectionRefNode<SectionRefNodeContent> {
         let attributes = StringAttributes(font: Fonts.mediumFont.fallbackWithSize(20), foregroundColor: UIColor.blackColor())
         let title = NSAttributedString(string: block.title, attributes: attributes)
-        let content = SectionHeaderContent(title: title)
-        return SectionHeaderNode(content: content)
+        let content = SectionRefNodeContent(title: title)
+        return SectionRefNode(content: content)
     }
     
     //MARK: - ArticleRef
@@ -125,7 +125,7 @@ class CellFactory: Core.CellFactory {
             url: articleRef.url,
             title: title,
             abstract: abstract,
-            label: articleRef.labelContent,
+            label: articleRef.labelNodeContent,
             line: articleRef.lineModel,
             imageURL: imageURL,
             backgroundColor: articleRef.theme.backgroundColor,
@@ -164,7 +164,7 @@ class CellFactory: Core.CellFactory {
     }
     
     //MARK: - Text
-    private func contentNode(block textBlock: TextBlock) -> TextNode<TextContent> {
+    private func contentNode(block textBlock: TextBlock) -> TextNode<TextNodeContent> {
         let font: UIFont
         let textColor: UIColor
         let lineSpacing: CGFloat
@@ -257,12 +257,12 @@ class CellFactory: Core.CellFactory {
             styleSheet: .shared
         )
         let text = NSAttributedString(string: textBlock.richText, attributes: attributes, style: textBlock.blockStyle)
-        let content = TextContent(text: text, backgroundColor: backgroundColor, padding: padding)
+        let content = TextNodeContent(text: text, backgroundColor: backgroundColor, padding: padding)
         return TextNode(content: content)
     }
     
     //MARK: - PlainText
-    func contentNode(block textBlock: PlainTextBlock) -> TextNode<TextContent> {
+    func contentNode(block textBlock: PlainTextBlock) -> TextNode<TextNodeContent> {
         let font: UIFont
         let fontColor: UIColor
         let padding: UIEdgeInsets
@@ -295,12 +295,12 @@ class CellFactory: Core.CellFactory {
         )
         
         let text = NSAttributedString(string: textBlock.plainText, attributes: attributes)
-        let content = TextContent(text: text, backgroundColor: Colors.cellBackgroundColor, padding: padding)
+        let content = TextNodeContent(text: text, backgroundColor: Colors.cellBackgroundColor, padding: padding)
         return TextNode(content: content)
     }
     
     //MARK: - Image
-    func contentNode(block imageBlock: ImageBlock) -> ImageNode<ImageContent> {
+    func contentNode(block imageBlock: ImageBlock) -> ImageNode<ImageNodeContent> {
         let media = imageBlock.media
         let URL: CGSize -> NSURL = { [unowned self] size in
             return self.imagePolicy.URL(media: media, size: size)
@@ -356,7 +356,7 @@ class CellFactory: Core.CellFactory {
             credit = NSAttributedString(string: string, attributes: attributes, style: imageBlock.blockStyle)
         }
         
-        let content = ImageContent(
+        let content = ImageNodeContent(
             image: image,
             caption: caption,
             credit: credit,
@@ -367,7 +367,7 @@ class CellFactory: Core.CellFactory {
     }
     
     //MARK: - Divider
-    func contentNode(block dividerBlock: DividerBlock) -> DividerNode<DividerContent> {
+    func contentNode(block dividerBlock: DividerBlock) -> DividerNode<DividerNodeContent> {
         let backgroundColor: UIColor
         let line: Line
         let padding: UIEdgeInsets
@@ -403,19 +403,14 @@ class CellFactory: Core.CellFactory {
             padding = UIEdgeInsets(top: 0, left: 0, bottom: 10, right: 0)
         }
     
-        var label: LabelContent? = nil
+        var label: LabelNodeContent? = nil
         if let string = dividerBlock.label {
             let attributes = StringAttributes(font: Fonts.labelFont.fallbackWithSize(10), foregroundColor: Colors.dividerTextColor, lineSpacing: 0)
             let text = NSAttributedString(string: string, attributes: attributes)
-            label = LabelContent(text: text, insets: UIEdgeInsets(top: 0, left: 12, bottom: 0, right: 12))
+            label = LabelNodeContent(text: text, insets: UIEdgeInsets(top: 0, left: 12, bottom: 0, right: 12))
         }
         
-        let content = DividerContent(line: line,
-                                     label: label,
-                                     backgroundColor: backgroundColor,
-                                     padding: padding
-        )
-        
+        let content = DividerNodeContent(line: line, label: label, backgroundColor: backgroundColor, padding: padding)
         return DividerNode(content: content)
     }
 }
@@ -471,7 +466,7 @@ private extension ArticleRefBlock {
         return Line(color: color, thickness: thickness)
     }
     
-    var labelContent: LabelContent? {
+    var labelNodeContent: LabelNodeContent? {
         guard let string = label else { return nil }
 
         let textColor: UIColor
@@ -508,7 +503,7 @@ private extension ArticleRefBlock {
         )
         let text = NSAttributedString(string: string, attributes: attributes)
 
-        return LabelContent(
+        return LabelNodeContent(
             text: text,
             insets: insets,
             backgroundColor: backgroundColor,

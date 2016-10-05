@@ -16,7 +16,7 @@ class ArticleRefNodeContent: Content {
     let url: NSURL?
     let title: NSAttributedString
     let abstract: NSAttributedString?
-    let label: LabelContent?
+    let label: LabelNodeContent?
     let line: Line?
     let imageURL: NSURL?
     
@@ -24,7 +24,7 @@ class ArticleRefNodeContent: Content {
          url: NSURL?,
          title: NSAttributedString,
          abstract: NSAttributedString?,
-         label: LabelContent?,
+         label: LabelNodeContent?,
          line: Line?,
          imageURL: NSURL?,
          backgroundColor: UIColor,

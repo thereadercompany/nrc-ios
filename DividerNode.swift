@@ -9,18 +9,18 @@
 import Foundation
 import AsyncDisplayKit
 
-class DividerContent: Content {
+class DividerNodeContent: Content {
     let line: Line
-    let label: LabelContent?
+    let label: LabelNodeContent?
     
-    init(line: Line, label: LabelContent? = nil, backgroundColor: UIColor, padding: UIEdgeInsets) {
+    init(line: Line, label: LabelNodeContent? = nil, backgroundColor: UIColor, padding: UIEdgeInsets) {
         self.line = line
         self.label = label
         super.init(backgroundColor: backgroundColor, padding: padding)
     }
 }
 
-class DividerNode<C: DividerContent> : ContentNode<C> {
+class DividerNode<C: DividerNodeContent> : ContentNode<C> {
     let leftLine = ASDisplayNode()
     let rightLine = ASDisplayNode()
     let labelNode: LabelNode?

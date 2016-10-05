@@ -10,7 +10,7 @@ import UIKit
 import AsyncDisplayKit
 import Core
 
-struct LabelContent {
+struct LabelNodeContent {
     let text: NSAttributedString
     let insets: UIEdgeInsets
     let backgroundColor: UIColor?
@@ -32,9 +32,9 @@ class LabelNode : ASDisplayNode {
     let textNode = ASTextNode()
     let bulletNode: ASDisplayNode?
     
-    let label: LabelContent
+    let label: LabelNodeContent
     
-    init(label: LabelContent ) {
+    init(label: LabelNodeContent ) {
         self.label = label
         bulletNode = BulletNode(bullet: label.bullet)
         
@@ -58,7 +58,7 @@ class LabelNode : ASDisplayNode {
     }
     
     // optional initializer that returns nil if label is nil. this makes it more convenient to initialize an optional labelNode in containing nodes
-    convenience init?(label: LabelContent?) {
+    convenience init?(label: LabelNodeContent?) {
         guard let label = label else { return nil }
         self.init(label: label)
     }

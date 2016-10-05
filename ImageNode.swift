@@ -15,7 +15,7 @@ struct Image {
     let aspectRatio: CGFloat
 }
 
-class ImageContent: Content {
+class ImageNodeContent: Content {
     let image: Image
     let caption: NSAttributedString?
     let credit: NSAttributedString?
@@ -33,7 +33,7 @@ class ImageContent: Content {
     }
 }
 
-class ImageNode<C: ImageContent>: ContentNode<C> {
+class ImageNode<C: ImageNodeContent>: ContentNode<C> {
     let imageNode = ASNetworkImageNode()
     let captionNode: ASTextNode?
     let creditNode: ASTextNode?

@@ -10,7 +10,7 @@ import UIKit
 import AsyncDisplayKit
 import Core
 
-class SectionHeaderContent: Content {
+class SectionRefNodeContent: Content {
     let title: NSAttributedString
     let height: CGFloat
     
@@ -25,11 +25,11 @@ class SectionHeaderContent: Content {
     }
 }
 
-class SectionHeaderNode: ContentNode<SectionHeaderContent> {
+class SectionRefNode<C: SectionRefNodeContent>: ContentNode<C> {
     let titleNode = ASTextNode()
     let sizeNode = ASDisplayNode()
     
-    required init(content: SectionHeaderContent) {
+    required init(content: C) {
         super.init(content: content)
         titleNode.attributedText = content.title
         addSubnode(titleNode)
