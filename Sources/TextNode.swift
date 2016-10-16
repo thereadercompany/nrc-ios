@@ -62,7 +62,7 @@ final class TextNode: ContentNode<TextNodeContent>, ASTextNodeDelegate {
     //MARK: ASTextNodeDelegate
     func textNode(textNode: ASTextNode, tappedLinkAttribute attribute: String, value: AnyObject, atPoint point: CGPoint, textRange: NSRange) {
         if let URL = value as? NSURL {
-            actionHandler?.handleAction(.OpenURL(URL, textLink: true), sender: self)
+            actionHandler?.handleAction(.OpenURL(URL), sender: self)
         }
     }
     

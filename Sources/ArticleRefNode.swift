@@ -93,7 +93,7 @@ class ArticleRefNode: ContentNode<ArticleRefNodeContent> {
     override func handleTap() {
         let action: Action
         if let url = content.url {
-            action = .OpenURL(url, textLink: false)
+            action = .OpenURL(url)
         }
         else {
             action = .ShowArticle(identifier: content.articleIdentifier, imageNode: imageNode)

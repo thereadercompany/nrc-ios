@@ -53,10 +53,7 @@ struct AppConfig {
     static let customScheme = "hbsmb"
     
     static let showTimelineDelay: NSTimeInterval = 1
-    
-    // AsyncDisplayKit
-    static let linkAttributeName = "NSALink"
-    
+        
     static func registerDefaults() {
         var defaults:[String : AnyObject] = [:]
         defaults[AppConfigKey.BaseServerURL.rawValue] = server.rawValue+"/__api__";

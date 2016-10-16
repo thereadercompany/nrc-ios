@@ -94,7 +94,7 @@ func setupDefaultContainer() -> Container {
         
         let logoImage = UIImage(named: "nrc-nl-logo-grey")!
         let logo = BlockContextBackgroundLogo(image: logoImage, topMargin: 196 + 20)
-        let backgroundViewController = BlockContextBackgroundViewController(backgroundColor: TimelineStyles.backgroundColor, logo: logo)
+        let backgroundViewController = BlockContextBackgroundViewController(backgroundColor: Colors.timelineBackgroundColor, logo: logo)
         c.backgroundViewController = backgroundViewController
 
         let navController = CustomTimelineNavigationViewController()

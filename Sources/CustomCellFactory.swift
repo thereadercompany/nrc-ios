@@ -467,7 +467,7 @@ class CellFactory: Core.CellFactory {
                 border: border,
                 cornerInfo: CornerInfo(radius: 2),
                 backgroundColor: backgroundColor,
-                action: .OpenURL(button.URL, textLink: false),
+                action: .OpenURL(button.URL),
                 tracker: tracker
             )
         }

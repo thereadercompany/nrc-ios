@@ -150,14 +150,14 @@ final class TweetNode: ContentNode<TweetNodeContent>, ASTextNodeDelegate {
     
     override func handleTap() {
         if let URL = content.URL {
-            actionHandler?.handleAction(.OpenURL(URL, textLink: false), sender: self)
+            actionHandler?.handleAction(.OpenURL(URL), sender: self)
         }
     }
         
     //MARK: - TextNodeDelegate
     func textNode(textNode: ASTextNode, tappedLinkAttribute attribute: String, value: AnyObject, atPoint point: CGPoint, textRange: NSRange) {
         if let URL = value as? NSURL {
-            actionHandler?.handleAction(.OpenURL(URL, textLink: true), sender: self)
+            actionHandler?.handleAction(.OpenURL(URL), sender: self)
         }
     }
     
