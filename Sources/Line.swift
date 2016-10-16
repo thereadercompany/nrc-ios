@@ -8,6 +8,9 @@
 
 import Foundation
 
+/**
+ Model Object for drawing a line
+ */
 struct Line {
     let color: UIColor
     let thickness: CGFloat

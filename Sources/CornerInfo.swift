@@ -9,21 +9,9 @@
 import Foundation
 import Core
 
-private extension DecorationType {
-    var corners: UIRectCorner {
-        switch self {
-        case .Full:
-            return [.TopLeft, .TopRight, .BottomLeft, .BottomRight]
-        case .Top:
-            return [.TopLeft, .TopRight]
-        case .Bottom:
-            return [.BottomLeft, .BottomRight]
-        default:
-            return []
-        }
-    }
-}
-
+/**
+ Model object for drawing rounded corners
+ */
 struct CornerInfo {
     let radius: CGFloat
     let corners: UIRectCorner
@@ -37,7 +25,24 @@ struct CornerInfo {
         self.corners = corners
     }
     
+    /** returns: the `UIRectCorner` set that intersects with `corners` */
     func corners(decoration type: DecorationType) -> UIRectCorner {
         return corners.intersect(type.corners)
+    }
+}
+
+private extension DecorationType {
+    /** Converts a DecorationType to a UIRectcorner OptionSet */
+    var corners: UIRectCorner {
+        switch self {
+        case .Full:
+            return [.TopLeft, .TopRight, .BottomLeft, .BottomRight]
+        case .Top:
+            return [.TopLeft, .TopRight]
+        case .Bottom:
+            return [.BottomLeft, .BottomRight]
+        default:
+            return []
+        }
     }
 }

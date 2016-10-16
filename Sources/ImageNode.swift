@@ -10,41 +10,52 @@ import UIKit
 import Core
 import AsyncDisplayKit
 
-struct Image {
-    let URL : (size: CGSize) -> NSURL
-    let aspectRatio: CGFloat
-}
-
-class ImageNodeContent: Content {
+/**
+ Content for the ImageNode
+ */
+final class ImageNodeContent: Content {
     let image: Image
     let caption: NSAttributedString?
     let credit: NSAttributedString?
+    let gradient: LinearGradient?
     
     init(image: Image,
-         caption: NSAttributedString?,
-         credit: NSAttributedString?,
+         caption: NSAttributedString? = nil,
+         credit: NSAttributedString? = nil,
+         gradient: LinearGradient? = nil,
          backgroundColor: UIColor,
          padding: UIEdgeInsets = UIEdgeInsets()
         ) {
         self.image = image
         self.caption = caption
         self.credit = credit
+        self.gradient = gradient
         super.init(backgroundColor: backgroundColor, padding: padding)
     }
 }
 
-class ImageNode<C: ImageNodeContent>: ContentNode<C> {
-    let imageNode = ASNetworkImageNode()
+/**
+ Node for rendering an image
+ */
+final class ImageNode: ContentNode<ImageNodeContent> {
+    let imageNode: ASNetworkImageNode
+    let gradientNode: ASDisplayNode?
     let captionNode: ASTextNode?
     let creditNode: ASTextNode?
     
-    required init(content: C) {
+    required init(content: ImageNodeContent) {
+        imageNode = ASNetworkImageNode(image: content.image)
+        gradientNode = ASDisplayNode(gradient: content.gradient)
         captionNode = ASTextNode(text: content.caption)
         creditNode = ASTextNode(text: content.credit)
         
         super.init(content: content)
-        
+        imageNode.URL = content.image.URL
         addSubnode(imageNode)
+        
+        if let gradientNode = gradientNode {
+            addSubnode(gradientNode)
+        }
         
         if let captionNode = captionNode {
             addSubnode(captionNode)
@@ -55,11 +66,25 @@ class ImageNode<C: ImageNodeContent>: ContentNode<C> {
         }
     }
     
+    /* 
+     optional initializer that returns nil if content is nil. this makes it more convenient to initialize an optional imageNode in containing nodes.
+    "content:" as argument name seems to confuse the type checker
+     */
+    convenience init?(optionalContent: ImageNodeContent?) {
+        guard let content = optionalContent else { return nil }
+        self.init(content: content)
+    }
+    
     override func layoutSpecThatFits(constrainedSize: ASSizeRange) -> ASLayoutSpec {
         let width = constrainedSize.max.width
         let height = width / content.image.aspectRatio
-        let imageSize = CGSize(width: width, height: height)
-        updateImageSize(imageSize)
+        let size = CGSize(width: width, height: height)
+        self.imageNode.preferredFrameSize = size
+        
+        var imageNode: ASLayoutable = self.imageNode
+        if let gradientNode = gradientNode {
+            imageNode = ASOverlayLayoutSpec(child: self.imageNode, overlay: gradientNode)
+        }
         
         let optionalCaptionNodes: [ASLayoutable?] = [captionNode, creditNode]
         let captionNodes = optionalCaptionNodes.flatMap { $0 }
@@ -74,10 +99,5 @@ class ImageNode<C: ImageNodeContent>: ContentNode<C> {
         
         let stackSpec = ASStackLayoutSpec(direction: .Vertical, spacing: 0, justifyContent: .Start, alignItems: .Start, children: contentNodes)
         return ASInsetLayoutSpec(insets: content.padding, child: stackSpec)
-    }
-    
-    private func updateImageSize(size: CGSize) {
-        imageNode.preferredFrameSize = size
-        imageNode.URL = content.image.URL(size: size)
     }
 }

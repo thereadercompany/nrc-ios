@@ -10,7 +10,10 @@ import UIKit
 import AsyncDisplayKit
 import Core
 
-class SectionRefNodeContent: Content {
+/**
+ Content for the SectionRefNode
+ */
+final class SectionRefNodeContent: Content {
     let title: NSAttributedString
     let height: CGFloat
     
@@ -25,21 +28,29 @@ class SectionRefNodeContent: Content {
     }
 }
 
-class SectionRefNode<C: SectionRefNodeContent>: ContentNode<C> {
+/**
+ Node for rendering a sectionRef with a title
+ */
+final class SectionRefNode: ContentNode<SectionRefNodeContent> {
     let titleNode = ASTextNode()
-    let sizeNode = ASDisplayNode()
     
-    required init(content: C) {
+    required init(content: SectionRefNodeContent) {
         super.init(content: content)
         titleNode.attributedText = content.title
         addSubnode(titleNode)
     }
     
     override func layoutSpecThatFits(constrainedSize: ASSizeRange) -> ASLayoutSpec {
-        sizeNode.preferredFrameSize = CGSize(width: constrainedSize.max.width, height: content.height)
-        let centeredContent = ASCenterLayoutSpec(centeringOptions: .XY, sizingOptions: .MinimumXY, child: titleNode)
-        let insettedContent = ASInsetLayoutSpec(insets: content.padding, child: centeredContent)
-        let sizedContent = ASOverlayLayoutSpec(child: sizeNode, overlay: insettedContent)
-        return sizedContent
+        let centeredContentSpec = ASCenterLayoutSpec(centeringOptions: .XY, sizingOptions: .MinimumXY, child: titleNode)
+        let paddedContentSpec = ASInsetLayoutSpec(insets: content.padding, child: centeredContentSpec)
+        
+        // stretch to max width and set the height
+        let size = ASRelativeSize(
+            width: ASRelativeDimension(type: .Percent, value: 1),
+            height: ASRelativeDimension(type: .Points, value: content.height)
+        )
+        paddedContentSpec.sizeRange = ASRelativeSizeRange(min: size, max: size)
+        
+        return ASStaticLayoutSpec(children: [paddedContentSpec])
     }
 }

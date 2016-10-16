@@ -21,6 +21,9 @@ private extension UIEdgeInsets {
     }
 }
 
+/**
+ Model for providing layers to the DecorationNode
+ */
 struct DecorationLayerModel {
     private let color: UIColor
     private let padding: UIEdgeInsets

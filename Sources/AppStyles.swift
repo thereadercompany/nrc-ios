@@ -149,8 +149,12 @@ public struct Colors {
     //MARK: Tweet
     static let tweetBackgroundColor = Colors.cellBackgroundColor
     static let tweetBorderColor = UIColor(red: 204/255, green: 214/255, blue: 221/255, alpha: 1)
-    static let tweetTextColor = UIColor(hex: 0x3E4447)
-    static let tweetSubHeadlineColor = UIColor(hex: 0xB1B4B5)
+    static let tweetTextColor = UIColor(red: 28/255, green: 32/255, blue: 34/255, alpha: 1)
+    static let tweetAuthorColor = UIColor(red: 105/255, green: 120/255, blue: 130/255, alpha: 1)
+    static let tweetTimestampColor = tweetAuthorColor
+    
+    //TODO: unused
+    static let tweetSubheadlineColor = UIColor(hex: 0xB1B4B5)
     
     //MARK: Information
     static let articleInformationBackgroundColor = UIColor(hex: 0xEFEFEF)
@@ -172,6 +176,11 @@ public struct Colors {
     static let dividerTextColor = UIColor(hex: 0xAAAAAA)
     static let dividerLineColor = UIColor(hex: 0xAAAAAA)
     
+    //MARK: Buttons
+    static let buttonBorderColor = UIColor(hex:0xC8C8C8)
+    static let callToActionColor = UIColor(hex:0x158B02)
+    static let normalButtonColor = UIColor.whiteColor()
+
     //MARK - NRC
     static let nrcRed = UIColor(hex: 0xD20810)
     static let nrcRedLight = UIColor(hex: 0xFBE9E9)
@@ -310,6 +319,15 @@ struct ArticleStyles {
     //    }
 }
 
+enum QuoteStyles {
+    static let quotationMarkFont = Fonts.textFont
+    static let quotationMarkFontSize = 33
+    static let lineColor = Colors.quoteLineColor
+    static let lineSize = CGSize(width: 48, height: 1)
+    static let spacingBeforeText: CGFloat = 18
+    static let spacingAfterText: CGFloat = 14
+    static let spacingAfterAuthor: CGFloat = 18
+}
 
 func backgroundImageProvider(imagePolicy: ImagePolicy, block: Block) -> [NSURL] {
     switch block {

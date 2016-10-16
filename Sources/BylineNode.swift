@@ -10,7 +10,10 @@ import UIKit
 import AsyncDisplayKit
 import Core
 
-class BylineContent: Content {
+/**
+ Content for BylineNode
+ */
+final class BylineNodeContent: Content {
     let icon: InlineIcon
     let text: NSAttributedString
     
@@ -25,12 +28,12 @@ class BylineContent: Content {
     }
 }
 
-class BylineNode: ContentNode<BylineContent> {
+final class BylineNode: ContentNode<BylineNodeContent> {
     let iconNode = ASImageNode()
     let textNode = ASTextNode()
     let padding = UIEdgeInsets(top: 0, left: ArticleStyles.textInset, bottom: 3, right: ArticleStyles.textInset)
     
-    required init(content: BylineContent) {
+    required init(content: BylineNodeContent) {
         super.init(content: content)
         self.addSubnode(iconNode)
         self.addSubnode(textNode)

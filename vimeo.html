@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            body { margin: 0; width:100%%; height:100%%;  background-color:#000000; }
+            html { width:100%%; height:100%%; background-color:#000000; }
+            .embed-container iframe,
+            .embed-container object,
+            .embed-container embed {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%% !important;
+                height: 100%% !important;
+            }
+        </style>
+        <script>
+            function getVideoElement() {
+                return document.getElementById('player1').contentWindow.document.getElementsByTagName('video')[0];
+            }
+            function play() {
+                $f('player1').api('play');
+            }
+            function pause() {
+                $f('player1').api('pause');
+            }
+            function iframeLoaded() {
+                //$f('player1').api('play') won't work here, because of limitation's in vimeo's embed
+                getVideoElement().play();
+            }
+        </script>
+    </head>
+    <body>
+        <div class="embed-container">
+            <div id="player">
+                <script src="https://f.vimeocdn.com/js/froogaloop2.min.js"></script>
+                <iframe id="player1" src="https://player.vimeo.com/video/%@?api=1&player_id=player1" frameborder="0" webkitallowfullscreen allowfullscreen onload="iframeLoaded()"></iframe>
+            </div>
+        </div>
+    </body>
+</html>

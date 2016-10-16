@@ -10,6 +10,9 @@ import UIKit
 import AsyncDisplayKit
 import Core
 
+/**
+ Model for DecorationNode
+ */
 struct Decoration {
     let type: DecorationType
     private let layerModel: DecorationLayerModel
@@ -40,6 +43,9 @@ struct Decoration {
     }
 }
 
+/**
+ Node for displaying a frame around content, with optional rounded corners and border
+ */
 class DecorationNode: ASDisplayNode {
     private let decoration: Decoration
     private let maskedLayer: CALayer
@@ -51,7 +57,6 @@ class DecorationNode: ASDisplayNode {
         strokeLayer = decoration.strokeLayer
         
         super.init()
-        self.clipsToBounds = false
         layer.addSublayer(maskedLayer)
         
         if let strokeLayer = strokeLayer {

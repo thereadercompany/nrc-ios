@@ -26,20 +26,32 @@ enum ImageSize {
     case Small
     case Medium
     case Large
+    case Fullscreen
     
     private var size: CGSize {
-        let sideLength: CGFloat
+        let screen = Screen.size
+        let size: CGSize
         switch self {
         case Small:
-            sideLength = UIScreen.mainScreen().bounds.width / 4
+            size = CGSize(singleDimension: screen.width / 4)
         case Medium:
-            sideLength = UIScreen.mainScreen().bounds.width
+            size = CGSize(singleDimension: screen.width)
         case Large:
-            sideLength = UIScreen.mainScreen().bounds.height
+            size = CGSize(singleDimension: screen.height)
+        case .Fullscreen:
+            size = screen
         }
         
-        let scaledSideLength = sideLength * UIScreen.mainScreen().scale
-        return CGSize(singleDimension: scaledSideLength)
+        let scale = Screen.scale
+        let scaleTransform = CGAffineTransformMakeScale(scale, scale)
+        
+        return CGSizeApplyAffineTransform(size, scaleTransform)
+    }
+    
+    private func size(aspectRatio ratio: CGFloat) -> CGSize {
+        let width = size.width
+        let height = width / ratio
+        return CGSize(width: width, height: height)
     }
 }
 
@@ -59,9 +71,14 @@ struct ImagePolicy {
         return mediaLocator.URL(media: media, size: size.size)
     }
     
+    func URL(media media: Media, size: ImageSize, aspectRatio: CGFloat) -> NSURL {
+        let size = size.size(aspectRatio: aspectRatio)
+        return mediaLocator.URL(media: media, size: size)
+    }
+    
     // size in points
     func URL(media media: Media, size: CGSize) -> NSURL {
-        let sizeInPixels = size.scale(factor: UIScreen.mainScreen().scale)
+        let sizeInPixels = size.scale(factor: Screen.scale)
         return mediaLocator.URL(media: media, size: sizeInPixels)
     }
 }

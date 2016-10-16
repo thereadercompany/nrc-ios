@@ -11,12 +11,18 @@ import Core
 import DTCoreText
 
 /**
- Provides a Cell with the correct contentNode for a Block
+ Provides a Cell for a Block
  */
 class CellFactory: Core.CellFactory {
     private let trackerFactory: TrackerFactory
     private let imagePolicy: ImagePolicy
     private let dataController: BlockContextDataController
+    
+    private let tweetDateFormatter: NSDateFormatter = {
+        let formatter = NSDateFormatter()
+        formatter.dateFormat = "hh:mm - d MMM YYYY"
+        return formatter
+    }()
 
     init(trackerFactory: TrackerFactory, dataController: BlockContextDataController, imagePolicy: ImagePolicy) {
         self.trackerFactory = trackerFactory
@@ -24,49 +30,65 @@ class CellFactory: Core.CellFactory {
         self.imagePolicy = imagePolicy
     }
 
-    func cell(block block: Block, delegate: CellDelegate?) -> ASCellNode {
+    func cell(block block: Block) -> ASCellNode {
         let decorationLayerModel = DecorationLayerModel.model(block: block)
         let decoration = Decoration(type: block.decoration, layerModel: decorationLayerModel)
-
+        
+        
+        let cell: Cell
         switch block {
         case let sectionRef as SectionRefBlock:
-            let node = contentNode(block: sectionRef)
-            return NRCCell(contentNode: node, decoration: decoration, delegate: delegate)
-        
+            let node = sectionRefNode(sectionRefBlock: sectionRef)
+            cell = NRCCell(contentNode: node, decoration: decoration)
         case let articleRef as ArticleRefBlock:
-            let node = contentNode(block: articleRef)
-            return NRCCell(contentNode: node, decoration: decoration, delegate: delegate)
-        
-        case let articleHeader as ArticleHeaderBlock:
-            return ArticleHeaderCell(articleHeaderBlock: articleHeader, styles: ArticleHeaderCellStyles())
+            let node = articleRefNode(articleRefBlock: articleRef)
+            cell = NRCCell(contentNode: node, decoration: decoration)
         case let bylineBlock as BylineBlock:
-            let node = contentNode(block: bylineBlock)
-            return NRCCell(contentNode: node, decoration: nil, delegate: delegate)
+            let node = bylineNode(bylineBlock: bylineBlock)
+            cell = NRCCell(contentNode: node, decoration: nil)
         case let spacingBlock as SpacingBlock:
-            let node = contentNode(block: spacingBlock)
-            return NRCCell(contentNode: node, decoration: nil, delegate: delegate)
+            let node = spacingNode(spacingBlock: spacingBlock)
+            cell = NRCCell(contentNode: node, decoration: nil)
         case let textBlock as TextBlock:
-            let node = contentNode(block: textBlock)
-            return NRCCell(contentNode: node, decoration: decoration, delegate: delegate)
+            let node = textNode(textBlock: textBlock)
+            cell = NRCCell(contentNode: node, decoration: decoration)
         case let plainTextBlock as PlainTextBlock:
-            let node = contentNode(block: plainTextBlock)
-            return NRCCell(contentNode: node, decoration: decoration, delegate: delegate)
+            let node = textNode(textBlock: plainTextBlock)
+            cell = NRCCell(contentNode: node, decoration: decoration)
         case let imageBlock as ImageBlock:
-            let node = contentNode(block: imageBlock)
-            return NRCCell(contentNode: node, decoration: decoration, delegate: delegate)
+            let node = imageNode(imageBlock: imageBlock)
+            cell = NRCCell(contentNode: node, decoration: decoration)
         case let dividerBlock as DividerBlock:
-            let node = contentNode(block: dividerBlock)
-            return NRCCell(contentNode: node, decoration: decoration, delegate: delegate)
-        default:()
+            let node = dividerNode(dividerBlock: dividerBlock)
+            cell = NRCCell(contentNode: node, decoration: decoration)
+        case let enhancedBannerBlock as EnhancedBannerBlock:
+            let node = enhancedBannerNode(enhancedBannerBlock: enhancedBannerBlock)
+            cell = NRCCell(contentNode: node, decoration: decoration)
+        case let tweetBlock as TweetBlock:
+            let node = tweetNode(tweetBlock: tweetBlock)
+            cell = NRCCell(contentNode: node, decoration: decoration)
+        case let youtubeBlock as YoutubeBlock:
+            let node = youtubeNode(youtubeBlock: youtubeBlock)
+            cell = NRCCell(contentNode: node, decoration: decoration)
+        case let vimeoBlock as VimeoBlock:
+            let node = vimeoNode(vimeoBlock: vimeoBlock)
+            cell = NRCCell(contentNode: node, decoration: decoration)
+        case let videoBlock as VideoBlock:
+            let node  = videoNode(videoBlock: videoBlock)
+            cell = NRCCell(contentNode: node, decoration: decoration)
+        default:
+            let node = FallbackContentNode(renderable: block)
+            return Cell(contentNode: node)
         }
-
-        //TODO: fallback
-        let fallbackBlock = FallbackBlock(block: block)
-        return FallbackContentCell(fallbackContentBlock: fallbackBlock, styles: FallbackContentCellStyles())
+        
+        // add tracker
+        cell.tracker = trackerFactory.createTracker(block.trackingData)
+        
+        return cell
     }
     
     //MARK: - SectionRef
-    private func contentNode(block block: SectionRefBlock) -> SectionRefNode<SectionRefNodeContent> {
+    private func sectionRefNode(sectionRefBlock block: SectionRefBlock) -> SectionRefNode {
         let attributes = StringAttributes(font: Fonts.mediumFont.fallbackWithSize(20), foregroundColor: UIColor.blackColor())
         let title = NSAttributedString(string: block.title, attributes: attributes)
         let content = SectionRefNodeContent(title: title)
@@ -74,7 +96,7 @@ class CellFactory: Core.CellFactory {
     }
     
     //MARK: - ArticleRef
-    private func contentNode(block articleRef: ArticleRefBlock) -> ArticleRefNode {
+    private func articleRefNode(articleRefBlock block: ArticleRefBlock) -> ArticleRefNode {
         let nodeType: ArticleRefNode.Type
         let titleFontSize: CGFloat
         let imageSize: ImageSize
@@ -82,7 +104,7 @@ class CellFactory: Core.CellFactory {
         var abstract: NSAttributedString? = nil
         
         // setup content by style and theme
-        switch (articleRef.blockStyle, articleRef.theme) {
+        switch (block.blockStyle, block.theme) {
         case (.Large, .Urgent),(.Large, .Live):
             nodeType = ExtraLargeArticleRefNode.self
             titleFontSize = 26
@@ -90,14 +112,14 @@ class CellFactory: Core.CellFactory {
             padding = UIEdgeInsets(top: 0, left: TimelineStyles.contentInset, bottom: TimelineStyles.contentInset, right: TimelineStyles.contentInset)
             
             // abstract
-            if let string = articleRef.abstract {
+            if let string = block.abstract {
                 let abstractAttributes = StringAttributes(
                     font: Fonts.lightFont.fallbackWithSize(20),
-                    foregroundColor: articleRef.theme.fontColor,
+                    foregroundColor: block.theme.fontColor,
                     lineSpacing: 3,
                     hyphenationFactor: 0.8
                 )
-                abstract = NSAttributedString(string: string, attributes: abstractAttributes, style: articleRef.blockStyle)
+                abstract = NSAttributedString(string: string, attributes: abstractAttributes, style: block.blockStyle)
             }
         case (.Large, .Highlight),(.Large, .Default):
             nodeType = LargeArticleRefNode.self
@@ -113,22 +135,23 @@ class CellFactory: Core.CellFactory {
         
         let titleAttributes = StringAttributes(
             font: Fonts.mediumFont.fallbackWithSize(titleFontSize),
-            foregroundColor: articleRef.theme.fontColor,
+            foregroundColor: block.theme.fontColor,
             lineSpacing: 2,
             hyphenationFactor: 0.8
         )
-        let title = NSAttributedString(string: articleRef.headline, attributes: titleAttributes, style: articleRef.blockStyle)
-        let imageURL = imagePolicy.URL(media: articleRef.media, size: imageSize)
+        let title = NSAttributedString(string: block.headline, attributes: titleAttributes, style: block.blockStyle)
+        let imageURL = imagePolicy.URL(media: block.media, size: imageSize)
+        let aspectRatio = block.media.aspectRatio ?? Media.defaultAspectRatio
         
         let content = ArticleRefNodeContent(
-            articleIdentifier: articleRef.articleIdentifier,
-            url: articleRef.url,
+            articleIdentifier: block.articleIdentifier,
+            url: block.url,
             title: title,
             abstract: abstract,
-            label: articleRef.labelNodeContent,
-            line: articleRef.lineModel,
-            imageURL: imageURL,
-            backgroundColor: articleRef.theme.backgroundColor,
+            label: block.labelModel,
+            line: block.lineModel,
+            image: Image(URL: imageURL, aspectRatio: aspectRatio),
+            backgroundColor: block.theme.backgroundColor,
             padding: padding
         )
         
@@ -136,21 +159,21 @@ class CellFactory: Core.CellFactory {
     }
     
     //MARK: - Byline
-    private func contentNode(block bylineBlock: BylineBlock) -> BylineNode {
+    private func bylineNode(bylineBlock block: BylineBlock) -> BylineNode {
         let attributes = StringAttributes(
             font: Fonts.alternativeMediumFont.fallbackWithSize(15),
             foregroundColor: Colors.defaultFontColor,
             lineSpacing: 3
         )
-        let text = NSAttributedString(string: bylineBlock.plainText, attributes: attributes)
-        let content = BylineContent(icon: bylineBlock.icon, text: text)
+        let text = NSAttributedString(string: block.plainText, attributes: attributes)
+        let content = BylineNodeContent(icon: block.icon, text: text)
         return BylineNode(content: content)
     }
     
     //MARK: - Spacing
-    private func contentNode(block spacingBlock: SpacingBlock) -> SpacingNode<SpacingContent> {
+    private func spacingNode(spacingBlock block: SpacingBlock) -> SpacingNode {
         let backgroundColor: UIColor
-        switch spacingBlock.blockContext {
+        switch block.blockContext {
         case .Timeline:
             backgroundColor = Colors.timelineBackgroundColor
         case .Article:
@@ -159,12 +182,12 @@ class CellFactory: Core.CellFactory {
             backgroundColor = Colors.defaultBackgroundColor
         }
         
-        let content = SpacingContent(units: spacingBlock.size, multiplier: 1, backgroundColor: backgroundColor)
+        let content = SpacingContent(units: block.size, multiplier: 1, backgroundColor: backgroundColor)
         return SpacingNode(content: content)
     }
     
     //MARK: - Text
-    private func contentNode(block textBlock: TextBlock) -> TextNode<TextNodeContent> {
+    private func textNode(textBlock block: TextBlock) -> TextNode {
         let font: UIFont
         let textColor: UIColor
         let lineSpacing: CGFloat
@@ -186,7 +209,7 @@ class CellFactory: Core.CellFactory {
             }
         }
         
-        switch textBlock.blockStyle {
+        switch block.blockStyle {
         case .Normal:
             font = Fonts.textFont.fallbackWithSize(17)
             textColor = Colors.defaultFontColor
@@ -216,19 +239,19 @@ class CellFactory: Core.CellFactory {
             textColor = Colors.defaultFontColor
             lineSpacing = 6
             backgroundColor = Colors.insetBackgroundColor
-            padding = insetPadding(decoration: textBlock.decoration)
+            padding = insetPadding(decoration: block.decoration)
         case .InsetHeader:
             font = Fonts.textFont.fallbackWithSize(16)
             textColor = Colors.accentColor
             lineSpacing = 4
             backgroundColor = Colors.insetBackgroundColor
-            padding = insetPadding(decoration: textBlock.decoration)
+            padding = insetPadding(decoration: block.decoration)
         case .InsetSubheader:
             font = Fonts.textFont.fallbackWithSize(16)
             textColor = Colors.defaultFontColor
             lineSpacing = 6
             backgroundColor = Colors.insetBackgroundColor
-            padding = insetPadding(decoration: textBlock.decoration)
+            padding = insetPadding(decoration: block.decoration)
         case .Intro:
             font = Fonts.lightFont.fallbackWithSize(22)
             textColor = Colors.defaultFontColor
@@ -256,18 +279,18 @@ class CellFactory: Core.CellFactory {
             hyphenationFactor: 0.8,
             styleSheet: .shared
         )
-        let text = NSAttributedString(string: textBlock.richText, attributes: attributes, style: textBlock.blockStyle)
+        let text = NSAttributedString(string: block.richText, attributes: attributes, style: block.blockStyle)
         let content = TextNodeContent(text: text, backgroundColor: backgroundColor, padding: padding)
         return TextNode(content: content)
     }
     
     //MARK: - PlainText
-    func contentNode(block textBlock: PlainTextBlock) -> TextNode<TextNodeContent> {
+    func textNode(textBlock block: PlainTextBlock) -> TextNode {
         let font: UIFont
         let fontColor: UIColor
         let padding: UIEdgeInsets
         
-        switch textBlock.blockStyle {
+        switch block.blockStyle {
         case .Subheader:
             font = Fonts.mediumFont.fallbackWithSize(20)
             fontColor = Colors.defaultFontColor
@@ -294,25 +317,22 @@ class CellFactory: Core.CellFactory {
             styleSheet: .shared
         )
         
-        let text = NSAttributedString(string: textBlock.plainText, attributes: attributes)
+        let text = NSAttributedString(string: block.plainText, attributes: attributes)
         let content = TextNodeContent(text: text, backgroundColor: Colors.cellBackgroundColor, padding: padding)
         return TextNode(content: content)
     }
     
     //MARK: - Image
-    func contentNode(block imageBlock: ImageBlock) -> ImageNode<ImageNodeContent> {
-        let media = imageBlock.media
-        let URL: CGSize -> NSURL = { [unowned self] size in
-            return self.imagePolicy.URL(media: media, size: size)
-        }
-        
+    func imageNode(imageBlock block: ImageBlock) -> ImageNode {
+        let media = block.media
         let aspectRatio = media.aspectRatio ?? Media.defaultAspectRatio
+        let URL = imagePolicy.URL(media: media, size: .Medium, aspectRatio: aspectRatio)
         let image = Image(URL: URL, aspectRatio: aspectRatio)
         
         let backgroundColor: UIColor
         let padding: UIEdgeInsets
         let shouldRenderText: Bool
-        switch imageBlock.blockStyle {
+        switch block.blockStyle {
         case .Recommendation:
             backgroundColor = Colors.articleRecommendationBackgroundColor
             padding = UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 15)
@@ -333,7 +353,7 @@ class CellFactory: Core.CellFactory {
 
         // caption
         var caption: NSAttributedString? = nil
-        if let string = imageBlock.caption where shouldRenderText {
+        if let string = block.caption where shouldRenderText {
             let attributes = StringAttributes(
                 font: Fonts.alternativeTextFont.fallbackWithSize(16),
                 foregroundColor: Colors.defaultFontColor,
@@ -341,19 +361,19 @@ class CellFactory: Core.CellFactory {
                 hyphenationFactor: 0.8,
                 styleSheet: .shared
             )
-            caption = NSAttributedString(string: string, attributes: attributes, style: imageBlock.blockStyle)
+            caption = NSAttributedString(string: string, attributes: attributes, style: block.blockStyle)
         }
         
         // credit
         var credit: NSAttributedString? = nil
-        if let string = imageBlock.credit where shouldRenderText {
+        if let string = block.credit where shouldRenderText {
             let attributes = StringAttributes(
                 font: Fonts.alternativeMediumFont.fallbackWithSize(15),
                 foregroundColor: Colors.defaultFontColor,
                 lineSpacing: 3,
                 styleSheet: nil
             )
-            credit = NSAttributedString(string: string, attributes: attributes, style: imageBlock.blockStyle)
+            credit = NSAttributedString(string: string, attributes: attributes, style: block.blockStyle)
         }
         
         let content = ImageNodeContent(
@@ -367,12 +387,12 @@ class CellFactory: Core.CellFactory {
     }
     
     //MARK: - Divider
-    func contentNode(block dividerBlock: DividerBlock) -> DividerNode<DividerNodeContent> {
+    func dividerNode(dividerBlock block: DividerBlock) -> DividerNode {
         let backgroundColor: UIColor
         let line: Line
         let padding: UIEdgeInsets
         
-        switch (dividerBlock.blockContext, dividerBlock.blockStyle) {
+        switch (block.blockContext, block.blockStyle) {
         case (.Article, .Inset):
             backgroundColor = Colors.insetBackgroundColor
             line = Line(color: Colors.insetLineColor, thickness: 1)
@@ -403,15 +423,292 @@ class CellFactory: Core.CellFactory {
             padding = UIEdgeInsets(top: 0, left: 0, bottom: 10, right: 0)
         }
     
-        var label: LabelNodeContent? = nil
-        if let string = dividerBlock.label {
+        var label: Label? = nil
+        if let string = block.label {
             let attributes = StringAttributes(font: Fonts.labelFont.fallbackWithSize(10), foregroundColor: Colors.dividerTextColor, lineSpacing: 0)
             let text = NSAttributedString(string: string, attributes: attributes)
-            label = LabelNodeContent(text: text, insets: UIEdgeInsets(top: 0, left: 12, bottom: 0, right: 12))
+            label = Label(text: text, insets: UIEdgeInsets(top: 0, left: 12, bottom: 0, right: 12))
         }
         
         let content = DividerNodeContent(line: line, label: label, backgroundColor: backgroundColor, padding: padding)
         return DividerNode(content: content)
+    }
+    
+    //MARK: - EnhancedBanner
+    func enhancedBannerNode(enhancedBannerBlock block: EnhancedBannerBlock) -> EnhancedBannerNode {
+        // Buttons
+        let buttons: [Button]? = block.buttons?.map { button in
+            let titleColor: UIColor
+            let backgroundColor: UIColor
+            let border: Border?
+            
+            switch button.style {
+            case .Primary:
+                titleColor = Colors.overlayFontColor
+                backgroundColor = Colors.callToActionColor
+                border = nil
+            case .Normal:
+                titleColor = Colors.defaultFontColor
+                backgroundColor = Colors.normalButtonColor
+                border = Border(color: Colors.buttonBorderColor, width: 1)
+            }
+            
+            let attributes = StringAttributes(
+                font: Fonts.alternativeMediumFont.fallbackWithSize(15),
+                foregroundColor: titleColor,
+                lineSpacing: 3,
+                alignment: .Center
+            )
+            
+            let title = NSAttributedString(string: button.title, attributes: attributes)
+            let tracker = trackerFactory.createTracker(button.trackingData)
+            return Button(title: title,
+                size: CGSize(width: 272, height: 48),
+                border: border,
+                cornerInfo: CornerInfo(radius: 2),
+                backgroundColor: backgroundColor,
+                action: .OpenURL(button.URL, textLink: false),
+                tracker: tracker
+            )
+        }
+        
+        // Action - With only one button, tapping on the banner triggers te same action as the button
+        var action: Action? = nil
+        if let buttons = buttons where buttons.count == 1 {
+            action = buttons[0].action
+        }
+        
+        // Title
+        var title: NSAttributedString? = nil
+        if let string = block.title {
+            let lineSpacing: CGFloat = block.blockStyle == .XL ? 1 : 6
+            let attributes = StringAttributes(font: Fonts.largeFont.fallbackWithSize(30), foregroundColor: Colors.defaultFontColor, lineSpacing: lineSpacing, alignment: .Center)
+            title = NSAttributedString(string: string, attributes: attributes)
+        }
+        
+        // Subtitle
+        var subtitle: NSAttributedString? = nil
+        if let string = block.subtitle {
+            let attributes = StringAttributes(font: Fonts.lightFont.fallbackWithSize(22), foregroundColor: Colors.defaultFontColor, lineSpacing: 3, alignment: .Center)
+            subtitle = NSAttributedString(string: string, attributes: attributes)
+        }
+        
+        // Image
+        var imageContent: ImageNodeContent? = nil
+        var gradient: LinearGradient? = nil
+        if let media = block.media {
+            let image: Image
+            switch block.blockStyle {
+            case .XL:
+                let URL = imagePolicy.URL(media: media, size: ImageSize.Fullscreen)
+                image = Image(URL: URL, aspectRatio: Screen.aspectRatio)
+                
+                // add gradient in case of both image and buttons
+                if buttons != nil {
+                    gradient = LinearGradient(
+                        colors: [.clearColor(), .blackColor()],
+                        start: CGPoint(x: 0.5, y: 0.3),
+                        end: CGPoint(x: 0.5, y: 1.5)
+                    )
+                }
+            default:
+                let aspectRatio = media.aspectRatio ?? Media.defaultAspectRatio
+                let URL = imagePolicy.URL(media: media, size: .Medium, aspectRatio: aspectRatio)
+                image = Image(URL: URL, aspectRatio: aspectRatio)
+            }
+            
+            imageContent = ImageNodeContent(image: image, gradient: gradient, backgroundColor: Colors.defaultBackgroundColor)
+        }
+        
+        // Padding
+        let padding: UIEdgeInsets
+        switch (block.blockContext) {
+        case .Timeline:
+            padding = UIEdgeInsets(top: 30, left: 15, bottom: 30, right: 15)
+        case .Article:
+            padding = UIEdgeInsets(top: 0, left: 20, bottom: 25, right: 20)
+        case .Paywall, .Onboarding:
+            padding = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
+        default:
+            padding = UIEdgeInsets()
+        }
+        
+        let height: CGFloat? = block.blockStyle == .XL ? Screen.height : nil
+        let content = EnhancedBannerNodeContent(
+            title: title,
+            subtitle: subtitle,
+            image: imageContent,
+            buttons: buttons,
+            action: action,
+            spacing: 30,
+            height: height,
+            backgroundColor: Colors.defaultBackgroundColor,
+            padding: padding
+        )
+        
+        return EnhancedBannerNode(content: content)
+    }
+    
+    //MARK: - Tweet
+    func tweetNode(tweetBlock block: TweetBlock) -> TweetNode {
+        // title
+        var title: NSAttributedString? = nil
+        if let string = block.headline {
+            let attributes = StringAttributes(
+                font: Fonts.tweetTitleFont.fallbackWithSize(16),
+                foregroundColor: Colors.tweetTextColor,
+                lineSpacing: 7,
+                hyphenationFactor: 0.5
+            )
+            
+            title = NSAttributedString(string: string, attributes: attributes)
+        }
+        
+        // text
+        var text: NSAttributedString? = nil
+        if let string = block.richText {
+            let attributes = StringAttributes(
+                font: Fonts.tweetFont.fallbackWithSize(16),
+                foregroundColor: Colors.tweetTextColor,
+                lineSpacing: 2,
+                hyphenationFactor: 0.8,
+                styleSheet: .shared
+            )
+            text = NSAttributedString(string: string, attributes: attributes, style: block.blockStyle)
+        }
+        
+        // author
+        let authorAttributes = StringAttributes(
+            font: Fonts.tweetFont.fallbackWithSize(14),
+            foregroundColor: Colors.tweetAuthorColor,
+            lineSpacing: 0,
+            hyphenationFactor: 0.8
+        )
+        let author = NSAttributedString(string: block.author, attributes: authorAttributes)
+        
+        // timestamp
+        var timestamp: NSAttributedString? = nil
+        if let date = block.date {
+            let string = tweetDateFormatter.stringFromDate(date)
+            let attributes = StringAttributes(
+                font: Fonts.tweetFont.fallbackWithSize(14),
+                foregroundColor: Colors.tweetTimestampColor,
+                lineSpacing: 3,
+                hyphenationFactor: 0
+            )
+            timestamp = NSAttributedString(string: string, attributes: attributes)
+        }
+        
+        // photo
+        var photo: Image? = nil
+        if let media = block.photos?.first {
+            let aspectRatio = media.aspectRatio ?? Media.defaultAspectRatio
+            let URL = imagePolicy.URL(media: media, size: .Medium, aspectRatio: aspectRatio)
+            photo = Image(URL: URL, aspectRatio: aspectRatio)
+        }
+        
+        // icon
+        let iconMedia = block.media
+        let iconSize = TweetNode.iconSize
+        let iconURL = imagePolicy.URL(media: iconMedia, size: iconSize)
+        let aspectRatio = iconSize.width / iconSize.height
+        let icon = Image(URL: iconURL, aspectRatio: aspectRatio)
+        
+        let content = TweetNodeContent(
+            title: title,
+            text: text,
+            author: author,
+            timestamp: timestamp,
+            URL: block.URL,
+            icon: icon,
+            photo: photo,
+            backgroundColor: Colors.cellBackgroundColor,
+            padding: UIEdgeInsets(top: 12, left: 15, bottom: 12, right: 15)
+        )
+        
+        return TweetNode(content: content)
+    }
+    
+    //MARK: - Youtube
+    func youtubeNode(youtubeBlock block: YoutubeBlock) -> YoutubeNode {
+        let media = block.media
+        let aspectRatio = media.aspectRatio ?? Media.defaultAspectRatio
+        let URL = imagePolicy.URL(media: media, size: .Medium, aspectRatio: aspectRatio)
+        let image = Image(URL: URL, aspectRatio: aspectRatio)
+        let video = StreamingVideo(image: image, identifier: block.movieID)
+        
+        var title: NSAttributedString? = nil
+        if let string = block.title {
+            let attributes = StringAttributes(
+                font: Fonts.mediumFont.fallbackWithSize(18),
+                foregroundColor: Colors.overlayFontColor,
+                lineSpacing: 3,
+                hyphenationFactor: 0.8
+            )
+            
+            title = NSAttributedString(string: string, attributes: attributes)
+        }
+        
+        let content = YoutubeNodeContent(
+            video: video,
+            playlist: block.playlistID,
+            loop: block.loop,
+            title: title,
+            backgroundColor: Colors.cellBackgroundColor,
+            padding: UIEdgeInsets(top: 0, left: 0, bottom: 40, right: 0)
+        )
+        
+        return YoutubeNode(content: content)
+    }
+    
+    //MARK: - Vimeo
+    func vimeoNode(vimeoBlock block: VimeoBlock) -> VimeoNode {
+        let media = block.media
+        let aspectRatio = media.aspectRatio ?? Media.defaultAspectRatio
+        let URL = imagePolicy.URL(media: media, size: .Medium, aspectRatio: aspectRatio)
+        let image = Image(URL: URL, aspectRatio: aspectRatio)
+        let video = StreamingVideo(image: image, identifier: block.movieID)
+        
+        var title: NSAttributedString? = nil
+        if let string = block.title {
+            let attributes = StringAttributes(
+                font: Fonts.mediumFont.fallbackWithSize(18),
+                foregroundColor: Colors.overlayFontColor,
+                lineSpacing: 3,
+                hyphenationFactor: 0.8
+            )
+            
+            title = NSAttributedString(string: string, attributes: attributes)
+        }
+        
+        let content = StreamingVideoContent(video: video,
+                                            title: title,
+                                            backgroundColor: Colors.cellBackgroundColor,
+                                            padding: UIEdgeInsets(top: 0, left: 0, bottom: 40, right: 0)
+        )
+        
+        return VimeoNode(content: content)
+    }
+    
+    //MARK: - Video
+    func videoNode(videoBlock block: VideoBlock) -> VideoNode {
+        let media: Media = .null// block.media
+        let aspectRatio = block.aspectRatio //media.aspectRatio ?? Media.defaultAspectRatio
+        let URL = imagePolicy.URL(media: media, size: .Medium, aspectRatio: aspectRatio)
+        let image = Image(URL: URL, aspectRatio: aspectRatio)
+        let video = Video(image: image, URL: block.URL)
+        
+        let content = VideoNodeContent(
+            video: video,
+            autorepeat: block.autorepeat,
+            autoplay: block.autoplay,
+            controls:  block.controls,
+            title: nil,
+            backgroundColor: Colors.imageBackgroundColor,
+            padding: UIEdgeInsets()
+        )
+        
+        return VideoNode(content: content)
     }
 }
 
@@ -466,7 +763,7 @@ private extension ArticleRefBlock {
         return Line(color: color, thickness: thickness)
     }
     
-    var labelNodeContent: LabelNodeContent? {
+    var labelModel: Label? {
         guard let string = label else { return nil }
 
         let textColor: UIColor
@@ -503,7 +800,7 @@ private extension ArticleRefBlock {
         )
         let text = NSAttributedString(string: string, attributes: attributes)
 
-        return LabelNodeContent(
+        return Label(
             text: text,
             insets: insets,
             backgroundColor: backgroundColor,
@@ -517,12 +814,14 @@ private extension ArticleRefBlock {
 // MARK - Decoration
 extension DecorationLayerModel {
     static func model(block block: Block) -> DecorationLayerModel {
-        switch (block.blockContext, block.blockStyle) {
-        case (.Article, .Inset):
+        switch (block.blockContext, block.blockStyle, block) {
+        case (.Article, .Inset, _):
             return .inset
-        case (.Article, _):
+        case (.Article, _, is TweetBlock):
+            return tweet
+        case (.Article, _, _):
             return .article
-        case (.Timeline, _):
+        case (.Timeline, _, _):
             return .timeline
         default:
             return .null

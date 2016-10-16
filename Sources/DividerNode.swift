@@ -9,23 +9,29 @@
 import Foundation
 import AsyncDisplayKit
 
-class DividerNodeContent: Content {
+/**
+ Content for the DividerNode
+ */
+final class DividerNodeContent: Content {
     let line: Line
-    let label: LabelNodeContent?
+    let label: Label?
     
-    init(line: Line, label: LabelNodeContent? = nil, backgroundColor: UIColor, padding: UIEdgeInsets) {
+    init(line: Line, label: Label? = nil, backgroundColor: UIColor, padding: UIEdgeInsets) {
         self.line = line
         self.label = label
         super.init(backgroundColor: backgroundColor, padding: padding)
     }
 }
 
-class DividerNode<C: DividerNodeContent> : ContentNode<C> {
+/**
+ Node for rendering a horizontal dividing line with optional label
+ */
+final class DividerNode : ContentNode<DividerNodeContent> {
     let leftLine = ASDisplayNode()
     let rightLine = ASDisplayNode()
     let labelNode: LabelNode?
     
-    required init(content: C) {
+    required init(content: DividerNodeContent) {
         labelNode = LabelNode(label: content.label)
         
         super.init(content: content)

@@ -10,20 +10,18 @@ import UIKit
 import Core
 import Argo
 
-enum Theme: String {
+enum Theme: String, Decodable {
     case Default = "default"
     case Urgent = "urgent"
     case Live = "live"
     case Highlight = "highlight"
-}
 
-extension Theme: Decodable {
     static func decode(json: JSON) -> Decoded<Theme> {
         guard case .String(let name) = json else {
             return .typeMismatch("String", actual: json)
         }
         guard let theme = Theme(rawValue: name) else {
-            return .typeMismatch("Theme name",actual: name)
+            return .customError("Unknown theme: \(name)")
         }
         return pure(theme)
     }

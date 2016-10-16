@@ -9,7 +9,10 @@
 import UIKit
 import AsyncDisplayKit
 
-class SpacingContent: Content {
+/**
+ Content for the SpacingNode. Spacing in points is calculated by multiplying a number of spacing units with a unit multiplier
+ */
+final class SpacingContent: Content {
     let units: CGFloat
     let multiplier: CGFloat
     
@@ -24,10 +27,13 @@ class SpacingContent: Content {
     }
 }
 
-class SpacingNode<C: SpacingContent>: ContentNode<C> {
+/**
+ Node for rendering a space between two other nodes
+ */
+final class SpacingNode: ContentNode<SpacingContent> {
     let spacingNode = ASDisplayNode()
     
-    required init(content: C) {
+    required init(content: SpacingContent) {
         super.init(content: content)
     }
     

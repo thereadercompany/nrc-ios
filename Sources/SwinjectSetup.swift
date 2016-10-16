@@ -34,6 +34,10 @@ func setupDefaultContainer() -> Container {
             "section-refs" : SectionRefBlock.self,
             "bylines" : BylineBlock.self,
             "images" : ImageBlock.self,
+            "enhanced-banners": EnhancedBannerBlock.self,
+            "youtubes" : YoutubeBlock.self,
+            "vimeos": VimeoBlock.self,
+            "videos": VideoBlock.self
         ])
 
         return blockDecoder

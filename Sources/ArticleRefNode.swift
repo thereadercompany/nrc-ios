@@ -11,22 +11,25 @@ import AsyncDisplayKit
 import Core
 
 //MARK: - Content
-class ArticleRefNodeContent: Content {
+/** 
+ Content for the ArticleRefNode
+ */
+final class ArticleRefNodeContent: Content {
     let articleIdentifier: String
     let url: NSURL?
     let title: NSAttributedString
     let abstract: NSAttributedString?
-    let label: LabelNodeContent?
+    let label: Label?
     let line: Line?
-    let imageURL: NSURL?
+    let image: Image
     
     init(articleIdentifier: String,
          url: NSURL?,
          title: NSAttributedString,
          abstract: NSAttributedString?,
-         label: LabelNodeContent?,
+         label: Label?,
          line: Line?,
-         imageURL: NSURL?,
+         image: Image,
          backgroundColor: UIColor,
          padding: UIEdgeInsets) {
         self.articleIdentifier = articleIdentifier
@@ -35,17 +38,20 @@ class ArticleRefNodeContent: Content {
         self.abstract = abstract
         self.label = label
         self.line = line
-        self.imageURL = imageURL
+        self.image = image
         super.init(backgroundColor: backgroundColor, padding: padding)
     }
 }
 
 //MARK: - Abstract
-class ArticleRefNode: ContentNode<ArticleRefNodeContent>, ActionNode {
+/**
+ Abstract node for rendering an ArticleRef. Subclass for specific layouting
+ */
+class ArticleRefNode: ContentNode<ArticleRefNodeContent> {
     let labelNode: LabelNode?
     let titleNode = ASTextNode()
     let lineNode = ASDisplayNode()
-    let imageNode: ASNetworkImageNode?
+    let imageNode: ASNetworkImageNode
     
     var lineThickness: CGFloat {
         return content.line?.thickness ?? 0
@@ -53,15 +59,13 @@ class ArticleRefNode: ContentNode<ArticleRefNodeContent>, ActionNode {
     
     //MARK: - initialization
     required init(content: ArticleRefNodeContent) {
-        imageNode = ASNetworkImageNode(url: content.imageURL)
+        imageNode = ASNetworkImageNode(image: content.image)
         labelNode = LabelNode(label: content.label)
         super.init(content: content)
         
         // image
-        if let imageNode = imageNode {
-            addSubnode(imageNode)
-            imageNode.clipsToBounds = true
-        }
+        addSubnode(imageNode)
+        imageNode.clipsToBounds = true
         
         // title
         addSubnode(titleNode)
@@ -79,25 +83,38 @@ class ArticleRefNode: ContentNode<ArticleRefNodeContent>, ActionNode {
         }
     }
     
-    //MARK: - ActionNode
-    var action: CellAction {
+    //MARK: - Layout
+    override func layoutSpecThatFits(constrainedSize: ASSizeRange) -> ASLayoutSpec {
+        assertionFailure("ArticleRefNode is abstract. Override layoutSpecThatFits in concrete subclasses")
+        return ASLayoutSpec()
+    }
+    
+    //MARK: - Tap
+    override func handleTap() {
+        let action: Action
         if let url = content.url {
-            return .OpenURL(url)
+            action = .OpenURL(url, textLink: false)
+        }
+        else {
+            action = .ShowArticle(identifier: content.articleIdentifier, imageNode: imageNode)
         }
         
-        return .ShowArticle(identifier: content.articleIdentifier, image: imageNode?.image)
+        actionHandler?.handleAction(action, sender: self)
     }
 }
 
 //MARK: - Normal
-class NormalArticleRefNode: ArticleRefNode {
+/**
+ Renders an ArticleRef with a thumb image (left), label and a title
+ */
+final class NormalArticleRefNode: ArticleRefNode {
     private let imageSize = CGSize(width: 92, height: 56)
     private let imageTitleSpacing: CGFloat = 10
     
     override func layoutSpecThatFits(constrainedSize: ASSizeRange) -> ASLayoutSpec {
         titleNode.flexShrink = true
-        imageNode?.preferredFrameSize = imageSize
-        imageNode?.spacingAfter = imageTitleSpacing
+        imageNode.preferredFrameSize = imageSize
+        imageNode.spacingAfter = imageTitleSpacing
         labelNode?.ascender = 3 // correction to perfectly align imagenode and label node using .BaselineFirst as alignment mode
         
         // vertical
@@ -123,7 +140,10 @@ class NormalArticleRefNode: ArticleRefNode {
 }
 
 //MARK: - Large
-class LargeArticleRefNode: ArticleRefNode {
+/**
+ Renders an ArticleRef with an image, title and abstract
+ */
+final class LargeArticleRefNode: ArticleRefNode {
     private let imageRatio: CGFloat = 5/3
     
     override func layoutSpecThatFits(constrainedSize: ASSizeRange) -> ASLayoutSpec {
@@ -141,13 +161,11 @@ class LargeArticleRefNode: ArticleRefNode {
         var contentNodes: [ASLayoutable] = [insetSpec, lineNode]
         
         // image
-        if let imageNode = imageNode {
-            let imageWidth = width
-            let imageHeight = imageWidth / imageRatio
-            let imageSize = CGSize(width: imageWidth, height: imageHeight)
-            imageNode.preferredFrameSize = imageSize
-            contentNodes.insert(imageNode, atIndex: 0)
-        }
+        let imageWidth = width
+        let imageHeight = imageWidth / imageRatio
+        let imageSize = CGSize(width: imageWidth, height: imageHeight)
+        imageNode.preferredFrameSize = imageSize
+        contentNodes.insert(imageNode, atIndex: 0)
         
         // stack
         return ASStackLayoutSpec(direction: .Vertical, spacing: 0, justifyContent: .Start, alignItems: .Start, children: contentNodes)
@@ -155,14 +173,12 @@ class LargeArticleRefNode: ArticleRefNode {
 }
 
 //MARK: - Extra Large
-class ExtraLargeArticleRefNode: ArticleRefNode {
+/**
+ Renders an ArticleRef with a background image and label, title and abstract - overlay
+ */
+final class ExtraLargeArticleRefNode: ArticleRefNode {
     let abstractNode: ASTextNode?
-    let gradientNode = ASDisplayNode(layerBlock: {
-        let gradientLayer = CAGradientLayer()
-        gradientLayer.colors = [UIColor.clearColor().CGColor,UIColor.blackColor().CGColor]
-        gradientLayer.endPoint = CGPoint(x: 0.5, y: 1.7)
-        return gradientLayer
-    })
+    let gradientNode = ASDisplayNode(gradient: LinearGradient(colors: [.clearColor(), .blackColor()], start: CGPoint(x: 0.5, y: 1.7)))
     
     // Cell
     required init(content: ArticleRefNodeContent) {
@@ -213,4 +229,3 @@ class ExtraLargeArticleRefNode: ArticleRefNode {
         return ASBackgroundLayoutSpec(child: card, background: imageNode)
     }
 }
-
