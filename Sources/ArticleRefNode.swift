@@ -85,8 +85,7 @@ class ArticleRefNode: ContentNode<ArticleRefNodeContent> {
     
     //MARK: - Layout
     override func layoutSpecThatFits(constrainedSize: ASSizeRange) -> ASLayoutSpec {
-        assertionFailure("ArticleRefNode is abstract. Override layoutSpecThatFits in concrete subclasses")
-        return ASLayoutSpec()
+        fatalError("Override layoutSpecThatFits in concrete subclasses")
     }
     
     //MARK: - Tap
@@ -178,13 +177,18 @@ final class LargeArticleRefNode: ArticleRefNode {
  */
 final class ExtraLargeArticleRefNode: ArticleRefNode {
     let abstractNode: ASTextNode?
-    let gradientNode = ASDisplayNode(gradient: LinearGradient(colors: [.clearColor(), .blackColor()], start: CGPoint(x: 0.5, y: 1.7)))
+    let gradientNode = ASDisplayNode(gradient: LinearGradient(colors: [.clearColor(), .blackColor()], end: CGPoint(x: 0.5, y: 1.7)))
+    
+    private let imageRatio: CGFloat = {
+        let heightMultiplier: CGFloat = Window.vval([Screen.vXS:1,Screen.vS:0.9,Screen.vM:0.8,Screen.vL:0.7])
+        return (Screen.height * heightMultiplier) / Screen.width
+    }()
     
     // Cell
     required init(content: ArticleRefNodeContent) {
         abstractNode = ASTextNode(text: content.abstract)
         super.init(content: content)
-        addSubnode(gradientNode)
+        insertSubnode(gradientNode, belowSubnode: titleNode)
         
         let shadowColor = UIColor.blackColor().CGColor
         let shadowOffset = CGSize(width: 1, height: 0)
@@ -194,10 +198,6 @@ final class ExtraLargeArticleRefNode: ArticleRefNode {
         titleNode.shadowOffset = shadowOffset
         titleNode.shadowOpacity = shadowOpacity
         titleNode.shadowRadius = shadowRadius
-        
-        if let labelNode = labelNode {
-            addSubnode(labelNode)
-        }
         
         if let abstractNode = abstractNode {
             addSubnode(abstractNode)
@@ -209,23 +209,20 @@ final class ExtraLargeArticleRefNode: ArticleRefNode {
     }
     
     override func layoutSpecThatFits(constrainedSize: ASSizeRange) -> ASLayoutSpec {
-        labelNode?.spacingAfter = 14
-        titleNode.spacingAfter = 10
+        let imageSpec = ASRatioLayoutSpec(ratio: imageRatio, child: imageNode)        
         lineNode.preferredFrameSize = CGSize(width: constrainedSize.max.width, height: lineThickness)
         
         let optionalTextNodes: [ASLayoutable?] = [labelNode, titleNode, abstractNode]
-        let textNodes: [ASLayoutable] = optionalTextNodes.flatMap { node in
-            node?.flexShrink = true
-            return node
-        }
-        textNodes.last?.spacingAfter = 0
+        let textNodes: [ASLayoutable] = optionalTextNodes.flatMap { $0 }
         
-        let textContentSpec = ASStackLayoutSpec(direction: .Vertical, spacing: 0, justifyContent: .Start, alignItems: .Start, children: textNodes)
+        let textContentSpec = ASStackLayoutSpec(direction: .Vertical, spacing: 10, justifyContent: .Start, alignItems: .Start, children: textNodes)
         let paddedContentSpec = ASInsetLayoutSpec(insets: content.padding, child: textContentSpec)
         let gradientContentSpec = ASBackgroundLayoutSpec(child: paddedContentSpec, background: gradientNode)
-        gradientContentSpec.spacingBefore = 250
-        
-        let card = ASStackLayoutSpec(direction: .Vertical, spacing: 0, justifyContent: .Start, alignItems: .Stretch, children: [gradientContentSpec,lineNode])
-        return ASBackgroundLayoutSpec(child: card, background: imageNode)
+
+        let spacer = ASLayoutSpec()
+        spacer.flexGrow = true
+        let card = ASStackLayoutSpec(direction: .Vertical, spacing: 0, justifyContent: .End, alignItems: .Stretch, children: [spacer, gradientContentSpec ,lineNode])
+        card.flexGrow = true
+        return ASOverlayLayoutSpec(child: imageSpec, overlay: card)
     }
 }

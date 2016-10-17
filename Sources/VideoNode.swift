@@ -9,8 +9,6 @@
 import UIKit
 import AsyncDisplayKit
 
-
-
 class VideoNodeContent: Content {
     let URL: NSURL
     let placeholder: Image
