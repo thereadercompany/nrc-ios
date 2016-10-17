@@ -87,8 +87,6 @@
 		1CC16C6E1DAF93CF002D9734 /* StreamingVideoBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CC16C6C1DAF93CF002D9734 /* StreamingVideoBlock.swift */; };
 		1CC8C6FB1DAFD139002C9D5C /* YTPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CC8C6FA1DAFD139002C9D5C /* YTPlayerView.swift */; };
 		1CC8C6FC1DAFD139002C9D5C /* YTPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CC8C6FA1DAFD139002C9D5C /* YTPlayerView.swift */; };
-		1CC8C6FE1DAFEEC3002C9D5C /* Video.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CC8C6FD1DAFEEC3002C9D5C /* Video.swift */; };
-		1CC8C6FF1DAFEEC3002C9D5C /* Video.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CC8C6FD1DAFEEC3002C9D5C /* Video.swift */; };
 		1CC8C7011DB1721C002C9D5C /* VimeoNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CC8C7001DB1721C002C9D5C /* VimeoNode.swift */; };
 		1CC8C7021DB1721C002C9D5C /* VimeoNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CC8C7001DB1721C002C9D5C /* VimeoNode.swift */; };
 		1CC8C7041DB173D1002C9D5C /* StreamingVideoNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CC8C7031DB173D1002C9D5C /* StreamingVideoNode.swift */; };
@@ -196,7 +194,6 @@
 		1CC16C691DAF8D15002D9734 /* YoutubeNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = YoutubeNode.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		1CC16C6C1DAF93CF002D9734 /* StreamingVideoBlock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = StreamingVideoBlock.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		1CC8C6FA1DAFD139002C9D5C /* YTPlayerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = YTPlayerView.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
-		1CC8C6FD1DAFEEC3002C9D5C /* Video.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Video.swift; sourceTree = "<group>"; };
 		1CC8C7001DB1721C002C9D5C /* VimeoNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VimeoNode.swift; sourceTree = "<group>"; };
 		1CC8C7031DB173D1002C9D5C /* StreamingVideoNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StreamingVideoNode.swift; sourceTree = "<group>"; };
 		1CECA3C31D7425FE000179BF /* SectionRefNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SectionRefNode.swift; sourceTree = "<group>"; };
@@ -322,7 +319,6 @@
 				1C1CE8B91D81AEE6007940AB /* Border.swift */,
 				1CF29C941DA5175E00A4D742 /* Gradient.swift */,
 				1CC16C2E1DABB3C1002D9734 /* Image.swift */,
-				1CC8C6FD1DAFEEC3002C9D5C /* Video.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -757,7 +753,6 @@
 				1CC8C7011DB1721C002C9D5C /* VimeoNode.swift in Sources */,
 				1C58965A1D75D1B6009C9861 /* ArticleRefNode.swift in Sources */,
 				1CF29C951DA5175E00A4D742 /* Gradient.swift in Sources */,
-				1CC8C6FE1DAFEEC3002C9D5C /* Video.swift in Sources */,
 				1C22E8EF1D8AD743000C6759 /* MarkupTag.swift in Sources */,
 				1CF29C8D1DA5026D00A4D742 /* EnhancedBannerBlock.swift in Sources */,
 				1CC16C6D1DAF93CF002D9734 /* StreamingVideoBlock.swift in Sources */,
@@ -841,7 +836,6 @@
 				1C58965F1D76C7C8009C9861 /* BylineNode.swift in Sources */,
 				1C870A201DB246F5001149F1 /* ArticleRefBlock.swift in Sources */,
 				1C5D0D3A1D7DC83D004C7CDD /* LabelNode.swift in Sources */,
-				1CC8C6FF1DAFEEC3002C9D5C /* Video.swift in Sources */,
 				1C9FF30C1D9AB29E005081F7 /* ImagePolicy.swift in Sources */,
 				1C870A111DB18177001149F1 /* SectionRefNode.swift in Sources */,
 			);

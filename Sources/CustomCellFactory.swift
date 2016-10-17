@@ -34,7 +34,6 @@ class CellFactory: Core.CellFactory {
         let decorationLayerModel = DecorationLayerModel.model(block: block)
         let decoration = Decoration(type: block.decoration, layerModel: decorationLayerModel)
         
-        
         let cell: Cell
         switch block {
         case let sectionRef as SectionRefBlock:
@@ -142,6 +141,7 @@ class CellFactory: Core.CellFactory {
         let title = NSAttributedString(string: block.headline, attributes: titleAttributes, style: block.blockStyle)
         let imageURL = imagePolicy.URL(media: block.media, size: imageSize)
         let aspectRatio = block.media.aspectRatio ?? Media.defaultAspectRatio
+        let image = Image(URL: imageURL, aspectRatio: aspectRatio)
         
         let content = ArticleRefNodeContent(
             articleIdentifier: block.articleIdentifier,
@@ -150,7 +150,7 @@ class CellFactory: Core.CellFactory {
             abstract: abstract,
             label: block.labelModel,
             line: block.lineModel,
-            image: Image(URL: imageURL, aspectRatio: aspectRatio),
+            image: image,
             backgroundColor: block.theme.backgroundColor,
             padding: padding
         )
@@ -631,11 +631,11 @@ class CellFactory: Core.CellFactory {
     
     //MARK: - Youtube
     func youtubeNode(youtubeBlock block: YoutubeBlock) -> YoutubeNode {
+        //placeholder
         let media = block.media
         let aspectRatio = media.aspectRatio ?? Media.defaultAspectRatio
         let URL = imagePolicy.URL(media: media, size: .Medium, aspectRatio: aspectRatio)
-        let image = Image(URL: URL, aspectRatio: aspectRatio)
-        let video = StreamingVideo(image: image, identifier: block.movieID)
+        let placeholder = Image(URL: URL, aspectRatio: aspectRatio)
         
         var title: NSAttributedString? = nil
         if let string = block.title {
@@ -650,7 +650,8 @@ class CellFactory: Core.CellFactory {
         }
         
         let content = YoutubeNodeContent(
-            video: video,
+            identifier: block.movieID,
+            placeholder: placeholder,
             playlist: block.playlistID,
             loop: block.loop,
             title: title,
@@ -663,11 +664,11 @@ class CellFactory: Core.CellFactory {
     
     //MARK: - Vimeo
     func vimeoNode(vimeoBlock block: VimeoBlock) -> VimeoNode {
+        //placeholder
         let media = block.media
         let aspectRatio = media.aspectRatio ?? Media.defaultAspectRatio
         let URL = imagePolicy.URL(media: media, size: .Medium, aspectRatio: aspectRatio)
-        let image = Image(URL: URL, aspectRatio: aspectRatio)
-        let video = StreamingVideo(image: image, identifier: block.movieID)
+        let placeholder = Image(URL: URL, aspectRatio: aspectRatio)
         
         var title: NSAttributedString? = nil
         if let string = block.title {
@@ -681,7 +682,8 @@ class CellFactory: Core.CellFactory {
             title = NSAttributedString(string: string, attributes: attributes)
         }
         
-        let content = StreamingVideoContent(video: video,
+        let content = StreamingVideoContent(identifier: block.movieID,
+                                            placeholder: placeholder,
                                             title: title,
                                             backgroundColor: Colors.cellBackgroundColor,
                                             padding: UIEdgeInsets(top: 0, left: 0, bottom: 40, right: 0)
@@ -695,11 +697,11 @@ class CellFactory: Core.CellFactory {
         let media: Media = .null// block.media
         let aspectRatio = block.aspectRatio //media.aspectRatio ?? Media.defaultAspectRatio
         let URL = imagePolicy.URL(media: media, size: .Medium, aspectRatio: aspectRatio)
-        let image = Image(URL: URL, aspectRatio: aspectRatio)
-        let video = Video(image: image, URL: block.URL)
+        let placeholder = Image(URL: URL, aspectRatio: aspectRatio)
         
         let content = VideoNodeContent(
-            video: video,
+            URL: block.URL,
+            placeholder: placeholder,
             autorepeat: block.autorepeat,
             autoplay: block.autoplay,
             controls:  block.controls,

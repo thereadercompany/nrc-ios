@@ -37,7 +37,7 @@ class VimeoNode: StreamingVideoNode<StreamingVideoContent>, WKNavigationDelegate
         guard let fullPath = NSBundle.mainBundle().pathForResource("vimeo", ofType: "html") else { return }
         do {
             let rawHtml = try NSString(contentsOfFile: fullPath, encoding: NSUTF8StringEncoding)
-            let html = NSString(format: rawHtml, content.video.identifier)
+            let html = NSString(format: rawHtml, content.identifier)
             self.webView.loadHTMLString(String(html), baseURL: NSURL(string:"https://player.vimeo.com"))
         }
         catch {

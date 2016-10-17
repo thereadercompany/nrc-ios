@@ -10,12 +10,14 @@ import UIKit
 import AsyncDisplayKit
 
 /** Content for VideoNode */
-class StreamingVideoContent: Content, VideoContent {
-    let video: StreamingVideo
+class StreamingVideoContent: Content {
+    let identifier: String
+    let placeholder: Image
     let title: NSAttributedString?
     
-    init(video: StreamingVideo, title: NSAttributedString?, backgroundColor: UIColor, padding: UIEdgeInsets) {
-        self.video = video
+    init(identifier: String, placeholder: Image, title: NSAttributedString?, backgroundColor: UIColor, padding: UIEdgeInsets) {
+        self.identifier = identifier
+        self.placeholder = placeholder
         self.title = title
         super.init(backgroundColor: backgroundColor, padding: padding)
     }
@@ -23,7 +25,7 @@ class StreamingVideoContent: Content, VideoContent {
     /** sets up the content for the encapsulated imageNode */
     private var imageNodeContent: ImageNodeContent {
         let gradient = LinearGradient(colors: [.clearColor(), .blackColor()], start: CGPoint.zero , end: CGPoint(x: 1, y: 1))
-        return ImageNodeContent(image: video.image, gradient: gradient, backgroundColor: .clearColor())
+        return ImageNodeContent(image: placeholder, gradient: gradient, backgroundColor: .clearColor())
     }
 }
 

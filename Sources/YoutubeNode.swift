@@ -12,13 +12,15 @@ import youtube_ios_player_helper
 
 /** Content for the YoutubeNode */
 class YoutubeNodeContent: StreamingVideoContent {
+    typealias Playlist = String
+    
     let playlist: Playlist?
     let loop: Bool
     
-    init(video: StreamingVideo, playlist: Playlist?, loop: Bool, title: NSAttributedString?, backgroundColor: UIColor, padding: UIEdgeInsets) {
+    init(identifier: String, placeholder: Image, playlist: Playlist?, loop: Bool, title: NSAttributedString?, backgroundColor: UIColor, padding: UIEdgeInsets) {
         self.playlist = playlist
         self.loop = loop
-        super.init(video: video, title: title, backgroundColor: backgroundColor, padding: padding)
+        super.init(identifier: identifier, placeholder: placeholder, title: title, backgroundColor: backgroundColor, padding: padding)
     }
 }
 
@@ -45,7 +47,7 @@ class YoutubeNode: StreamingVideoNode<YoutubeNodeContent>, YTPlayerViewDelegate 
     //MARK: - Transport
     func loadVideo() {
         youtubeView.load(
-            videoId: content.video.identifier,
+            videoId: content.identifier,
             playlistId: content.playlist,
             playerVars: ["showinfo":0, "playsinline":1]
         )

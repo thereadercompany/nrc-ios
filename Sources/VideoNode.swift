@@ -9,14 +9,11 @@
 import UIKit
 import AsyncDisplayKit
 
-protocol VideoContent {
-    associatedtype VideoType
-    var video: VideoType { get }
-    var title: NSAttributedString? { get }
-}
 
-class VideoNodeContent: Content, VideoContent {
-    let video: Video
+
+class VideoNodeContent: Content {
+    let URL: NSURL
+    let placeholder: Image
     let autorepeat: Bool
     let autoplay: Bool
     let controls: Bool
@@ -26,8 +23,9 @@ class VideoNodeContent: Content, VideoContent {
         return controls ? UIImage(named: "play_btn") : nil
     }
     
-    init(video: Video, autorepeat: Bool, autoplay: Bool, controls: Bool, title: NSAttributedString?, backgroundColor: UIColor, padding: UIEdgeInsets) {
-        self.video = video
+    init(URL: NSURL, placeholder: Image, autorepeat: Bool, autoplay: Bool, controls: Bool, title: NSAttributedString?, backgroundColor: UIColor, padding: UIEdgeInsets) {
+        self.URL = URL
+        self.placeholder = placeholder
         self.autorepeat = autorepeat
         self.autoplay = autoplay
         self.controls = controls
@@ -36,7 +34,7 @@ class VideoNodeContent: Content, VideoContent {
     }
 }
 
-class VideoNode: ContentNode<VideoNodeContent>, ASVideoNodeDelegate {
+class VideoNode: ContentNode<VideoNodeContent>, ASVideoNodeDelegate, VisibilityObserver {
     let videoNode = ASVideoNode()
     let playButtonImageNode: ASImageNode?
     
@@ -46,7 +44,7 @@ class VideoNode: ContentNode<VideoNodeContent>, ASVideoNodeDelegate {
         
         super.init(content: content)
         
-        let asset = AVAsset(URL: content.video.URL)
+        let asset = AVAsset(URL: content.URL)
         videoNode.asset = asset
         videoNode.shouldAutoplay = false // auto play only when fully visible
         videoNode.shouldAutorepeat = content.autorepeat
@@ -63,7 +61,7 @@ class VideoNode: ContentNode<VideoNodeContent>, ASVideoNodeDelegate {
     
     //MARK: - Layout
     override func layoutSpecThatFits(constrainedSize: ASSizeRange) -> ASLayoutSpec {
-        let ratio = 1 / content.video.aspectRatio
+        let ratio = 1 / content.placeholder.aspectRatio
         let ratioSpec = ASRatioLayoutSpec(ratio: ratio, child: videoNode)
         let paddedSpec =  ASInsetLayoutSpec(insets: content.padding, child: ratioSpec)
         
@@ -76,20 +74,7 @@ class VideoNode: ContentNode<VideoNodeContent>, ASVideoNodeDelegate {
         
         return contentSpec
     }
-    
-//    override func cellNodeVisibilityEvent(event: ASCellNodeVisibilityEvent, inScrollView scrollView: UIScrollView, withCellFrame cellFrame: CGRect) {
-//        let fullyVisible = videoNodeIsFullyVisible(inScrollView: scrollView, cellFrame: cellFrame)
-//        let playing = videoNode.isPlaying()
-//        
-//        switch (fullyVisible, playing) {
-//        case (false, true):
-//            videoNode.pause()
-//        case (true, false) where content.autoplay:
-//            videoNode.play()
-//        default:()
-//        }
-//    }
-    
+        
     private func videoNodeIsFullyVisible(inScrollView scrollView: UIScrollView, cellFrame: CGRect) -> Bool {
         let topVisible = scrollView.contentOffset.y <= cellFrame.minY + videoNode.frame.minY
         let bottomVisible = scrollView.contentOffset.y + scrollView.bounds.height >= cellFrame.minY + videoNode.frame.maxY
