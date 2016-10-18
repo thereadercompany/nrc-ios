@@ -39,6 +39,14 @@
 		1C504EA61D894D1D00590A52 /* ImageBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C504EA41D894D1D00590A52 /* ImageBlock.swift */; };
 		1C547DA51DB63E8500A2A1C6 /* StreamerNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C547DA41DB63E8500A2A1C6 /* StreamerNode.swift */; };
 		1C547DA61DB63E8500A2A1C6 /* StreamerNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C547DA41DB63E8500A2A1C6 /* StreamerNode.swift */; };
+		1C547DAA1DB6BE4700A2A1C6 /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C547DA91DB6BE4700A2A1C6 /* Fonts.swift */; };
+		1C547DAB1DB6BE4700A2A1C6 /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C547DA91DB6BE4700A2A1C6 /* Fonts.swift */; };
+		1C547DAD1DB6BEBC00A2A1C6 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C547DAC1DB6BEBC00A2A1C6 /* Colors.swift */; };
+		1C547DAE1DB6BEBC00A2A1C6 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C547DAC1DB6BEBC00A2A1C6 /* Colors.swift */; };
+		1C547DB01DB6BF0E00A2A1C6 /* BlockContextType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C547DAF1DB6BF0E00A2A1C6 /* BlockContextType.swift */; };
+		1C547DB11DB6BF0E00A2A1C6 /* BlockContextType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C547DAF1DB6BF0E00A2A1C6 /* BlockContextType.swift */; };
+		1C547DB31DB6BFC400A2A1C6 /* BlockStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C547DB21DB6BFC400A2A1C6 /* BlockStyle.swift */; };
+		1C547DB41DB6BFC400A2A1C6 /* BlockStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C547DB21DB6BFC400A2A1C6 /* BlockStyle.swift */; };
 		1C5896581D75D1A8009C9861 /* ArticleRefBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C5896571D75D1A8009C9861 /* ArticleRefBlock.swift */; };
 		1C58965A1D75D1B6009C9861 /* ArticleRefNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C5896591D75D1B6009C9861 /* ArticleRefNode.swift */; };
 		1C58965E1D76C7C8009C9861 /* BylineNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C58965D1D76C7C8009C9861 /* BylineNode.swift */; };
@@ -174,6 +182,10 @@
 		1C504EA21D88913800590A52 /* ImageNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ImageNode.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		1C504EA41D894D1D00590A52 /* ImageBlock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageBlock.swift; sourceTree = "<group>"; };
 		1C547DA41DB63E8500A2A1C6 /* StreamerNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StreamerNode.swift; sourceTree = "<group>"; };
+		1C547DA91DB6BE4700A2A1C6 /* Fonts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
+		1C547DAC1DB6BEBC00A2A1C6 /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		1C547DAF1DB6BF0E00A2A1C6 /* BlockContextType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlockContextType.swift; sourceTree = "<group>"; };
+		1C547DB21DB6BFC400A2A1C6 /* BlockStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlockStyle.swift; sourceTree = "<group>"; };
 		1C5896571D75D1A8009C9861 /* ArticleRefBlock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleRefBlock.swift; sourceTree = "<group>"; };
 		1C5896591D75D1B6009C9861 /* ArticleRefNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ArticleRefNode.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		1C58965D1D76C7C8009C9861 /* BylineNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = BylineNode.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -276,12 +288,11 @@
 				1C5D0D371D7DC82C004C7CDD /* Nodes */,
 				1C1CE8B41D81ADA9007940AB /* Models */,
 				1C1CE8AE1D818C77007940AB /* Extensions */,
-				1CC16C381DABCCDC002D9734 /* Text styling */,
+				1CC16C381DABCCDC002D9734 /* Styling */,
 				908FFB761D3CECD3006DE524 /* Instabug.swift */,
 				17A651DB1D1433A700286D34 /* AppConfig.swift */,
 				17A651DD1D1433A700286D34 /* SwinjectSetup.swift */,
 				17A651DE1D1433A700286D34 /* AppDelegate.swift */,
-				17A651DF1D1433A700286D34 /* AppStyles.swift */,
 				17A651E01D1433A700286D34 /* CustomCellFactory.swift */,
 				17A651E11D1433A700286D34 /* CustomNavigationControllerDelegate.swift */,
 				17A651E21D1433A700286D34 /* CustomTimelineNavigationViewController.swift */,
@@ -377,13 +388,18 @@
 			name = DecorationNode;
 			sourceTree = "<group>";
 		};
-		1CC16C381DABCCDC002D9734 /* Text styling */ = {
+		1CC16C381DABCCDC002D9734 /* Styling */ = {
 			isa = PBXGroup;
 			children = (
+				1C547DAF1DB6BF0E00A2A1C6 /* BlockContextType.swift */,
+				1C547DB21DB6BFC400A2A1C6 /* BlockStyle.swift */,
+				17A651DF1D1433A700286D34 /* AppStyles.swift */,
+				1C547DA91DB6BE4700A2A1C6 /* Fonts.swift */,
+				1C547DAC1DB6BEBC00A2A1C6 /* Colors.swift */,
 				1C13B5451D89D3F900100529 /* DTCSSStylesheet.swift */,
 				1C22E8EE1D8AD743000C6759 /* MarkupTag.swift */,
 			);
-			name = "Text styling";
+			name = Styling;
 			sourceTree = "<group>";
 		};
 		1CECA3BF1D7425DB000179BF /* Blocks */ = {
@@ -738,6 +754,7 @@
 				1C1CE8BA1D81AEE6007940AB /* Border.swift in Sources */,
 				1CF29C8F1DA5060E00A4D742 /* EnhancedBannerNode.swift in Sources */,
 				1C195C371D90263B00A749B7 /* DividerNode.swift in Sources */,
+				1C547DB01DB6BF0E00A2A1C6 /* BlockContextType.swift in Sources */,
 				1CECA3C91D742610000179BF /* LoginButton.swift in Sources */,
 				1CECA3C51D7425FE000179BF /* SectionRefNode.swift in Sources */,
 				1C5D0D321D7DB6E8004C7CDD /* DecorationNode.swift in Sources */,
@@ -750,6 +767,7 @@
 				17A651F41D1433A700286D34 /* CustomArticleViewController.swift in Sources */,
 				1C870A1D1DB2450F001149F1 /* VideoBlock.swift in Sources */,
 				1C870A101DB18173001149F1 /* SectionRefBlock.swift in Sources */,
+				1C547DAD1DB6BEBC00A2A1C6 /* Colors.swift in Sources */,
 				17A651EC1D1433A700286D34 /* AppDelegate.swift in Sources */,
 				1CC8C6FB1DAFD139002C9D5C /* YTPlayerView.swift in Sources */,
 				1C1CE8B81D81ADF1007940AB /* CornerInfo.swift in Sources */,
@@ -763,6 +781,7 @@
 				1CC16C6D1DAF93CF002D9734 /* StreamingVideoBlock.swift in Sources */,
 				1C5896611D76C8E6009C9861 /* BylineBlock.swift in Sources */,
 				1CC16C401DAC2921002D9734 /* TweetNode.swift in Sources */,
+				1C547DAA1DB6BE4700A2A1C6 /* Fonts.swift in Sources */,
 				1CF29C921DA5171D00A4D742 /* ButtonNode.swift in Sources */,
 				17A651EF1D1433A700286D34 /* CustomNavigationControllerDelegate.swift in Sources */,
 				1CC16C6A1DAF8D15002D9734 /* YoutubeNode.swift in Sources */,
@@ -786,6 +805,7 @@
 				1C5D0D2F1D7DB298004C7CDD /* DecorationLayerModel.swift in Sources */,
 				1C9FF3021D9AA5C4005081F7 /* SpacingNode.swift in Sources */,
 				1C870A131DB18186001149F1 /* ContentNode.swift in Sources */,
+				1C547DB31DB6BFC400A2A1C6 /* BlockStyle.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -796,6 +816,7 @@
 				1C16F68D1D7ECE3D00ABCE8D /* ArticleRefNode.swift in Sources */,
 				1CC16C6E1DAF93CF002D9734 /* StreamingVideoBlock.swift in Sources */,
 				1C1CE8B31D818D0A007940AB /* ASyncDisplayKit.swift in Sources */,
+				1C547DB11DB6BF0E00A2A1C6 /* BlockContextType.swift in Sources */,
 				1C195C381D90263B00A749B7 /* DividerNode.swift in Sources */,
 				1C22E8F01D8AD743000C6759 /* MarkupTag.swift in Sources */,
 				1CC8C6FC1DAFD139002C9D5C /* YTPlayerView.swift in Sources */,
@@ -808,6 +829,7 @@
 				909B33591D5C84A800B38C3D /* Instabug.swift in Sources */,
 				1C9FF30B1D9AB285005081F7 /* Border.swift in Sources */,
 				1C504EA61D894D1D00590A52 /* ImageBlock.swift in Sources */,
+				1C547DAE1DB6BEBC00A2A1C6 /* Colors.swift in Sources */,
 				1C9FF3131D9BA58E005081F7 /* CustomCellFactory.swift in Sources */,
 				1C9FF30A1D9AB282005081F7 /* CornerInfo.swift in Sources */,
 				1CF29C931DA5171D00A4D742 /* ButtonNode.swift in Sources */,
@@ -821,6 +843,7 @@
 				1C13B5471D89D3F900100529 /* DTCSSStylesheet.swift in Sources */,
 				1C870A1E1DB2450F001149F1 /* VideoBlock.swift in Sources */,
 				909B335C1D5C84A800B38C3D /* AppDelegate.swift in Sources */,
+				1C547DAB1DB6BE4700A2A1C6 /* Fonts.swift in Sources */,
 				1CC16C6B1DAF8D15002D9734 /* YoutubeNode.swift in Sources */,
 				909B335E1D5C84A800B38C3D /* CustomNavigationControllerDelegate.swift in Sources */,
 				1CC8C7051DB173D1002C9D5C /* StreamingVideoNode.swift in Sources */,
@@ -844,6 +867,7 @@
 				1C5D0D3A1D7DC83D004C7CDD /* LabelNode.swift in Sources */,
 				1C9FF30C1D9AB29E005081F7 /* ImagePolicy.swift in Sources */,
 				1C870A111DB18177001149F1 /* SectionRefNode.swift in Sources */,
+				1C547DB41DB6BFC400A2A1C6 /* BlockStyle.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
