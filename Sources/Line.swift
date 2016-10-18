@@ -13,12 +13,10 @@ import Foundation
  */
 struct Line {
     let color: UIColor
-    let thickness: CGFloat
-    let length: CGFloat?
+    let size: CGSize
     
-    init(color: UIColor, thickness: CGFloat, length: CGFloat? = nil) {
+    init(color: UIColor, size: CGSize) {
         self.color = color
-        self.thickness = thickness
-        self.length = length
+        self.size = size
     }
 }

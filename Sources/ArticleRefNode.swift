@@ -54,7 +54,7 @@ class ArticleRefNode: ContentNode<ArticleRefNodeContent> {
     let imageNode: ASNetworkImageNode
     
     var lineThickness: CGFloat {
-        return content.line?.thickness ?? 0
+        return content.line?.size.height ?? 0
     }
     
     //MARK: - initialization

@@ -48,7 +48,7 @@ final class DividerNode : ContentNode<DividerNodeContent> {
     }
     
     override func layoutSpecThatFits(constrainedSize: ASSizeRange) -> ASLayoutSpec {
-        let lineHeight = content.line.thickness
+        let lineHeight = content.line.size.height
         
         leftLine.preferredFrameSize = CGSize(width: constrainedSize.max.width, height: lineHeight)
         leftLine.flexShrink = true

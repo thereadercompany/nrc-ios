@@ -395,31 +395,31 @@ class CellFactory: Core.CellFactory {
         switch (block.blockContext, block.blockStyle) {
         case (.Article, .Inset):
             backgroundColor = Colors.insetBackgroundColor
-            line = Line(color: Colors.insetLineColor, thickness: 1)
+            line = Line(color: Colors.insetLineColor, size: CGSize(width: .max, height: 1))
             padding = UIEdgeInsets(top: 0, left: 0, bottom: 10, right: 0)
         case (.Article, .Recommendation):
             backgroundColor = Colors.articleRecommendationBackgroundColor
-            line = Line(color: Colors.dividerLineColor, thickness: 0.5)
+            line = Line(color: Colors.dividerLineColor, size: CGSize(width: .max, height: 0.5))
             padding = UIEdgeInsets(top: 0, left: 0, bottom: 10, right: 0)
         case (.Article, .BlockQuote):
             backgroundColor = Colors.articleBlockQuoteBackgroundColor
-            line = Line(color: Colors.dividerLineColor, thickness: 0.5)
+            line = Line(color: Colors.dividerLineColor, size: CGSize(width: .max, height: 0.5))
             padding = UIEdgeInsets(top: 0, left: 0, bottom: 10, right: 0)
         case (.Article, .Information):
             backgroundColor = Colors.articleInformationBackgroundColor
-            line = Line(color: Colors.dividerLineColor, thickness: 0.5)
+            line = Line(color: Colors.dividerLineColor, size: CGSize(width: .max, height: 0.5))
             padding = UIEdgeInsets(top: 0, left: 0, bottom: 10, right: 0)
         case (.Article, _):
             backgroundColor = Colors.articleBackgroundColor
-            line = Line(color: Colors.dividerLineColor, thickness: 0.5)
+            line = Line(color: Colors.dividerLineColor, size: CGSize(width: .max, height: 0.5))
             padding = UIEdgeInsets(top: 0, left: 15, bottom: 10, right: 15)
         case (.Timeline, _):
             backgroundColor = Colors.timelineBackgroundColor
-            line = Line(color: Colors.dividerLineColor, thickness: 0.5)
+            line = Line(color: Colors.dividerLineColor, size: CGSize(width: .max, height: 0.5))
             padding = UIEdgeInsets(top: 0, left: 0, bottom: 10, right: 0)
         default:
             backgroundColor = Colors.dividerBackgroundColor
-            line = Line(color: Colors.dividerLineColor, thickness: 0.5)
+            line = Line(color: Colors.dividerLineColor, size: CGSize(width: .max, height: 0.5))
             padding = UIEdgeInsets(top: 0, left: 0, bottom: 10, right: 0)
         }
     
@@ -762,7 +762,7 @@ private extension ArticleRefBlock {
             color = Colors.defaultLineColor
         }
         
-        return Line(color: color, thickness: thickness)
+        return Line(color: color, size: CGSize(width: .max, height: thickness))
     }
     
     var labelModel: Label? {
