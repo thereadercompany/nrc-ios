@@ -656,7 +656,7 @@ class CellFactory: Core.CellFactory {
             loop: block.loop,
             title: title,
             backgroundColor: Colors.cellBackgroundColor,
-            padding: UIEdgeInsets(top: 0, left: 0, bottom: 40, right: 0)
+            padding: UIEdgeInsets(top: 0, left: 0, bottom: 12, right: 0)
         )
         
         return YoutubeNode(content: content)
@@ -686,7 +686,7 @@ class CellFactory: Core.CellFactory {
                                             placeholder: placeholder,
                                             title: title,
                                             backgroundColor: Colors.cellBackgroundColor,
-                                            padding: UIEdgeInsets(top: 0, left: 0, bottom: 40, right: 0)
+                                            padding: UIEdgeInsets(top: 0, left: 0, bottom: 12, right: 0)
         )
         
         return VimeoNode(content: content)

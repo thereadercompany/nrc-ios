@@ -24,7 +24,7 @@ class StreamingVideoContent: Content {
     
     /** sets up the content for the encapsulated imageNode */
     private var imageNodeContent: ImageNodeContent {
-        let gradient = LinearGradient(colors: [.clearColor(), .blackColor()], start: CGPoint.zero , end: CGPoint(x: 1, y: 1))
+        let gradient = LinearGradient(colors: [.clearColor(), .blackColor()])
         return ImageNodeContent(image: placeholder, gradient: gradient, backgroundColor: .clearColor())
     }
 }
@@ -57,10 +57,19 @@ class StreamingVideoNode<C: StreamingVideoContent>: ContentNode<C> {
     
     //MARK: - Layout
     override func layoutSpecThatFits(constrainedSize: ASSizeRange) -> ASLayoutSpec {
-        let imageSpec = ASStaticLayoutSpec(children: [imageNode])
         let playButtonSpec = ASCenterLayoutSpec(centeringOptions: .XY, sizingOptions: .MinimumXY, child: playButtonImageNode)
-        let overlaySpec = ASOverlayLayoutSpec(child: imageSpec, overlay: playButtonSpec)
-        return overlaySpec
+        
+        var contentSpec: ASLayoutSpec = playButtonSpec
+        
+        if let titleNode = titleNode {
+            let spacer = ASLayoutSpec()
+            spacer.flexGrow = true
+            let titleSpec = ASStackLayoutSpec(direction: .Vertical, spacing: 0, justifyContent: .End, alignItems: .Center, children: [spacer, titleNode])
+            let paddedTitleSpec = ASInsetLayoutSpec(insets: content.padding, child: titleSpec)
+            contentSpec = ASOverlayLayoutSpec(child: playButtonSpec, overlay: paddedTitleSpec)
+        }
+        
+        return ASOverlayLayoutSpec(child: imageNode, overlay: contentSpec)
     }
     
     //MARK: -
