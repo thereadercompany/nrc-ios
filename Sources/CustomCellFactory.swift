@@ -529,9 +529,9 @@ class CellFactory: Core.CellFactory {
         case .Timeline:
             padding = UIEdgeInsets(top: 30, left: 15, bottom: 30, right: 15)
         case .Article:
-            padding = UIEdgeInsets(top: 0, left: 20, bottom: 25, right: 20)
+            padding = UIEdgeInsets(top: 20, left: 20, bottom: 25, right: 20)
         case .Paywall, .Onboarding:
-            padding = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
+            padding = UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20)
         default:
             padding = UIEdgeInsets()
         }
