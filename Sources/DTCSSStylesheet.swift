@@ -38,7 +38,7 @@ private let sharedDTCSSStyleSheet: DTCSSStylesheet = {
         "\(MarkupTag.TweetItem.rawValue)  {color: \(Colors.twitterBlue.hexString); } " +
         "\(BlockStyle.Recommendation.rawValue) \(MarkupTag.A.rawValue) {text-decoration: none; color: \(Colors.defaultFontColor.hexString); font-family: \"\(Fonts.mediumFont.name)\";  font-weight: 600; }" +
         "\(BlockStyle.Recommendation.rawValue) \(MarkupTag.Strong.rawValue) {text-decoration: none; color: \(Colors.defaultFontColor.hexString); font-family: \"\(Fonts.lightFont.name)\";  font-weight: 400; }" +
-        "\(MarkupTag.QuotationMark.rawValue) { font-family: \"\(QuoteStyles.quotationMarkFont.name)\"; font-size: \(QuoteStyles.quotationMarkFontSize)px; font-weight: normal; }" +
+        "\(MarkupTag.QuotationMark.rawValue) { font-family: \"\(Fonts.textFont.name)\"; font-size: \(33)px; font-weight: normal; }" +
         "\(MarkupTag.Header.rawValue),\(MarkupTag.Subheader.rawValue) { margin: 0; display: inherit; }" +
         "\(MarkupTag.Number.rawValue) { font-family: \"\(Fonts.alternativeTextFont.name)\"; font-size: \(ArticleStyles.numberFontSize); line-height: 1.1; font-weight: bold; color: \(ArticleStyles.numberFontColor.hexString) }"
     )

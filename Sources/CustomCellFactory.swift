@@ -75,6 +75,9 @@ class CellFactory: Core.CellFactory {
         case let videoBlock as VideoBlock:
             let node  = videoNode(videoBlock: videoBlock)
             cell = NRCCell(contentNode: node, decoration: decoration)
+        case let streamerBlock as StreamerBlock:
+            let node = streamerNode(streamerBlock: streamerBlock)
+            cell = NRCCell(contentNode: node, decoration: decoration)
         default:
             let node = FallbackContentNode(renderable: block)
             return Cell(contentNode: node)
@@ -711,6 +714,64 @@ class CellFactory: Core.CellFactory {
         )
         
         return VideoNode(content: content)
+    }
+    
+    //MARK: - Streamer
+    func streamerNode(streamerBlock block: StreamerBlock) -> StreamerNode {
+        let string: String
+        let firstLineHeadIndent: CGFloat?
+        let headIndent: CGFloat?
+        switch block.blockStyle {
+        case .Normal:
+            string = block.text
+            firstLineHeadIndent = 4
+            headIndent = 4
+        case .Quote:
+            string = "<quotationmark>“</quotationmark>\(block.text)<quotationmark>„</quotationmark>"
+            firstLineHeadIndent = nil
+            headIndent = 17
+        default:
+            string = block.text
+            firstLineHeadIndent = nil
+            headIndent = nil
+        }
+        
+        // text
+        let attributes = StringAttributes(
+            font: Fonts.italicFont.fallbackWithSize(32),
+            foregroundColor: Colors.defaultFontColor,
+            lineSpacing: 0,
+            firstLineHeadIndent: firstLineHeadIndent,
+            headIndent: headIndent,
+            hyphenationFactor: 0.8,
+            styleSheet: .shared
+        )
+        let text = NSAttributedString(string: string, attributes: attributes, style: block.blockStyle)
+        
+        // source
+        var source: NSAttributedString? = nil
+        if let string = block.source {
+            let attributes = StringAttributes(
+                font: Fonts.mediumFont.fallbackWithSize(19),
+                foregroundColor: Colors.defaultFontColor,
+                lineSpacing: 0,
+                firstLineHeadIndent: headIndent, // align with headindent of text
+                headIndent: headIndent,
+                styleSheet: .shared
+            )
+            source = NSAttributedString(string: string, attributes: attributes, style: block.blockStyle)
+        }
+        
+        // lines
+        let line = Line(color: Colors.streamerLineColor, size: CGSize(width: 48, height: 1))
+        let content = StreamerNodeContent(text: text,
+                                          source: source,
+                                          lines: (line, line),
+                                          backgroundColor: Colors.cellBackgroundColor,
+                                          padding: UIEdgeInsets(top: 0, left: 20, bottom: 25, right: 20)
+        )
+        
+        return StreamerNode(content: content)
     }
 }
 
