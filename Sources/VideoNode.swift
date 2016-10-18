@@ -78,4 +78,18 @@ class VideoNode: ContentNode<VideoNodeContent>, ASVideoNodeDelegate, VisibilityO
         let bottomVisible = scrollView.contentOffset.y + scrollView.bounds.height >= cellFrame.minY + videoNode.frame.maxY
         return topVisible && bottomVisible
     }
+    
+    //MARK: VisibilityObserver
+    func visibilityChanged(toState state: VisibilityState) {
+        guard case .Visible(_ , let fullyVisible) = state else { return }
+        
+        let playing = videoNode.isPlaying()
+        switch (fullyVisible, playing) {
+        case (false, true):
+            videoNode.pause()
+        case (true, false) where content.autoplay:
+            videoNode.play()
+        default:()
+        }
+    }
 }
