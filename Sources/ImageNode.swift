@@ -18,11 +18,13 @@ final class ImageNodeContent: Content {
     let caption: NSAttributedString?
     let credit: NSAttributedString?
     let gradient: LinearGradient?
+    let action: Action?
     
     init(image: Image,
          caption: NSAttributedString? = nil,
          credit: NSAttributedString? = nil,
          gradient: LinearGradient? = nil,
+         action: Action? = nil,
          backgroundColor: UIColor,
          padding: UIEdgeInsets = UIEdgeInsets()
         ) {
@@ -30,6 +32,7 @@ final class ImageNodeContent: Content {
         self.caption = caption
         self.credit = credit
         self.gradient = gradient
+        self.action = action
         super.init(backgroundColor: backgroundColor, padding: padding)
     }
 }
@@ -99,5 +102,11 @@ final class ImageNode: ContentNode<ImageNodeContent> {
         
         let stackSpec = ASStackLayoutSpec(direction: .Vertical, spacing: 0, justifyContent: .Start, alignItems: .Start, children: contentNodes)
         return ASInsetLayoutSpec(insets: content.padding, child: stackSpec)
+    }
+    
+    override func handleTap() {
+        if let actionHandler = actionHandler, action = content.action {
+            actionHandler.handleAction(action, sender: self)
+        }
     }
 }
