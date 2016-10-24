@@ -32,60 +32,46 @@ class CellFactory: Core.CellFactory {
 
     func cell(block block: Block) -> ASCellNode {
         let decorationLayerModel = DecorationLayerModel.model(block: block)
-        let decoration = Decoration(type: block.decoration, layerModel: decorationLayerModel)
+        var decoration: Decoration? = Decoration(type: block.decoration, layerModel: decorationLayerModel)
         
-        let cell: Cell
+        let node: ASDisplayNode
         switch block {
         case let sectionRef as SectionRefBlock:
-            let node = sectionRefNode(sectionRefBlock: sectionRef)
-            cell = NRCCell(contentNode: node, decoration: decoration)
+            node = sectionRefNode(sectionRefBlock: sectionRef)
         case let articleRef as ArticleRefBlock:
-            let node = articleRefNode(articleRefBlock: articleRef)
-            cell = NRCCell(contentNode: node, decoration: decoration)
+            node = articleRefNode(articleRefBlock: articleRef)
         case let bylineBlock as BylineBlock:
-            let node = bylineNode(bylineBlock: bylineBlock)
-            cell = NRCCell(contentNode: node, decoration: nil)
+            node = bylineNode(bylineBlock: bylineBlock)
         case let spacingBlock as SpacingBlock:
-            let node = spacingNode(spacingBlock: spacingBlock)
-            cell = NRCCell(contentNode: node, decoration: nil)
+            node = spacingNode(spacingBlock: spacingBlock)
+            decoration = nil
         case let textBlock as TextBlock:
-            let node = textNode(textBlock: textBlock)
-            cell = NRCCell(contentNode: node, decoration: decoration)
+            node = textNode(textBlock: textBlock)
         case let plainTextBlock as PlainTextBlock:
-            let node = textNode(textBlock: plainTextBlock)
-            cell = NRCCell(contentNode: node, decoration: decoration)
+            node = textNode(textBlock: plainTextBlock)
         case let imageBlock as ImageBlock:
-            let node = imageNode(imageBlock: imageBlock)
-            cell = NRCCell(contentNode: node, decoration: decoration)
+            node = imageNode(imageBlock: imageBlock)
         case let dividerBlock as DividerBlock:
-            let node = dividerNode(dividerBlock: dividerBlock)
-            cell = NRCCell(contentNode: node, decoration: decoration)
+            node = dividerNode(dividerBlock: dividerBlock)
         case let enhancedBannerBlock as EnhancedBannerBlock:
-            let node = enhancedBannerNode(enhancedBannerBlock: enhancedBannerBlock)
-            cell = NRCCell(contentNode: node, decoration: decoration)
+            node = enhancedBannerNode(enhancedBannerBlock: enhancedBannerBlock)
         case let tweetBlock as TweetBlock:
-            let node = tweetNode(tweetBlock: tweetBlock)
-            cell = NRCCell(contentNode: node, decoration: decoration)
+            node = tweetNode(tweetBlock: tweetBlock)
         case let youtubeBlock as YoutubeBlock:
-            let node = youtubeNode(youtubeBlock: youtubeBlock)
-            cell = NRCCell(contentNode: node, decoration: decoration)
+            node = youtubeNode(youtubeBlock: youtubeBlock)
         case let vimeoBlock as VimeoBlock:
-            let node = vimeoNode(vimeoBlock: vimeoBlock)
-            cell = NRCCell(contentNode: node, decoration: decoration)
+            node = vimeoNode(vimeoBlock: vimeoBlock)
         case let videoBlock as VideoBlock:
-            let node  = videoNode(videoBlock: videoBlock)
-            cell = NRCCell(contentNode: node, decoration: decoration)
+            node  = videoNode(videoBlock: videoBlock)
         case let streamerBlock as StreamerBlock:
-            let node = streamerNode(streamerBlock: streamerBlock)
-            cell = NRCCell(contentNode: node, decoration: decoration)
+            node = streamerNode(streamerBlock: streamerBlock)
         default:
-            let node = FallbackContentNode(renderable: block)
-            return Cell(contentNode: node)
+            node = FallbackContentNode(renderable: block)
+            decoration = nil
         }
         
-        // add tracker
+        let cell = NRCCell(contentNode: node, decoration: decoration)
         cell.tracker = trackerFactory.createTracker(block.trackingData)
-        
         return cell
     }
     
