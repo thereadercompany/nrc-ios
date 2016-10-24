@@ -48,37 +48,42 @@ final class ArticleRefNodeContent: Content {
  Abstract node for rendering an ArticleRef. Subclass for specific layouting
  */
 class ArticleRefNode: ContentNode<ArticleRefNodeContent> {
-    let labelNode: LabelNode?
-    let titleNode = ASTextNode()
-    let lineNode = ASDisplayNode()
     let imageNode: ASNetworkImageNode
+    let labelNode: LabelNode?
+    let titleNode: ASTextNode
+    let lineNode: ASDisplayNode?
     
     var lineThickness: CGFloat {
         return content.line?.size.height ?? 0
     }
     
+    private var fullWidthSizeRange: ASRelativeSizeRange {
+        // stretch to full width
+        let minSize = ASRelativeSize(
+            width: ASRelativeDimension(type: .Percent, value: 1),
+            height: ASRelativeDimension(type: .Percent, value: 0)
+        )
+        let maxSize = ASRelativeSize(
+            width: ASRelativeDimension(type: .Percent, value: 1),
+            height: ASRelativeDimension(type: .Percent, value: 1)
+        )
+        
+        return ASRelativeSizeRange(min: minSize, max: maxSize)
+    }
+    
     //MARK: - initialization
     required init(content: ArticleRefNodeContent) {
         imageNode = ASNetworkImageNode(image: content.image)
-        labelNode = LabelNode(label: content.label)
+        labelNode = LabelNode(optionalLabel: content.label)
+        titleNode = ASTextNode(text: content.title)
+        lineNode = ASDisplayNode(optionalLine: content.line)
+        
         super.init(content: content)
         
-        // image
         addSubnode(imageNode)
-        imageNode.clipsToBounds = true
-        
-        // title
         addSubnode(titleNode)
-        titleNode.attributedText = content.title
-        
-        // label
         addOptionalSubnode(labelNode)
-        
-        // line
-        if let line = content.line {
-            addSubnode(lineNode)
-            lineNode.backgroundColor = line.color
-        }
+        addOptionalSubnode(lineNode)
     }
     
     //MARK: - Layout
@@ -127,10 +132,16 @@ final class NormalArticleRefNode: ArticleRefNode {
         let paddedContentStack = ASInsetLayoutSpec(insets: content.padding, child: horizontalStack)
         
         // add line
-        let width = constrainedSize.max.width
-        lineNode.preferredFrameSize = CGSize(width: width, height: lineThickness)
-        let cellItems: [ASLayoutable] = [paddedContentStack, lineNode]
-        return ASStackLayoutSpec(direction: .Vertical, spacing: 0, justifyContent: .Start, alignItems: .Start, children: cellItems)
+        if let lineNode = lineNode {
+            let width = constrainedSize.max.width
+            lineNode.preferredFrameSize = CGSize(width: width, height: lineThickness)
+        }
+        
+        let cellItems: [ASLayoutable?] = [paddedContentStack, lineNode]
+        let stackSpec = ASStackLayoutSpec(direction: .Vertical, optionalChildren: cellItems)
+        stackSpec.sizeRange = fullWidthSizeRange
+        
+        return ASStaticLayoutSpec(children: [stackSpec])
     }
 }
 
@@ -142,6 +153,8 @@ final class LargeArticleRefNode: ArticleRefNode {
     private let imageRatio: CGFloat = 5/3
     
     override func layoutSpecThatFits(constrainedSize: ASSizeRange) -> ASLayoutSpec {
+        let width = constrainedSize.max.width
+        
         // label and title
         let stackNodes: [ASLayoutable?] = [labelNode, titleNode]
         let stackSpec = ASStackLayoutSpec(direction: .Vertical, spacing: 15, optionalChildren: stackNodes)
@@ -150,19 +163,20 @@ final class LargeArticleRefNode: ArticleRefNode {
         let insetSpec = ASInsetLayoutSpec(insets: content.padding, child: stackSpec)
         
         // line
-        let width = constrainedSize.max.width
-        lineNode.preferredFrameSize = CGSize(width: width, height: lineThickness)
-        var contentNodes: [ASLayoutable] = [insetSpec, lineNode]
+        lineNode?.preferredFrameSize = CGSize(width: width, height: lineThickness)
         
         // image
         let imageWidth = width
         let imageHeight = imageWidth / imageRatio
         let imageSize = CGSize(width: imageWidth, height: imageHeight)
         imageNode.preferredFrameSize = imageSize
-        contentNodes.insert(imageNode, atIndex: 0)
         
         // stack
-        return ASStackLayoutSpec(direction: .Vertical, spacing: 0, justifyContent: .Start, alignItems: .Start, children: contentNodes)
+        let contentNodes: [ASLayoutable?] = [imageNode, insetSpec, lineNode]
+        let contentSpec = ASStackLayoutSpec(direction: .Vertical, optionalChildren: contentNodes)
+        contentSpec.sizeRange = fullWidthSizeRange
+        
+        return ASStaticLayoutSpec(children: [contentSpec])
     }
 }
 
@@ -181,7 +195,7 @@ final class ExtraLargeArticleRefNode: ArticleRefNode {
     
     // Cell
     required init(content: ArticleRefNodeContent) {
-        abstractNode = ASTextNode(text: content.abstract)
+        abstractNode = ASTextNode(optionalText: content.abstract)
         super.init(content: content)
         insertSubnode(gradientNode, belowSubnode: titleNode)
         
@@ -194,8 +208,7 @@ final class ExtraLargeArticleRefNode: ArticleRefNode {
         titleNode.shadowOpacity = shadowOpacity
         titleNode.shadowRadius = shadowRadius
         
-        if let abstractNode = abstractNode {
-            addSubnode(abstractNode)
+        if let abstractNode = addOptionalSubnode(abstractNode) {
             abstractNode.shadowColor = shadowColor
             abstractNode.shadowOffset = shadowOffset
             abstractNode.shadowOpacity = shadowOpacity
@@ -205,7 +218,7 @@ final class ExtraLargeArticleRefNode: ArticleRefNode {
     
     override func layoutSpecThatFits(constrainedSize: ASSizeRange) -> ASLayoutSpec {
         let imageSpec = ASRatioLayoutSpec(ratio: imageRatio, child: imageNode)        
-        lineNode.preferredFrameSize = CGSize(width: constrainedSize.max.width, height: lineThickness)
+        lineNode?.preferredFrameSize = CGSize(width: constrainedSize.max.width, height: lineThickness)
         
         let textNodes: [ASLayoutable?] = [labelNode, titleNode, abstractNode]
         let textContentSpec = ASStackLayoutSpec(direction: .Vertical, spacing: 10, optionalChildren: textNodes)
@@ -214,8 +227,12 @@ final class ExtraLargeArticleRefNode: ArticleRefNode {
 
         let spacer = ASLayoutSpec()
         spacer.flexGrow = true
-        let card = ASStackLayoutSpec(direction: .Vertical, spacing: 0, justifyContent: .End, alignItems: .Stretch, children: [spacer, gradientContentSpec ,lineNode])
+        let card = ASStackLayoutSpec(direction: .Vertical, spacing: 0, justifyContent: .End, alignItems: .Stretch, optionalChildren: [spacer, gradientContentSpec ,lineNode])
         card.flexGrow = true
-        return ASOverlayLayoutSpec(child: imageSpec, overlay: card)
+        
+        let overlaySpec = ASOverlayLayoutSpec(child: imageSpec, overlay: card)
+        overlaySpec.sizeRange = fullWidthSizeRange
+        
+        return overlaySpec
     }
 }
