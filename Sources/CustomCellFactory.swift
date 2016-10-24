@@ -154,8 +154,10 @@ class CellFactory: Core.CellFactory {
             foregroundColor: Colors.defaultFontColor,
             lineSpacing: 3
         )
+        
         let text = NSAttributedString(string: block.plainText, attributes: attributes)
-        let content = BylineNodeContent(icon: block.icon, text: text)
+        let padding = UIEdgeInsets(top: 0, left: ArticleStyles.contentInset, bottom: 3, right: ArticleStyles.contentInset)
+        let content = BylineNodeContent(icon: block.icon, text: text, padding: padding)
         return BylineNode(content: content)
     }
     
@@ -177,55 +179,48 @@ class CellFactory: Core.CellFactory {
     
     //MARK: - Text
     private func textNode(textBlock block: TextBlock) -> TextNode {
-        let font: UIFont
-        let textColor: UIColor
-        let lineSpacing: CGFloat
-        let backgroundColor: UIColor
-        let padding: UIEdgeInsets
-        
         func insetPadding(decoration decoration: DecorationType) -> UIEdgeInsets {
+            let top: CGFloat
             switch decoration {
-            case .Top:
-                return UIEdgeInsets(top: 15, left: 15, bottom: 15, right: 15)
-            case .Middle:
-                return UIEdgeInsets(top: 0, left: 15, bottom: 15, right: 15)
-            case .Bottom:
-                return UIEdgeInsets(top: 0, left: 15, bottom: 15, right: 15)
-            case .Full:
-                return UIEdgeInsets(top: 15, left: 15, bottom: 15, right: 15)
             case .None:
                 return UIEdgeInsets()
+            case .Top, .Full:
+                top = 15
+            default:
+                top = 0
             }
+            
+            return UIEdgeInsets(top: top, left: 15, bottom: 15, right: 15)
         }
+        
+        let font: UIFont
+        let lineSpacing: CGFloat
+        
+        var padding = UIEdgeInsets(top: 0, left: ArticleStyles.contentInset, bottom: 25, right: ArticleStyles.contentInset)
+        var textColor = Colors.defaultFontColor
+        var backgroundColor = Colors.cellBackgroundColor
         
         switch block.blockStyle {
         case .Normal:
             font = Fonts.textFont.fallbackWithSize(17)
-            textColor = Colors.defaultFontColor
             lineSpacing =  8
-            backgroundColor = Colors.cellBackgroundColor
-            padding = UIEdgeInsets(top: 0, left: 20, bottom: 25, right: 20)
         case .BlockQuote:
             font = Fonts.mediumFont.fallbackWithSize(17)
-            textColor = Colors.defaultFontColor
             lineSpacing = 7
             backgroundColor = Colors.articleBlockQuoteBackgroundColor
             padding = UIEdgeInsets(top: 15, left: 15, bottom: 15, right: 15)
         case .Information:
             font = Fonts.mediumFont.fallbackWithSize(17)
-            textColor = Colors.defaultFontColor
             lineSpacing = 7
             backgroundColor = Colors.articleInformationBackgroundColor
             padding = UIEdgeInsets(top: 15, left: 15, bottom: 15, right: 15)
         case .Recommendation:
             font = Fonts.lightFont.fallbackWithSize(17)
-            textColor = Colors.defaultFontColor
             lineSpacing = 7
             backgroundColor = Colors.articleRecommendationBackgroundColor
             padding = UIEdgeInsets(top: 15, left: 15, bottom: 15, right: 15)
         case .Inset:
             font = Fonts.alternativeTextFont.fallbackWithSize(15)
-            textColor = Colors.defaultFontColor
             lineSpacing = 6
             backgroundColor = Colors.insetBackgroundColor
             padding = insetPadding(decoration: block.decoration)
@@ -237,28 +232,19 @@ class CellFactory: Core.CellFactory {
             padding = insetPadding(decoration: block.decoration)
         case .InsetSubheader:
             font = Fonts.textFont.fallbackWithSize(16)
-            textColor = Colors.defaultFontColor
             lineSpacing = 6
             backgroundColor = Colors.insetBackgroundColor
             padding = insetPadding(decoration: block.decoration)
         case .Intro:
             font = Fonts.lightFont.fallbackWithSize(22)
-            textColor = Colors.defaultFontColor
             lineSpacing = 6
-            backgroundColor = Colors.cellBackgroundColor
-            padding = UIEdgeInsets(top: 0, left: 20, bottom: 30, right: 20)
+            padding.bottom = 30
         case .Subheader:
             font = Fonts.textFont.fallbackWithSize(20)
-            textColor = Colors.defaultFontColor
             lineSpacing = 4
-            backgroundColor = Colors.cellBackgroundColor
-            padding = UIEdgeInsets(top: 0, left: 20, bottom: 25, right: 20)
         default:
             font = Fonts.textFont.fallbackWithSize(16)
-            textColor = Colors.defaultFontColor
             lineSpacing = 0
-            backgroundColor = Colors.cellBackgroundColor
-            padding = UIEdgeInsets(top: 0, left: 20, bottom: 25, right: 20)
         }
         
         let attributes = StringAttributes(
@@ -283,7 +269,7 @@ class CellFactory: Core.CellFactory {
         case .Subheader:
             font = Fonts.mediumFont.fallbackWithSize(20)
             fontColor = Colors.defaultFontColor
-            padding = UIEdgeInsets(top: 0, left: 20, bottom: 14, right: 20)
+            padding = UIEdgeInsets(top: 0, left: ArticleStyles.contentInset, bottom: 14, right: ArticleStyles.contentInset)
         case .InsetHeader:
             font = Fonts.alternativeMediumFont.fallbackWithSize(14)
             fontColor = Colors.accentColor
@@ -295,7 +281,7 @@ class CellFactory: Core.CellFactory {
         default:
             font = Fonts.textFont.fallbackWithSize(14)
             fontColor = Colors.defaultFontColor
-            padding = UIEdgeInsets(top: 0, left: ArticleStyles.textInset, bottom: 25, right: ArticleStyles.textInset)
+            padding = UIEdgeInsets(top: 0, left: ArticleStyles.contentInset, bottom: 25, right: ArticleStyles.contentInset)
         }
         
         let attributes = StringAttributes(
@@ -378,43 +364,36 @@ class CellFactory: Core.CellFactory {
     //MARK: - Divider
     func dividerNode(dividerBlock block: DividerBlock) -> DividerNode {
         let backgroundColor: UIColor
-        let line: Line
-        let padding: UIEdgeInsets
+        var line = Line(color: Colors.dividerLineColor, size: CGSize(width: .max, height: 0.5))
+        var padding = UIEdgeInsets(top: 0, left: 0, bottom: 10, right: 0)
         
         switch (block.blockContext, block.blockStyle) {
         case (.Article, .Inset):
             backgroundColor = Colors.insetBackgroundColor
             line = Line(color: Colors.insetLineColor, size: CGSize(width: .max, height: 1))
-            padding = UIEdgeInsets(top: 0, left: 0, bottom: 10, right: 0)
         case (.Article, .Recommendation):
             backgroundColor = Colors.articleRecommendationBackgroundColor
-            line = Line(color: Colors.dividerLineColor, size: CGSize(width: .max, height: 0.5))
-            padding = UIEdgeInsets(top: 0, left: 0, bottom: 10, right: 0)
         case (.Article, .BlockQuote):
             backgroundColor = Colors.articleBlockQuoteBackgroundColor
-            line = Line(color: Colors.dividerLineColor, size: CGSize(width: .max, height: 0.5))
             padding = UIEdgeInsets(top: 0, left: 0, bottom: 10, right: 0)
         case (.Article, .Information):
             backgroundColor = Colors.articleInformationBackgroundColor
-            line = Line(color: Colors.dividerLineColor, size: CGSize(width: .max, height: 0.5))
-            padding = UIEdgeInsets(top: 0, left: 0, bottom: 10, right: 0)
         case (.Article, _):
             backgroundColor = Colors.articleBackgroundColor
-            line = Line(color: Colors.dividerLineColor, size: CGSize(width: .max, height: 0.5))
             padding = UIEdgeInsets(top: 0, left: 15, bottom: 10, right: 15)
         case (.Timeline, _):
             backgroundColor = Colors.timelineBackgroundColor
-            line = Line(color: Colors.dividerLineColor, size: CGSize(width: .max, height: 0.5))
-            padding = UIEdgeInsets(top: 0, left: 0, bottom: 10, right: 0)
         default:
             backgroundColor = Colors.dividerBackgroundColor
-            line = Line(color: Colors.dividerLineColor, size: CGSize(width: .max, height: 0.5))
-            padding = UIEdgeInsets(top: 0, left: 0, bottom: 10, right: 0)
         }
     
         var label: Label? = nil
         if let string = block.label {
-            let attributes = StringAttributes(font: Fonts.labelFont.fallbackWithSize(10), foregroundColor: Colors.dividerTextColor, lineSpacing: 0)
+            let attributes = StringAttributes(
+                font: Fonts.labelFont.fallbackWithSize(10),
+                foregroundColor: Colors.dividerTextColor,
+                lineSpacing: 0
+            )
             let text = NSAttributedString(string: string, attributes: attributes)
             label = Label(text: text, insets: UIEdgeInsets(top: 0, left: 12, bottom: 0, right: 12))
         }
@@ -451,7 +430,8 @@ class CellFactory: Core.CellFactory {
             
             let title = NSAttributedString(string: button.title, attributes: attributes)
             let tracker = trackerFactory.createTracker(button.trackingData)
-            return Button(title: title,
+            return Button(
+                title: title,
                 size: CGSize(width: 272, height: 48),
                 border: border,
                 cornerInfo: CornerInfo(radius: 2),
@@ -462,10 +442,7 @@ class CellFactory: Core.CellFactory {
         }
         
         // Action - With only one button, tapping on the banner triggers te same action as the button
-        var action: Action? = nil
-        if let buttons = buttons where buttons.count == 1 {
-            action = buttons[0].action
-        }
+        let action = buttons?.count == 1 ? buttons?.first?.action : nil
         
         // Title
         var title: NSAttributedString? = nil
