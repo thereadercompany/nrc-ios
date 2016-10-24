@@ -10,7 +10,21 @@ import UIKit
 import AsyncDisplayKit
 import WebKit
 
-class VimeoNode: StreamingVideoNode<StreamingVideoContent>, WKNavigationDelegate {
+/** Content for VideoNode */
+class StreamingVideoContent: Content {
+    let identifier: String
+    let overlayContent: VideoOverlayNodeContent
+    
+    init(identifier: String, overlayContent: VideoOverlayNodeContent, backgroundColor: UIColor, padding: UIEdgeInsets) {
+        self.identifier = identifier
+        self.overlayContent = overlayContent
+        super.init(backgroundColor: backgroundColor, padding: padding)
+    }
+}
+
+class VimeoNode: ContentNode<StreamingVideoContent>, VideoPlayer, VisibilityObserver, WKNavigationDelegate {
+    let videoOverlayNode: VideoOverlayNode
+    
     lazy var webView: WKWebView = { [unowned self] in
         let configuration = WKWebViewConfiguration()
         configuration.requiresUserActionForMediaPlayback = false
@@ -21,19 +35,49 @@ class VimeoNode: StreamingVideoNode<StreamingVideoContent>, WKNavigationDelegate
         return view
         }()
     
-    //MARK - View animation
-    override var videoView: UIView {
-        return webView
-    }
     
-    //MARK: - Initialization
+    //MARK: - Init
     required init(content: StreamingVideoContent) {
+        videoOverlayNode = VideoOverlayNode(content: content.overlayContent)
         super.init(content: content)
+        
+        //overlay
+        addSubnode(videoOverlayNode)
     }
     
-    //MARK: - Transport
-    override func play() {
-        showVideoView()
+    //MARK: - Layout
+    override func layoutSpecThatFits(constrainedSize: ASSizeRange) -> ASLayoutSpec {
+        return ASStaticLayoutSpec(children: [videoOverlayNode])
+    }
+    
+    //MARK: - Highlight
+    override func highlight(highlighted: Bool, animated: Bool = true) {
+        videoOverlayNode.highlightPlayButton(highlighted)
+    }
+    
+    //MARK: - Interaction
+    override func handleTap() {
+        //TODO: check for internet connection
+        play()
+    }
+    
+    //MARK: - VideoPlayer
+    var overlayNode: ASDisplayNode? {
+        return videoOverlayNode
+    }
+    
+    var playing: Bool {
+        /** vimeo only plays fullscreen so cannot be playing when becoming partly invisible */
+        return false
+    }
+
+    func play() {
+        if webView.superview == nil {
+            view.insertSubview(webView, atIndex: 0)
+        }
+        
+        showOverlay(false, animationDuration: 1)
+
         guard let fullPath = NSBundle.mainBundle().pathForResource("vimeo", ofType: "html") else { return }
         do {
             let rawHtml = try NSString(contentsOfFile: fullPath, encoding: NSUTF8StringEncoding)
@@ -45,7 +89,7 @@ class VimeoNode: StreamingVideoNode<StreamingVideoContent>, WKNavigationDelegate
         }
     }
     
-    override func pause() {
+    func pause() {
         webView.evaluateJavaScript("pause()", completionHandler: nil)
     }
 }

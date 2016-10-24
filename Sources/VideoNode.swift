@@ -9,36 +9,37 @@
 import UIKit
 import AsyncDisplayKit
 
+/** Content for the VideoNode */
 class VideoNodeContent: Content {
     let URL: NSURL
-    let placeholder: Image
+    let aspectRatio: CGFloat
     let autorepeat: Bool
     let autoplay: Bool
-    let controls: Bool
-    let title: NSAttributedString?
-    
-    var playButtonImage: UIImage? {
-        return controls ? UIImage(named: "play_btn") : nil
-    }
-    
-    init(URL: NSURL, placeholder: Image, autorepeat: Bool, autoplay: Bool, controls: Bool, title: NSAttributedString?, backgroundColor: UIColor, padding: UIEdgeInsets) {
+    let overlayContent: VideoOverlayNodeContent?
+
+    init(URL: NSURL,
+         aspectRatio: CGFloat,
+         autoplay: Bool,
+         autorepeat: Bool,
+         overlayContent: VideoOverlayNodeContent?,
+         backgroundColor: UIColor,
+         padding: UIEdgeInsets) {
         self.URL = URL
-        self.placeholder = placeholder
+        self.aspectRatio = aspectRatio
         self.autorepeat = autorepeat
         self.autoplay = autoplay
-        self.controls = controls
-        self.title = title
+        self.overlayContent = overlayContent
         super.init(backgroundColor: backgroundColor, padding: padding)
     }
 }
 
-class VideoNode: ContentNode<VideoNodeContent>, ASVideoNodeDelegate, VisibilityObserver {
+class VideoNode: ContentNode<VideoNodeContent>, VideoPlayer, VisibilityObserver, ASVideoNodeDelegate {
     let videoNode = ASVideoNode()
-    let playButtonImageNode: ASImageNode?
+    let videoOverlayNode: VideoOverlayNode?
     
-    //MARK: - Initialization
+    //MARK: - Init
     required init(content: VideoNodeContent) {
-        playButtonImageNode = ASImageNode(image: content.playButtonImage)
+        videoOverlayNode = VideoOverlayNode(optionalContent: content.overlayContent)
         
         super.init(content: content)
         
@@ -49,47 +50,61 @@ class VideoNode: ContentNode<VideoNodeContent>, ASVideoNodeDelegate, VisibilityO
         videoNode.gravity = AVLayerVideoGravityResizeAspect
         videoNode.backgroundColor = content.backgroundColor
         videoNode.delegate = self
+        videoNode.userInteractionEnabled = false
         
         addSubnode(videoNode)
-        
-        if let playButtonImageNode = playButtonImageNode {
-            addSubnode(playButtonImageNode)
-        }
+        addOptionalSubnode(videoOverlayNode)
     }
     
     //MARK: - Layout
     override func layoutSpecThatFits(constrainedSize: ASSizeRange) -> ASLayoutSpec {
-        let ratio = 1 / content.placeholder.aspectRatio
+        let ratio = 1 / content.aspectRatio
         let ratioSpec = ASRatioLayoutSpec(ratio: ratio, child: videoNode)
         let paddedSpec =  ASInsetLayoutSpec(insets: content.padding, child: ratioSpec)
         
         var contentSpec: ASLayoutSpec = paddedSpec
-        if let playButtonImageNode = playButtonImageNode {
-            let playButtonSpec = ASCenterLayoutSpec(centeringOptions: .XY, sizingOptions: .MinimumXY, child: playButtonImageNode)
-            let overlaySpec = ASOverlayLayoutSpec(child: paddedSpec, overlay: playButtonSpec)
-            contentSpec = overlaySpec
+        if let overlayNode = overlayNode {
+            contentSpec = ASOverlayLayoutSpec(child: paddedSpec, overlay: overlayNode)
         }
         
         return contentSpec
     }
-        
-    private func videoNodeIsFullyVisible(inScrollView scrollView: UIScrollView, cellFrame: CGRect) -> Bool {
-        let topVisible = scrollView.contentOffset.y <= cellFrame.minY + videoNode.frame.minY
-        let bottomVisible = scrollView.contentOffset.y + scrollView.bounds.height >= cellFrame.minY + videoNode.frame.maxY
-        return topVisible && bottomVisible
+    
+    //MARK: - Highlight
+    override func highlight(highlighted: Bool, animated: Bool = true) {
+        videoOverlayNode?.highlightPlayButton(highlighted)
     }
     
-    //MARK: VisibilityObserver
-    func visibilityChanged(toState state: VisibilityState) {
-        guard case .Visible(_ , let fullyVisible) = state else { return }
-        
-        let playing = videoNode.isPlaying()
-        switch (fullyVisible, playing) {
-        case (false, true):
-            videoNode.pause()
-        case (true, false) where content.autoplay:
-            videoNode.play()
-        default:()
+    //MARK: - Interaction
+    override func handleTap() {
+        switch playing {
+        case false:
+            play()
+        case true:
+            pause()
         }
+    }
+    
+    //MARK: - VideoPlayer
+    var overlayNode: ASDisplayNode? {
+        return videoOverlayNode
+    }
+    
+    var autoplay: Bool {
+        return content.autoplay
+    }
+    
+    var playing: Bool {
+        return videoNode.isPlaying()
+    }
+    
+    func play() {
+        showOverlay(false, animationDuration: 1)
+        videoNode.play()
+    }
+    
+    func pause() {
+        videoNode.pause()
+        showOverlay(true, animationDuration: 1)
     }
 }

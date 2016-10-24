@@ -47,6 +47,10 @@
 		1C547DB11DB6BF0E00A2A1C6 /* BlockContextType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C547DAF1DB6BF0E00A2A1C6 /* BlockContextType.swift */; };
 		1C547DB31DB6BFC400A2A1C6 /* BlockStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C547DB21DB6BFC400A2A1C6 /* BlockStyle.swift */; };
 		1C547DB41DB6BFC400A2A1C6 /* BlockStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C547DB21DB6BFC400A2A1C6 /* BlockStyle.swift */; };
+		1C547DBC1DBDEB8200A2A1C6 /* VideoOverlayNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C547DBB1DBDEB8200A2A1C6 /* VideoOverlayNode.swift */; };
+		1C547DBD1DBDEB8300A2A1C6 /* VideoOverlayNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C547DBB1DBDEB8200A2A1C6 /* VideoOverlayNode.swift */; };
+		1C547DBE1DBDF7E100A2A1C6 /* MediaPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C547DB81DB8B1FB00A2A1C6 /* MediaPlayer.swift */; };
+		1C547DBF1DBDF7E200A2A1C6 /* MediaPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C547DB81DB8B1FB00A2A1C6 /* MediaPlayer.swift */; };
 		1C5896581D75D1A8009C9861 /* ArticleRefBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C5896571D75D1A8009C9861 /* ArticleRefBlock.swift */; };
 		1C58965A1D75D1B6009C9861 /* ArticleRefNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C5896591D75D1B6009C9861 /* ArticleRefNode.swift */; };
 		1C58965E1D76C7C8009C9861 /* BylineNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C58965D1D76C7C8009C9861 /* BylineNode.swift */; };
@@ -186,6 +190,8 @@
 		1C547DAC1DB6BEBC00A2A1C6 /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		1C547DAF1DB6BF0E00A2A1C6 /* BlockContextType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlockContextType.swift; sourceTree = "<group>"; };
 		1C547DB21DB6BFC400A2A1C6 /* BlockStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlockStyle.swift; sourceTree = "<group>"; };
+		1C547DB81DB8B1FB00A2A1C6 /* MediaPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaPlayer.swift; sourceTree = "<group>"; };
+		1C547DBB1DBDEB8200A2A1C6 /* VideoOverlayNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoOverlayNode.swift; sourceTree = "<group>"; };
 		1C5896571D75D1A8009C9861 /* ArticleRefBlock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleRefBlock.swift; sourceTree = "<group>"; };
 		1C5896591D75D1B6009C9861 /* ArticleRefNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ArticleRefNode.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		1C58965D1D76C7C8009C9861 /* BylineNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = BylineNode.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -347,14 +353,17 @@
 			name = Nodes;
 			sourceTree = "<group>";
 		};
-		1C870A181DB2422E001149F1 /* StreamingVideo */ = {
+		1C870A181DB2422E001149F1 /* Video */ = {
 			isa = PBXGroup;
 			children = (
+				1C547DB81DB8B1FB00A2A1C6 /* MediaPlayer.swift */,
+				1C547DBB1DBDEB8200A2A1C6 /* VideoOverlayNode.swift */,
+				1C870A191DB24259001149F1 /* VideoNode.swift */,
 				1CC8C7031DB173D1002C9D5C /* StreamingVideoNode.swift */,
 				1CC8C7001DB1721C002C9D5C /* VimeoNode.swift */,
 				1CC16C691DAF8D15002D9734 /* YoutubeNode.swift */,
 			);
-			name = StreamingVideo;
+			name = Video;
 			sourceTree = "<group>";
 		};
 		1CBC6F4B1D7D5E6200FA979C /* ContentNodes */ = {
@@ -372,8 +381,7 @@
 				1C9FF3031D9AB258005081F7 /* EnhancedBannerNode.swift */,
 				1CF29C8A1DA501CB00A4D742 /* FallbackContentNode.swift */,
 				1CC16C3F1DAC2921002D9734 /* TweetNode.swift */,
-				1C870A191DB24259001149F1 /* VideoNode.swift */,
-				1C870A181DB2422E001149F1 /* StreamingVideo */,
+				1C870A181DB2422E001149F1 /* Video */,
 				1C547DA41DB63E8500A2A1C6 /* StreamerNode.swift */,
 			);
 			name = ContentNodes;
@@ -761,6 +769,7 @@
 				1C1CE8B61D81ADC2007940AB /* Line.swift in Sources */,
 				1CC16C2F1DABB3C1002D9734 /* Image.swift in Sources */,
 				1C712F051D8154430011136A /* BulletNode.swift in Sources */,
+				1C547DBC1DBDEB8200A2A1C6 /* VideoOverlayNode.swift in Sources */,
 				1C504EA51D894D1D00590A52 /* ImageBlock.swift in Sources */,
 				1C9FF3141D9BA58E005081F7 /* CustomCellFactory.swift in Sources */,
 				908FFB771D3CECD3006DE524 /* Instabug.swift in Sources */,
@@ -769,6 +778,7 @@
 				1C870A101DB18173001149F1 /* SectionRefBlock.swift in Sources */,
 				1C547DAD1DB6BEBC00A2A1C6 /* Colors.swift in Sources */,
 				17A651EC1D1433A700286D34 /* AppDelegate.swift in Sources */,
+				1C547DBF1DBDF7E200A2A1C6 /* MediaPlayer.swift in Sources */,
 				1CC8C6FB1DAFD139002C9D5C /* YTPlayerView.swift in Sources */,
 				1C1CE8B81D81ADF1007940AB /* CornerInfo.swift in Sources */,
 				1C870A1A1DB24259001149F1 /* VideoNode.swift in Sources */,
@@ -823,6 +833,7 @@
 				1C5896621D76C8E6009C9861 /* BylineBlock.swift in Sources */,
 				1C9FF3081D9AB274005081F7 /* ImageNode.swift in Sources */,
 				1CC16C3B1DABCD19002D9734 /* NRCCell.swift in Sources */,
+				1C547DBD1DBDEB8300A2A1C6 /* VideoOverlayNode.swift in Sources */,
 				1CF29C901DA5060F00A4D742 /* EnhancedBannerNode.swift in Sources */,
 				1C9FF3091D9AB27F005081F7 /* Line.swift in Sources */,
 				1C5D0D331D7DB6E8004C7CDD /* DecorationNode.swift in Sources */,
@@ -831,6 +842,7 @@
 				1C504EA61D894D1D00590A52 /* ImageBlock.swift in Sources */,
 				1C547DAE1DB6BEBC00A2A1C6 /* Colors.swift in Sources */,
 				1C9FF3131D9BA58E005081F7 /* CustomCellFactory.swift in Sources */,
+				1C547DBE1DBDF7E100A2A1C6 /* MediaPlayer.swift in Sources */,
 				1C9FF30A1D9AB282005081F7 /* CornerInfo.swift in Sources */,
 				1CF29C931DA5171D00A4D742 /* ButtonNode.swift in Sources */,
 				1CC8C7021DB1721C002C9D5C /* VimeoNode.swift in Sources */,

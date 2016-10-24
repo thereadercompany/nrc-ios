@@ -602,6 +602,7 @@ class CellFactory: Core.CellFactory {
         let URL = imagePolicy.URL(media: media, size: .Medium, aspectRatio: aspectRatio)
         let placeholder = Image(URL: URL, aspectRatio: aspectRatio)
         
+        let playButtonImage = UIImage(named: "play_btn")!
         var title: NSAttributedString? = nil
         if let string = block.title {
             let attributes = StringAttributes(
@@ -613,13 +614,17 @@ class CellFactory: Core.CellFactory {
             
             title = NSAttributedString(string: string, attributes: attributes)
         }
+        let overlayContent = VideoOverlayNodeContent(
+            placeholder: placeholder,
+            playButtonImage: playButtonImage,
+            title: title
+        )
         
         let content = YoutubeNodeContent(
             identifier: block.movieID,
-            placeholder: placeholder,
             playlist: block.playlistID,
             loop: block.loop,
-            title: title,
+            overlayContent: overlayContent,
             backgroundColor: Colors.cellBackgroundColor,
             padding: UIEdgeInsets(top: 0, left: 0, bottom: 12, right: 0)
         )
@@ -647,11 +652,19 @@ class CellFactory: Core.CellFactory {
             title = NSAttributedString(string: string, attributes: attributes)
         }
         
-        let content = StreamingVideoContent(identifier: block.movieID,
-                                            placeholder: placeholder,
-                                            title: title,
-                                            backgroundColor: Colors.cellBackgroundColor,
-                                            padding: UIEdgeInsets(top: 0, left: 0, bottom: 12, right: 0)
+        // overlay
+        let playButtonImage = UIImage(named: "play_btn")!
+        let overlayContent = VideoOverlayNodeContent(
+            placeholder: placeholder,
+            playButtonImage: playButtonImage,
+            title: title
+        )
+        
+        let content = StreamingVideoContent(
+            identifier: block.movieID,
+            overlayContent: overlayContent,
+            backgroundColor: Colors.cellBackgroundColor,
+            padding: UIEdgeInsets(top: 0, left: 0, bottom: 12, right: 0)
         )
         
         return VimeoNode(content: content)
@@ -659,18 +672,41 @@ class CellFactory: Core.CellFactory {
     
     //MARK: - Video
     func videoNode(videoBlock block: VideoBlock) -> VideoNode {
-        let media: Media = .null// block.media
-        let aspectRatio = block.aspectRatio //media.aspectRatio ?? Media.defaultAspectRatio
-        let URL = imagePolicy.URL(media: media, size: .Medium, aspectRatio: aspectRatio)
-        let placeholder = Image(URL: URL, aspectRatio: aspectRatio)
+        let media = block.media
+        let aspectRatio = media.aspectRatio ?? Media.defaultAspectRatio
+                
+        // no overlay for animated gif
+        var overlayContent: VideoOverlayNodeContent? = nil
+        if block.shouldShowOvelay {
+            let URL = imagePolicy.URL(media: media, size: .Medium, aspectRatio: aspectRatio)
+            let placeholder = Image(URL: URL, aspectRatio: aspectRatio)
+            let playButtonImage = UIImage(named: "play_btn")!
+            
+            var title: NSAttributedString? = nil
+            if let string = block.title {
+                let attributes = StringAttributes(
+                    font: Fonts.mediumFont.fallbackWithSize(18),
+                    foregroundColor: Colors.overlayFontColor,
+                    lineSpacing: 3,
+                    hyphenationFactor: 0.8
+                )
+                
+                title = NSAttributedString(string: string, attributes: attributes)
+            }
+
+            overlayContent = VideoOverlayNodeContent(
+                placeholder: placeholder,
+                playButtonImage: playButtonImage,
+                title: title
+            )
+        }
         
         let content = VideoNodeContent(
             URL: block.URL,
-            placeholder: placeholder,
-            autorepeat: block.autorepeat,
+            aspectRatio: aspectRatio,
             autoplay: block.autoplay,
-            controls:  block.controls,
-            title: nil,
+            autorepeat: block.autorepeat,
+            overlayContent: overlayContent,
             backgroundColor: Colors.imageBackgroundColor,
             padding: UIEdgeInsets()
         )
@@ -833,6 +869,12 @@ private extension ArticleRefBlock {
             border: border,
             bullet: theme.bullet
         )
+    }
+}
+
+extension VideoBlock {
+    var shouldShowOvelay: Bool {
+        return blockStyle != .AnimatedGIF && !autoplay
     }
 }
 

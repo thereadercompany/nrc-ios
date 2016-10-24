@@ -12,20 +12,19 @@ import youtube_ios_player_helper
 
 /** Content for the YoutubeNode */
 class YoutubeNodeContent: StreamingVideoContent {
-    typealias Playlist = String
-    
-    let playlist: Playlist?
+    let playlist: String?
     let loop: Bool
     
-    init(identifier: String, placeholder: Image, playlist: Playlist?, loop: Bool, title: NSAttributedString?, backgroundColor: UIColor, padding: UIEdgeInsets) {
+    init(identifier: String, playlist: String?, loop: Bool, overlayContent: VideoOverlayNodeContent, backgroundColor: UIColor, padding: UIEdgeInsets) {
         self.playlist = playlist
         self.loop = loop
-        super.init(identifier: identifier, placeholder: placeholder, title: title, backgroundColor: backgroundColor, padding: padding)
+        super.init(identifier: identifier, overlayContent: overlayContent, backgroundColor: backgroundColor, padding: padding)
     }
 }
 
 /** Node for playing a youtube video */
-class YoutubeNode: StreamingVideoNode<YoutubeNodeContent>, YTPlayerViewDelegate {
+class YoutubeNode: ContentNode<YoutubeNodeContent>, VideoPlayer, VisibilityObserver, YTPlayerViewDelegate {
+    let videoOverlayNode: VideoOverlayNode
     
     lazy var youtubeView: YTPlayerView = { [unowned self] in
         let view = YTPlayerView()
@@ -34,17 +33,32 @@ class YoutubeNode: StreamingVideoNode<YoutubeNodeContent>, YTPlayerViewDelegate 
         return view
         }()
     
-    //MARK: - View animation
-    override var videoView: UIView {
-        return youtubeView
-    }
-    
     //MARK: - Initialization
     required init(content: YoutubeNodeContent) {
+        videoOverlayNode = VideoOverlayNode(content: content.overlayContent)
         super.init(content: content)
-    }
         
-    //MARK: - Transport
+        //overlay
+        addSubnode(videoOverlayNode)
+    }
+    
+    //MARK: - Layout
+    override func layoutSpecThatFits(constrainedSize: ASSizeRange) -> ASLayoutSpec {
+        return ASStaticLayoutSpec(children: [videoOverlayNode])
+    }
+
+    //MARK: - Highlight
+    override func highlight(highlighted: Bool, animated: Bool = true) {
+        videoOverlayNode.highlightPlayButton(highlighted)
+    }
+    
+    //MARK: - Interaction
+    override func handleTap() {
+        //TODO: check for internet connection
+        play()
+    }
+    
+    //MARK: - Loading
     func loadVideo() {
         youtubeView.load(
             videoId: content.identifier,
@@ -53,9 +67,22 @@ class YoutubeNode: StreamingVideoNode<YoutubeNodeContent>, YTPlayerViewDelegate 
         )
     }
     
-    override func play() {
+    //MARK: - VideoPlayer
+    var overlayNode: ASDisplayNode? {
+        return videoOverlayNode
+    }
+
+    var playing: Bool {
+        return youtubeView.playerState() == .Playing
+    }
+    
+    func play() {
+        if youtubeView.superview == nil {
+            view.insertSubview(youtubeView, belowSubview: videoOverlayNode.view)
+        }
+        
         loadVideo()
-        showVideoView()
+        showOverlay(false, animationDuration: 1)
         switch youtubeView.playerState() {
         case .Paused, .Ended:
             youtubeView.playVideo()
@@ -63,7 +90,7 @@ class YoutubeNode: StreamingVideoNode<YoutubeNodeContent>, YTPlayerViewDelegate 
         }
     }
     
-    override func pause() {
+    func pause() {
         switch youtubeView.playerState() {
         case .Playing:
             youtubeView.pauseVideo()
@@ -71,8 +98,12 @@ class YoutubeNode: StreamingVideoNode<YoutubeNodeContent>, YTPlayerViewDelegate 
         }
     }
     
-    override func stop() {
-        hideVideoView()
+    /** overrides default implementation that calls pause */
+    func stop() {
+        showOverlay(true, animationDuration: 1) {
+            self.youtubeView.removeFromSuperview()
+        }
+
         switch youtubeView.playerState() {
         case .Playing:
             youtubeView.stopVideo()
@@ -88,7 +119,7 @@ class YoutubeNode: StreamingVideoNode<YoutubeNodeContent>, YTPlayerViewDelegate 
     
     func playerView(playerView: YTPlayerView, didChangeToState state: YTPlayerState) {
         if case .Ended = state {
-            hideVideoView()
+            showOverlay(true, animationDuration: 1)
         }
     }
 }

@@ -35,6 +35,9 @@ enum BlockStyle: String {
     case InsetSubheader = "inset-h2"
     case ArticleFooter = "article-footer"
     
+    // user for video node when playing animated gif
+    case AnimatedGIF = "animated-gifs"
+    
     case Unknown = "unknown"
     
     init(style: String) {
