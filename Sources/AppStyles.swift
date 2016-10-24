@@ -22,6 +22,7 @@ struct TimelineStyles {
 }
 
 struct ArticleStyles {
+    static let contentInset: CGFloat = 20
     static let topInset: CGFloat = 0
     static let navBarAutoHideEnabled = true
     static let navigationBarHeight: CGFloat = 85 //65 + 20 statusbar
@@ -60,7 +61,6 @@ extension NSAttributedString {
         let fixedString = "<\(style.rawValue)>" + string + "</\(style.rawValue)>"
         if let data = fixedString.dataUsingEncoding(NSUTF8StringEncoding) where data.length > 0 {
             let attributedString = NSMutableAttributedString(HTMLData: data, options: attributes.dtOptions)
-    static var textInset: CGFloat = 20
             
             guard attributedString.length > 0 else {
                 self.init(attributedString: attributedString)
