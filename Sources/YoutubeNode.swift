@@ -55,6 +55,7 @@ class YoutubeNode: ContentNode<YoutubeNodeContent>, VideoPlayer, VisibilityObser
     //MARK: - Interaction
     override func handleTap() {
         //TODO: check for internet connection
+        guard !playing else { return }
         play()
     }
     
