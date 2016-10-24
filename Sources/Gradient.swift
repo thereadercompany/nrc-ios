@@ -16,7 +16,7 @@ struct LinearGradient {
     let start: CGPoint
     let end: CGPoint
     
-    init(colors: [UIColor], start: CGPoint = CGPoint(x: 0, y: 0.5), end: CGPoint = CGPoint(x: 0.5, y: 1)) {
+    init(colors: [UIColor], start: CGPoint = CGPoint(x: 0.5, y: 0), end: CGPoint = CGPoint(x: 0.5, y: 1)) {
         self.colors = colors
         self.start = start
         self.end = end
