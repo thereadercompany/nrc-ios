@@ -506,7 +506,6 @@ class CellFactory: Core.CellFactory {
             image: imageContent,
             buttons: buttons,
             action: action,
-            spacing: 30,
             height: height,
             backgroundColor: Colors.defaultBackgroundColor,
             padding: padding

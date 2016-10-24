@@ -20,7 +20,6 @@ final class EnhancedBannerNodeContent: Content {
     let image: ImageNodeContent?
     let buttons: [Button]?
     let action: Action?
-    let spacing: CGFloat
     let height: CGFloat?
     
     init(title: NSAttributedString?,
@@ -28,7 +27,6 @@ final class EnhancedBannerNodeContent: Content {
          image: ImageNodeContent?,
          buttons: [Button]?,
          action: Action?,
-         spacing: CGFloat,
          height: CGFloat?,
          backgroundColor: UIColor,
          padding: UIEdgeInsets) {
@@ -37,7 +35,6 @@ final class EnhancedBannerNodeContent: Content {
         self.image = image
         self.buttons = buttons
         self.action = action
-        self.spacing = spacing
         self.height = height
         super.init(backgroundColor: backgroundColor, padding: padding)
     }
@@ -61,6 +58,14 @@ final class EnhancedBannerNode : ContentNode<EnhancedBannerNodeContent> {
         return gradientLayer
     })
     
+    // pass actionHandler on to button nodes
+    override weak var actionHandler: ActionHandler? {
+        didSet {
+            buttonNodes?.forEach { $0.actionHandler = actionHandler }
+        }
+    }
+    
+    //MARK: - Init
     required init(content: EnhancedBannerNodeContent) {
         imageNode = ImageNode(optionalContent: content.image)
         titleNode = ASTextNode(text: content.title)
@@ -69,34 +74,25 @@ final class EnhancedBannerNode : ContentNode<EnhancedBannerNodeContent> {
         
         super.init(content: content)
         
-        if let imageNode = imageNode {
-            addSubnode(imageNode)
+        if let imageNode = addOptionalSubnode(imageNode) {
+            imageNode.userInteractionEnabled = false
         }
         
-        if let titleNode = titleNode {
-            addSubnode(titleNode)
-        }
+        addOptionalSubnode(titleNode)
+        addOptionalSubnode(subtitleNode)
         
-        if let subtitleNode = subtitleNode {
-            addSubnode(subtitleNode)
-        }
-        
-        buttonNodes?.forEach { buttonNode in
-            addSubnode(buttonNode)
-            buttonNode.actionHandler = actionHandler
-        }
+        buttonNodes?.forEach(addSubnode)
     }
     
+    //MARK: - Layout
     override func layoutSpecThatFits(constrainedSize: ASSizeRange) -> ASLayoutSpec {
         var buttonStack: ASLayoutable? = nil
         if let buttonNodes = buttonNodes {
             buttonStack = ASStackLayoutSpec(direction: .Vertical, spacing: 6, justifyContent: .Start, alignItems: .Center, children: buttonNodes)
         }
         
-        let optionalNodes: [ASLayoutable?] = [titleNode, subtitleNode, buttonStack]
-        let nodes = optionalNodes.flatMap { $0 } // remove .None
-        
-        let stackSpec = ASStackLayoutSpec(direction: .Vertical, spacing: content.spacing, justifyContent: .Center, alignItems: .Center, children: nodes)
+        let nodes: [ASLayoutable?] = [titleNode, subtitleNode, buttonStack]
+        let stackSpec = ASStackLayoutSpec(direction: .Vertical, spacing: 30, justifyContent: .Center, alignItems: .Center, optionalChildren: nodes)
         
         let paddedContent = ASInsetLayoutSpec(insets: content.padding, child: stackSpec)
         
