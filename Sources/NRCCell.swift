@@ -23,9 +23,8 @@ class NRCCell: Cell {
         
         super.init(contentNode: contentNode)
         
-        if let decorationNode = decorationNode {
+        if let decorationNode = addOptionalSubnode(decorationNode) {
             decorationNode.userInteractionEnabled = false
-            addSubnode(decorationNode)
         }
     }
     

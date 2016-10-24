@@ -41,10 +41,8 @@ class StreamerNode: ContentNode<StreamerNodeContent> {
         textNode.attributedText = content.text
         addSubnode(textNode)
         
-        // author
-        if let authorNode = sourceNode {
-            addSubnode(authorNode)
-        }
+        // source
+        addOptionalSubnode(sourceNode)
         
         // bottom line
         bottomLineNode.backgroundColor = content.lines.bottom.color
@@ -71,9 +69,8 @@ class StreamerNode: ContentNode<StreamerNodeContent> {
         let bottomLineSpec = ASStaticLayoutSpec(children: [bottomLineNode])
         
         // stack nodes
-        let optionalNodes: [ASLayoutable?] = [topLineSpec, textNode, sourceNode, bottomLineSpec]
-        let nodes = optionalNodes.flatMap { $0 } // filter .None
-        let contentSpec = ASStackLayoutSpec(direction: .Vertical, spacing: 0, justifyContent: .Start, alignItems: .Stretch, children: nodes)
+        let nodes: [ASLayoutable?] = [topLineSpec, textNode, sourceNode, bottomLineSpec]
+        let contentSpec = ASStackLayoutSpec(direction: .Vertical, alignItems: .Stretch, optionalChildren: nodes)
         
         // add content padding
         let paddedContentSpec = ASInsetLayoutSpec(insets: content.padding, child: contentSpec)

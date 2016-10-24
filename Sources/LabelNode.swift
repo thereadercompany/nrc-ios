@@ -57,12 +57,10 @@ final class LabelNode : ASDisplayNode {
         borderWidth = label.border?.width ?? 0
         
         // bullet
-        if let bulletNode = bulletNode {
-            addSubnode(bulletNode)
-        }
+        addOptionalSubnode(bulletNode)
         
         // text
-        addSubnode(self.textNode)
+        addSubnode(textNode)
         textNode.attributedText = label.text
         textNode.userInteractionEnabled = true
         textNode.linkAttributeNames = [ linkAttributeName ];
@@ -75,9 +73,8 @@ final class LabelNode : ASDisplayNode {
     }
     
     override func layoutSpecThatFits(constrainedSize: ASSizeRange) -> ASLayoutSpec {
-        let optionalNodes: [ASLayoutable?] = [bulletNode, textNode]
-        let nodes = optionalNodes.flatMap { $0 }
-        let stackSpec = ASStackLayoutSpec(direction: .Horizontal, spacing: 10, justifyContent: .Start, alignItems: .Center, children: nodes)
+        let nodes: [ASLayoutable?] = [bulletNode, textNode]
+        let stackSpec = ASStackLayoutSpec(direction: .Horizontal, spacing: 10, alignItems: .Center, optionalChildren: nodes)
         return ASInsetLayoutSpec(insets: label.insets, child: stackSpec)
 
     }

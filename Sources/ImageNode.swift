@@ -56,17 +56,9 @@ final class ImageNode: ContentNode<ImageNodeContent> {
         imageNode.URL = content.image.URL
         addSubnode(imageNode)
         
-        if let gradientNode = gradientNode {
-            addSubnode(gradientNode)
-        }
-        
-        if let captionNode = captionNode {
-            addSubnode(captionNode)
-        }
-        
-        if let creditNode = creditNode {
-            addSubnode(creditNode)
-        }
+        addOptionalSubnode(gradientNode)
+        addOptionalSubnode(captionNode)
+        addOptionalSubnode(creditNode)
     }
     
     /* 
@@ -89,12 +81,9 @@ final class ImageNode: ContentNode<ImageNodeContent> {
             imageNode = ASOverlayLayoutSpec(child: self.imageNode, overlay: gradientNode)
         }
         
-        let optionalCaptionNodes: [ASLayoutable?] = [captionNode, creditNode]
-        let captionNodes = optionalCaptionNodes.flatMap { $0 }
-        
         var contentNodes: [ASLayoutable] = [imageNode]
-        if !captionNodes.isEmpty {
-            let captionStack = ASStackLayoutSpec(direction: .Vertical, spacing:  5, justifyContent: .Start, alignItems: .Start, children: captionNodes)
+        if captionNode != nil || creditNode != nil {
+            let captionStack = ASStackLayoutSpec(direction: .Vertical, spacing:  5, optionalChildren: [captionNode, creditNode])
             let insets = UIEdgeInsets(top: 15, left: 15, bottom: 15, right: 15)
             let captionInsetSpec = ASInsetLayoutSpec(insets: insets, child: captionStack)
             contentNodes.append(captionInsetSpec)

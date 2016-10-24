@@ -72,9 +72,7 @@ class ArticleRefNode: ContentNode<ArticleRefNodeContent> {
         titleNode.attributedText = content.title
         
         // label
-        if let labelNode = labelNode {
-            addSubnode(labelNode)
-        }
+        addOptionalSubnode(labelNode)
         
         // line
         if let line = content.line {
@@ -117,15 +115,13 @@ final class NormalArticleRefNode: ArticleRefNode {
         labelNode?.ascender = 3 // correction to perfectly align imagenode and label node using .BaselineFirst as alignment mode
         
         // vertical
-        let optionalVerticalNodes: [ASLayoutable?] = [labelNode, titleNode]
-        let verticalNodes = optionalVerticalNodes.flatMap { $0 }
-        let verticalStackSpec = ASStackLayoutSpec(direction: .Vertical, spacing: 10, justifyContent: .Start, alignItems: .Start, children: verticalNodes)
+        let verticalNodes: [ASLayoutable?] = [labelNode, titleNode]
+        let verticalStackSpec = ASStackLayoutSpec(direction: .Vertical, spacing: 10, optionalChildren: verticalNodes)
         verticalStackSpec.flexShrink = true
         
         // horizontal
-        let optionalHorizontalStackNodes: [ASLayoutable?] = [imageNode, verticalStackSpec]
-        let horizontalStackNodes = optionalHorizontalStackNodes.flatMap { $0 }
-        let horizontalStack = ASStackLayoutSpec(direction: .Horizontal, spacing: 0, justifyContent: .Start, alignItems: .BaselineFirst, children: horizontalStackNodes)
+        let horizontalStackNodes: [ASLayoutable?] = [imageNode, verticalStackSpec]
+        let horizontalStack = ASStackLayoutSpec(direction: .Horizontal, alignItems: .BaselineFirst, optionalChildren: horizontalStackNodes)
         
         // content padding
         let paddedContentStack = ASInsetLayoutSpec(insets: content.padding, child: horizontalStack)
@@ -147,9 +143,8 @@ final class LargeArticleRefNode: ArticleRefNode {
     
     override func layoutSpecThatFits(constrainedSize: ASSizeRange) -> ASLayoutSpec {
         // label and title
-        let optionalStackNodes: [ASLayoutable?] = [labelNode, titleNode]
-        let stackNodes = optionalStackNodes.flatMap { $0 } // filter .None
-        let stackSpec = ASStackLayoutSpec(direction: .Vertical, spacing: 15, justifyContent: .Start, alignItems: .Start, children: stackNodes)
+        let stackNodes: [ASLayoutable?] = [labelNode, titleNode]
+        let stackSpec = ASStackLayoutSpec(direction: .Vertical, spacing: 15, optionalChildren: stackNodes)
         
         // padding
         let insetSpec = ASInsetLayoutSpec(insets: content.padding, child: stackSpec)
@@ -212,10 +207,8 @@ final class ExtraLargeArticleRefNode: ArticleRefNode {
         let imageSpec = ASRatioLayoutSpec(ratio: imageRatio, child: imageNode)        
         lineNode.preferredFrameSize = CGSize(width: constrainedSize.max.width, height: lineThickness)
         
-        let optionalTextNodes: [ASLayoutable?] = [labelNode, titleNode, abstractNode]
-        let textNodes: [ASLayoutable] = optionalTextNodes.flatMap { $0 }
-        
-        let textContentSpec = ASStackLayoutSpec(direction: .Vertical, spacing: 10, justifyContent: .Start, alignItems: .Start, children: textNodes)
+        let textNodes: [ASLayoutable?] = [labelNode, titleNode, abstractNode]
+        let textContentSpec = ASStackLayoutSpec(direction: .Vertical, spacing: 10, optionalChildren: textNodes)
         let paddedContentSpec = ASInsetLayoutSpec(insets: content.padding, child: textContentSpec)
         let gradientContentSpec = ASBackgroundLayoutSpec(child: paddedContentSpec, background: gradientNode)
 

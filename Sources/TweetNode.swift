@@ -60,9 +60,8 @@ final class TweetNode: ContentNode<TweetNodeContent>, ASTextNodeDelegate {
         super.init(content: content)
         
         //title
-        if let titleNode = titleNode {
+        if let titleNode = addOptionalSubnode(titleNode) {
             titleNode.maximumNumberOfLines = 1
-            addSubnode(titleNode)
         }
         
         //author
@@ -71,12 +70,11 @@ final class TweetNode: ContentNode<TweetNodeContent>, ASTextNodeDelegate {
         addSubnode(authorNode)
         
         //text
-        if let textNode = textNode {
+        if let textNode = addOptionalSubnode(textNode) {
             textNode.delegate = self
             textNode.userInteractionEnabled = true
             textNode.linkAttributeNames = [linkAttributeName]
             textNode.passthroughNonlinkTouches = true
-            addSubnode(textNode)
         }
         
         // icon
@@ -87,24 +85,19 @@ final class TweetNode: ContentNode<TweetNodeContent>, ASTextNodeDelegate {
         logoNode.image = UIImage(named: "twitter_logo")
         addSubnode(logoNode)
         
-        // photo
-        if let photoNode = photoNode {
-            addSubnode(photoNode)
-        }
+        // phote
+        addOptionalSubnode(photoNode)
         
         // timestamp
-        if let timestampNode = timestampNode {
-            addSubnode(timestampNode)
-        }
+        addOptionalSubnode(timestampNode)
     }
     
     override func layoutSpecThatFits(constrainedSize: ASSizeRange) -> ASLayoutSpec {
         iconNode.preferredFrameSize = TweetNode.iconSize
         iconNode.spacingAfter = 9
         
-        let optionalHeaderNodes: [ASLayoutable?] = [titleNode, authorNode]
-        let headerNodes = optionalHeaderNodes.flatMap { $0 } // filter .None
-        let headerStackSpec = ASStackLayoutSpec(direction: .Vertical, spacing: 0, justifyContent: .Start, alignItems: .Start, children: headerNodes)
+        let headerNodes: [ASLayoutable?] = [titleNode, authorNode]
+        let headerStackSpec = ASStackLayoutSpec(direction: .Vertical, optionalChildren: headerNodes)
         
         let spacer = ASLayoutSpec()
         spacer.flexGrow = true
