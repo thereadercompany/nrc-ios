@@ -42,10 +42,7 @@ enum ImageSize {
             size = screen
         }
         
-        let scale = Screen.scale
-        let scaleTransform = CGAffineTransformMakeScale(scale, scale)
-        
-        return CGSizeApplyAffineTransform(size, scaleTransform)
+        return size * Screen.scale
     }
     
     private func size(aspectRatio ratio: CGFloat) -> CGSize {
