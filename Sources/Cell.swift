@@ -10,17 +10,22 @@ import Core
 
 //TODO: move to Core
 
-enum VisibilityState {
-    /**  `points = 0` when becoming visible from bottom of scrollView while scrolling downwards.
-     `fully` = `true` when both bottom and top of the view are visible */
-    case Visible(points: CGFloat, fully: Bool)
-    /** both top and bottom of the view are invisible */
-    case Invisible
+/** Conform a `Cell`'s contentNode to this protocol for it to receive visibility changes */
+protocol VisibilityObserver {
+    func visibilityChanged(centerOffset offset: CGPoint, viewPortSize: CGSize)
 }
 
-/** Conform a contentNode to this protocol to observe visibility state changes */
-protocol VisibilityObserver {
-    func visibilityChanged(toState state: VisibilityState)
+/** extension on visibility observing ASDisplayNodes that indicates if the observer is fully visible within the viewport */
+extension VisibilityObserver where Self: ASDisplayNode {
+    func isFullyVisible(centerOffset offset: CGPoint, viewPortSize: CGSize) -> Bool {
+        let viewPort = viewPortSize.rect()
+        let offsetInViewPort = viewPort.center + offset
+        
+        var rect = bounds.size.rect()
+        rect.center = offsetInViewPort
+        
+        return viewPort.contains(rect)
+    }
 }
 
 /**
@@ -67,35 +72,41 @@ public class Cell: ASCellNode, ActionHandler, ActionSender {
         }
     }
     
-    /** Notifies an interested contentNode with visibility events */
-    private var contentVisible = false
+    /** Notifies a visibility observing contentNode with visibility changes */
     public override func cellNodeVisibilityEvent(event: ASCellNodeVisibilityEvent, inScrollView scrollView: UIScrollView?, withCellFrame cellFrame: CGRect) {
         guard case .VisibleRectChanged = event,
             let scrollView = scrollView,
-            visibilityObserver = contentNode as? VisibilityObserver else {
-                return
-        }
-        
-        let contentFrame = view.convertRect(contentNode.frame, toView: scrollView)
-        let contentOffset = scrollView.contentOffset
-        let bottom = contentFrame.minY - contentOffset.y
-        let top = (contentOffset.y + scrollView.bounds.height) - contentFrame.maxY
-        
-        // check if the contentNode is visible
-        guard (top <= contentFrame.origin.y && bottom >= -contentFrame.maxY) &&
-              (top >= -contentFrame.maxY && bottom <= contentFrame.origin.y) else {
-            // if visible, lower the visible flag and notify observer
-            if contentVisible {
-                contentVisible = false
-                visibilityObserver.visibilityChanged(toState: .Invisible)
-            }
+            observer = contentNode as? VisibilityObserver else {
             return
         }
         
-        // raise visible flag and notify observer
-        contentVisible = true
-        let points = top + contentFrame.height
-        let fullyVisible = (bottom >= 0 && top >= 0)
-        visibilityObserver.visibilityChanged(toState: .Visible(points: points, fully: fullyVisible))
+        // calculate the center offset of the content node in the coordinate space of the scrollview
+        let scrollCenter = scrollView.bounds.center
+        let contentCenter = contentNode.frame.center
+        let point = scrollView.convertPoint(contentCenter, fromView: view)
+        let offset = point - scrollCenter
+        
+        observer.visibilityChanged(centerOffset: offset, viewPortSize: scrollView.bounds.size)
     }
+}
+
+extension CGRect {
+    var center: CGPoint {
+        get {
+            return CGPoint(x: origin.x + width / 2, y: origin.y + height / 2)
+        }
+        set {
+            self.origin = CGPoint(x: newValue.x - width / 2, y: newValue.y - height / 2)
+        }
+    }
+    
+    
+}
+
+func + (lhs: CGPoint, rhs: CGPoint) -> CGPoint {
+    return CGPoint(x: lhs.x + rhs.x, y: lhs.y + rhs.y)
+}
+
+func - (lhs: CGPoint, rhs: CGPoint) -> CGPoint {
+    return CGPoint(x: lhs.x - rhs.x, y: lhs.y - rhs.y)
 }
