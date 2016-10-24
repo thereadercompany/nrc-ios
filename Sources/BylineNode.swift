@@ -31,7 +31,6 @@ final class BylineNodeContent: Content {
 final class BylineNode: ContentNode<BylineNodeContent> {
     let iconNode = ASImageNode()
     let textNode = ASTextNode()
-    let padding = UIEdgeInsets(top: 0, left: ArticleStyles.textInset, bottom: 3, right: ArticleStyles.textInset)
     
     required init(content: BylineNodeContent) {
         super.init(content: content)
@@ -50,6 +49,6 @@ final class BylineNode: ContentNode<BylineNodeContent> {
         textNode.flexBasis = ASRelativeDimension(type: .Percent, value: 1)
         
         let columnSpec = ASStackLayoutSpec(direction: .Horizontal, spacing: 0, justifyContent: .Start, alignItems: .BaselineFirst, children: [iconNode, textNode])
-        return ASInsetLayoutSpec(insets: padding, child: columnSpec)
+        return ASInsetLayoutSpec(insets: content.padding, child: columnSpec)
     }
 }
