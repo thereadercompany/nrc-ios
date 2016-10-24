@@ -49,17 +49,61 @@ extension ASNetworkImageNode {
 }
 
 extension ASImageNode {
+    /** Convenience initializer that initializes the `ASImageNode` and assigns `image` to it's `image` property
+     - parameter image: UIImage object to initialize the `ASImageNode` with
+     - returns: An initialized `ASImageNode` with it's `image` property set to `image`
+     */
+    convenience init(image: UIImage) {
+        self.init()
+        self.image = image
+    }
+    
     /**
      Optional initializer that returns `nil` when `image` is `nil`.
      This makes it more convenient to initialize an optional `ASImageNode` in containing nodes
-     - parameter image: optional `UIImage` to initialize the `ASImageNode` with
+     - parameter optionalImage: optional `UIImage` to initialize the `ASImageNode` with
      - returns: `nil` if `image` is `nil` else an initialized `ASImageNode` with it's `image` property set to `image`
      */
-    convenience init?(image: UIImage?) {
-        guard let image = image else { return nil }
+    convenience init?(optionalImage: UIImage?) {
+        guard let image = optionalImage else { return nil }
+        self.init(image: image)
+    }
+}
+
+extension ASButtonNode {
+    convenience init(image: UIImage) {
         self.init()
-        self.image = image
+        self.imageNode.image = image
+    }
+    /**
+     Optional initializer that returns `nil` when `image` is `nil`.
+     This makes it more convenient to initialize an optional `ASButtonNode` in containing nodes
+     - parameter image: optional `UIImage` to initialize the `ASButtonNode`'s `imageNode` with
+     - returns: `nil` if `image` is `nil` else an initialized `ASButtonNode` with it's `imageNode.image` property set to `image`
+     */
+    convenience init?(optionalImage: UIImage?) {
+        guard let image = optionalImage else { return nil }
+        self.init(image: image)
+    }
+}
+
+//MARK: - ASDisplayNode + optional subnode
+extension ASDisplayNode {
+    /** Adds `node` as subnode if it is not `nil`
+     
+    - returns: the `node` input parameter for if-/guard-let kind of constructions
+     
+         
+      if let node = addOptionalSubnode(optionalNode) {
+          do something with unwrapped node
+      }
+     */
+    func addOptionalSubnode<T: ASDisplayNode>(node: T?) -> T? {
+        if let node = node {
+            addSubnode(node)
+        }
         
+        return node
     }
 }
 
@@ -92,5 +136,18 @@ extension ASDisplayNode {
         }
         
         self.init(gradient: gradient)
+    }
+}
+
+//MARK: - ASStackLauoutSpec + optional children 
+extension ASStackLayoutSpec {
+    /** Initializer that takes an array  optional children and filters `.None` before initializing with the unwrapped children */
+    convenience init(direction: ASStackLayoutDirection,
+                     spacing: CGFloat = 0,
+                     justifyContent: ASStackLayoutJustifyContent = .Start,
+                     alignItems: ASStackLayoutAlignItems = .Start,
+                     optionalChildren: [ASLayoutable?]) {
+        let children = optionalChildren.flatMap { $0 }
+        self.init(direction: direction, spacing: spacing, justifyContent: justifyContent, alignItems: alignItems, children: children)
     }
 }
