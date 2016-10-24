@@ -32,7 +32,7 @@ final class DividerNode : ContentNode<DividerNodeContent> {
     let labelNode: LabelNode?
     
     required init(content: DividerNodeContent) {
-        labelNode = LabelNode(label: content.label)
+        labelNode = LabelNode(optionalLabel: content.label)
         
         super.init(content: content)
         

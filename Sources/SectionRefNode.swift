@@ -32,11 +32,13 @@ final class SectionRefNodeContent: Content {
  Node for rendering a sectionRef with a title
  */
 final class SectionRefNode: ContentNode<SectionRefNodeContent> {
-    let titleNode = ASTextNode()
+    let titleNode: ASTextNode
     
     required init(content: SectionRefNodeContent) {
+        titleNode = ASTextNode(text: content.title)
+       
         super.init(content: content)
-        titleNode.attributedText = content.title
+
         addSubnode(titleNode)
     }
     

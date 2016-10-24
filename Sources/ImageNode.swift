@@ -48,9 +48,9 @@ final class ImageNode: ContentNode<ImageNodeContent> {
     
     required init(content: ImageNodeContent) {
         imageNode = ASNetworkImageNode(image: content.image)
-        gradientNode = ASDisplayNode(gradient: content.gradient)
-        captionNode = ASTextNode(text: content.caption)
-        creditNode = ASTextNode(text: content.credit)
+        gradientNode = ASDisplayNode(optionalGradient: content.gradient)
+        captionNode = ASTextNode(optionalText: content.caption)
+        creditNode = ASTextNode(optionalText: content.credit)
         
         super.init(content: content)
         imageNode.URL = content.image.URL

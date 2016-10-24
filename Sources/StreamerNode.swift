@@ -24,13 +24,14 @@ class StreamerNodeContent: Content {
 
 class StreamerNode: ContentNode<StreamerNodeContent> {
     let topLineNode = ASDisplayNode()
-    let textNode = ASTextNode()
+    let textNode: ASTextNode
     let sourceNode: ASTextNode?
     let bottomLineNode = ASDisplayNode()
     
     //MARK: - Init
     required init(content: StreamerNodeContent) {
-        sourceNode = ASTextNode(text: content.source)
+        sourceNode = ASTextNode(optionalText: content.source)
+        textNode = ASTextNode(text: content.text)
         super.init(content: content)
         
         // top line
@@ -38,10 +39,7 @@ class StreamerNode: ContentNode<StreamerNodeContent> {
         addSubnode(topLineNode)
         
         // text
-        textNode.attributedText = content.text
         addSubnode(textNode)
-        
-        // source
         addOptionalSubnode(sourceNode)
         
         // bottom line

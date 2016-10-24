@@ -40,14 +40,15 @@ struct Label {
  Node for rendering a `Label`
  */
 final class LabelNode : ASDisplayNode {
-    let textNode = ASTextNode()
+    let textNode: ASTextNode
     let bulletNode: ASDisplayNode?
     
     let label: Label
     
     init(label: Label) {
         self.label = label
-        bulletNode = BulletNode(bullet: label.bullet)
+        textNode = ASTextNode(text: label.text)
+        bulletNode = BulletNode(optionalBullet: label.bullet)
         
         super.init()
         
@@ -61,14 +62,13 @@ final class LabelNode : ASDisplayNode {
         
         // text
         addSubnode(textNode)
-        textNode.attributedText = label.text
         textNode.userInteractionEnabled = true
         textNode.linkAttributeNames = [ linkAttributeName ];
     }
     
     // optional initializer that returns nil if label is nil. this makes it more convenient to initialize an optional labelNode in containing nodes
-    convenience init?(label: Label?) {
-        guard let label = label else { return nil }
+    convenience init?(optionalLabel: Label?) {
+        guard let label = optionalLabel else { return nil }
         self.init(label: label)
     }
     

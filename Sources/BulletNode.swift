@@ -40,8 +40,8 @@ class BulletNode: ASDisplayNode {
     }
     
     // optional initializer that returns nil if bullet is nil. this makes it more convenient to initialize an optional bulletNode in containing nodes
-    convenience init?(bullet: Bullet?) {
-        guard let bullet = bullet else { return nil }
+    convenience init?(optionalBullet: Bullet?) {
+        guard let bullet = optionalBullet else { return nil }
         self.init(bullet: bullet)
     }
     

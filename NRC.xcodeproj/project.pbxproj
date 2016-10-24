@@ -409,8 +409,8 @@
 		1CECA3BF1D7425DB000179BF /* Blocks */ = {
 			isa = PBXGroup;
 			children = (
-				1C5896571D75D1A8009C9861 /* ArticleRefBlock.swift */,
 				1C870A0F1DB18173001149F1 /* SectionRefBlock.swift */,
+				1C5896571D75D1A8009C9861 /* ArticleRefBlock.swift */,
 				1C5896601D76C8E6009C9861 /* BylineBlock.swift */,
 				1C504EA41D894D1D00590A52 /* ImageBlock.swift */,
 				1C9FF30E1D9AB452005081F7 /* EnhancedBannerBlock.swift */,

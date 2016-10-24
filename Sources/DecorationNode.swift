@@ -76,8 +76,8 @@ class DecorationNode: ASDisplayNode {
         }
     }
     
-    convenience init?(decoration: Decoration?) {
-        guard let decoration = decoration else { return nil }
+    convenience init?(optionalDecoration: Decoration?) {
+        guard let decoration = optionalDecoration else { return nil }
         self.init(decoration: decoration)
     }
 }

@@ -26,20 +26,19 @@ struct Button {
 /** Node for rendering a `Button` */
 class ButtonNode : ASControlNode, ActionSender {
     private let button: Button
-    let textNode = ASTextNode()
+    let textNode: ASTextNode
     
     weak var actionHandler: ActionHandler?
     
     init(button: Button) {
         self.button = button
-        
+        textNode = ASTextNode(text: button.title)
         super.init()
         
         addTarget(self, action: #selector(tapped), forControlEvents: .TouchUpInside)
         backgroundColor = button.backgroundColor
         
         addSubnode(textNode)
-        textNode.attributedString = button.title
         userInteractionEnabled = true
     }
     

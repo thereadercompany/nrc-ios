@@ -29,15 +29,17 @@ final class BylineNodeContent: Content {
 }
 
 final class BylineNode: ContentNode<BylineNodeContent> {
-    let iconNode = ASImageNode()
-    let textNode = ASTextNode()
+    let iconNode: ASImageNode
+    let textNode: ASTextNode
     
     required init(content: BylineNodeContent) {
+        iconNode = ASImageNode(image: content.icon.image)
+        textNode = ASTextNode(text: content.text)
+        
         super.init(content: content)
+        
         self.addSubnode(iconNode)
         self.addSubnode(textNode)
-        iconNode.image = content.icon.image
-        textNode.attributedText = content.text
     }
     
     override func layoutSpecThatFits(constrainedSize: ASSizeRange) -> ASLayoutSpec {

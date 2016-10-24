@@ -44,7 +44,7 @@ final class TweetNode: ContentNode<TweetNodeContent>, ASTextNodeDelegate {
     
     let titleNode: ASTextNode?
     let textNode: ASTextNode?
-    let authorNode = ASTextNode()
+    let authorNode: ASTextNode
     let timestampNode: ASTextNode?
     
     let iconNode = ASNetworkImageNode()
@@ -52,10 +52,11 @@ final class TweetNode: ContentNode<TweetNodeContent>, ASTextNodeDelegate {
     let logoNode = ASImageNode()
     
     required init(content: TweetNodeContent) {
-        titleNode = ASTextNode(text: content.title)
-        textNode = ASTextNode(text: content.text)
-        timestampNode = ASTextNode(text: content.timestamp)
-        photoNode = ASNetworkImageNode(image: content.photo)
+        titleNode = ASTextNode(optionalText: content.title)
+        textNode = ASTextNode(optionalText: content.text)
+        authorNode = ASTextNode(text: content.author)
+        timestampNode = ASTextNode(optionalText: content.timestamp)
+        photoNode = ASNetworkImageNode(optionalImage: content.photo)
         
         super.init(content: content)
         
@@ -65,7 +66,6 @@ final class TweetNode: ContentNode<TweetNodeContent>, ASTextNodeDelegate {
         }
         
         //author
-        authorNode.attributedText = content.author
         authorNode.maximumNumberOfLines = 1
         addSubnode(authorNode)
         

@@ -26,16 +26,17 @@ final class TextNodeContent: Content {
  Node for rendering an attributed string
  */
 final class TextNode: ContentNode<TextNodeContent>, ASTextNodeDelegate {
-    let textNode = ASTextNode()
+    let textNode: ASTextNode
     
     required init(content: TextNodeContent) {
+        textNode = ASTextNode(text: content.text)
+        
         super.init(content: content)
 
         addSubnode(textNode)
         textNode.delegate = self
         textNode.userInteractionEnabled = true
         textNode.linkAttributeNames = [linkAttributeName]
-        textNode.attributedText = content.text
         textNode.passthroughNonlinkTouches = true
     }
     

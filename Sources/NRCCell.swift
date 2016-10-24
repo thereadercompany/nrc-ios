@@ -19,7 +19,7 @@ class NRCCell: Cell {
     
     init(contentNode: ASDisplayNode, decoration: Decoration?) {
         self.decoration = decoration
-        decorationNode = DecorationNode(decoration: decoration)
+        decorationNode = DecorationNode(optionalDecoration: decoration)
         
         super.init(contentNode: contentNode)
         

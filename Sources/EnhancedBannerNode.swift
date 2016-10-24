@@ -68,8 +68,8 @@ final class EnhancedBannerNode : ContentNode<EnhancedBannerNodeContent> {
     //MARK: - Init
     required init(content: EnhancedBannerNodeContent) {
         imageNode = ImageNode(optionalContent: content.image)
-        titleNode = ASTextNode(text: content.title)
-        subtitleNode = ASTextNode(text: content.subtitle)
+        titleNode = ASTextNode(optionalText: content.title)
+        subtitleNode = ASTextNode(optionalText: content.subtitle)
         buttonNodes = content.buttons?.map(ButtonNode.init)
         
         super.init(content: content)

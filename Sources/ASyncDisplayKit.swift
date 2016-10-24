@@ -10,17 +10,24 @@ import Foundation
 import AsyncDisplayKit
 
 // MARK: - ASTextNode
-extension ASTextNode {    
+extension ASTextNode {
+    /** Initializer that sets the `attributedText` property to `text`
+     - parameter text: attributed string to initialize the `ASTextNode` with
+     - returns: An initialized `ASTextNode` with `attributedText` property set to `text`
+     */
+    convenience init(text: NSAttributedString) {
+        self.init()
+        attributedText = text
+    }
     /**
      Optional initializer that returns `nil` when `text` is `nil`.
      This makes it more convenient to initialize an optional `ASTextNode` in containing nodes
-     - parameter text: optional attributed string to initialize the `ASTextNode` with
+     - parameter optionalText: optional attributed string to initialize the `ASTextNode` with
      - returns: `nil` if `text` is `nil` else an initialized `ASTextNode` with `attributedText` property set to `text`
      */
-    convenience init?(text: NSAttributedString?) {
-        guard let text = text else { return nil }
-        self.init()
-        attributedText = text
+    convenience init?(optionalText: NSAttributedString?) {
+        guard let text = optionalText else { return nil }
+        self.init(text: text)
     }
 }
 
@@ -42,8 +49,8 @@ extension ASNetworkImageNode {
      - parameter image: optional `Image` to initialize the `ASNetworkImageNode` with
      - returns: `nil` if `image` is `nil` else an initialized `ASNetworkImageNode` with it's `URL` property set to the `image` 's URL
      */
-    convenience init?(image: Image?) {
-        guard let image = image else { return nil }
+    convenience init?(optionalImage: Image?) {
+        guard let image = optionalImage else { return nil }
         self.init(image: image)
     }
 }
@@ -130,12 +137,35 @@ extension ASDisplayNode {
      - parameter gradient: Optional `LinearGradient` object to configure the gradient backing layer with when it's not nil
      - returns: `nil` if `gradient` is nil else an initialized `ASDisplayNode` backed by a `CAGradientLayer`
      */
-    convenience init?(gradient: LinearGradient?) {
-        guard let gradient = gradient else {
+    convenience init?(optionalGradient: LinearGradient?) {
+        guard let gradient = optionalGradient else {
             return nil
         }
         
         self.init(gradient: gradient)
+    }
+}
+
+//MARK: - ASDisplayKit + Line
+extension ASDisplayNode {
+    /** Creates an `ASDisplayNode` with it's `backgroundColor` set to `line.color`
+     - parameter line: The line to initialize the `ASDisplayNode`'s `backgroundColor` with
+     - returns: An initialized `ASDisplayNode`
+     */
+    convenience init(line: Line) {
+        self.init()
+        backgroundColor = line.color
+    }
+
+    /**
+     Optional initializer that returns `nil` if the `line` parameter is `nil`.
+     This makes it more convenient to initialize an optional line node in containing nodes
+     - parameter line: Optional `Line` object to initialize the ASDisplayNode with
+     - returns: `nil` if `line` is nil else an initialized `ASDisplayNode` with the `backgroundColor` set to `line.color`
+     */
+    convenience init?(optionalLine: Line?) {
+        guard let line = optionalLine else { return nil }
+        self.init(line: line)
     }
 }
 

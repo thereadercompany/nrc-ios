@@ -37,7 +37,7 @@ class VideoOverlayNode: ASControlNode {
         playButtonNode = ASImageNode(image: content.playButtonImage)
         
         // title
-        titleNode = ASTextNode(text: content.title)
+        titleNode = ASTextNode(optionalText: content.title)
         super.init()
         
         addSubnode(placeholderNode)
