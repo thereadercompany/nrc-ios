@@ -14,4 +14,5 @@ import Foundation
 struct Image {
     let URL: NSURL
     let aspectRatio: CGFloat
+    let focalPoint: CGPoint
 }

@@ -130,7 +130,8 @@ class CellFactory: Core.CellFactory {
         let title = NSAttributedString(string: block.headline, attributes: titleAttributes, style: block.blockStyle)
         let imageURL = imagePolicy.URL(media: block.media, size: imageSize)
         let aspectRatio = block.media.aspectRatio ?? Media.defaultAspectRatio
-        let image = Image(URL: imageURL, aspectRatio: aspectRatio)
+        let focalPoint = block.media.focalPoint ?? Media.defaultFocalPoint
+        let image = Image(URL: imageURL, aspectRatio: aspectRatio, focalPoint: focalPoint)
         
         let content = ArticleRefNodeContent(
             articleIdentifier: block.articleIdentifier,
@@ -302,7 +303,8 @@ class CellFactory: Core.CellFactory {
         let media = block.media
         let aspectRatio = media.aspectRatio ?? Media.defaultAspectRatio
         let URL = imagePolicy.URL(media: media, size: .Medium, aspectRatio: aspectRatio)
-        let image = Image(URL: URL, aspectRatio: aspectRatio)
+        let focalPoint = media.focalPoint ?? Media.defaultFocalPoint
+        let image = Image(URL: URL, aspectRatio: aspectRatio, focalPoint: focalPoint)
         
         let backgroundColor: UIColor
         let padding: UIEdgeInsets
@@ -464,10 +466,11 @@ class CellFactory: Core.CellFactory {
         var gradient: LinearGradient? = nil
         if let media = block.media {
             let image: Image
+            let focalPoint = media.focalPoint ?? Media.defaultFocalPoint
             switch block.blockStyle {
             case .XL:
                 let URL = imagePolicy.URL(media: media, size: ImageSize.Fullscreen)
-                image = Image(URL: URL, aspectRatio: Screen.aspectRatio)
+                image = Image(URL: URL, aspectRatio: Screen.aspectRatio, focalPoint: focalPoint)
                 
                 // add gradient in case of both image and buttons
                 if buttons != nil {
@@ -480,7 +483,7 @@ class CellFactory: Core.CellFactory {
             default:
                 let aspectRatio = media.aspectRatio ?? Media.defaultAspectRatio
                 let URL = imagePolicy.URL(media: media, size: .Medium, aspectRatio: aspectRatio)
-                image = Image(URL: URL, aspectRatio: aspectRatio)
+                image = Image(URL: URL, aspectRatio: aspectRatio, focalPoint: focalPoint)
             }
             
             imageContent = ImageNodeContent(image: image, gradient: gradient, backgroundColor: Colors.defaultBackgroundColor)
@@ -568,16 +571,18 @@ class CellFactory: Core.CellFactory {
         var photo: Image? = nil
         if let media = block.photos?.first {
             let aspectRatio = media.aspectRatio ?? Media.defaultAspectRatio
+            let focalPoint = media.focalPoint ?? Media.defaultFocalPoint
             let URL = imagePolicy.URL(media: media, size: .Medium, aspectRatio: aspectRatio)
-            photo = Image(URL: URL, aspectRatio: aspectRatio)
+            photo = Image(URL: URL, aspectRatio: aspectRatio, focalPoint: focalPoint)
         }
         
         // icon
-        let iconMedia = block.media
+        let media = block.media
         let iconSize = TweetNode.iconSize
-        let iconURL = imagePolicy.URL(media: iconMedia, size: iconSize)
+        let iconURL = imagePolicy.URL(media: media, size: iconSize)
         let aspectRatio = iconSize.width / iconSize.height
-        let icon = Image(URL: iconURL, aspectRatio: aspectRatio)
+        let focalPoint = media.focalPoint ?? Media.defaultFocalPoint
+        let icon = Image(URL: iconURL, aspectRatio: aspectRatio, focalPoint: focalPoint)
         
         let content = TweetNodeContent(
             title: title,
@@ -599,8 +604,9 @@ class CellFactory: Core.CellFactory {
         //placeholder
         let media = block.media
         let aspectRatio = media.aspectRatio ?? Media.defaultAspectRatio
+        let focalPoint = media.focalPoint ?? Media.defaultFocalPoint
         let URL = imagePolicy.URL(media: media, size: .Medium, aspectRatio: aspectRatio)
-        let placeholder = Image(URL: URL, aspectRatio: aspectRatio)
+        let placeholder = Image(URL: URL, aspectRatio: aspectRatio, focalPoint: focalPoint)
         
         let playButtonImage = UIImage(named: "play_btn")!
         var title: NSAttributedString? = nil
@@ -637,8 +643,9 @@ class CellFactory: Core.CellFactory {
         //placeholder
         let media = block.media
         let aspectRatio = media.aspectRatio ?? Media.defaultAspectRatio
+        let focalPoint = media.focalPoint ?? Media.defaultFocalPoint
         let URL = imagePolicy.URL(media: media, size: .Medium, aspectRatio: aspectRatio)
-        let placeholder = Image(URL: URL, aspectRatio: aspectRatio)
+        let placeholder = Image(URL: URL, aspectRatio: aspectRatio, focalPoint: focalPoint)
         
         var title: NSAttributedString? = nil
         if let string = block.title {
@@ -679,7 +686,8 @@ class CellFactory: Core.CellFactory {
         var overlayContent: VideoOverlayNodeContent? = nil
         if block.shouldShowOvelay {
             let URL = imagePolicy.URL(media: media, size: .Medium, aspectRatio: aspectRatio)
-            let placeholder = Image(URL: URL, aspectRatio: aspectRatio)
+            let focalPoint = media.focalPoint ?? Media.defaultFocalPoint
+            let placeholder = Image(URL: URL, aspectRatio: aspectRatio, focalPoint: focalPoint)
             let playButtonImage = UIImage(named: "play_btn")!
             
             var title: NSAttributedString? = nil
