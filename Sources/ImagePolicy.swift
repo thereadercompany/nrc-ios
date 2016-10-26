@@ -26,6 +26,7 @@ enum ImageSize {
     case Small
     case Medium
     case Large
+    case ArticleHeader
     case Fullscreen
     
     private var size: CGSize {
@@ -38,6 +39,9 @@ enum ImageSize {
             size = CGSize(singleDimension: screen.width)
         case Large:
             size = CGSize(singleDimension: screen.height)
+        case ArticleHeader:
+            let height = Window.vval([Screen.vXS: Screen.vXS*(5/12),Screen.vS:Screen.vS*(5/12),Screen.vM:Screen.vM*(6/12), Screen.vL:Screen.vL*7/12])
+            size = CGSize(width: screen.width, height: height)
         case .Fullscreen:
             size = screen
         }
@@ -49,6 +53,11 @@ enum ImageSize {
         let width = size.width
         let height = width / ratio
         return CGSize(width: width, height: height)
+    }
+    
+    var defaultAspectRatio: CGFloat {
+        let size = self.size
+        return size.width / size.height
     }
 }
 

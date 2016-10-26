@@ -32,6 +32,7 @@ func setupDefaultContainer() -> Container {
         blockDecoder.register([
             "article-refs" : ArticleRefBlock.self,
             "section-refs" : SectionRefBlock.self,
+            "headers" : ArticleHeaderBlock.self,
             "bylines" : BylineBlock.self,
             "images" : ImageBlock.self,
             "enhanced-banners": EnhancedBannerBlock.self,

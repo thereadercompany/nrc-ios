@@ -51,6 +51,10 @@
 		1C547DBD1DBDEB8300A2A1C6 /* VideoOverlayNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C547DBB1DBDEB8200A2A1C6 /* VideoOverlayNode.swift */; };
 		1C547DBE1DBDF7E100A2A1C6 /* MediaPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C547DB81DB8B1FB00A2A1C6 /* MediaPlayer.swift */; };
 		1C547DBF1DBDF7E200A2A1C6 /* MediaPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C547DB81DB8B1FB00A2A1C6 /* MediaPlayer.swift */; };
+		1C547DC11DBE126800A2A1C6 /* ArticleHeaderNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C547DC01DBE126800A2A1C6 /* ArticleHeaderNode.swift */; };
+		1C547DC21DBE126800A2A1C6 /* ArticleHeaderNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C547DC01DBE126800A2A1C6 /* ArticleHeaderNode.swift */; };
+		1C547DC41DBE12EF00A2A1C6 /* ArticleHeaderBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C547DC31DBE12EF00A2A1C6 /* ArticleHeaderBlock.swift */; };
+		1C547DC51DBE12EF00A2A1C6 /* ArticleHeaderBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C547DC31DBE12EF00A2A1C6 /* ArticleHeaderBlock.swift */; };
 		1C5896581D75D1A8009C9861 /* ArticleRefBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C5896571D75D1A8009C9861 /* ArticleRefBlock.swift */; };
 		1C58965A1D75D1B6009C9861 /* ArticleRefNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C5896591D75D1B6009C9861 /* ArticleRefNode.swift */; };
 		1C58965E1D76C7C8009C9861 /* BylineNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C58965D1D76C7C8009C9861 /* BylineNode.swift */; };
@@ -190,6 +194,8 @@
 		1C547DB21DB6BFC400A2A1C6 /* BlockStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlockStyle.swift; sourceTree = "<group>"; };
 		1C547DB81DB8B1FB00A2A1C6 /* MediaPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaPlayer.swift; sourceTree = "<group>"; };
 		1C547DBB1DBDEB8200A2A1C6 /* VideoOverlayNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoOverlayNode.swift; sourceTree = "<group>"; };
+		1C547DC01DBE126800A2A1C6 /* ArticleHeaderNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleHeaderNode.swift; sourceTree = "<group>"; };
+		1C547DC31DBE12EF00A2A1C6 /* ArticleHeaderBlock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleHeaderBlock.swift; sourceTree = "<group>"; };
 		1C5896571D75D1A8009C9861 /* ArticleRefBlock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleRefBlock.swift; sourceTree = "<group>"; };
 		1C5896591D75D1B6009C9861 /* ArticleRefNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ArticleRefNode.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		1C58965D1D76C7C8009C9861 /* BylineNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = BylineNode.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -368,6 +374,7 @@
 				1C870A121DB18186001149F1 /* ContentNode.swift */,
 				1CECA3C31D7425FE000179BF /* SectionRefNode.swift */,
 				1C5896591D75D1B6009C9861 /* ArticleRefNode.swift */,
+				1C547DC01DBE126800A2A1C6 /* ArticleHeaderNode.swift */,
 				1C58965D1D76C7C8009C9861 /* BylineNode.swift */,
 				1C211A3B1D86E56700D78776 /* TextNode.swift */,
 				1C504EA21D88913800590A52 /* ImageNode.swift */,
@@ -411,6 +418,7 @@
 			children = (
 				1C870A0F1DB18173001149F1 /* SectionRefBlock.swift */,
 				1C5896571D75D1A8009C9861 /* ArticleRefBlock.swift */,
+				1C547DC31DBE12EF00A2A1C6 /* ArticleHeaderBlock.swift */,
 				1C5896601D76C8E6009C9861 /* BylineBlock.swift */,
 				1C504EA41D894D1D00590A52 /* ImageBlock.swift */,
 				1C9FF30E1D9AB452005081F7 /* EnhancedBannerBlock.swift */,
@@ -760,8 +768,10 @@
 				1C195C371D90263B00A749B7 /* DividerNode.swift in Sources */,
 				1C547DB01DB6BF0E00A2A1C6 /* BlockContextType.swift in Sources */,
 				1CECA3C91D742610000179BF /* LoginButton.swift in Sources */,
+				1C547DC11DBE126800A2A1C6 /* ArticleHeaderNode.swift in Sources */,
 				1CECA3C51D7425FE000179BF /* SectionRefNode.swift in Sources */,
 				1C5D0D321D7DB6E8004C7CDD /* DecorationNode.swift in Sources */,
+				1C547DC41DBE12EF00A2A1C6 /* ArticleHeaderBlock.swift in Sources */,
 				1C1CE8B61D81ADC2007940AB /* Line.swift in Sources */,
 				1CC16C2F1DABB3C1002D9734 /* Image.swift in Sources */,
 				1C712F051D8154430011136A /* BulletNode.swift in Sources */,
@@ -823,8 +833,10 @@
 				1C1CE8B31D818D0A007940AB /* ASyncDisplayKit.swift in Sources */,
 				1C547DB11DB6BF0E00A2A1C6 /* BlockContextType.swift in Sources */,
 				1C195C381D90263B00A749B7 /* DividerNode.swift in Sources */,
+				1C547DC21DBE126800A2A1C6 /* ArticleHeaderNode.swift in Sources */,
 				1C22E8F01D8AD743000C6759 /* MarkupTag.swift in Sources */,
 				1CC8C6FC1DAFD139002C9D5C /* YTPlayerView.swift in Sources */,
+				1C547DC51DBE12EF00A2A1C6 /* ArticleHeaderBlock.swift in Sources */,
 				1C5896621D76C8E6009C9861 /* BylineBlock.swift in Sources */,
 				1C9FF3081D9AB274005081F7 /* ImageNode.swift in Sources */,
 				1CC16C3B1DABCD19002D9734 /* NRCCell.swift in Sources */,

@@ -40,6 +40,8 @@ class CellFactory: Core.CellFactory {
             node = sectionRefNode(sectionRefBlock: sectionRef)
         case let articleRef as ArticleRefBlock:
             node = articleRefNode(articleRefBlock: articleRef)
+        case let articleHeaderBlock as ArticleHeaderBlock:
+            node = articleHeaderNode(articleHeaderBlock: articleHeaderBlock)
         case let bylineBlock as BylineBlock:
             node = bylineNode(bylineBlock: bylineBlock)
         case let spacingBlock as SpacingBlock:
@@ -146,6 +148,36 @@ class CellFactory: Core.CellFactory {
         )
         
         return nodeType.init(content: content)
+    }
+    
+    //MARK: - ArticleHeader
+    private func articleHeaderNode(articleHeaderBlock block: ArticleHeaderBlock) -> ArticleHeaderNode {
+        //image
+        var image: Image? = nil
+        if let media = block.media {
+            let aspectRatio = ImageSize.ArticleHeader.defaultAspectRatio
+            let URL = imagePolicy.URL(media: media, size: .ArticleHeader)
+            let focalPoint = media.focalPoint ?? Media.defaultFocalPoint
+            image = Image(URL: URL, aspectRatio: aspectRatio, focalPoint: focalPoint)
+        }
+        
+        // title
+        let attributes = StringAttributes(
+            font: Fonts.largeFont.fallbackWithSize(30),
+            foregroundColor: Colors.defaultFontColor,
+            lineSpacing: 2,
+            hyphenationFactor: 0.5
+        )
+        let title = NSAttributedString(string: block.title, attributes: attributes)
+        
+        let content = ArticleHeaderNodeContent(
+            image: image,
+            title: title,
+            backgroundColor: Colors.cellBackgroundColor,
+            padding: UIEdgeInsets(top: 20, left: ArticleStyles.contentInset, bottom: 18, right: ArticleStyles.contentInset)
+        )
+
+        return ArticleHeaderNode(content: content)
     }
     
     //MARK: - Byline
@@ -940,7 +972,7 @@ extension DecorationLayerModel {
     // null value has no color, no padding, no border and no corner radius
     static var null: DecorationLayerModel {
         return DecorationLayerModel(
-            color: UIColor.clearColor()
+            color: .clearColor()
         )
     }
 }
