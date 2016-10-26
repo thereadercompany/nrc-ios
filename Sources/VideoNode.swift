@@ -105,6 +105,18 @@ class VideoNode: ContentNode<VideoNodeContent>, VideoPlayer, VisibilityObserver,
     
     func pause() {
         videoNode.pause()
+    }
+    
+    func stop() {
+        videoNode.stop()
         showOverlay(true, animationDuration: 1)
+    }
+    
+    //MARK: - ASVideoNodeDelegate
+    func videoDidPlayToEnd(videoNode: ASVideoNode) {
+        // stop when video is played to the end and autorepeat is off
+        if !videoNode.shouldAutorepeat {
+            stop()
+        }
     }
 }

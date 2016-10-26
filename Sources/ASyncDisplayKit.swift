@@ -181,3 +181,16 @@ extension ASStackLayoutSpec {
         self.init(direction: direction, spacing: spacing, justifyContent: justifyContent, alignItems: alignItems, children: children)
     }
 }
+
+//MARK: - ASVideoNode + stop
+extension ASVideoNode {
+    func stop() {
+        pause()
+        reset()
+    }
+    
+    func reset() {
+        let start = CMTime(value: 0, timescale: 1)
+        player?.seekToTime(start)
+    }
+}
